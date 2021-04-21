@@ -1,18 +1,20 @@
-package com.zs.erh.service;
+package com.zs.erh.service.imple;
 
 import com.zs.erh.bean.Collaborateur;
 import com.zs.erh.bean.Equipe;
 import com.zs.erh.bean.EtatEquipe;
 import com.zs.erh.dao.EquipeDao;
 import com.zs.erh.service.facade.CollaborateurService;
+import com.zs.erh.service.facade.EquipeService;
 import com.zs.erh.service.facade.EtatEquipeService;
+import com.zs.erh.service.facade.MembreEquipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-public class EquipeService {
+public class EquipeServiceImple implements EquipeService {
     @Autowired
     private EquipeDao equipeDao;
     @Autowired
