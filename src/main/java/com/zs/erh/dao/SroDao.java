@@ -9,7 +9,8 @@ import java.util.List;
 @Repository
 public interface SroDao extends JpaRepository<Sro, Long> {
     public List<Sro> findAll();
-    public Sro findByCode(String Code);
-    public List<Sro> findByNroCode(String code);
+
+    public Sro findByCode(String code);
+    //public List<Sro>findByNroCode(String code);
 
 }
