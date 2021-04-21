@@ -1,5 +1,6 @@
 package com.zs.erh.config;
 
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -26,3 +27,4 @@ public class SwaggerConfig {
                 .license("he").build();
     }
 }
+
