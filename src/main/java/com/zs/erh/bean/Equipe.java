@@ -28,6 +28,7 @@ public class Equipe implements Serializable {
     private Collaborateur responsable;
     @ManyToOne
     private EtatEquipe etatEquipe;
+
     private String libelle;
     private String code;
     private String description;
