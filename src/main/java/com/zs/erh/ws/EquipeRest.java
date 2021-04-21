@@ -24,6 +24,10 @@ public class EquipeRest {
     public List<Equipe> findByEtatEquipeCode(@PathVariable String code) {
         return this.equipeService.findByEtatEquipeCode(code);
     }
+    @GetMapping("/respoCode/{code}")
+    public Equipe findByRespoCode(String code) {
+        return equipeService.findByRespoCode(code);
+    }
 
     @DeleteMapping("/code/{code}")
     public int deleteByCode(@PathVariable String code) {
