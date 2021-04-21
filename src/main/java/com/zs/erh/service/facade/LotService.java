@@ -1,22 +1,21 @@
-package com.zs.erh.dao;
+package com.zs.erh.service.facade;
 
 import com.zs.erh.bean.Lot;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface LottDao extends JpaRepository<Lot, Long> {
+public interface LotService {
     public List<Lot> findByProjetCode(String code);
 
     public Lot findByCode(String code);
 
-    public List<Lot> findBySroCode(String code);
-
     public List<Lot> findAll();
+
+    public List<Lot> findBySroCode(String code);
 
     public int deleteByCode(String code);
 
     public int deleteByProjetCode(String code);
+
+    public int save(Lot lot);
 }

@@ -9,20 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-
-
 @Service
 public class EtatEquipeServiceImple implements EtatEquipeService {
-	@Autowired
-	private EtatEquipeDao etatEquipeDao;
+    @Autowired
+    private EtatEquipeDao etatEquipeDao;
 
-	public List<EtatEquipe> findAll() {
-		return etatEquipeDao.findAll();
-	}
+    public List<EtatEquipe> findAll() {
+        return etatEquipeDao.findAll();
+    }
 
-	@Override
-	public EtatEquipe findByCode(String code) {
-		return etatEquipeDao.findByCode(code);
-	}
-	
+    @Override
+    public EtatEquipe findByCode(String code) {
+        return etatEquipeDao.findByCode(code);
+    }
+
 }
