@@ -15,4 +15,8 @@ public class MembreEquipeService {
     public List<MembreEquipe> findAll(){
         return membreEquipeDao.findAll();
     }
+
+    public int deleteByEquipeCode(String code){
+        return membreEquipeDao.deleteByEquipeCode(code);
+    }
 }

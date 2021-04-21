@@ -4,6 +4,8 @@ import com.zs.erh.bean.Collaborateur;
 import com.zs.erh.bean.Equipe;
 import com.zs.erh.bean.EtatEquipe;
 import com.zs.erh.dao.EquipeDao;
+import com.zs.erh.service.facade.CollaborateurService;
+import com.zs.erh.service.facade.EtatEquipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
@@ -13,50 +15,60 @@ import java.util.List;
 public class EquipeService {
     @Autowired
     private EquipeDao equipeDao;
+    @Autowired
+    private MembreEquipeService membreEquipeService;
+    @Autowired
+    private CollaborateurService collaborateurService;
+    @Autowired
+    private EtatEquipeService etatEquipeService;
 
-    public List<Equipe> findAll(){
+    public List<Equipe> findAll() {
         return equipeDao.findAll();
     }
 
-    public Equipe findByCode(String code){
+    public Equipe findByCode(String code) {
         return equipeDao.findByCode(code);
     }
 
-    public Equipe findByResponsableCode(String code){
-        return equipeDao.findByResponsableCode(code);
+    public Equipe findByRespoCode(String code) {
+        return equipeDao.findByRespoCode(code);
     }
 
-    public List<Equipe> findByEtatEquipeCode(String code){
+    public List<Equipe> findByEtatEquipeCode(String code) {
         return equipeDao.findByEtatEquipeCode(code);
     }
-   // @Transactional
-    public int deleteByCode(String code){
-        if(equipeDao.findByCode(code)==null){
+
+    @Transactional
+    public int deleteByCode(String code) {
+        if (equipeDao.findByCode(code) == null) {
             return -1;
-        }else{
+        } else {
             //delete Equipe with its membersEquipe
+            int delByEquipeCode = membreEquipeService.deleteByEquipeCode(code);
+            int delByCode = equipeDao.deleteByCode(code);
+            return delByEquipeCode + delByCode;
+
         }
     }
 
-    public int save(Equipe equipe){
-        if(equipeDao.findByCode(equipe.getCode())!=null){
+    public int save(Equipe equipe) {
+        if (equipeDao.findByCode(equipe.getCode()) != null) {
             return -1; // already exist !
-        }/*else{
-            Collaborateur responsable = collaborateurService.findByCode(equipe.getResponsable().getCode());
-            EtatEquipe etatequipe  = etatEquipeService.findByCode(equipe.getEtatEquipe().getCode());
+        } else {
+            Collaborateur respoFounded = collaborateurService.findByCode(equipe.getResponsable().getCode());
+            EtatEquipe etatEquipeFounded = etatEquipeService.findByCode(equipe.getEtatEquipe().getCode());
 
-            if(responsable == null) {
+            if (respoFounded == null) {
                 return -2;
-            }
-            else if(etatequipe == null){
+            } else if (etatEquipeFounded == null) {
                 return -3;
-            }
-            else {
-                equipe.setResponsable(responsable);
-                equipe.setEtatEquipe(etatequipe);
+            } else {
+                equipe.setResponsable(respoFounded);
+                equipe.setEtatEquipe(etatEquipeFounded);
                 equipeDao.save(equipe);
-            }*/
+            }
             return 1;
         }
- }
+    }
 }
+

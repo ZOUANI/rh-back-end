@@ -6,11 +6,8 @@
 package com.zs.erh.bean;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import java.util.List;
+import javax.persistence.*;
 
 /**
  *
@@ -23,15 +20,17 @@ public class Equipe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String libelle;
+    private String code;
+    private String description;
 
     @ManyToOne
     private Collaborateur responsable;
     @ManyToOne
     private EtatEquipe etatEquipe;
+    /*@OneToMany(mappedBy = "equipe")
+    private List<MembreEquipe> membresEquipe; */
 
-    private String libelle;
-    private String code;
-    private String description;
 
     public EtatEquipe getEtatEquipe() {
         if (etatEquipe == null) {
