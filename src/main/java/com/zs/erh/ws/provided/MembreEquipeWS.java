@@ -16,18 +16,13 @@ public class MembreEquipeWS {
     @Autowired
     private MembreEquipeService membreEquipeService;
 
-    @GetMapping("/")
-    public List<MembreEquipe> findAll(){
-        return membreEquipeService.findAll();
-    }
-
     @GetMapping("/collaborateurCode/{code}")
     List<MembreEquipe> findByCollaborateurCode(@PathVariable String code){
         return membreEquipeService.findByCollaborateurCode(code);
     }
 
     @GetMapping("/equipeCode/{code}")
-    MembreEquipe findByEquipeCode(@PathVariable String code){
+    List<MembreEquipe> findByEquipeCode(@PathVariable String code){
         return membreEquipeService.findByEquipeCode(code);
     }
 
