@@ -22,7 +22,7 @@ public class EtatTache implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-      private String libelle;
+    private String libelle;
     private String code;
     private String description;
 
