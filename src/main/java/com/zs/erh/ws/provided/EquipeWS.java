@@ -25,8 +25,8 @@ public class EquipeWS {
         return this.equipeServiceImple.findByEtatEquipeCode(code);
     }
     @GetMapping("/respoCode/{code}")
-    public Equipe findByRespoCode(String code) {
-        return equipeServiceImple.findByRespoCode(code);
+    public Equipe findByResponsableCode(String code) {
+        return equipeServiceImple.findByResponsableCode(code);
     }
 
     @DeleteMapping("/code/{code}")

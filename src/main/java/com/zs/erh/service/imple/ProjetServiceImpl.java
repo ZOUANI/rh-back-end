@@ -16,20 +16,12 @@ public class ProjetServiceImpl {
         return projetDao.findAll();
     }
 
-    public List<GroupeTache> findByLotCode(String code) {
-        return projetDao.findByLotCode(code);
-    }
-
     public Projet findByCode(String code) {
         return projetDao.findByCode(code);
     }
 
     public int deleteByCode(String code) {
         return projetDao.deleteByCode(code);
-    }
-
-    public int deleteByNroCode(String code) {
-        return projetDao.deleteByNroCode(code);
     }
 
     @Autowired

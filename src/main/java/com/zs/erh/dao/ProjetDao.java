@@ -14,9 +14,7 @@ public interface ProjetDao extends JpaRepository<Projet, Long> {
 
     public List<Projet> findByNroCode(String code);
     public List<Projet> findAll();
-    public List<GroupeTache> findByLotCode(String code);
     public Projet findByCode(String code);
     public int deleteByCode(String code);
-    public int deleteByNroCode(String code);
 
 }
