@@ -17,7 +17,7 @@ public class MembreEquipeServiceImple implements MembreEquipeService {
         return membreEquipeDao.findByCollaborateurCode(code);
     }
 
-   public MembreEquipe findByEquipeCode(String code){
+   public List<MembreEquipe> findByEquipeCode(String code){
         return membreEquipeDao.findByEquipeCode(code);
     }
     public int deleteByEquipeCode(String code){

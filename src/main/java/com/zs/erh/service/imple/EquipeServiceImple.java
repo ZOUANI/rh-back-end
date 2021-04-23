@@ -32,8 +32,8 @@ public class EquipeServiceImple implements EquipeService {
         return equipeDao.findByCode(code);
     }
 
-    public Equipe findByRespoCode(String code) {
-        return equipeDao.findByRespoCode(code);
+    public Equipe findByResponsableCode(String code) {
+        return equipeDao.findByResponsableCode(code);
     }
 
     public List<Equipe> findByEtatEquipeCode(String code) {

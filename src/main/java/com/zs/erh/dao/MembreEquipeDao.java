@@ -10,6 +10,6 @@ import java.util.List;
 public interface MembreEquipeDao extends JpaRepository<MembreEquipe,Long> {
 
     List<MembreEquipe> findByCollaborateurCode(String code);
-    MembreEquipe findByEquipeCode(String code);
+    List<MembreEquipe> findByEquipeCode(String code);
     int deleteByEquipeCode(String code);
 }

@@ -29,10 +29,6 @@ public class ProjetServiceImple {
         return projetDao.findAll();
     }
 
-    public List<GroupeTache> findByLotCode(String code) {
-        return projetDao.findByLotCode(code);
-    }
-
     public Projet findByCode(String code) {
         return projetDao.findByCode(code);
     }
@@ -42,10 +38,6 @@ public class ProjetServiceImple {
         int resultLot = lotServiceImple.deleteByProjetCode(code);
         int resultProjet = projetDao.deleteByCode(code);
         return resultLot + resultProjet;
-    }
-
-    public int deleteByNroCode(String code) {
-        return projetDao.deleteByNroCode(code);
     }
 
     @Autowired
