@@ -1,6 +1,5 @@
 package com.zs.erh.ws.provided;
 
-import com.zs.erh.bean.CategorieGroupeTache;
 import com.zs.erh.bean.CategorieTache;
 import com.zs.erh.service.facade.CategorieTacheService;
 import org.springframework.beans.factory.annotation.Autowired;

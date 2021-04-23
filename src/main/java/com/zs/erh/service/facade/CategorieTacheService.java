@@ -1,6 +1,5 @@
 package com.zs.erh.service.facade;
 
-import com.zs.erh.bean.CategorieGroupeTache;
 import com.zs.erh.bean.CategorieTache;
 
 import java.util.List;
