@@ -28,16 +28,15 @@ public class LotWS {
     public List<Sro> findBySroCode(@PathVariable String code) {
         return lotServiceImple.findBySroCode(code);
     }
-
+    @GetMapping("/")
     public List<Lot> findAll() {
         return lotServiceImple.findAll();
     }
-
     @DeleteMapping("/code/{code}")
     public int deleteByCode(@PathVariable String code) {
         return lotServiceImple.deleteByCode(code);
     }
-    @DeleteMapping("/code/{code}")
+    @DeleteMapping("/projet/code/{code}")
     public int deleteByProjetCode(@PathVariable String code) {
         return lotServiceImple.deleteByProjetCode(code);
     }
