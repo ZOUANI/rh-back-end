@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("maneo-rh/equipe/")
 public class EquipeWS {
     @Autowired
     private EquipeServiceImple equipeServiceImple;
