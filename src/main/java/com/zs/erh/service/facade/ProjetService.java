@@ -6,10 +6,15 @@ import java.util.List;
 
 public interface ProjetService {
     List<Projet> findAll();
+
     Projet findByNroCode(String code);
+
     Projet findByCode(String Code);
+
     int deleteByCode(String code);
-    public int save(Projet projet);
-    public int deleteByNroCode(String code);
+
+    int save(Projet projet);
+
+    int deleteByNroCode(String code);
 
 }

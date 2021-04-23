@@ -4,10 +4,23 @@ import com.zs.erh.bean.GroupeTache;
 import com.zs.erh.bean.Projet;
 import com.zs.erh.dao.ProjetDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public class ProjetServiceImpl {
+@Service
+public class ProjetServiceImple {
+
+    public int save(Projet projet) {
+        if (findByCode(projet.getCode()) != null) {
+            return -1;
+        } else {
+            projetDao.save(projet);
+            return 1;
+        }
+    }
+
     public List<Projet> findByNroCode(String code) {
         return projetDao.findByNroCode(code);
     }
@@ -24,8 +37,11 @@ public class ProjetServiceImpl {
         return projetDao.findByCode(code);
     }
 
+    @Transactional
     public int deleteByCode(String code) {
-        return projetDao.deleteByCode(code);
+        int resultLot = lotServiceImple.deleteByProjetCode(code);
+        int resultProjet = projetDao.deleteByCode(code);
+        return resultLot + resultProjet;
     }
 
     public int deleteByNroCode(String code) {
@@ -34,4 +50,6 @@ public class ProjetServiceImpl {
 
     @Autowired
     public ProjetDao projetDao;
+    @Autowired
+    public LotServiceImple lotServiceImple;
 }

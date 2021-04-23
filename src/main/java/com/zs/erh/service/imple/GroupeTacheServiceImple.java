@@ -18,6 +18,7 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
 
 	@Autowired
 	private GroupeTacheDao groupeTacheDao;
+
 	
 	@Autowired
 	private TacheService tacheService;
