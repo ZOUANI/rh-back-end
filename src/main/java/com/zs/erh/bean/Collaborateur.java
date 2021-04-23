@@ -5,6 +5,8 @@
  */
 package com.zs.erh.bean;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,6 +34,7 @@ public class Collaborateur implements Serializable {
     private String email;
 
     @ManyToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private EntiteAdministrative entiteAdministrative;
 
     private int nbrCnx = 3;
@@ -42,13 +45,17 @@ public class Collaborateur implements Serializable {
     private CategorieCollaborateur categorieCollaborateur;
 
     @ManyToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Projet projetDefault;
     @ManyToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Lot lotDefault;
     @ManyToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private GroupeTache groupeTacheDefault;
 
     @ManyToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Equipe equipeDefault;
 
     public Projet getProjetDefault() {
