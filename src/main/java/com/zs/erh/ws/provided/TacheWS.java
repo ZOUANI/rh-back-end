@@ -32,7 +32,12 @@ public class TacheWS {
     }
 
     @DeleteMapping("GroupeTacheCode/{code}")
-    public int deleteByGroupeTacheCode(@PathVariable String Code) {
-        return tacheService.deleteByGroupeTacheCode(Code);
+    public int deleteByGroupeTacheCode(@PathVariable String code) {
+        return tacheService.deleteByGroupeTacheCode(code);
+    }
+
+    @DeleteMapping("code/{code}")
+    public int deleteByCode(@PathVariable String code) {
+        return tacheService.deleteByCode(code);
     }
 }
