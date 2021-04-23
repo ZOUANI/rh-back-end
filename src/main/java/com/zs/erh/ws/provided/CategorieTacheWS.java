@@ -1,6 +1,7 @@
 package com.zs.erh.ws.provided;
 
 import com.zs.erh.bean.CategorieGroupeTache;
+import com.zs.erh.bean.CategorieTache;
 import com.zs.erh.service.facade.CategorieTacheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,13 +15,15 @@ import java.util.List;
 public class CategorieTacheWS {
     @Autowired
     private CategorieTacheService categorieTacheService;
+
     @GetMapping("/")
-    public List<CategorieGroupeTache> findAll() {
+    public List<CategorieTache> findAll() {
         return categorieTacheService.findAll();
     }
 
     @GetMapping("/code/{code}")
-    public CategorieGroupeTache findByCode(String code) {
+    public CategorieTache findByCode(String code) {
         return categorieTacheService.findByCode(code);
     }
+
 }
