@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.zs.erh.bean.GroupeTache;
 import com.zs.erh.dao.GroupeTacheDao;
+import com.zs.erh.service.facade.CategorieGroupeTacheService;
+import com.zs.erh.service.facade.EquipeService;
+import com.zs.erh.service.facade.LotService;
 import com.zs.erh.service.facade.GroupeTacheService;
 import com.zs.erh.service.facade.TacheService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +22,15 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
 	@Autowired
 	private GroupeTacheDao groupeTacheDao;
 
-	
+	@Autowired
+	private EquipeService equipeService;
+
+	@Autowired
+	private LotService lotService;
+
+	@Autowired
+	private CategorieGroupeTacheService categorieGroupeTacheService;
+
 	@Autowired
 	private TacheService tacheService;
 	
@@ -53,6 +64,10 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
 			return -1;
 		}
 		else {
+			groupeTache.setCode(groupeTache.getLibelle());
+			groupeTache.setCategorieGroupeTache(categorieGroupeTacheService.findByCode(groupeTache.getCategorieGroupeTache().getCode()));
+			groupeTache.setEquipe(equipeService.findByCode(groupeTache.getEquipe().getCode()));
+			groupeTache.setLot(lotService.findByCode(groupeTache.getLot().getCode()));
 			groupeTacheDao.save(groupeTache);
 			return 1;
 		}
@@ -62,5 +77,4 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
 	public int deleteByLotCode(String code){
 		return groupeTacheDao.deleteByLotCode(code);
 	}
-
 }
