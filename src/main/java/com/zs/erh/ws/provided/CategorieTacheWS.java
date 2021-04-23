@@ -4,6 +4,7 @@ import com.zs.erh.bean.CategorieTache;
 import com.zs.erh.service.facade.CategorieTacheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +22,7 @@ public class CategorieTacheWS {
     }
 
     @GetMapping("/code/{code}")
-    public CategorieTache findByCode(String code) {
+    public CategorieTache findByCode(@PathVariable String code) {
         return categorieTacheService.findByCode(code);
     }
 

@@ -33,8 +33,6 @@ public class Tache implements Serializable {
     private EtatTache etatTache;
     @ManyToOne
     private MembreEquipe membreEquipe;
-    @ManyToOne
-    private Collaborateur responsable;
 
 
     private Integer semaine;
@@ -51,13 +49,6 @@ public class Tache implements Serializable {
     @ManyToOne
     private GroupeTache groupeTache;
 
-    public Collaborateur getResponsable() {
-        return responsable;
-    }
-
-    public void setResponsable(Collaborateur responsable) {
-        this.responsable = responsable;
-    }
 
     public Date getDateFinEffective() {
         return dateFinEffective;
