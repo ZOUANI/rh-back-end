@@ -1,6 +1,7 @@
 package com.zs.erh.ws.provided;
 
 import com.zs.erh.bean.Lot;
+import com.zs.erh.bean.Sro;
 import com.zs.erh.service.imple.LotServiceImple;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class LotWS {
         return lotServiceImple.findByCode(code);
     }
     @GetMapping("/sro/code/{code}")
-    public List<Lot> findBySroCode(@PathVariable String code) {
+    public List<Sro> findBySroCode(@PathVariable String code) {
         return lotServiceImple.findBySroCode(code);
     }
 

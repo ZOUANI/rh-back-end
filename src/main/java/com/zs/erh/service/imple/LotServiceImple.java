@@ -2,6 +2,7 @@ package com.zs.erh.service.imple;
 
 import com.zs.erh.bean.Lot;
 import com.zs.erh.bean.Projet;
+import com.zs.erh.bean.Sro;
 import com.zs.erh.dao.LottDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ public class LotServiceImple {
         return lottDao.findByCode(code);
     }
 
-    public List<Lot> findBySroCode(String code) {
+    public List<Sro> findBySroCode(String code) {
         return lottDao.findBySroCode(code);
     }
 

@@ -14,23 +14,23 @@ import java.util.List;
 public class ProjetWS {
     @Autowired
     public ProjetServiceImple projetServiceImple;
-@PostMapping("/")
+
+    @PostMapping("/")
     public int save(@RequestBody Projet projet) {
         return projetServiceImple.save(projet);
     }
+
     @GetMapping("/nro/code/{code}")
     public List<Projet> findByNroCode(@PathVariable String code) {
         return projetServiceImple.findByNroCode(code);
     }
-@GetMapping("/")
+
+    @GetMapping("/")
     public List<Projet> findAll() {
         return projetServiceImple.findAll();
     }
-@GetMapping("/lot/code/{code}")
-    public List<GroupeTache> findByLotCode(@PathVariable String code) {
-        return projetServiceImple.findByLotCode(code);
-    }
-@GetMapping("/code/{code}")
+
+    @GetMapping("/code/{code}")
     public Projet findByCode(@PathVariable String code) {
         return projetServiceImple.findByCode(code);
     }
@@ -39,8 +39,5 @@ public class ProjetWS {
     public int deleteByCode(@PathVariable String code) {
         return projetServiceImple.deleteByCode(code);
     }
-@DeleteMapping("/code/{code}")
-    public int deleteByNroCode(@PathVariable String code) {
-        return projetServiceImple.deleteByNroCode(code);
-    }
 }
+
