@@ -13,7 +13,6 @@ public interface TacheDao extends JpaRepository<Tache, Long> {
 
 	public Tache findByCode (String code);
 	public List<Tache> findByGroupeTacheCode(String code);
-	public List<Tache> findByMembreEquipeId (String code);
 	public int deleteByGroupeTacheCode(String code);
 	public int deleteBycode(String code);
  	

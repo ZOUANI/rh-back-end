@@ -34,6 +34,7 @@ public class Tache implements Serializable {
     @ManyToOne
     private MembreEquipe membreEquipe;
 
+
     private Integer semaine;
     private Integer mois;
     private Integer annee;
@@ -47,6 +48,7 @@ public class Tache implements Serializable {
     private CategorieTache categorieTache;
     @ManyToOne
     private GroupeTache groupeTache;
+
 
     public Date getDateFinEffective() {
         return dateFinEffective;
