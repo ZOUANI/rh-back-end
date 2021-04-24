@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
+
 
 @Service
 public class EntrepriseServiceImple implements EntrepriseService {
@@ -40,6 +42,25 @@ public class EntrepriseServiceImple implements EntrepriseService {
             return 1;
         }
 
+    }
+    public Optional<Entreprise> findById(Long id) {
+        return entrepriseDao.findById(id);
+    }
+    public int updateEntreprise(Entreprise entreprise,Long id){
+        Optional<Entreprise> foundedEntreprise = entrepriseDao.findById(id);
+        if(foundedEntreprise.isPresent()){
+            if(foundedEntreprise.get().getLibelle()==entreprise.getLibelle()){
+                foundedEntreprise.get().setCode(entreprise.getCode());
+                foundedEntreprise.get().setDescription(entreprise.getDescription());
+                entrepriseDao.save(foundedEntreprise.get());
+                return 1;
+            }else {
+                return -1;
+            }
+        }else{
+            save(entreprise);
+            return 2;
+        }
     }
 
     @Autowired
