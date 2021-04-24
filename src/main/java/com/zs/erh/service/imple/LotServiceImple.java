@@ -4,6 +4,7 @@ import com.zs.erh.bean.Lot;
 import com.zs.erh.bean.Projet;
 import com.zs.erh.bean.Sro;
 import com.zs.erh.dao.LottDao;
+import com.zs.erh.service.facade.LotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class LotServiceImple {
+public class LotServiceImple implements LotService{
     @Autowired
     public LottDao lottDao;
     @Autowired

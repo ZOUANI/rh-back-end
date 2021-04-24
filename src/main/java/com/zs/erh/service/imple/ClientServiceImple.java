@@ -4,9 +4,11 @@ import com.zs.erh.bean.Client;
 import com.zs.erh.bean.Entreprise;
 import com.zs.erh.dao.ClientDao;
 import com.zs.erh.service.facade.ClientService;
+import com.zs.erh.vo.ClientVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -27,6 +29,17 @@ public class ClientServiceImple implements ClientService {
             clientDao.save(client);
         }
     }
+    public List<Client> search(ClientVO clientVO){
+        String query = "SELECT c FROM Client c where 1=1";
+        if(clientVO.getLibelle() != null){
+            query+= " AND c.libelle LIKE '%" + clientVO.getLibelle() + "%'";
+        }if(clientVO.getCode()!=null){
+            query+=" AND c.code LIKE '%" + clientVO.getCode() + "%'";
+        }if(clientVO.getDescription()!=null){
+            query+=" AND c.description LIKE '%" + clientVO.getDescription() + "%'";
+        }
+        return  entityManager.createQuery(query).getResultList();
+    }
 
     @Transactional
     public int deleteByLibelle(String libelle) {
@@ -35,4 +48,6 @@ public class ClientServiceImple implements ClientService {
 
     @Autowired
     private ClientDao clientDao;
+    @Autowired
+    private EntityManager entityManager;
 }

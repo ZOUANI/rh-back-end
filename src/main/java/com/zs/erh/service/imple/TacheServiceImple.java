@@ -37,11 +37,12 @@ public class TacheServiceImple implements TacheService {
 		return tacheDao.findAll();
 	}
 
-	public int deleteByGroupeTacheCode(String Code) {
-		return tacheDao.deleteByGroupeTacheCode(Code);
+	@Transactional
+	public int deleteByGroupeTacheCode(String code) {
+		return tacheDao.deleteByGroupeTacheCode(code);
 	}
 
-	@Override
+	@Transactional
 	public int deleteByCode(String code) {
 		return tacheDao.deleteBycode(code);
 	}
