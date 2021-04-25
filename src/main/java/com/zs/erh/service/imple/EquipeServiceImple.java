@@ -85,7 +85,6 @@ public class EquipeServiceImple implements EquipeService {
   public int update(Long id,Equipe equipe){
         Optional<Equipe> foundedEquipe = equipeDao.findById(id);
         if (foundedEquipe.isPresent()) {
-            if(foundedEquipe.get().getCode()==equipe.getCode()){
                 foundedEquipe.get().setLibelle(equipe.getLibelle());
                 foundedEquipe.get().setDescription(equipe.getDescription());
                 foundedEquipe.get().setResponsable(equipe.getResponsable());
@@ -94,11 +93,8 @@ public class EquipeServiceImple implements EquipeService {
                 etatEquipeDao.save(equipe.getEtatEquipe());
                 equipeDao.save(foundedEquipe.get());
                 return 1;
-            }else{
+            }else
                 return -1;
             }
-        } else
-            return -1;
-    }
 }
 

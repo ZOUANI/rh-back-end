@@ -29,6 +29,9 @@ public class MembreEquipeWS {
         return membreEquipeService.deleteByEquipeCode(code);
     }
 
-
+    @DeleteMapping("/equipeCode/{codeEquipe}/collaborateurCode/{codeCollaborateur}")
+    public int deleteByEquipeCodeAndCollaborateurCode(@PathVariable String codeEquipe,@PathVariable String codeCollaborateur){
+        return membreEquipeService.deleteByEquipeCodeAndCollaborateurCode(codeEquipe,codeCollaborateur);
+    }
 
 }

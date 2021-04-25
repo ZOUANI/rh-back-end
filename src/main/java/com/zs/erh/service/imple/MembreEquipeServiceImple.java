@@ -7,6 +7,7 @@ import com.zs.erh.service.facade.MembreEquipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -35,5 +36,9 @@ public class MembreEquipeServiceImple implements MembreEquipeService {
             membreEquipeDao.save(membreEquipe);
         }
         return 1;
+    }
+    @Transactional
+    public int deleteByEquipeCodeAndCollaborateurCode(String codeEquipe,String codeCollaborateur){
+        return membreEquipeDao.deleteByEquipeCodeAndCollaborateurCode(codeEquipe,codeCollaborateur);
     }
 }
