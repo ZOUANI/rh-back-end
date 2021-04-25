@@ -29,14 +29,7 @@ public class MembreEquipeServiceImple implements MembreEquipeService {
     public List<MembreEquipe> findAll(){
         return membreEquipeDao.findAll();
     }
-
-    public int save(Equipe equipe, List<MembreEquipe> membresEquipe){
-        for(MembreEquipe membreEquipe :membresEquipe){
-            membreEquipe.setEquipe(equipe);
-            membreEquipeDao.save(membreEquipe);
-        }
-        return 1;
-    }
+    
     @Transactional
     public int deleteByEquipeCodeAndCollaborateurCode(String codeEquipe,String codeCollaborateur){
         return membreEquipeDao.deleteByEquipeCodeAndCollaborateurCode(codeEquipe,codeCollaborateur);
