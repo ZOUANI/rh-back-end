@@ -9,22 +9,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("maneo-rh/membreEquipe/")
+@RequestMapping("maneo-rh/membreEquipe")
 public class MembreEquipeWS {
     @Autowired
     private MembreEquipeService membreEquipeService;
 
-    @GetMapping("/collaborateurCode/{code}")
+    @GetMapping("/collaborateur/Code/{code}")
     List<MembreEquipe> findByCollaborateurCode(@PathVariable String code){
         return membreEquipeService.findByCollaborateurCode(code);
     }
 
-    @GetMapping("/equipeCode/{code}")
+    @GetMapping("/equipe/Code/{code}")
     List<MembreEquipe> findByEquipeCode(@PathVariable String code){
         return membreEquipeService.findByEquipeCode(code);
     }
 
-    @DeleteMapping("/code/{code}")
+    @DeleteMapping("/equipe/code/{code}")
     public int deleteByEquipeCode(@PathVariable String code){
         return membreEquipeService.deleteByEquipeCode(code);
     }
