@@ -21,6 +21,12 @@ public class ClientWS {
     public int deleteByCode( @PathVariable String code) {
         return clientService.deleteByCode(code);
     }
+
+    @GetMapping("/")
+    public List<Client> findAll() {
+        return clientService.findAll();
+    }
+
     @PostMapping("/search")
     public List<Client> search(@RequestBody ClientVO clientVO) {
         return clientService.search(clientVO);

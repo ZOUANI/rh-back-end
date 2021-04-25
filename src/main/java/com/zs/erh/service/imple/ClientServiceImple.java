@@ -57,6 +57,22 @@ public class ClientServiceImple implements ClientService {
     private ClientDao clientDao;
     @Autowired
     private EntityManager entityManager;
+
+    @Override
+    public List<Client> findByEntrepriseLibelle(String libelle) {
+        return clientDao.findByEntrepriseLibelle(libelle);
+    }
+
+    @Override
+    public List<Client> findAll() {
+        return clientDao.findAll();
+    }
+
+    @Override
+    public int deleteByEntrepriseLibelle(String libelle) {
+        return clientDao.deleteByEntrepriseLibelle(libelle);
+    }
+
     @Autowired
     private EntrepriseService entrepriseService;
 }

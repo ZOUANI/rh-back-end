@@ -12,20 +12,20 @@ import java.util.List;
 @RequestMapping(value = "maneo-rh/nro")
 public class NroWS {
     @Autowired
-    public NroServiceImple nroServiceImple;
+    public NroService nroService;
 
     @GetMapping("/")
     public List<Nro> findAll() {
-        return nroServiceImple.findAll();
+        return nroService.findAll();
     }
 
     @GetMapping("/code/{code}/")
     public Nro findByCode(@PathVariable String Code) {
-        return nroServiceImple.findByCode(Code);
+        return nroService.findByCode(Code);
     }
 
     @DeleteMapping("/code/{code}")
     public int deleteByCode(@PathVariable String code) {
-        return nroServiceImple.deleteByCode(code);
+        return nroService.deleteByCode(code);
     }
 }
