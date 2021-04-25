@@ -7,7 +7,7 @@ import java.util.List;
 public interface ProjetService {
     List<Projet> findAll();
 
-    Projet findByNroCode(String code);
+    List<Projet> findByNroCode(String code);
 
     Projet findByCode(String Code);
 

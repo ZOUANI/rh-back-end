@@ -1,6 +1,7 @@
 package com.zs.erh.ws.provided;
 
 import com.zs.erh.bean.EtatProjet;
+import com.zs.erh.service.facade.EtatProjetService;
 import com.zs.erh.service.imple.EtatProjetServiceImple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +14,10 @@ import java.util.List;
 @RequestMapping(value = "maneo-rh/etatprojet")
 public class EtatProjetWS {
     @Autowired
-    private EtatProjetServiceImple etatProjetServiceImple;
+    private EtatProjetService etatProjetService;
 
     @GetMapping("/")
     public List<EtatProjet> findAll() {
-        return etatProjetServiceImple.findAll();
+        return etatProjetService.findAll();
     }
 }

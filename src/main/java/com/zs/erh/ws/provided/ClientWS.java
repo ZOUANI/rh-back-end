@@ -20,6 +20,12 @@ public class ClientWS {
     public int deleteByLibelle( @PathVariable String libelle) {
         return clientService.deleteByLibelle(libelle);
     }
+
+    @GetMapping("/")
+    public List<Client> findAll() {
+        return clientService.findAll();
+    }
+
     @PostMapping("/search")
     public List<Client> search(@RequestBody ClientVO clientVO) {
         return clientService.search(clientVO);

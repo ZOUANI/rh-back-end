@@ -50,4 +50,9 @@ public class ClientServiceImple implements ClientService {
     private ClientDao clientDao;
     @Autowired
     private EntityManager entityManager;
+
+    @Override
+    public List<Client> findAll() {
+        return clientDao.findAll();
+    }
 }
