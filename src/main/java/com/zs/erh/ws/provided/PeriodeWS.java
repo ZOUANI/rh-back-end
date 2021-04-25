@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("maneo-rh/periode/")
+@RequestMapping("maneo-rh/periode")
 public class PeriodeWS {
     @Autowired
     private PeriodeService periodeService;

@@ -2,22 +2,32 @@ package com.zs.erh.ws.provided;
 
 import com.zs.erh.bean.Client;
 import com.zs.erh.service.facade.ClientService;
+import com.zs.erh.vo.ClientVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("gestion-client/client")
+@RequestMapping("gestion-clients/client")
 public class ClientWS {
-    @GetMapping("/libelle/{libelle}")
-    public List<Client> findByEntrepriseLibelle(@PathVariable String libelle) {
-        return clientService.findByEntrepriseLibelle(libelle);
+    @GetMapping("/code/{code}")
+    public List<Client> findByEntrepriseCode(@PathVariable String code) {
+        return clientService.findByEntrepriseCode(code);
     }
 
-    @DeleteMapping("/libelle/{libelle}")
-    public int deleteByLibelle( @PathVariable String libelle) {
-        return clientService.deleteByLibelle(libelle);
+    @DeleteMapping("/code/{code}")
+    public int deleteByCode( @PathVariable String code) {
+        return clientService.deleteByCode(code);
+    }
+    @PostMapping("/search")
+    public List<Client> search(@RequestBody ClientVO clientVO) {
+        return clientService.search(clientVO);
+    }
+    @GetMapping("/id/{id}")
+    public Optional<Client> findById( @PathVariable Long id) {
+        return clientService.findById(id);
     }
 
     @Autowired

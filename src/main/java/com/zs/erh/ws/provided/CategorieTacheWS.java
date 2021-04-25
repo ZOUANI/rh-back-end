@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("maneo-rh/categorieTache/")
+@RequestMapping("maneo-rh/categorieTache")
 public class CategorieTacheWS {
     @Autowired
     private CategorieTacheService categorieTacheService;

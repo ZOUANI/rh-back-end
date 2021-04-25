@@ -4,7 +4,6 @@ package com.zs.erh.ws.provided;
 import com.zs.erh.bean.Tache;
 import com.zs.erh.service.facade.TacheService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
