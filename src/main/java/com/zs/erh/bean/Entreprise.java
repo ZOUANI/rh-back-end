@@ -22,8 +22,8 @@ public class Entreprise implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String libelle;
     private String code;
+    private String libelle;
     private String description;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "entreprise")

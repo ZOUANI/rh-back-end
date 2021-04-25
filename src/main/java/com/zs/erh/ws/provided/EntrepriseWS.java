@@ -11,17 +11,17 @@ import java.util.Optional;
 @RestController
 @RequestMapping("gestion-entreprise/entreprise")
 public class EntrepriseWS {
-    @GetMapping("/libelle/{libelle}")
-    public Entreprise findByLibelle( @PathVariable String libelle) {
-        return entrepriseService.findByLibelle(libelle);
+    @GetMapping("/code/{code}")
+    public Entreprise findByCode( @PathVariable String code) {
+        return entrepriseService.findByCode(code);
     }
-    @GetMapping("/libelle/{libelle}/code/{code}")
-    public List<Entreprise> findByLibelleLikeAndCodeLike( @PathVariable String libelle,@PathVariable String code) {
-        return entrepriseService.findByLibelleLikeAndCodeLike(libelle, code);
+    @GetMapping("/code/{code}/libelle/{libelle}")
+    public List<Entreprise> findByCodeLikeAndLibelleLike( @PathVariable String code,@PathVariable String libelle) {
+        return entrepriseService.findByCodeLikeAndLibelleLike(code, libelle);
     }
-    @DeleteMapping("/libelle/{libelle}")
-    public int deleteByLibelle(@PathVariable String libelle) {
-        return entrepriseService.deleteByLibelle(libelle);
+    @DeleteMapping("/code/{code}")
+    public int deleteByCode(@PathVariable String code) {
+        return entrepriseService.deleteByCode(code);
     }
     @GetMapping("/")
     public List<Entreprise> findAll() {
@@ -31,14 +31,14 @@ public class EntrepriseWS {
     public int save(@RequestBody Entreprise entreprise) {
         return entrepriseService.save(entreprise);
     }
-    public Optional<Entreprise> findById(@PathVariable Long id) {
+    @GetMapping("/id/{id}")
+    public Optional<Entreprise> findById( @PathVariable Long id) {
         return entrepriseService.findById(id);
     }
     @PutMapping("/updateEntreprise/id/{id}")
     public int updateEntreprise(Entreprise entreprise,@PathVariable Long id) {
         return entrepriseService.updateEntreprise(entreprise, id);
     }
-
 
     @Autowired
     private EntrepriseService entrepriseService;

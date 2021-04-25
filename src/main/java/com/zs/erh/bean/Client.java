@@ -23,8 +23,8 @@ public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String libelle;
     private String code;
+    private String libelle;
     private String description;
     @ManyToOne
     private Entreprise entreprise;

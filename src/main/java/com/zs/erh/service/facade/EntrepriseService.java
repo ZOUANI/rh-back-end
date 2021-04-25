@@ -5,15 +5,12 @@ import com.zs.erh.bean.Entreprise;
 import java.util.List;
 import java.util.Optional;
 
-
 public interface EntrepriseService {
-    Entreprise findByLibelle(String libelle);
-    List<Entreprise> findByLibelleLikeAndCodeLike(String libelle, String code);
-    int deleteByLibelle(String libelle);
+    Entreprise findByCode(String code);
+    List<Entreprise> findByCodeLikeAndLibelleLike(String code, String libelle);
+    int deleteByCode(String code);
+    int updateEntreprise(Entreprise entreprise,Long id);
+    Optional<Entreprise> findById(Long id);
     List<Entreprise> findAll();
     int save(Entreprise entreprise);
-    Optional<Entreprise> findById(Long id);
-    int updateEntreprise(Entreprise entreprise,Long id);
-
-
 }
