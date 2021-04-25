@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("maneo-rh/membreEquipe/")
+@RequestMapping("maneo-rh/membreEquipe")
 public class MembreEquipeWS {
     @Autowired
     private MembreEquipeService membreEquipeService;

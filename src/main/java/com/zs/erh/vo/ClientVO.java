@@ -2,8 +2,8 @@ package com.zs.erh.vo;
 
 public class ClientVO {
     private Long id;
-    private String libelle;
     private String code;
+    private String libelle;
     private String description;
 
     public Long getId() {
