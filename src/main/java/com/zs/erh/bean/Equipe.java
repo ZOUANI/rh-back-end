@@ -57,7 +57,6 @@ public class Equipe implements Serializable {
     public String getLibelle() {
         return libelle;
     }
-
     public void setLibelle(String libelle) {
         this.libelle = libelle;
     }

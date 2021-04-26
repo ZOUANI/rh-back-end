@@ -11,6 +11,8 @@ import com.zs.erh.service.facade.EquipeService;
 import com.zs.erh.service.facade.EtatEquipeService;
 import com.zs.erh.service.facade.MembreEquipeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -68,45 +70,31 @@ public class EquipeServiceImple implements EquipeService {
             EtatEquipe etatEquipeFounded = etatEquipeService.findByCode(equipe.getEtatEquipe().getCode());
 
             if (respoFounded == null) {
-                Collaborateur savedRespo = collaborateurDao.save(equipe.getResponsable());
-                equipe.setResponsable(savedRespo);
-                equipeDao.save(equipe);
-                return 1;
+                return -2;
             } else if (etatEquipeFounded == null) {
-                EtatEquipe savedEtat = etatEquipeDao.save(equipe.getEtatEquipe());
-                equipe.setEtatEquipe(savedEtat);
-                equipeDao.save(equipe);
-                return 2;
-            } else if (respoFounded == null && etatEquipeFounded == null) {
-                Collaborateur savedRespo = collaborateurDao.save(equipe.getResponsable());
-                EtatEquipe savedEtat = etatEquipeDao.save(equipe.getEtatEquipe());
-                equipe.setResponsable(savedRespo);
-                equipe.setEtatEquipe(savedEtat);
-                equipeDao.save(equipe);
-                return 3;
+                return -3;
             } else {
                 equipe.setResponsable(respoFounded);
                 equipe.setEtatEquipe(etatEquipeFounded);
                 equipeDao.save(equipe);
             }
-            return 4;
+            return 1;
         }
     }
 
-    public int update(Long id,Equipe equipe){
+  public int update(Long id,Equipe equipe){
         Optional<Equipe> foundedEquipe = equipeDao.findById(id);
         if (foundedEquipe.isPresent()) {
-            foundedEquipe.get().setCode(equipe.getCode());
-            foundedEquipe.get().setLibelle(equipe.getLibelle());
-            foundedEquipe.get().setDescription(equipe.getDescription());
-            foundedEquipe.get().setResponsable(equipe.getResponsable());
-            collaborateurDao.save(equipe.getResponsable());
-            foundedEquipe.get().setEtatEquipe(equipe.getEtatEquipe());
-            etatEquipeDao.save(equipe.getEtatEquipe());
-            equipeDao.save(foundedEquipe.get());
-            return 1;
-        } else
-            return -1;
-    }
+                foundedEquipe.get().setLibelle(equipe.getLibelle());
+                foundedEquipe.get().setDescription(equipe.getDescription());
+                foundedEquipe.get().setResponsable(equipe.getResponsable());
+                collaborateurDao.save(equipe.getResponsable());
+                foundedEquipe.get().setEtatEquipe(equipe.getEtatEquipe());
+                etatEquipeDao.save(equipe.getEtatEquipe());
+                equipeDao.save(foundedEquipe.get());
+                return 1;
+            }else
+                return -1;
+            }
 }
 

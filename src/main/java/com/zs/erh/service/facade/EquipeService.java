@@ -1,6 +1,7 @@
 package com.zs.erh.service.facade;
 
 import com.zs.erh.bean.Equipe;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -14,5 +15,5 @@ public interface EquipeService {
 	Equipe findByResponsableCode(String code);
 	public int deleteByCode(String code);
 	public int save(Equipe equipe);
-	public int update(Long id,Equipe equipe);
+	public int update(Long id, Equipe equipe);
 }
