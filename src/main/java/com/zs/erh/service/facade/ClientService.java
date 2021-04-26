@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ClientService {
+    List<Client> findByEntrepriseLibelle(String libelle);
+    List<Client> findAll();
+    int deleteByEntrepriseLibelle(String libelle);
     List<Client> findByEntrepriseCode(String code);
     int deleteByEntrepriseCode(String code);
     void save(Entreprise entreprise, List<Client> clients);

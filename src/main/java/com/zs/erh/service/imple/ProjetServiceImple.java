@@ -1,8 +1,8 @@
 package com.zs.erh.service.imple;
 
-import com.zs.erh.bean.GroupeTache;
 import com.zs.erh.bean.Projet;
 import com.zs.erh.dao.ProjetDao;
+import com.zs.erh.service.facade.ProjetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class ProjetServiceImple {
+public class ProjetServiceImple implements ProjetService {
 
     public int save(Projet projet) {
         if (findByCode(projet.getCode()) != null) {
@@ -19,6 +19,10 @@ public class ProjetServiceImple {
             projetDao.save(projet);
             return 1;
         }
+    }
+
+    public int deleteByNroCode(String code) {
+        return projetDao.deleteByCode(code);
     }
 
     public List<Projet> findByNroCode(String code) {

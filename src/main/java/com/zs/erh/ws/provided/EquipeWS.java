@@ -4,11 +4,12 @@ import com.zs.erh.bean.Equipe;
 import com.zs.erh.service.facade.EquipeService;
 import com.zs.erh.service.imple.EquipeServiceImple;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("maneo-rh/equipe/")
+@RequestMapping("maneo-rh/equipe")
 public class EquipeWS {
     @Autowired
     private EquipeService equipeService;
@@ -26,7 +27,7 @@ public class EquipeWS {
     public List<Equipe> findByEtatEquipeCode(@PathVariable String code) {
         return this.equipeService.findByEtatEquipeCode(code);
     }
-    @GetMapping("/respoCode/{code}")
+    @GetMapping("/collaborateur/Code/{code}")
     public Equipe findByResponsableCode(@PathVariable String code) {
         return equipeService.findByResponsableCode(code);
     }
@@ -42,7 +43,7 @@ public class EquipeWS {
     }
 
     @PutMapping("/id/{id}")
-    public int update(@PathVariable long id,@RequestBody Equipe equipe){
+    public int update(@PathVariable long id, @RequestBody Equipe equipe){
         return equipeService.update(id,equipe);
     }
 }

@@ -1,11 +1,13 @@
 package com.zs.erh.service.imple;
 
+import com.zs.erh.bean.Equipe;
 import com.zs.erh.bean.MembreEquipe;
 import com.zs.erh.dao.MembreEquipeDao;
 import com.zs.erh.service.facade.MembreEquipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -26,5 +28,10 @@ public class MembreEquipeServiceImple implements MembreEquipeService {
 
     public List<MembreEquipe> findAll(){
         return membreEquipeDao.findAll();
+    }
+    
+    @Transactional
+    public int deleteByEquipeCodeAndCollaborateurCode(String codeEquipe,String codeCollaborateur){
+        return membreEquipeDao.deleteByEquipeCodeAndCollaborateurCode(codeEquipe,codeCollaborateur);
     }
 }

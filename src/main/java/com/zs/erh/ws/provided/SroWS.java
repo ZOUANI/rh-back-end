@@ -1,6 +1,7 @@
 package com.zs.erh.ws.provided;
 
 import com.zs.erh.bean.Sro;
+import com.zs.erh.service.facade.SroService;
 import com.zs.erh.service.imple.SroServiceImple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,13 +16,13 @@ import java.util.List;
 public class SroWS {
     @GetMapping("/")
     public List<Sro> findAll() {
-        return sroServiceImple.findAll();
+        return sroService.findAll();
     }
     @GetMapping("/code/{code}")
     public Sro findByCode(@PathVariable String code) {
-        return sroServiceImple.findByCode(code);
+        return sroService.findByCode(code);
     }
 
     @Autowired
-    public SroServiceImple sroServiceImple;
+    public SroService sroService;
 }
