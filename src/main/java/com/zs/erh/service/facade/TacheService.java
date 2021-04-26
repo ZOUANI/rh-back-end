@@ -13,4 +13,5 @@ public interface TacheService {
 	public int save(Tache tache);
 	public int deleteByGroupeTacheCode(String code);
 	public int deleteByCode(String code);
+	public int save(Tache tache);
 }
