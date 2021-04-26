@@ -11,12 +11,18 @@ import java.util.List;
 @RestController
 @RequestMapping("maneo-rh/membreEquipe")
 public class MembreEquipeWS {
+
+
     @Autowired
     private MembreEquipeService membreEquipeService;
 
     @GetMapping("/collaborateurCode/{code}")
     List<MembreEquipe> findByCollaborateurCode(@PathVariable String code){
         return membreEquipeService.findByCollaborateurCode(code);
+    }
+    @GetMapping("/")
+    public List<MembreEquipe> findAll() {
+        return membreEquipeService.findAll();
     }
 
     @GetMapping("/equipeCode/{code}")

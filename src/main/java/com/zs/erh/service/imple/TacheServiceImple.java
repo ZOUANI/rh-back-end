@@ -7,6 +7,7 @@ import com.zs.erh.bean.GroupeTache;
 import com.zs.erh.bean.MembreEquipe;
 import com.zs.erh.bean.Tache;
 import com.zs.erh.dao.TacheDao;
+import com.zs.erh.service.facade.CategorieTacheService;
 import com.zs.erh.service.facade.CollaborateurService;
 import com.zs.erh.service.facade.GroupeTacheService;
 import com.zs.erh.service.facade.TacheService;
@@ -21,6 +22,9 @@ public class TacheServiceImple implements TacheService {
 	
 	@Autowired
 	private GroupeTacheService groupeTacheService;
+
+	@Autowired
+	private CategorieTacheService categorieTacheService;
 
 	@Autowired
 	private CollaborateurService collaborateurService;
@@ -45,5 +49,21 @@ public class TacheServiceImple implements TacheService {
 	@Transactional
 	public int deleteByCode(String code) {
 		return tacheDao.deleteBycode(code);
+	}
+
+
+	public int save(Tache tache) {
+		// Si le groupe de tache existe déja
+		if (tacheDao.findByCode(tache.getCode()) != null)
+		{
+			return -1;
+		}
+		else {
+			tache.setCode(tache.getLibelle());
+			tache.setCategorieTache(categorieTacheService.findByCode(tache.getCategorieTache().getCode()));
+			tache.setGroupeTache(groupeTacheService.findByCode(tache.getGroupeTache().getCode()));
+			tacheDao.save(tache);
+			return 1;
+		}
 	}
 }
