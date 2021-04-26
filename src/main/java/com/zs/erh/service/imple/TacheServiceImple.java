@@ -37,6 +37,13 @@ public class TacheServiceImple implements TacheService {
 		return tacheDao.findAll();
 	}
 
+	public void save (GroupeTache groupeTache, List<Tache> taches) {
+		for (Tache tache : taches) {
+			tache.setGroupeTache(groupeTache);
+			tacheDao.save(tache);
+		}
+	}
+
 	@Transactional
 	public int deleteByGroupeTacheCode(String code) {
 		return tacheDao.deleteByGroupeTacheCode(code);

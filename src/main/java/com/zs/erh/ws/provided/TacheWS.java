@@ -1,6 +1,7 @@
 package com.zs.erh.ws.provided;
 
 
+import com.zs.erh.bean.GroupeTache;
 import com.zs.erh.bean.Tache;
 import com.zs.erh.service.facade.TacheService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,12 @@ public class TacheWS {
     public List<Tache> findByGroupeTacheCode(@PathVariable String code) {
         return tacheService.findByGroupeTacheCode(code);
     }
+
+    @PostMapping("/")
+    public void save(GroupeTache groupeTache, List<Tache> taches) {
+        tacheService.save(groupeTache, taches);
+    }
+
 
     @DeleteMapping("GroupeTacheCode/{code}")
     public int deleteByGroupeTacheCode(@PathVariable String code) {

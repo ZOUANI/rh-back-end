@@ -64,7 +64,7 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
 			return -1;
 		}
 		else {
-			groupeTache.setCode(groupeTache.getLibelle());
+			groupeTache.setLibelle(groupeTache.getLibelle());
 			groupeTache.setCategorieGroupeTache(categorieGroupeTacheService.findByCode(groupeTache.getCategorieGroupeTache().getCode()));
 			groupeTache.setEquipe(equipeService.findByCode(groupeTache.getEquipe().getCode()));
 			groupeTache.setLot(lotService.findByCode(groupeTache.getLot().getCode()));
