@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
-
 public class GroupeTacheServiceImple implements GroupeTacheService {
 
 	@Autowired
@@ -57,6 +56,7 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
 		return res1+groupeTacheDao.deleteByCode(code);
 	}
 
+
 	public int save(GroupeTache groupeTache) {
 		// Si le groupe de tache existe déja 
 		if (groupeTacheDao.findByCode(groupeTache.getCode()) != null)
@@ -64,7 +64,7 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
 			return -1;
 		}
 		else {
-			groupeTache.setLibelle(groupeTache.getLibelle());
+			groupeTache.setCode(groupeTache.getLibelle());
 			groupeTache.setCategorieGroupeTache(categorieGroupeTacheService.findByCode(groupeTache.getCategorieGroupeTache().getCode()));
 			groupeTache.setEquipe(equipeService.findByCode(groupeTache.getEquipe().getCode()));
 			groupeTache.setLot(lotService.findByCode(groupeTache.getLot().getCode()));
@@ -72,6 +72,7 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
 			return 1;
 		}
 	}
+
 
 	@Transactional
 	public int deleteByLotCode(String code){

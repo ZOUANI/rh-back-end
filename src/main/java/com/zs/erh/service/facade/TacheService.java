@@ -10,7 +10,7 @@ public interface TacheService {
 	public Tache findByCode(String code);
 	public List<Tache> findByGroupeTacheCode(String code);
 	public List<Tache> findAll();
-	public void save(GroupeTache groupeTache, List<Tache> taches);
+	public int save(Tache tache);
 	public int deleteByGroupeTacheCode(String code);
 	public int deleteByCode(String code);
 }
