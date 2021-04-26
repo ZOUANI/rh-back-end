@@ -30,6 +30,11 @@ public class MembreEquipeWS {
         return membreEquipeService.findByEquipeCode(code);
     }
 
+    @GetMapping("/equipeCode/{codeEquipe}/collaborateurCode/{codeCollaborateur}")
+    public MembreEquipe findByEquipeCodeAndCollaborateurCode(@PathVariable String codeEquipe,@PathVariable String codeCollaborateur) {
+        return membreEquipeService.findByEquipeCodeAndCollaborateurCode(codeEquipe, codeCollaborateur);
+    }
+
     @DeleteMapping("/equipe/code/{code}")
     public int deleteByEquipeCode(@PathVariable String code){
         return membreEquipeService.deleteByEquipeCode(code);

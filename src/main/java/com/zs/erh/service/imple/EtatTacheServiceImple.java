@@ -9,10 +9,16 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public class EtatTacheServiceImple implements EtatTacheService {
+
     @Autowired
-   private EtatTacheDao etatTacheDao;
+    private EtatTacheDao etatTacheDao;
 
     public List<EtatTache> findAll() {
         return etatTacheDao.findAll();
     }
+
+    public EtatTache findByCode(String code) {
+        return etatTacheDao.findByCode(code);
+    }
+
 }

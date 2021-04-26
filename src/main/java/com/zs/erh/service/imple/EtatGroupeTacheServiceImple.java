@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class EtatGroupeTacheImple implements EtatGroupeTacheService {
+public class EtatGroupeTacheServiceImple implements EtatGroupeTacheService {
     @Autowired
     public EtatGroupeTacheDao etatGroupeTacheDao;
 

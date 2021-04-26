@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PeriodeImple implements PeriodeService {
+public class PeriodeServiceImple implements PeriodeService {
     @Autowired
     private PeriodeDao periodeDao;
 

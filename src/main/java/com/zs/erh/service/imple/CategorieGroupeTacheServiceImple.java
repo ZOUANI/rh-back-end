@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CategorieGroupeTacheImple implements CategorieGroupeTacheService {
+public class CategorieGroupeTacheServiceImple implements CategorieGroupeTacheService {
     @Autowired
     private CategorieGroupeTacheDao categorieGroupeTacheDao;
 
