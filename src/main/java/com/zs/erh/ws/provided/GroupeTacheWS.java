@@ -2,10 +2,12 @@ package com.zs.erh.ws.provided;
 
 import com.zs.erh.bean.GroupeTache;
 import com.zs.erh.service.facade.GroupeTacheService;
+import com.zs.erh.service.vo.GroupeTacheVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "maneo-rh/groupeTache")
@@ -47,5 +49,20 @@ public class GroupeTacheWS {
 	public int deleteByCode(@PathVariable String code) {
 		return groupeTacheService.deleteByCode(code);
 	}
+
+    @GetMapping("/id/{id}")
+    public Optional<GroupeTache> findById(@PathVariable Long id) {
+        return groupeTacheService.findById(id);
+    }
+
+    @PutMapping("/updateGroupeTache/id/{id}")
+    public int updateGroupeTache(GroupeTache groupeTache,@PathVariable Long id) {
+        return groupeTacheService.updateGroupeTache(groupeTache, id);
+    }
+
+    @PostMapping("/search")
+    public List<GroupeTache> search(@RequestBody GroupeTacheVO groupeTacheVO) {
+        return groupeTacheService.search(groupeTacheVO);
+    }
 
 }

@@ -2,7 +2,7 @@ package com.zs.erh.ws.provided;
 
 import com.zs.erh.bean.Client;
 import com.zs.erh.service.facade.ClientService;
-import com.zs.erh.vo.ClientVO;
+import com.zs.erh.service.vo.ClientVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
