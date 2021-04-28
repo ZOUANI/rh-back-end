@@ -12,6 +12,4 @@ public interface CollaborateurService {
 	public List<Collaborateur> findAll();
 
 	public Collaborateur findByCode(String code);
-
-	public List<Collaborateur> findByEquipeDefaultCode(String code);
 }

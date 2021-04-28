@@ -5,11 +5,11 @@
  */
 package com.zs.erh.bean;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.List;
+import javax.persistence.*;
 
 /**
  *
@@ -25,6 +25,10 @@ public class Entreprise implements Serializable {
     private String libelle;
     private String code;
     private String description;
+
+    @OneToMany(mappedBy = "entreprise")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private List<Client> clients;
 
     public String getLibelle() {
         return libelle;
@@ -56,6 +60,14 @@ public class Entreprise implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<Client> getClients() {
+        return clients;
+    }
+
+    public void setClients(List<Client> clients) {
+        this.clients = clients;
     }
 
     @Override

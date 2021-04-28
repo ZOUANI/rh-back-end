@@ -58,11 +58,11 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
     }
 
     public int save(GroupeTache groupeTache) {
+        groupeTache.setCode(groupeTache.getLibelle());
         // Si le groupe de tache existe déja
         if (groupeTacheDao.findByCode(groupeTache.getCode()) != null) {
             return -1;
         } else {
-            groupeTache.setCode(groupeTache.getLibelle());
             groupeTache.setCategorieGroupeTache(categorieGroupeTacheService.findByCode(groupeTache.getCategorieGroupeTache().getCode()));
             groupeTache.setEquipe(equipeService.findByCode(groupeTache.getEquipe().getCode()));
             groupeTache.setLot(lotService.findByCode(groupeTache.getLot().getCode()));
@@ -70,7 +70,6 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
             return 1;
         }
     }
-
 
     @Transactional
     public int deleteByCode(String code) {
