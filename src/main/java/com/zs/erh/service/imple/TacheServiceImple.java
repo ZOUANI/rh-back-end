@@ -9,8 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+
 @Service
-public class TacheServiceImple implements TacheService {
+public class TacheServiceImple extends AbstractFacade<Tache> implements TacheService {
+	@Autowired
+	private EntityManager entityManager;
+
 	@Autowired
 	private TacheDao tacheDao;
 	
@@ -68,5 +73,15 @@ public class TacheServiceImple implements TacheService {
 	@Transactional
 	public int deleteByCode(String code) {
 		return tacheDao.deleteBycode(code);
+	}
+
+	@Override
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
+	@Override
+	public Class<Tache> getEntityClass() {
+		return Tache.class;
 	}
 }

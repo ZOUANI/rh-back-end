@@ -5,11 +5,11 @@
  */
 package com.zs.erh.bean;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
@@ -22,12 +22,9 @@ public class Entreprise implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String code;
     private String libelle;
+    private String code;
     private String description;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "entreprise")
-    private List<Client> clients;
 
     public String getLibelle() {
         return libelle;
@@ -43,14 +40,6 @@ public class Entreprise implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
-    }
-
-    public List<Client> getClients() {
-        return clients;
-    }
-
-    public void setClients(List<Client> clients) {
-        this.clients = clients;
     }
 
     public String getDescription() {
@@ -95,4 +84,3 @@ public class Entreprise implements Serializable {
     }
 
 }
-

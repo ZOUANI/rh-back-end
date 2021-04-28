@@ -6,38 +6,60 @@
 package com.zs.erh.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
 
 /**
  *
- * @author MoulaYounes
+ * @author Zouani
  */
 @Entity
-public class Client implements Serializable {
+public class CalendrierJourFeries implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dateDepart;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dateFin;
     private String libelle;
-    private String code;
-    private String description;
-    @ManyToOne
-    private Entreprise entreprise;
 
-    public Entreprise getEntreprise() {
-        if(entreprise==null){
-            entreprise= new Entreprise();
-        }
-        return entreprise;
+    @ManyToOne
+    private Pays pays;
+
+    public void setPays(Pays pays) {
+        this.pays = pays;
     }
 
-    public void setEntreprise(Entreprise entreprise) {
-        this.entreprise = entreprise;
+    public Pays getPays() {
+        if(pays==null){
+            pays= new Pays();
+        }
+        return pays;
+    }
+
+    public Date getDateDepart() {
+        return dateDepart;
+    }
+
+    public void setDateDepart(Date dateDepart) {
+        this.dateDepart = dateDepart;
+    }
+
+    public Date getDateFin() {
+        return dateFin;
+    }
+
+    public void setDateFin(Date dateFin) {
+        this.dateFin = dateFin;
     }
 
     public String getLibelle() {
@@ -46,22 +68,6 @@ public class Client implements Serializable {
 
     public void setLibelle(String libelle) {
         this.libelle = libelle;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Long getId() {
@@ -82,10 +88,10 @@ public class Client implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Client)) {
+        if (!(object instanceof CalendrierJourFeries)) {
             return false;
         }
-        Client other = (Client) object;
+        CalendrierJourFeries other = (CalendrierJourFeries) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -94,6 +100,7 @@ public class Client implements Serializable {
 
     @Override
     public String toString() {
-        return code;
+        return "bean.CalendrierJourFeries[ id=" + id + " ]";
     }
+
 }

@@ -16,15 +16,14 @@ import javax.persistence.Id;
  * @author MoulaYounes
  */
 @Entity
-public class EtatTache implements Serializable {
+public class EtatDemandeConge implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-      private String libelle;
+    private String libelle;
     private String code;
-    private String description;
 
     public String getLibelle() {
         return libelle;
@@ -41,16 +40,6 @@ public class EtatTache implements Serializable {
     public void setCode(String code) {
         this.code = code;
     }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    
 
     public Long getId() {
         return id;
@@ -70,18 +59,19 @@ public class EtatTache implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof EtatTache)) {
+        if (!(object instanceof EtatDemandeConge)) {
             return false;
         }
-        EtatTache other = (EtatTache) object;
+        EtatDemandeConge other = (EtatDemandeConge) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
     }
- @Override
+
+    @Override
     public String toString() {
-        return code ;
+        return "com.telcom.rh.bean.EtatDemandeConge[ id=" + id + " ]";
     }
-    
+
 }
