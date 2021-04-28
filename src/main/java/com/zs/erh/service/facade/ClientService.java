@@ -3,7 +3,7 @@ package com.zs.erh.service.facade;
 
 import com.zs.erh.bean.Client;
 import com.zs.erh.bean.Entreprise;
-import com.zs.erh.vo.ClientVO;
+import com.zs.erh.service.vo.ClientVO;
 
 import java.util.List;
 import java.util.Optional;

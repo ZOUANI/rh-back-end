@@ -1,6 +1,6 @@
-package com.zs.erh.vo;
+package com.zs.erh.service.vo;
 
-public class ClientVO {
+public class GroupeTacheVO {
     private Long id;
     private String code;
     private String libelle;
