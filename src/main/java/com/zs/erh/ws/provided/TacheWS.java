@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:4200"})
 @RequestMapping(value = "maneo-rh/tache")
 public class TacheWS {
     @Autowired
@@ -29,6 +30,11 @@ public class TacheWS {
         return tacheService.findByGroupeTacheCode(code);
     }
 
+    @PostMapping("/")
+    public int save(@RequestBody Tache tache) {
+        return tacheService.save(tache);
+    }
+
     @DeleteMapping("GroupeTacheCode/{code}")
     public int deleteByGroupeTacheCode(@PathVariable String code) {
         return tacheService.deleteByGroupeTacheCode(code);
@@ -38,8 +44,5 @@ public class TacheWS {
     public int deleteByCode(@PathVariable String code) {
         return tacheService.deleteByCode(code);
     }
-    @PostMapping("/")
-    public int save(@RequestBody Tache tache) {
-        return tacheService.save(tache);
-    }
+    
 }

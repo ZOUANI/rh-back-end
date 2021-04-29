@@ -11,6 +11,7 @@ public interface MembreEquipeDao extends JpaRepository<MembreEquipe,Long> {
 
     List<MembreEquipe> findByCollaborateurCode(String code);
     List<MembreEquipe> findByEquipeCode(String code);
+    public MembreEquipe findByEquipeCodeAndCollaborateurCode(String codeEquipe, String codeCollaborateur);
     int deleteByEquipeCode(String code);
     public int deleteByEquipeCodeAndCollaborateurCode(String codeEquipe,String codeCollaborateur);
 }

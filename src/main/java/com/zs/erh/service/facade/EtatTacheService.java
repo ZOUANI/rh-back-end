@@ -5,5 +5,6 @@ import com.zs.erh.bean.EtatTache;
 import java.util.List;
 
 public interface EtatTacheService {
-    List<EtatTache> findAll();
+    public List<EtatTache> findAll();
+    public EtatTache findByCode(String code);
 }

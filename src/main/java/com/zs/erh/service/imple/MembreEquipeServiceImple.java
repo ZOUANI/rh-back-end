@@ -15,23 +15,28 @@ public class MembreEquipeServiceImple implements MembreEquipeService {
     @Autowired
     private MembreEquipeDao membreEquipeDao;
 
-    public List<MembreEquipe> findByCollaborateurCode(String code){
+    public List<MembreEquipe> findByCollaborateurCode(String code) {
         return membreEquipeDao.findByCollaborateurCode(code);
     }
 
-   public List<MembreEquipe> findByEquipeCode(String code){
+    public List<MembreEquipe> findByEquipeCode(String code) {
         return membreEquipeDao.findByEquipeCode(code);
     }
-    public int deleteByEquipeCode(String code){
+
+    public MembreEquipe findByEquipeCodeAndCollaborateurCode(String codeEquipe, String codeCollaborateur) {
+        return membreEquipeDao.findByEquipeCodeAndCollaborateurCode(codeEquipe, codeCollaborateur);
+    }
+
+    public int deleteByEquipeCode(String code) {
         return membreEquipeDao.deleteByEquipeCode(code);
     }
 
-    public List<MembreEquipe> findAll(){
+    public List<MembreEquipe> findAll() {
         return membreEquipeDao.findAll();
     }
-    
+
     @Transactional
-    public int deleteByEquipeCodeAndCollaborateurCode(String codeEquipe,String codeCollaborateur){
-        return membreEquipeDao.deleteByEquipeCodeAndCollaborateurCode(codeEquipe,codeCollaborateur);
+    public int deleteByEquipeCodeAndCollaborateurCode(String codeEquipe, String codeCollaborateur) {
+        return membreEquipeDao.deleteByEquipeCodeAndCollaborateurCode(codeEquipe, codeCollaborateur);
     }
 }

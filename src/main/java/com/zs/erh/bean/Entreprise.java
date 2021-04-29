@@ -22,11 +22,12 @@ public class Entreprise implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String code;
     private String libelle;
+    private String code;
     private String description;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+
     @OneToMany(mappedBy = "entreprise")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Client> clients;
 
     public String getLibelle() {
@@ -45,14 +46,6 @@ public class Entreprise implements Serializable {
         this.code = code;
     }
 
-    public List<Client> getClients() {
-        return clients;
-    }
-
-    public void setClients(List<Client> clients) {
-        this.clients = clients;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -67,6 +60,14 @@ public class Entreprise implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<Client> getClients() {
+        return clients;
+    }
+
+    public void setClients(List<Client> clients) {
+        this.clients = clients;
     }
 
     @Override
@@ -95,4 +96,3 @@ public class Entreprise implements Serializable {
     }
 
 }
-

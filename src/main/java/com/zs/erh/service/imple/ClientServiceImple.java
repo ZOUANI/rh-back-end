@@ -5,7 +5,7 @@ import com.zs.erh.bean.Entreprise;
 import com.zs.erh.dao.ClientDao;
 import com.zs.erh.service.facade.ClientService;
 import com.zs.erh.service.facade.EntrepriseService;
-import com.zs.erh.vo.ClientVO;
+import com.zs.erh.service.vo.ClientVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
