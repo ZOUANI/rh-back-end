@@ -53,7 +53,6 @@ public class TacheServiceImple implements TacheService {
 
 
 	public int save(Tache tache) {
-		// Si le groupe de tache existe déja
 		if (tacheDao.findByCode(tache.getCode()) != null)
 		{
 			return -1;
