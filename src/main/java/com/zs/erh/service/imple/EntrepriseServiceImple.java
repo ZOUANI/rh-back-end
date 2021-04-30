@@ -27,7 +27,7 @@ public class EntrepriseServiceImple implements EntrepriseService {
         int deleteByCode = entrepriseDao.deleteByCode(code);
         return  deleteByEntrepriseCode + deleteByCode;
     }
-    //flyWayDb
+
     public List<Entreprise> findAll() {
         return entrepriseDao.findAll();
     }
@@ -37,26 +37,18 @@ public class EntrepriseServiceImple implements EntrepriseService {
             return -1;
         }else{
             entrepriseDao.save(entreprise);
-            clientService.save(entreprise,entreprise.getClients());
             return 1;
         }
-
     }
-    public int updateEntreprise(Entreprise entreprise,Long id){
-        Optional<Entreprise> foundedEntreprise = entrepriseDao.findById(id);
-        if(foundedEntreprise.isPresent()){
-            if(foundedEntreprise.get().getLibelle()==entreprise.getLibelle()){
-                foundedEntreprise.get().setCode(entreprise.getCode());
-                foundedEntreprise.get().setDescription(entreprise.getDescription());
-                entrepriseDao.save(foundedEntreprise.get());
-                return 1;
-            }else {
-                return -1;
-            }
-        }else{
-            save(entreprise);
-            return 2;
-        }
+
+
+
+    public int updateEntreprise(Entreprise entreprise){
+        Entreprise entreprise1 = findByCode(entreprise.getCode());
+        entreprise1.setLibelle(entreprise.getLibelle());
+        entreprise1.setDescription(entreprise.getDescription());
+        entrepriseDao.save(entreprise1);
+        return 1;
     }
 
 
@@ -68,4 +60,5 @@ public class EntrepriseServiceImple implements EntrepriseService {
     private EntrepriseDao entrepriseDao;
     @Autowired
     private ClientService clientService;
+
 }

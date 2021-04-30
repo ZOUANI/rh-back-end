@@ -14,5 +14,7 @@ public interface EntrepriseDao extends JpaRepository<Entreprise,Long> {
     Optional<Entreprise> findById(Long id);
     List<Entreprise> findByCodeLikeAndLibelleLike(String code,String libelle);
     int deleteByCode ( String code);
+
 }
+
 
