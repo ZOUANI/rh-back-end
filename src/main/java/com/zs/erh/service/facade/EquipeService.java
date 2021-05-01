@@ -16,4 +16,5 @@ public interface EquipeService {
 	public int deleteByCode(String code);
 	public int save(Equipe equipe);
 	public int update(Long id, Equipe equipe);
+	public void deleteById(long id);
 }

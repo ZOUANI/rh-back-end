@@ -17,6 +17,9 @@ public class EtatEquipeServiceImple implements EtatEquipeService {
     public List<EtatEquipe> findAll() {
         return etatEquipeDao.findAll();
     }
+    public EtatEquipe findById(long id){
+        return etatEquipeDao.findById(id).get();
+    }
 
     @Override
     public EtatEquipe findByCode(String code) {
