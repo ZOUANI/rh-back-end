@@ -40,7 +40,6 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
     private EntityManager entityManager;
 
 
-
     public List<GroupeTache> findByEquipeCode(String code) {
         return groupeTacheDao.findByEquipeCode(code);
     }
@@ -104,16 +103,29 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
     }
 
 
-    public List<GroupeTache> search(GroupeTacheVO groupeTacheVO){
+    public List<GroupeTache> search(GroupeTacheVO groupeTacheVO) {
         String query = "SELECT g FROM GroupeTache g where 1=1";
-        if(groupeTacheVO.getCode()!=null){
-            query+=" AND g.code LIKE '%" + groupeTacheVO.getCode() + "%'";
+       /*
+       if(groupeTacheVO.getCode()!=null){
+          query+=" AND g.code LIKE '%" + groupeTacheVO.getCode() + "%'";
         }if(groupeTacheVO.getLibelle() != null){
             query+= " AND g.libelle LIKE '%" + groupeTacheVO.getLibelle() + "%'";
         }if(groupeTacheVO.getDescription()!=null){
             query+=" AND g.description LIKE '%" + groupeTacheVO.getDescription() + "%'";
         }
-        return  entityManager.createQuery(query).getResultList();
+        */
+
+        if (groupeTacheVO.getLot() != null) {
+            query += " AND g.lot.code = '%" + groupeTacheVO.getLot().getCode() + "%'";
+        }
+        if (groupeTacheVO.getProjet() != null) {
+            query += " AND g.lot.projet.code = '%" + groupeTacheVO.getProjet().getCode() + "%'";
+        }
+        if (groupeTacheVO.getLot().getProjet().getClient() != null) {
+            query += " AND g.lot.projet.client.code = '%" + groupeTacheVO.getClient().getCode() + "%'";
+        }
+
+        return entityManager.createQuery(query).getResultList();
     }
 
 

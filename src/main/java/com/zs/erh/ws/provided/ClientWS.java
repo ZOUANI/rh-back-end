@@ -21,12 +21,6 @@ public class ClientWS {
     public int deleteByCode( @PathVariable String code) {
         return clientService.deleteByCode(code);
     }
-
-    @GetMapping("/")
-    public List<Client> findAll() {
-        return clientService.findAll();
-    }
-
     @PostMapping("/search")
     public List<Client> search(@RequestBody ClientVO clientVO) {
         return clientService.search(clientVO);
@@ -34,6 +28,23 @@ public class ClientWS {
     @GetMapping("/id/{id}")
     public Optional<Client> findById( @PathVariable Long id) {
         return clientService.findById(id);
+    }
+    @PutMapping("/")
+    public int updateClient(@RequestBody Client client) {
+        return clientService.updateClient(client);
+    }
+
+    @PostMapping("/")
+    public int save( @RequestBody Client client) {
+        return clientService.save(client);
+    }
+    @GetMapping("/code/{codee}")
+    public Client findByCode(@PathVariable String codee) {
+        return clientService.findByCode(codee);
+    }
+    @GetMapping("/")
+    public List<Client> findAll() {
+        return clientService.findAll();
     }
 
     @Autowired

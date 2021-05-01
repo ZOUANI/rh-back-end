@@ -27,14 +27,20 @@ public class EquipeWS {
     public List<Equipe> findByEtatEquipeCode(@PathVariable String code) {
         return this.equipeService.findByEtatEquipeCode(code);
     }
-    @GetMapping("/collaborateur/Code/{code}")
+    @GetMapping("/collaborateur/code/{code}")
     public Equipe findByResponsableCode(@PathVariable String code) {
         return equipeService.findByResponsableCode(code);
     }
 
-    @DeleteMapping("code/{code}")
+    @DeleteMapping("/code/{code}")
     public int deleteByCode(@PathVariable String code) {
         return equipeService.deleteByCode(code);
+    }
+
+    @DeleteMapping("/id/{id}")
+    public int deleteById(@PathVariable long id) {
+        equipeService.deleteById(id);
+        return 1;
     }
 
     @PostMapping("/")

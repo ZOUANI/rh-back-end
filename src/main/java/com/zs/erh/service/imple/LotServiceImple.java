@@ -21,7 +21,7 @@ public class LotServiceImple implements LotService{
     public GroupeTacheServiceImple groupeTacheServiceImple;
 
     public int save(Lot lot) {
-        if (findByCode(lot.getCode()) != null)
+        if (lottDao.findByCode(lot.getCode()) != null)
             return -1;
         Projet projet = projetServiceImple.findByCode(lot.getProjet().getCode());
             lot.setProjet(projet);
