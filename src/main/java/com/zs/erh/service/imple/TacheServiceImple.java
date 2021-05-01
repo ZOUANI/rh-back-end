@@ -5,6 +5,7 @@ import java.util.List;
 import com.zs.erh.bean.Tache;
 import com.zs.erh.dao.TacheDao;
 import com.zs.erh.service.facade.*;
+import com.zs.erh.service.vo.TacheVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -79,6 +80,39 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}
+
+	/* ! Aymane Start something here */
+	public List<TacheVo> calcStatistique(TacheVo tacheVo) {
+		System.out.println("tacheVo = " + tacheVo);
+		String query = "SELECT new com.zs.erh.service.vo.TacheVo(t.groupeTache.lot,COUNT(t.periode.id)) FROM Tache t WHERE 1=1";
+		query += addCriteria(tacheVo);
+		query += " GROUP BY t.groupeTache.lot.id";
+		System.out.println("query = " + query);
+		List<TacheVo> res = getEntityManager().createQuery(query).getResultList();
+		System.out.println("res = " + res);
+		return res;
+	}
+
+	public String addCriteria(TacheVo tacheVo) {
+		String query = "";
+		query += addConstraint("t.annee", tacheVo.getAnnee());
+		query += addConstraint("t.mois", tacheVo.getMois());
+		query += addConstraint("t.semaine", tacheVo.getSemaine());
+		query += addConstraintMinMaxDate("t", "dateDemarrageEffective", tacheVo.getDateDemarrageEffectiveMin(), tacheVo.getDateDemarrageEffectiveMax());
+		query += addConstraint("t.membreEquipe.collaborateur.id", tacheVo.getResponsableId());
+		query += addConstraint("t.membreEquipe.id", tacheVo.getMembreEquipeId());
+		query += addConstraint("t.membreEquipe.equipe.id", tacheVo.getEquipeId());
+		query += addConstraint("t.groupeTache.lot.projet.id", tacheVo.getProjetId());
+		query += addConstraint("t.groupeTache.lot.id", tacheVo.getLotId());
+		query += addConstraint("t.groupeTache.lot.projet.client.id", tacheVo.getClientId());
+		query += addConstraint("t.periode.id", tacheVo.getPeriodeId());
+		query += addConstraint("t.groupeTache.lot.sro.id", tacheVo.getSroId());
+		query += addConstraint("t.groupeTache.lot.projet.nro.id", tacheVo.getNroId());
+		return query;
+	}
+	/* ! End it here dont touche it*/
+
+
 
 	@Override
 	public Class<Tache> getEntityClass() {

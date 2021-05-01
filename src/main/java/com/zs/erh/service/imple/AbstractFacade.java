@@ -72,7 +72,6 @@ public abstract class AbstractFacade<T> {
     public T findSingleResult(String query) {
         List<T> list = findMultipleResult(query);
         return list == null || list.isEmpty() ? null : list.get(0);
-
     }
 
     public T extractSingle(List<T> list) {
