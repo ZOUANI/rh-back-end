@@ -61,6 +61,9 @@ public class EquipeServiceImple implements EquipeService {
 
         }
     }
+    public void deleteById(long id){
+        equipeDao.deleteById(id);
+    }
 
     public int save(Equipe equipe) {
         if (equipeDao.findByCode(equipe.getCode()) != null) {
@@ -88,9 +91,7 @@ public class EquipeServiceImple implements EquipeService {
                 foundedEquipe.get().setLibelle(equipe.getLibelle());
                 foundedEquipe.get().setDescription(equipe.getDescription());
                 foundedEquipe.get().setResponsable(equipe.getResponsable());
-                collaborateurDao.save(equipe.getResponsable());
                 foundedEquipe.get().setEtatEquipe(equipe.getEtatEquipe());
-                etatEquipeDao.save(equipe.getEtatEquipe());
                 equipeDao.save(foundedEquipe.get());
                 return 1;
             }else
