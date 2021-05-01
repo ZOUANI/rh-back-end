@@ -60,7 +60,7 @@ public class GroupeTacheWS {
         return groupeTacheService.updateGroupeTache(groupeTache, id);
     }
 
-    @PostMapping("/search")
+    @PostMapping("/search/")
     public List<GroupeTache> search(@RequestBody GroupeTacheVO groupeTacheVO) {
         return groupeTacheService.search(groupeTacheVO);
     }
