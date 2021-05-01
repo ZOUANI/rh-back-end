@@ -6,8 +6,11 @@
 package com.zs.erh.bean;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -20,17 +23,14 @@ public class Equipe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String libelle;
-    private String code;
-    private String description;
 
     @ManyToOne
     private Collaborateur responsable;
     @ManyToOne
     private EtatEquipe etatEquipe;
-    /*@OneToMany(mappedBy = "equipe")
-    private List<MembreEquipe> membresEquipe; */
-
+    private String libelle;
+    private String code;
+    private String description;
 
     public EtatEquipe getEtatEquipe() {
         if (etatEquipe == null) {
@@ -57,6 +57,7 @@ public class Equipe implements Serializable {
     public String getLibelle() {
         return libelle;
     }
+
     public void setLibelle(String libelle) {
         this.libelle = libelle;
     }

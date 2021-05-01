@@ -23,10 +23,6 @@ public class CollaborateurServiceImple implements CollaborateurService {
 		return collaborateurDao.findByCode(code);
 	}
 
-	public Collaborateur findById(long id){
-		return  collaborateurDao.findById(id).get();
-	}
-
 	public List<Collaborateur> findByEquipeDefaultCode(String code) {
 		return collaborateurDao.findByEquipeDefaultCode(code);
 	}

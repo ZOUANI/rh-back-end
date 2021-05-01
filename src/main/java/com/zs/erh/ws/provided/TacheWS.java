@@ -30,6 +30,11 @@ public class TacheWS {
         return tacheService.findByGroupeTacheCode(code);
     }
 
+    @PostMapping("/")
+    public int save(@RequestBody Tache tache) {
+        return tacheService.save(tache);
+    }
+
     @DeleteMapping("GroupeTacheCode/{code}")
     public int deleteByGroupeTacheCode(@PathVariable String code) {
         return tacheService.deleteByGroupeTacheCode(code);

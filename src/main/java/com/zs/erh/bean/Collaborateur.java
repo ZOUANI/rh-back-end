@@ -5,8 +5,6 @@
  */
 package com.zs.erh.bean;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,10 +31,7 @@ public class Collaborateur implements Serializable {
     private String phone;
     private String email;
 
-    @ManyToOne
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private EntiteAdministrative entiteAdministrative;
-
+    
     private int nbrCnx = 3;
     private boolean blocked;
     private boolean mustChangePassword = true;
@@ -44,64 +39,7 @@ public class Collaborateur implements Serializable {
     @ManyToOne
     private CategorieCollaborateur categorieCollaborateur;
 
-    @ManyToOne
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Projet projetDefault;
-    @ManyToOne
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Lot lotDefault;
-    @ManyToOne
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private GroupeTache groupeTacheDefault;
-
-    @ManyToOne
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Equipe equipeDefault;
-
-    public Projet getProjetDefault() {
-        if (projetDefault == null) {
-            projetDefault = new Projet();
-        }
-        return projetDefault;
-    }
-
-    public void setProjetDefault(Projet projetDefault) {
-        this.projetDefault = projetDefault;
-    }
-
-    public Lot getLotDefault() {
-        if (lotDefault == null) {
-            lotDefault = new Lot();
-        }
-        return lotDefault;
-    }
-
-    public void setLotDefault(Lot lotDefault) {
-        this.lotDefault = lotDefault;
-    }
-
-    public GroupeTache getGroupeTacheDefault() {
-        if (groupeTacheDefault == null) {
-            groupeTacheDefault = new GroupeTache();
-        }
-        return groupeTacheDefault;
-    }
-
-    public void setGroupeTacheDefault(GroupeTache groupeTacheDefault) {
-        this.groupeTacheDefault = groupeTacheDefault;
-    }
-
-    public Equipe getEquipeDefault() {
-        if (equipeDefault == null) {
-            equipeDefault = new Equipe();
-        }
-        return equipeDefault;
-    }
-
-    public void setEquipeDefault(Equipe equipeDefault) {
-        this.equipeDefault = equipeDefault;
-    }
-
+    
     public boolean isMustChangePassword() {
         return mustChangePassword;
     }
@@ -180,14 +118,6 @@ public class Collaborateur implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public EntiteAdministrative getEntiteAdministrative() {
-        return entiteAdministrative;
-    }
-
-    public void setEntiteAdministrative(EntiteAdministrative entiteAdministrative) {
-        this.entiteAdministrative = entiteAdministrative;
     }
 
     public CategorieCollaborateur getCategorieCollaborateur() {

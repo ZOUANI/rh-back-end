@@ -2,10 +2,10 @@ package com.zs.erh.service.facade;
 
 
 import com.zs.erh.bean.GroupeTache;
+import com.zs.erh.service.vo.GroupeTacheVO;
 
 import java.util.List;
-
-
+import java.util.Optional;
 
 
 public interface GroupeTacheService {
@@ -22,4 +22,10 @@ public interface GroupeTacheService {
 	public int deleteByCode(String code);
 
 	public int save(GroupeTache groupeTache);
+
+	public Optional<GroupeTache> findById(Long id);
+
+	public int updateGroupeTache(GroupeTache groupeTache,Long id);
+
+	public List<GroupeTache> search(GroupeTacheVO groupeTacheVO);
 }

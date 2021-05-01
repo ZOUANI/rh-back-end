@@ -5,7 +5,7 @@ import com.zs.erh.bean.Entreprise;
 import com.zs.erh.dao.ClientDao;
 import com.zs.erh.service.facade.ClientService;
 import com.zs.erh.service.facade.EntrepriseService;
-import com.zs.erh.vo.ClientVO;
+import com.zs.erh.service.vo.ClientVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,10 +25,19 @@ public class ClientServiceImple implements ClientService {
         return clientDao.deleteByEntrepriseCode(code);
     }
 
-    public void save(Entreprise entreprise, List<Client> clients) {
-        for (Client client : clients) {
-            client.setEntreprise(entreprise);
-            clientDao.save(client);
+
+    public int save(Client client){
+        if(findByCode(client.getCode())!=null) {
+            return -1;
+        }else{
+            Entreprise entreprise = entrepriseService.findByCode(client.getEntreprise().getCode());
+            if(entreprise==null){
+                return -2;
+            }else {
+                client.setEntreprise(entreprise);
+                clientDao.save(client);
+                return 1;
+            }
         }
     }
     public List<Client> search(ClientVO clientVO){
@@ -44,6 +53,22 @@ public class ClientServiceImple implements ClientService {
     }
 
 
+    public int updateClient(Client client){
+        Client client1 = findByCode(client.getCode());
+        Optional<Entreprise> entreprise = entrepriseService.findById(client.getEntreprise().getId());
+        if(entreprise.isPresent()){
+            client1.setEntreprise(client.getEntreprise());
+            client1.setLibelle(client.getLibelle());
+            client1.setDescription(client.getDescription());
+            clientDao.save(client1);
+            return 1;
+        }else {
+            return -1;
+        }
+
+
+    }
+
     @Transactional
     public int deleteByCode(String code) {
         return clientDao.deleteByCode(code);
@@ -53,26 +78,19 @@ public class ClientServiceImple implements ClientService {
         return clientDao.findById(id);
     }
 
-    @Autowired
-    private ClientDao clientDao;
-    @Autowired
-    private EntityManager entityManager;
-
     @Override
-    public List<Client> findByEntrepriseLibelle(String libelle) {
-        return clientDao.findByEntrepriseLibelle(libelle);
+    public Client findByCode(String code) {
+        return clientDao.findByCode(code);
     }
 
-    @Override
     public List<Client> findAll() {
         return clientDao.findAll();
     }
 
-    @Override
-    public int deleteByEntrepriseLibelle(String libelle) {
-        return clientDao.deleteByEntrepriseLibelle(libelle);
-    }
-
     @Autowired
-    private EntrepriseService entrepriseService;
+    private ClientDao clientDao;
+    @Autowired
+    private EntityManager entityManager;
+    @Autowired
+    private  EntrepriseService entrepriseService;
 }

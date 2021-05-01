@@ -11,6 +11,8 @@ import java.util.List;
 @RestController
 @RequestMapping("maneo-rh/membreEquipe")
 public class MembreEquipeWS {
+
+
     @Autowired
     private MembreEquipeService membreEquipeService;
 
@@ -18,10 +20,19 @@ public class MembreEquipeWS {
     List<MembreEquipe> findByCollaborateurCode(@PathVariable String code){
         return membreEquipeService.findByCollaborateurCode(code);
     }
+    @GetMapping("/")
+    public List<MembreEquipe> findAll() {
+        return membreEquipeService.findAll();
+    }
 
     @GetMapping("/equipe/code/{code}")
     List<MembreEquipe> findByEquipeCode(@PathVariable String code){
         return membreEquipeService.findByEquipeCode(code);
+    }
+
+    @GetMapping("/equipeCode/{codeEquipe}/collaborateurCode/{codeCollaborateur}")
+    public MembreEquipe findByEquipeCodeAndCollaborateurCode(@PathVariable String codeEquipe,@PathVariable String codeCollaborateur) {
+        return membreEquipeService.findByEquipeCodeAndCollaborateurCode(codeEquipe, codeCollaborateur);
     }
 
     @DeleteMapping("/equipe/code/{code}")

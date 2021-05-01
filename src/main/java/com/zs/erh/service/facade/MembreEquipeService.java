@@ -11,6 +11,4 @@ public interface MembreEquipeService {
 	public int deleteByEquipeCode(String code);
 	List<MembreEquipe> findByCollaborateurCode(String code);
 	public int deleteByEquipeCodeAndCollaborateurCode(String codeEquipe,String codeCollaborateur);
-	public int save(MembreEquipe membreEquipe);
-	public int update(long id , MembreEquipe membreEquipe);
 }

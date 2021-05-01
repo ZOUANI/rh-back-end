@@ -35,9 +35,9 @@ public class EntrepriseWS {
     public Optional<Entreprise> findById( @PathVariable Long id) {
         return entrepriseService.findById(id);
     }
-    @PutMapping("/updateEntreprise/id/{id}")
-    public int updateEntreprise(Entreprise entreprise,@PathVariable Long id) {
-        return entrepriseService.updateEntreprise(entreprise, id);
+    @PutMapping("/")
+    public int updateEntreprise(@RequestBody Entreprise entreprise) {
+        return entrepriseService.updateEntreprise(entreprise);
     }
 
     @Autowired
