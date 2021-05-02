@@ -16,7 +16,7 @@ public class MembreEquipeWS {
     @Autowired
     private MembreEquipeService membreEquipeService;
 
-    @GetMapping("/collaborateur/Code/{code}")
+    @GetMapping("/collaborateur/code/{code}")
     List<MembreEquipe> findByCollaborateurCode(@PathVariable String code){
         return membreEquipeService.findByCollaborateurCode(code);
     }
@@ -25,7 +25,7 @@ public class MembreEquipeWS {
         return membreEquipeService.findAll();
     }
 
-    @GetMapping("/equipe/Code/{code}")
+    @GetMapping("/equipe/code/{code}")
     List<MembreEquipe> findByEquipeCode(@PathVariable String code){
         return membreEquipeService.findByEquipeCode(code);
     }
@@ -43,6 +43,14 @@ public class MembreEquipeWS {
     @DeleteMapping("/equipeCode/{codeEquipe}/collaborateurCode/{codeCollaborateur}")
     public int deleteByEquipeCodeAndCollaborateurCode(@PathVariable String codeEquipe,@PathVariable String codeCollaborateur){
         return membreEquipeService.deleteByEquipeCodeAndCollaborateurCode(codeEquipe,codeCollaborateur);
+    }
+    @PostMapping("/")
+    public int save(@RequestBody MembreEquipe membreEquipe){
+        return membreEquipeService.save(membreEquipe);
+    }
+    @PutMapping("/id/{id}")
+    public int update(long id, MembreEquipe membreEquipe){
+        return membreEquipeService.update(id,membreEquipe);
     }
 
 }

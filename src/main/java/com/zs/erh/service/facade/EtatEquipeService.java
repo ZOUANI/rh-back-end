@@ -8,6 +8,8 @@ import java.util.List;
 public interface EtatEquipeService {
 	
 	public List<EtatEquipe> findAll();
+
+	public EtatEquipe findById(long id);
 	
 	public EtatEquipe findByCode(String code);
 }

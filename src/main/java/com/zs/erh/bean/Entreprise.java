@@ -26,9 +26,7 @@ public class Entreprise implements Serializable {
     private String code;
     private String description;
 
-    @OneToMany(mappedBy = "entreprise")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private List<Client> clients;
+
 
     public String getLibelle() {
         return libelle;
@@ -62,13 +60,6 @@ public class Entreprise implements Serializable {
         this.id = id;
     }
 
-    public List<Client> getClients() {
-        return clients;
-    }
-
-    public void setClients(List<Client> clients) {
-        this.clients = clients;
-    }
 
     @Override
     public int hashCode() {
