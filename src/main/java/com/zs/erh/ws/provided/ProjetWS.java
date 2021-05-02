@@ -4,7 +4,10 @@ import com.zs.erh.bean.GroupeTache;
 import com.zs.erh.bean.Projet;
 import com.zs.erh.service.facade.ProjetService;
 import com.zs.erh.service.imple.ProjetServiceImple;
+import com.zs.erh.service.vo.ProjetVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +18,13 @@ import java.util.List;
 public class ProjetWS {
     @Autowired
     public ProjetService projetService;
+@PostMapping("/search")
+    public List<Projet> search(@RequestBody ProjetVO projetVo) {
+        return projetServiceImple.search(projetVo);
+    }
+
+    @Autowired
+    public ProjetServiceImple projetServiceImple;
 
     @PostMapping("/")
     public int save(@RequestBody Projet projet) {
@@ -39,6 +49,15 @@ public class ProjetWS {
     @DeleteMapping("/code/{code}")
     public int deleteByCode(@PathVariable String code) {
         return projetService.deleteByCode(code);
+    }
+    @PutMapping("/")
+    public void update(@RequestBody Projet projet) {
+         projetService.update(projet);
+    }
+
+    @GetMapping("/id/{id}")
+    public Projet findId(@PathVariable Long id) {
+        return projetService.findId(id);
     }
 }
 
