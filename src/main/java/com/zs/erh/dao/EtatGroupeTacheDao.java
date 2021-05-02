@@ -6,5 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface EtatGroupeTacheDao extends JpaRepository<EtatGroupeTache, Long> {
-     List<EtatGroupeTache> findAll();
+     public List<EtatGroupeTache> findAll();
+     public EtatGroupeTache findByCode(String code);
 }

@@ -5,11 +5,7 @@ import java.util.Optional;
 
 import com.zs.erh.bean.GroupeTache;
 import com.zs.erh.dao.GroupeTacheDao;
-import com.zs.erh.service.facade.CategorieGroupeTacheService;
-import com.zs.erh.service.facade.EquipeService;
-import com.zs.erh.service.facade.LotService;
-import com.zs.erh.service.facade.GroupeTacheService;
-import com.zs.erh.service.facade.TacheService;
+import com.zs.erh.service.facade.*;
 import com.zs.erh.service.vo.GroupeTacheVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +31,9 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
 
     @Autowired
     private CategorieGroupeTacheService categorieGroupeTacheService;
+
+    @Autowired
+    private EtatGroupeTacheService etatGroupeTacheService;
 
     @Autowired
     private EntityManager entityManager;
@@ -85,44 +84,61 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
         return groupeTacheDao.findById(id);
     }
 
-    public int updateGroupeTache(GroupeTache groupeTache, Long id) {
-        Optional<GroupeTache> foundedGroupeTache = groupeTacheDao.findById(id);
-        if (foundedGroupeTache.isPresent()) {
-            if (foundedGroupeTache.get().getLibelle() == groupeTache.getLibelle()) {
-                foundedGroupeTache.get().setCode(groupeTache.getCode());
-                foundedGroupeTache.get().setDescription(groupeTache.getDescription());
-                groupeTacheDao.save(foundedGroupeTache.get());
-                return 1;
-            } else {
-                return -1;
-            }
-        } else {
-            save(groupeTache);
-            return 2;
-        }
+
+    public int updateGroupeTache(GroupeTache groupeTache){
+        GroupeTache grp = findByCode(groupeTache.getCode());
+        grp.setCode(groupeTache.getCode());
+        grp.setLibelle(groupeTache.getLibelle());
+        grp.setDescription(groupeTache.getDescription());
+        grp.setAvancement(groupeTache.getAvancement());
+        grp.setDateDemarrageEffective(groupeTache.getDateDemarrageEffective());
+        grp.setDateFinEffective(groupeTache.getDateFinEffective());
+        grp.setDateDemarragePrevu(groupeTache.getDateDemarragePrevu());
+        grp.setDateFinPrevu(groupeTache.getDateFinPrevu());
+        grp.setNombreJoureHommeEffectif(groupeTache.getNombreJoureHommeEffectif());
+        grp.setNombreJoureHommePrevu(groupeTache.getNombreJoureHommePrevu());
+        grp.setNombreJoureHommeRetard(groupeTache.getNombreJoureHommeRetard());
+        grp.setPoids(groupeTache.getPoids());
+        grp.setEquipe(equipeService.findByCode(groupeTache.getEquipe().getCode()));
+        grp.setLot(lotService.findByCode(groupeTache.getLot().getCode()));
+        grp.setCategorieGroupeTache(categorieGroupeTacheService.findByCode(groupeTache.getCategorieGroupeTache().getCode()));
+        grp.setEtatGroupeTache(etatGroupeTacheService.findByCode(groupeTache.getEtatGroupeTache().getCode()));
+
+        groupeTacheDao.save(grp);
+        return 1;
     }
 
 
     public List<GroupeTache> search(GroupeTacheVO groupeTacheVO) {
         String query = "SELECT g FROM GroupeTache g where 1=1";
-       /*
-       if(groupeTacheVO.getCode()!=null){
-          query+=" AND g.code LIKE '%" + groupeTacheVO.getCode() + "%'";
-        }if(groupeTacheVO.getLibelle() != null){
-            query+= " AND g.libelle LIKE '%" + groupeTacheVO.getLibelle() + "%'";
-        }if(groupeTacheVO.getDescription()!=null){
-            query+=" AND g.description LIKE '%" + groupeTacheVO.getDescription() + "%'";
-        }
-        */
+
+//       if(groupeTacheVO.getCode()!=null){
+//          query+=" AND g.code LIKE '%" + groupeTacheVO.getCode() + "%'";
+//        }if(groupeTacheVO.getLibelle() != null){
+//            query+= " AND g.libelle LIKE '%" + groupeTacheVO.getLibelle() + "%'";
+//        }if(groupeTacheVO.getDescription()!=null){
+//            query+=" AND g.description LIKE '%" + groupeTacheVO.getDescription() + "%'";
+//        }
+//
+
+//        if (groupeTacheVO.getLot() != null) {
+//            query += " AND g.lot.code = '%" + groupeTacheVO.getLot().getCode() + "%'";
+//        }
+//        if (groupeTacheVO.getProjet() != null) {
+//            query += " AND g.lot.projet.code = '%" + groupeTacheVO.getProjet().getCode() + "%'";
+//        }
+//        if (groupeTacheVO.getClient() != null) {
+//            query += " AND g.lot.projet.client.code = '%" + groupeTacheVO.getClient().getCode() + "%'";
+//        }
 
         if (groupeTacheVO.getLot() != null) {
-            query += " AND g.lot.code = '%" + groupeTacheVO.getLot().getCode() + "%'";
+            query += " AND g.lot.id = '%" + groupeTacheVO.getLot().getId() + "%'";
         }
         if (groupeTacheVO.getProjet() != null) {
-            query += " AND g.lot.projet.code = '%" + groupeTacheVO.getProjet().getCode() + "%'";
+            query += " AND g.lot.projet.id = '%" + groupeTacheVO.getProjet().getId() + "%'";
         }
-        if (groupeTacheVO.getLot().getProjet().getClient() != null) {
-            query += " AND g.lot.projet.client.code = '%" + groupeTacheVO.getClient().getCode() + "%'";
+        if (groupeTacheVO.getClient() != null) {
+            query += " AND g.lot.projet.client.id = '%" + groupeTacheVO.getClient().getId() + "%'";
         }
 
         return entityManager.createQuery(query).getResultList();

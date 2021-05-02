@@ -25,7 +25,7 @@ public interface GroupeTacheService {
 
 	public Optional<GroupeTache> findById(Long id);
 
-	public int updateGroupeTache(GroupeTache groupeTache,Long id);
+	public int updateGroupeTache(GroupeTache groupeTache);
 
 	public List<GroupeTache> search(GroupeTacheVO groupeTacheVO);
 }
