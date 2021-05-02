@@ -55,11 +55,6 @@ public class GroupeTacheWS {
         return groupeTacheService.findById(id);
     }
 
-    //    @PutMapping("/updateGroupeTache/id/{id}")
-//    public int updateGroupeTache(GroupeTache groupeTache,@PathVariable Long id) {
-//        return groupeTacheService.updateGroupeTache(groupeTache, id);
-//    }
-
     @PutMapping("/")
     public int updateGroupeTache(@RequestBody GroupeTache groupeTache) {
         return groupeTacheService.updateGroupeTache(groupeTache);

@@ -120,7 +120,6 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
 //            query+=" AND g.description LIKE '%" + groupeTacheVO.getDescription() + "%'";
 //        }
 //
-
 //        if (groupeTacheVO.getLot() != null) {
 //            query += " AND g.lot.code = '%" + groupeTacheVO.getLot().getCode() + "%'";
 //        }
@@ -130,7 +129,6 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
 //        if (groupeTacheVO.getClient() != null) {
 //            query += " AND g.lot.projet.client.code = '%" + groupeTacheVO.getClient().getCode() + "%'";
 //        }
-
         if (groupeTacheVO.getLot() != null) {
             query += " AND g.lot.id = '%" + groupeTacheVO.getLot().getId() + "%'";
         }
@@ -140,9 +138,7 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
         if (groupeTacheVO.getClient() != null) {
             query += " AND g.lot.projet.client.id = '%" + groupeTacheVO.getClient().getId() + "%'";
         }
-
         return entityManager.createQuery(query).getResultList();
     }
-
 
 }
