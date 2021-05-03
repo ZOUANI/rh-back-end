@@ -1,5 +1,6 @@
 package com.zs.erh.service.facade;
 
+import com.zs.erh.bean.Client;
 import com.zs.erh.bean.Lot;
 import com.zs.erh.bean.Sro;
 
@@ -19,5 +20,7 @@ public interface LotService {
     public int deleteByProjetCode(String code);
 
     public int save(Lot lot);
+
+    int updateLot(Lot lot);
 
 }

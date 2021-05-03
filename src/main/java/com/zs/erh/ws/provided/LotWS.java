@@ -50,4 +50,8 @@ public class LotWS {
     public int deleteByProjetCode(@PathVariable String code) {
         return lotService.deleteByProjetCode(code);
     }
+    @PutMapping("/")
+    public int updateLot(@RequestBody Lot lot) {
+        return lotService.updateLot(lot);
+    }
 }

@@ -58,7 +58,7 @@ public class ProjetServiceImple implements ProjetService {
         Projet projet1 = projetDao.findId(projet.getId());
         projet1.setCode(projet.getCode());
         projet1.setAvancement(projet.getAvancement());
-        //  projet1.setClient(projet.getClient());
+        projet1.setClient(projet.getClient());
         projet1.setDateDemarrageEffective(projet.getDateDemarrageEffective());
         projet1.setDateDemarragePrevu(projet.getDateDemarragePrevu());
         projet1.setDateFinEffective(projet.getDateFinEffective());
