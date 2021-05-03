@@ -3,6 +3,8 @@ package com.zs.erh.service.facade;
 import com.zs.erh.bean.Client;
 import com.zs.erh.bean.Lot;
 import com.zs.erh.bean.Sro;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -23,4 +25,5 @@ public interface LotService {
 
     int updateLot(Lot lot);
 
+    Lot findIdLot(Long id);
 }

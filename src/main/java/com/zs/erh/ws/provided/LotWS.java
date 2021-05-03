@@ -31,6 +31,11 @@ public class LotWS {
         return lotService.findByCode(code);
     }
 
+    @GetMapping("/id/{id}")
+    public Lot findIdLot(@PathVariable Long id) {
+        return lotService.findIdLot(id);
+    }
+
     @GetMapping("/sro/code/{code}")
     public List<Sro> findBySroCode(@PathVariable String code) {
         return lotService.findBySroCode(code);
@@ -50,6 +55,7 @@ public class LotWS {
     public int deleteByProjetCode(@PathVariable String code) {
         return lotService.deleteByProjetCode(code);
     }
+
     @PutMapping("/")
     public int updateLot(@RequestBody Lot lot) {
         return lotService.updateLot(lot);

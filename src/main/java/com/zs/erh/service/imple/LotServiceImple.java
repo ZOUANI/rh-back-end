@@ -6,6 +6,7 @@ import com.zs.erh.dao.SroDao;
 import com.zs.erh.service.facade.LotService;
 import com.zs.erh.service.facade.SroService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,8 +33,12 @@ public class LotServiceImple implements LotService{
         return 1;
     }
 
+    public Lot findIdLot(Long id) {
+        return lottDao.findIdLot(id);
+    }
+
     public int updateLot(Lot lot){
-        Lot lot1 = findByCode(lot.getCode());
+        Lot lot1 = findIdLot(lot.getId());
             lot1.setSro(lot.getSro());
             lot1.setCode(lot.getCode());
             lot1.setDescription(lot.getDescription());
