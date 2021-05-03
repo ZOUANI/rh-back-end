@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class SroServiceImple implements SroService {
     @Autowired
@@ -14,6 +16,11 @@ public class SroServiceImple implements SroService {
 
     public List<Sro> findAll() {
         return sroDao.findAll();
+    }
+
+    @Override
+    public Optional<Sro> findById(Long id) {
+        return sroDao.findById(id);
     }
 
     public Sro findByCode(String code) {

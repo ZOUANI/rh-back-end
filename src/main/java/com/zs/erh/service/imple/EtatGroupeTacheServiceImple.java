@@ -13,8 +13,11 @@ public class EtatGroupeTacheServiceImple implements EtatGroupeTacheService {
     @Autowired
     public EtatGroupeTacheDao etatGroupeTacheDao;
 
-    @Override
     public List<EtatGroupeTache> findAll() {
         return etatGroupeTacheDao.findAll();
     }
+    public EtatGroupeTache findByCode(String code){
+        return etatGroupeTacheDao.findByCode(code);
+    }
+
 }
