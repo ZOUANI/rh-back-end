@@ -5,5 +5,6 @@ import java.util.List;
 
 public interface EtatGroupeTacheService {
     public List<EtatGroupeTache> findAll();
+    public EtatGroupeTache findByCode(String code);
 
 }
