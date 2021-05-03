@@ -24,8 +24,6 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 	private GroupeTacheService groupeTacheService;
 
 	@Autowired
-	private CollaborateurService collaborateurService;
-	@Autowired
 	private CategorieTacheService categorieTacheService;
 	@Autowired
 	private EtatTacheService etatTacheService;
@@ -64,6 +62,21 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 			tacheDao.save(tache);
 			return 1;
 		}
+	}
+
+	public int updateTache(Tache tache){
+		Tache tacheUpdated = findByCode(tache.getCode());
+		tacheUpdated.setCode(tache.getCode());
+		tacheUpdated.setLibelle(tache.getLibelle());
+		tacheUpdated.setDescription(tache.getDescription());
+		tacheUpdated.setDateDemarrageEffective(tache.getDateDemarrageEffective());
+		tacheUpdated.setDateFinEffective(tache.getDateFinEffective());
+		tacheUpdated.setPeriode(periodeService.findByCode(tache.getPeriode().getCode()));
+		tacheUpdated.setCategorieTache(categorieTacheService.findByCode(tache.getCategorieTache().getCode()));
+		tacheUpdated.setEtatTache(etatTacheService.findByCode(tache.getEtatTache().getCode()));
+
+		tacheDao.save(tacheUpdated);
+		return 1;
 	}
 
 	@Transactional
