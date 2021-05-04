@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 public interface ProjetDao extends JpaRepository<Projet, Long> {
-
+    public List<Projet> findByClientCode(String code);
     public List<Projet> findByNroCode(String code);
     public List<Projet> findAll();
     public Projet findByCode(String code);

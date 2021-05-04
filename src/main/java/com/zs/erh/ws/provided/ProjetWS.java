@@ -59,5 +59,10 @@ public class ProjetWS {
     public Projet findId(@PathVariable Long id) {
         return projetService.findId(id);
     }
+
+    @GetMapping("/client/code/{code}")
+    public List<Projet> findByClientCode(@PathVariable String code) {
+        return projetService.findByClientCode(code);
+    }
 }
 
