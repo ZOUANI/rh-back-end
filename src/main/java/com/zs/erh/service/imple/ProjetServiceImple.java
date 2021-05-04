@@ -18,7 +18,6 @@ import java.util.List;
 public class ProjetServiceImple implements ProjetService {
 
     public int save(Projet projet) {
-        projet.setCode(projet.getLibelle());
         if (projetDao.findByCode(projet.getCode()) != null) {
             return -1;
         } else {

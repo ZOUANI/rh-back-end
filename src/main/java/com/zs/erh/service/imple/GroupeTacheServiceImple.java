@@ -56,7 +56,6 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
     }
 
     public int save(GroupeTache groupeTache) {
-        groupeTache.setCode(groupeTache.getLibelle());
         // Si le groupe de tache existe déja
         if (groupeTacheDao.findByCode(groupeTache.getCode()) != null) {
             return -1;
