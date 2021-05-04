@@ -13,6 +13,7 @@ public interface TacheService {
 	public int save(Tache tache);
 	public int deleteByGroupeTacheCode(String code);
 	public int deleteByCode(String code);
+	public int updateTache(Tache tache);
 
 	/*Aymane Start here statistiques*/
 	public List<TacheVo> calcStatistique(TacheVo tacheVo);
