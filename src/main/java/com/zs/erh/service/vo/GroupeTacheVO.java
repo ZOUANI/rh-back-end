@@ -1,80 +1,33 @@
 package com.zs.erh.service.vo;
 
-import com.zs.erh.bean.Client;
-import com.zs.erh.bean.Lot;
-import com.zs.erh.bean.Projet;
-
 public class GroupeTacheVO {
-    private Long id;
-    private String code;
-    private String libelle;
-    private String description;
-    private Lot lot;
-    private Projet projet;
-    private Client client;
+    private Long clientId;
+    private Long projetId;
+    private Long lotId;
 
-    public Projet getProjet() {
-        if (this.projet == null){
-            this.projet = new Projet();
-        }
-        return projet;
+
+    public Long getClientId() {
+        return clientId;
     }
 
-    public void setProjet(Projet projet) {
-        this.projet = projet;
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
     }
 
-    public Client getClient() {
-        if (this.client == null){
-            this.client = new Client();
-        }
-        return client;
+    public Long getProjetId() {
+        return projetId;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setProjetId(Long projetId) {
+        this.projetId = projetId;
     }
 
-    public Lot getLot() {
-        if (this.lot== null){
-            this.lot = new Lot();
-        }
-        return lot;
+    public Long getLotId() {
+        return lotId;
     }
 
-    public void setLot(Lot lot) {
-        this.lot = lot;
+    public void setLotId(Long lotId) {
+        this.lotId = lotId;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getLibelle() {
-        return libelle;
-    }
-
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

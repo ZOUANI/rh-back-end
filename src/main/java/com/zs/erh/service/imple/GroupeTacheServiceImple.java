@@ -111,31 +111,14 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
     public List<GroupeTache> search(GroupeTacheVO groupeTacheVO) {
         String query = "SELECT g FROM GroupeTache g where 1=1";
 
-//       if(groupeTacheVO.getCode()!=null){
-//          query+=" AND g.code LIKE '%" + groupeTacheVO.getCode() + "%'";
-//        }if(groupeTacheVO.getLibelle() != null){
-//            query+= " AND g.libelle LIKE '%" + groupeTacheVO.getLibelle() + "%'";
-//        }if(groupeTacheVO.getDescription()!=null){
-//            query+=" AND g.description LIKE '%" + groupeTacheVO.getDescription() + "%'";
-//        }
-//
-//        if (groupeTacheVO.getLot() != null) {
-//            query += " AND g.lot.code = '%" + groupeTacheVO.getLot().getCode() + "%'";
-//        }
-//        if (groupeTacheVO.getProjet() != null) {
-//            query += " AND g.lot.projet.code = '%" + groupeTacheVO.getProjet().getCode() + "%'";
-//        }
-//        if (groupeTacheVO.getClient() != null) {
-//            query += " AND g.lot.projet.client.code = '%" + groupeTacheVO.getClient().getCode() + "%'";
-//        }
-        if (groupeTacheVO.getLot() != null) {
-            query += " AND g.lot.id = '%" + groupeTacheVO.getLot().getId() + "%'";
+        if (groupeTacheVO.getProjetId() != null) {
+            query += " AND g.lot.projet.id = '%" + groupeTacheVO.getProjetId() + "%'";
         }
-        if (groupeTacheVO.getProjet() != null) {
-            query += " AND g.lot.projet.id = '%" + groupeTacheVO.getProjet().getId() + "%'";
+        if (groupeTacheVO.getClientId() != null) {
+            query += " AND g.lot.projet.client.id = '%" + groupeTacheVO.getClientId() + "%'";
         }
-        if (groupeTacheVO.getClient() != null) {
-            query += " AND g.lot.projet.client.id = '%" + groupeTacheVO.getClient().getId() + "%'";
+        if (groupeTacheVO.getLotId() != null) {
+            query += " AND g.lot.id = '%" + groupeTacheVO.getLotId() + "%'";
         }
         return entityManager.createQuery(query).getResultList();
     }
