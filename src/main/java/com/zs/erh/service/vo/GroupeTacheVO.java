@@ -1,40 +1,33 @@
 package com.zs.erh.service.vo;
 
 public class GroupeTacheVO {
-    private Long id;
-    private String code;
-    private String libelle;
-    private String description;
+    private Long clientId;
+    private Long projetId;
+    private Long lotId;
 
-    public Long getId() {
-        return id;
+
+    public Long getClientId() {
+        return clientId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
     }
 
-    public String getLibelle() {
-        return libelle;
+    public Long getProjetId() {
+        return projetId;
     }
 
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
+    public void setProjetId(Long projetId) {
+        this.projetId = projetId;
     }
 
-    public String getCode() {
-        return code;
+    public Long getLotId() {
+        return lotId;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setLotId(Long lotId) {
+        this.lotId = lotId;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

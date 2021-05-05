@@ -46,21 +46,21 @@ public class GroupeTacheWS {
     }
 
     @DeleteMapping("/code/{code}")
-	public int deleteByCode(@PathVariable String code) {
-		return groupeTacheService.deleteByCode(code);
-	}
+    public int deleteByCode(@PathVariable String code) {
+        return groupeTacheService.deleteByCode(code);
+    }
 
     @GetMapping("/id/{id}")
     public Optional<GroupeTache> findById(@PathVariable Long id) {
         return groupeTacheService.findById(id);
     }
 
-    @PutMapping("/updateGroupeTache/id/{id}")
-    public int updateGroupeTache(GroupeTache groupeTache,@PathVariable Long id) {
-        return groupeTacheService.updateGroupeTache(groupeTache, id);
+    @PutMapping("/")
+    public int updateGroupeTache(@RequestBody GroupeTache groupeTache) {
+        return groupeTacheService.updateGroupeTache(groupeTache);
     }
 
-    @PostMapping("/search")
+    @PostMapping("/search/")
     public List<GroupeTache> search(@RequestBody GroupeTacheVO groupeTacheVO) {
         return groupeTacheService.search(groupeTacheVO);
     }
