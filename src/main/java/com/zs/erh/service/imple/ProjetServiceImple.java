@@ -1,8 +1,6 @@
 package com.zs.erh.service.imple;
 
-import com.zs.erh.bean.Collaborateur;
 import com.zs.erh.bean.Projet;
-import com.zs.erh.dao.CollaborateurDao;
 import com.zs.erh.dao.ProjetDao;
 import com.zs.erh.service.facade.ProjetService;
 import com.zs.erh.service.util.StringUtil;
@@ -68,12 +66,12 @@ public class ProjetServiceImple implements ProjetService {
         projet1.setDateFinEffective(projet.getDateFinEffective());
         projet1.setDateFinPrevu(projet.getDateFinPrevu());
         projet1.setDescription(projet.getDescription());
-        //  projet1.setEquipe(projet.getEquipe());
+        projet1.setEquipe(projet.getEquipe());
         projet1.setLibelle(projet.getLibelle());
         projet1.setNombreJoureHommeEffectif(projet.getNombreJoureHommeEffectif());
         projet1.setNombreJoureHommePrevu(projet.getNombreJoureHommePrevu());
         projet1.setNombreJoureHommeRetard(projet.getNombreJoureHommeRetard());
-        //projet1.setNro(projet.getNro());
+        projet1.setNro(projet.getNro());
         projet1.setResponsable(projet.getResponsable());
         projetDao.save(projet1);
     }
