@@ -5,6 +5,7 @@ import com.zs.erh.bean.Entreprise;
 import com.zs.erh.dao.ClientDao;
 import com.zs.erh.service.facade.ClientService;
 import com.zs.erh.service.facade.EntrepriseService;
+import com.zs.erh.service.util.StringUtil;
 import com.zs.erh.service.vo.ClientVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,11 +43,11 @@ public class ClientServiceImple implements ClientService {
     }
     public List<Client> search(ClientVO clientVO){
         String query = "SELECT c FROM Client c where 1=1";
-        if(clientVO.getCode()!=null){
+        if(StringUtil.isNotEmpty(clientVO.getCode())){
             query+=" AND c.code LIKE '%" + clientVO.getCode() + "%'";
-        }if(clientVO.getLibelle() != null){
+        }if(StringUtil.isNotEmpty(clientVO.getLibelle())){
             query+= " AND c.libelle LIKE '%" + clientVO.getLibelle() + "%'";
-        }if(clientVO.getDescription()!=null){
+        }if(StringUtil.isNotEmpty(clientVO.getDescription())){
             query+=" AND c.description LIKE '%" + clientVO.getDescription() + "%'";
         }
         return  entityManager.createQuery(query).getResultList();

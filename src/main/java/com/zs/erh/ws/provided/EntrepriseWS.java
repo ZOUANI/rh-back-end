@@ -2,6 +2,7 @@ package com.zs.erh.ws.provided;
 
 import com.zs.erh.bean.Entreprise;
 import com.zs.erh.service.facade.EntrepriseService;
+import com.zs.erh.service.vo.EntrepriseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,7 +40,10 @@ public class EntrepriseWS {
     public int updateEntreprise(@RequestBody Entreprise entreprise) {
         return entrepriseService.updateEntreprise(entreprise);
     }
-
+    @PostMapping("/findByCriteria")
+    public List<Entreprise> findByCriteria( @RequestBody EntrepriseVO entrepriseVO) {
+        return entrepriseService.findByCriteria(entrepriseVO);
+    }
     @Autowired
     private EntrepriseService entrepriseService;
 }
