@@ -4,9 +4,12 @@ import com.zs.erh.bean.Entreprise;
 import com.zs.erh.dao.EntrepriseDao;
 import com.zs.erh.service.facade.ClientService;
 import com.zs.erh.service.facade.EntrepriseService;
+import com.zs.erh.service.util.StringUtil;
+import com.zs.erh.service.vo.EntrepriseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -41,7 +44,16 @@ public class EntrepriseServiceImple implements EntrepriseService {
         }
     }
 
-
+    public List<Entreprise> findByCriteria(EntrepriseVO entrepriseVO){
+        String query="SELECT e FROM Entreprise e WHERE 1=1";
+        if(StringUtil.isNotEmpty(entrepriseVO.getCode())){
+            query+=" AND e.code LIKE '%"+entrepriseVO.getCode()+"%'";
+        }
+        if(StringUtil.isNotEmpty(entrepriseVO.getLibelle())){
+            query+=" AND e.libelle LIKE '%"+entrepriseVO.getLibelle()+"%'";
+        }
+        return entityManager.createQuery(query).getResultList();
+    }
 
     public int updateEntreprise(Entreprise entreprise){
         Entreprise entreprise1 = findByCode(entreprise.getCode());
@@ -60,5 +72,7 @@ public class EntrepriseServiceImple implements EntrepriseService {
     private EntrepriseDao entrepriseDao;
     @Autowired
     private ClientService clientService;
+    @Autowired
+    private EntityManager entityManager;
 
 }
