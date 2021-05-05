@@ -48,7 +48,7 @@ public class MembreEquipeServiceImple implements MembreEquipeService {
         return membreEquipeDao.deleteByEquipeCodeAndCollaborateurCode(codeEquipe,codeCollaborateur);
     }
     public int save(MembreEquipe membreEquipe){
-        if (membreEquipeDao.findById(membreEquipe.getId())!=null){
+        if (membreEquipeDao.findByEquipeCodeAndCollaborateurCode(membreEquipe.getEquipe().getCode(),membreEquipe.getCollaborateur().getCode())!=null ){
             return -1; // already exist !
         } else {
             Collaborateur collaborateurFounded = collaborateurService.findByCode(membreEquipe.getCollaborateur().getCode());

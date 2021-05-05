@@ -66,6 +66,7 @@ public class EquipeServiceImple implements EquipeService {
     }
 
     public int save(Equipe equipe) {
+        equipe.setCode(equipe.getLibelle());
         if (equipeDao.findByCode(equipe.getCode()) != null) {
             return -1; // already exist !
         } else {
