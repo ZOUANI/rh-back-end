@@ -21,5 +21,7 @@ public class CategorieTacheServiceImple implements CategorieTacheService {
         return categorieTacheDao.findByCode(code);
     }
 
-
+    public List<CategorieTache> findByCategorieGroupeTacheCode(String code) {
+        return categorieTacheDao.findByCategorieGroupeTacheCode(code);
+    }
 }

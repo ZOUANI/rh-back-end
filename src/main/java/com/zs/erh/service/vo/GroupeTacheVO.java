@@ -1,28 +1,12 @@
 package com.zs.erh.service.vo;
 
 import com.zs.erh.bean.Client;
-import com.zs.erh.bean.Lot;
-import com.zs.erh.bean.Projet;
 
 public class GroupeTacheVO {
-    private Long id;
-    private String code;
-    private String libelle;
-    private String description;
-    private Lot lot;
-    private Projet projet;
+    private Long clientId;
+    private Long projetId;
+    private Long lotId;
     private Client client;
-
-    public Projet getProjet() {
-        if (this.projet == null){
-            this.projet = new Projet();
-        }
-        return projet;
-    }
-
-    public void setProjet(Projet projet) {
-        this.projet = projet;
-    }
 
     public Client getClient() {
         if (this.client == null){
@@ -35,46 +19,28 @@ public class GroupeTacheVO {
         this.client = client;
     }
 
-    public Lot getLot() {
-        if (this.lot== null){
-            this.lot = new Lot();
-        }
-        return lot;
+    public Long getClientId() {
+        return clientId;
     }
 
-    public void setLot(Lot lot) {
-        this.lot = lot;
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
     }
 
-    public Long getId() {
-        return id;
+    public Long getProjetId() {
+        return projetId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setProjetId(Long projetId) {
+        this.projetId = projetId;
     }
 
-    public String getLibelle() {
-        return libelle;
+    public Long getLotId() {
+        return lotId;
     }
 
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
+    public void setLotId(Long lotId) {
+        this.lotId = lotId;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

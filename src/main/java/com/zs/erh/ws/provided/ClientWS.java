@@ -38,7 +38,7 @@ public class ClientWS {
     public int save( @RequestBody Client client) {
         return clientService.save(client);
     }
-    @GetMapping("/code/{codee}")
+    @GetMapping("/codee/{codee}")
     public Client findByCode(@PathVariable String codee) {
         return clientService.findByCode(codee);
     }

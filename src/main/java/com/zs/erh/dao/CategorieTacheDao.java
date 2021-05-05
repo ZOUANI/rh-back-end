@@ -11,5 +11,5 @@ public interface CategorieTacheDao extends JpaRepository<CategorieTache, Long> {
 
     public List<CategorieTache> findAll();
     public CategorieTache findByCode(String code);
-
+    public List<CategorieTache> findByCategorieGroupeTacheCode(String code);
 }
