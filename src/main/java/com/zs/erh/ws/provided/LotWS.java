@@ -61,7 +61,7 @@ public class LotWS {
         return lotService.updateLot(lot);
     }
 
-    @DeleteMapping("/projet/id/{id}")
+    @GetMapping("/projet/id/{id}")
     public List<Lot> findByProjetId(@PathVariable Long id) {
         return lotService.findByProjetId(id);
     }
