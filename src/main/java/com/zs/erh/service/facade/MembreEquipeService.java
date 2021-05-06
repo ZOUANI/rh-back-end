@@ -16,4 +16,5 @@ public interface MembreEquipeService {
 	public int save(MembreEquipe membreEquipe);
 	public MembreEquipe findByEquipeCodeAndCollaborateurCode(String codeEquipe, String codeCollaborateur);
 	public int deleteByEquipeCodeAndCollaborateurCode(String codeEquipe,String codeCollaborateur);
+	public int updateMembre(MembreEquipe membreEquipe);
 }

@@ -52,5 +52,9 @@ public class MembreEquipeWS {
     public int update(@PathVariable long id,@RequestBody MembreEquipe membreEquipe){
         return membreEquipeService.update(id,membreEquipe);
     }
+    @PutMapping("/")
+    public int updateMembre(@RequestBody MembreEquipe membreEquipe){
+        return membreEquipeService.updateMembre(membreEquipe);
+    }
 
 }

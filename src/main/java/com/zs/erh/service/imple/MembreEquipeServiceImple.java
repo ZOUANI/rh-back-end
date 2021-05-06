@@ -74,5 +74,13 @@ public class MembreEquipeServiceImple implements MembreEquipeService {
         }else
             return -1;
     }
+    public int updateMembre(MembreEquipe membreEquipe){
+        Optional<MembreEquipe> foundedMembreEquipe = membreEquipeDao.findById(membreEquipe.getId());
+        if (foundedMembreEquipe.isPresent()) {
+            foundedMembreEquipe.get().setCollaborateur(membreEquipe.getCollaborateur());
+            return 1;
+        }else
+            return -1;
+    }
 
 }
