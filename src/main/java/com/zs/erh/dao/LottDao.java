@@ -14,6 +14,8 @@ import java.util.List;
 public interface LottDao extends JpaRepository<Lot, Long> {
     public List<Lot> findByProjetCode(String code);
 
+    public List<Lot> findByProjetId(Long id);
+
     public Lot findByCode(String code);
 
     public List<Sro> findBySroCode(String code);
