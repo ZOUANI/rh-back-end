@@ -60,4 +60,10 @@ public class LotWS {
     public int updateLot(@RequestBody Lot lot) {
         return lotService.updateLot(lot);
     }
+
+    @GetMapping("/projet/id/{id}")
+    public List<Lot> findByProjetId(@PathVariable Long id) {
+        return lotService.findByProjetId(id);
+    }
+
 }
