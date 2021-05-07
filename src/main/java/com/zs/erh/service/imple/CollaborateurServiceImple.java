@@ -1,6 +1,7 @@
 package com.zs.erh.service.imple;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.zs.erh.bean.Collaborateur;
 import com.zs.erh.dao.CollaborateurDao;
@@ -26,5 +27,8 @@ public class CollaborateurServiceImple implements CollaborateurService {
 /*	public List<Collaborateur> findByEquipeDefaultCode(String code) {
 		return collaborateurDao.findByEquipeDefaultCode(code);
 	}*/
+public Optional<Collaborateur> findById(Long id) {
+	return collaborateurDao.findById(id);
+}
 	
 }
