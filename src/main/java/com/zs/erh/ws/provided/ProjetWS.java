@@ -18,7 +18,8 @@ import java.util.List;
 public class ProjetWS {
     @Autowired
     public ProjetService projetService;
-@PostMapping("/search")
+
+    @PostMapping("/search")
     public List<Projet> search(@RequestBody ProjetVO projetVo) {
         return projetServiceImple.search(projetVo);
     }
