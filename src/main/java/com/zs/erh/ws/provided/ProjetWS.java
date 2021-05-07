@@ -1,14 +1,11 @@
 package com.zs.erh.ws.provided;
 
-import com.zs.erh.bean.GroupeTache;
 import com.zs.erh.bean.Projet;
 import com.zs.erh.service.facade.ProjetService;
 import com.zs.erh.service.imple.ProjetServiceImple;
 import com.zs.erh.service.vo.ProjetVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import org.springframework.transaction.annotation.Transactional;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +15,6 @@ import java.util.List;
 public class ProjetWS {
     @Autowired
     public ProjetService projetService;
-
     @PostMapping("/search")
     public List<Projet> search(@RequestBody ProjetVO projetVo) {
         return projetServiceImple.search(projetVo);
@@ -59,6 +55,11 @@ public class ProjetWS {
     @GetMapping("/id/{id}")
     public Projet findId(@PathVariable Long id) {
         return projetService.findId(id);
+    }
+
+    @GetMapping("/client/id/{id}")
+    public List<Projet> findByClientId(@PathVariable Long id) {
+        return projetService.findByClientId(id);
     }
 }
 

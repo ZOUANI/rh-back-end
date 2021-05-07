@@ -17,8 +17,11 @@ import java.util.List;
 @Service
 public class ProjetServiceImple implements ProjetService {
 
+    public List<Projet> findByClientId(Long id) {
+        return projetDao.findByClientId(id);
+    }
+
     public int save(Projet projet) {
-        projet.setCode(projet.getLibelle());
         if (projetDao.findByCode(projet.getCode()) != null) {
             return -1;
         } else {

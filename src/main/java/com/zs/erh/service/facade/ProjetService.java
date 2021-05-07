@@ -7,6 +7,9 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ProjetService {
+
+    public List<Projet> findByClientId(Long id);
+
     List<Projet> findAll();
 
     List<Projet> findByNroCode(String code);

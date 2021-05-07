@@ -26,4 +26,8 @@ public class CategorieTacheWS {
         return categorieTacheService.findByCode(code);
     }
 
+    @GetMapping("/codeCategorieGroupeTache/{code}")
+    public List<CategorieTache> findByCategorieGroupeTacheCode(@PathVariable String code) {
+        return categorieTacheService.findByCategorieGroupeTacheCode(code);
+    }
 }

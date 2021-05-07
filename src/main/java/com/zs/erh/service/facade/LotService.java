@@ -11,6 +11,8 @@ import java.util.List;
 public interface LotService {
     public List<Lot> findByProjetCode(String code);
 
+    public List<Lot> findByProjetId(Long id);
+
     public Lot findByCode(String code);
 
     public List<Lot> findAll();
