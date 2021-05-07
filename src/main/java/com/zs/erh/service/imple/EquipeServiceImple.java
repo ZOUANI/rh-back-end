@@ -1,5 +1,6 @@
 package com.zs.erh.service.imple;
 
+import com.zs.erh.bean.Client;
 import com.zs.erh.bean.Collaborateur;
 import com.zs.erh.bean.Equipe;
 import com.zs.erh.bean.EtatEquipe;
@@ -10,10 +11,15 @@ import com.zs.erh.service.facade.CollaborateurService;
 import com.zs.erh.service.facade.EquipeService;
 import com.zs.erh.service.facade.EtatEquipeService;
 import com.zs.erh.service.facade.MembreEquipeService;
+import com.zs.erh.service.util.StringUtil;
+import com.zs.erh.service.vo.ClientVO;
+import com.zs.erh.service.vo.EquipeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -32,6 +38,8 @@ public class EquipeServiceImple implements EquipeService {
     private EtatEquipeService etatEquipeService;
     @Autowired
     private EtatEquipeDao etatEquipeDao;
+    @Autowired
+    private EntityManager entityManager;
 
     public List<Equipe> findAll() {
         return equipeDao.findAll();
@@ -98,5 +106,17 @@ public class EquipeServiceImple implements EquipeService {
             }else
                 return -1;
             }
+
+    public List<Equipe> search(EquipeVO equipeVO){
+        String query = "SELECT e FROM Equipe e where 1=1";
+        if(StringUtil.isNotEmpty(equipeVO.getLibelle())){
+            query+=" AND e.libelle LIKE '%" + equipeVO.getLibelle() + "%'";
+        }if(equipeVO.getNomResponsable()!=null && equipeVO.getPrenomResponsable()!=null){
+            query+=" AND e.responsable.nom LIKE '%" + equipeVO.getNomResponsable() + "%'" + " e.responsable.prenom LIKE '%" + equipeVO.getPrenomResponsable() + "%'";
+        }if(StringUtil.isNotEmpty(equipeVO.getEtatEquipe().getLibelle())) {
+            query += " AND e.etatEquipe.libelle LIKE '%" + equipeVO.getLibelleEtat() + "%'";
+        }
+        return  entityManager.createQuery(query).getResultList();
+    }
 }
 
