@@ -111,10 +111,10 @@ public class EquipeServiceImple implements EquipeService {
         String query = "SELECT e FROM Equipe e where 1=1";
         if(StringUtil.isNotEmpty(equipeVO.getLibelle())){
             query+=" AND e.libelle LIKE '%" + equipeVO.getLibelle() + "%'";
-        }if(equipeVO.getNomResponsable()!=null && equipeVO.getPrenomResponsable()!=null){
-            query+=" AND e.responsable.nom LIKE '%" + equipeVO.getNomResponsable() + "%'" + " e.responsable.prenom LIKE '%" + equipeVO.getPrenomResponsable() + "%'";
-        }if(StringUtil.isNotEmpty(equipeVO.getEtatEquipe().getLibelle())) {
-            query += " AND e.etatEquipe.libelle LIKE '%" + equipeVO.getLibelleEtat() + "%'";
+        } if (equipeVO.getEtatId() != null) {
+            query += " AND e.etatEquipe.id = " + equipeVO.getEtatId();
+        } if(equipeVO.getResponsableId()!= null ){
+            query +=" AND e.responsable.id = " + equipeVO.getResponsableId();
         }
         return  entityManager.createQuery(query).getResultList();
     }

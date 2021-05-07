@@ -49,7 +49,7 @@ public class EquipeWS {
         return  equipeService.save(equipe);
     }
     @PostMapping("/search")
-    public List<Equipe> search(EquipeVO equipeVO){
+    public List<Equipe> search(@RequestBody EquipeVO equipeVO){
         return equipeService.search(equipeVO);
     }
 
