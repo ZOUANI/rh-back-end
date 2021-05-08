@@ -1,0 +1,33 @@
+package com.zs.erh.ws.provided;
+
+import com.zs.erh.bean.Projet;
+import com.zs.erh.bean.ProjetEquipe;
+import com.zs.erh.service.facade.ProjetEquipeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(value = "maneo-rh/projetequipe")
+public class ProjetEquipeWS {
+    @Autowired
+    ProjetEquipeService projetEquipeService;
+    @PostMapping("/")
+    public int save(@RequestBody Projet projet,@RequestBody List<ProjetEquipe> projetEquipes) {
+        return projetEquipeService.save(projet, projetEquipes);
+    }
+    @GetMapping("/")
+    public List<ProjetEquipe> findAll() {
+        return projetEquipeService.findAll();
+    }
+
+    @GetMapping("/projet/code/{code}")
+    public List<ProjetEquipe> findByProjetCode(@PathVariable String code) {
+        return projetEquipeService.findByProjetCode(code);
+    }
+    @DeleteMapping("/projet/code/{code}")
+    public int deleteByProjetCode(@PathVariable String code) {
+        return projetEquipeService.deleteByProjetCode(code);
+    }
+}

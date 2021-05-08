@@ -2,6 +2,7 @@ package com.zs.erh.service.imple;
 
 import com.zs.erh.bean.Projet;
 import com.zs.erh.dao.ProjetDao;
+import com.zs.erh.service.facade.ProjetEquipeService;
 import com.zs.erh.service.facade.ProjetService;
 import com.zs.erh.service.util.StringUtil;
 import com.zs.erh.service.vo.ProjetVO;
@@ -24,6 +25,7 @@ public class ProjetServiceImple implements ProjetService {
             return -1;
         } else {
             projetDao.save(projet);
+            projetEquipeService.save(projet,projet.getProjetEquipes());
             return 1;
         }
     }
@@ -51,9 +53,10 @@ public class ProjetServiceImple implements ProjetService {
 
     @Transactional
     public int deleteByCode(String code) {
+        int resultProjetEquipe= projetEquipeService.deleteByProjetCode(code);
         int resultLot = lotServiceImple.deleteByProjetCode(code);
         int resultProjet = projetDao.deleteByCode(code);
-        return resultLot + resultProjet;
+        return resultProjetEquipe+resultLot + resultProjet;
     }
 
     public void update(Projet projet) {
@@ -66,7 +69,6 @@ public class ProjetServiceImple implements ProjetService {
         projet1.setDateFinEffective(projet.getDateFinEffective());
         projet1.setDateFinPrevu(projet.getDateFinPrevu());
         projet1.setDescription(projet.getDescription());
-        projet1.setEquipe(projet.getEquipe());
         projet1.setLibelle(projet.getLibelle());
         projet1.setNombreJoureHommeEffectif(projet.getNombreJoureHommeEffectif());
         projet1.setNombreJoureHommePrevu(projet.getNombreJoureHommePrevu());
@@ -98,4 +100,6 @@ public class ProjetServiceImple implements ProjetService {
     public ProjetDao projetDao;
     @Autowired
     public LotServiceImple lotServiceImple;
+    @Autowired
+    public ProjetEquipeService projetEquipeService;
 }

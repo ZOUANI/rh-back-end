@@ -5,14 +5,12 @@
  */
 package com.zs.erh.bean;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
+import java.util.List;
+import javax.persistence.*;
 
 /**
  *
@@ -50,9 +48,19 @@ public class Projet implements Serializable {
     @ManyToOne
     private Nro nro;
     @ManyToOne
-    private Equipe equipe;
-    @ManyToOne
     private Client client;
+
+    public List<ProjetEquipe> getProjetEquipes() {
+        return projetEquipes;
+    }
+
+    public void setProjetEquipes(List<ProjetEquipe> projetEquipes) {
+        this.projetEquipes = projetEquipes;
+    }
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "projet")
+    private List<ProjetEquipe> projetEquipes;
 
     public Client getClient() {
         if (this.client == null) {
@@ -63,17 +71,6 @@ public class Projet implements Serializable {
 
     public void setClient(Client client) {
         this.client = client;
-    }
-
-    public Equipe getEquipe() {
-        if (this.equipe == null) {
-            this.equipe = new Equipe();
-        }
-        return equipe;
-    }
-
-    public void setEquipe(Equipe equipe) {
-        this.equipe = equipe;
     }
 
     public Nro getNro() {
