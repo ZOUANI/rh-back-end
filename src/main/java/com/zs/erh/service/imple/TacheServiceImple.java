@@ -1,10 +1,14 @@
 package com.zs.erh.service.imple;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import com.zs.erh.bean.Tache;
 import com.zs.erh.dao.TacheDao;
 import com.zs.erh.service.facade.*;
+import com.zs.erh.service.util.DateUtil;
+import com.zs.erh.service.vo.CollaborateurVo;
 import com.zs.erh.service.vo.TacheVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +35,10 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 	private MembreEquipeService membreEquipeService;
 	@Autowired
 	private PeriodeService periodeService;
+	@Autowired
+	private CalendrierJourFeriesService calendrierJourFeriesService;
+	@Autowired
+	private DemandeCongeService demandeCongeService;
 
 	
 	public Tache findByCode(String code) {
@@ -105,7 +113,7 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 		return entityManager;
 	}
 
-	/* ! Aymane Start something here */
+
 	public List<TacheVo> calcStatistique(TacheVo tacheVo) {
 		System.out.println("tacheVo = " + tacheVo);
 		String query = "SELECT new com.zs.erh.service.vo.TacheVo(t.groupeTache.lot,COUNT(t.periode.id)) FROM Tache t WHERE 1=1";
@@ -134,7 +142,30 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 		query += addConstraint("t.groupeTache.lot.projet.nro.id", tacheVo.getNroId());
 		return query;
 	}
-	/* ! End it here dont touche it*/
+
+
+	public List<CollaborateurVo> calcStatistiqueSuiviCollaborateur(Date dateMin, Date dateMax) {
+        List<CollaborateurVo> collaborateurVos = calcTacheCount(dateMin, dateMax);
+        Long totalJourWithoutWeekEnd = DateUtil.totalJourWithoutWeekEnd(dateMin, dateMax);
+        Long jourFierie = calendrierJourFeriesService.calcNombreJourTotal(dateMin, dateMax);
+        System.out.println("totalJourWithoutWeekEnd = " + totalJourWithoutWeekEnd+"  jourFierie = " + jourFierie);
+        for (CollaborateurVo collaborateurVo : collaborateurVos) {
+            collaborateurVo.setSommeJourNonWeekEnd(BigDecimal.valueOf(totalJourWithoutWeekEnd - jourFierie));
+            Long conge = demandeCongeService.calcNombreJourTotal(collaborateurVo.getCollaborateur().getId(), dateMin, dateMax);
+            collaborateurVo.setSommeJourConge(new BigDecimal(conge));
+            collaborateurVo.setSommeJourDecalage(collaborateurVo.getSommeJourNonWeekEnd().subtract(collaborateurVo.getSommeJourTravail().add(collaborateurVo.getSommeJourConge())));
+        }
+        return collaborateurVos;
+    }
+
+	public List<CollaborateurVo> calcTacheCount(Date dateMin, Date dateMax) {
+		String query = "SELECT new com.zs.erh.service.vo.CollaborateurVo(t.membreEquipe.collaborateur,COUNT(t.id)) FROM Tache t WHERE 1=1";
+		query += addConstraintMinMaxDate("t", "dateDemarrageEffective", dateMin, dateMax);
+		query += " GROUP BY t.membreEquipe.collaborateur.id ORDER BY t.membreEquipe.collaborateur.nom ASC,t.membreEquipe.collaborateur.prenom ASC";
+		System.out.println("query = " + query);
+		List<CollaborateurVo> res = getEntityManager().createQuery(query).getResultList();
+		return res;
+	}
 
 
 

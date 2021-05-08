@@ -1,8 +1,10 @@
 package com.zs.erh.service.facade;
 
 import com.zs.erh.bean.Tache;
+import com.zs.erh.service.vo.CollaborateurVo;
 import com.zs.erh.service.vo.TacheVo;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -17,4 +19,6 @@ public interface TacheService {
 
 	/*Aymane Start here statistiques*/
 	public List<TacheVo> calcStatistique(TacheVo tacheVo);
+
+	public List<CollaborateurVo> calcStatistiqueSuiviCollaborateur(Date dateMin, Date dateMax);
 }
