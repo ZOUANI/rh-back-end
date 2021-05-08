@@ -3,6 +3,7 @@ package com.zs.erh.ws.provided;
 import com.zs.erh.bean.Equipe;
 import com.zs.erh.service.facade.EquipeService;
 import com.zs.erh.service.imple.EquipeServiceImple;
+import com.zs.erh.service.vo.EquipeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +47,10 @@ public class EquipeWS {
     @PostMapping("/")
     public int save(@RequestBody Equipe equipe){
         return  equipeService.save(equipe);
+    }
+    @PostMapping("/search")
+    public List<Equipe> search(@RequestBody EquipeVO equipeVO){
+        return equipeService.search(equipeVO);
     }
 
     @PutMapping("/id/{id}")
