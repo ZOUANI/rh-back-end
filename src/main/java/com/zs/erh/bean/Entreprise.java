@@ -5,11 +5,11 @@
  */
 package com.zs.erh.bean;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
@@ -25,8 +25,6 @@ public class Entreprise implements Serializable {
     private String libelle;
     private String code;
     private String description;
-
-
 
     public String getLibelle() {
         return libelle;
@@ -59,7 +57,6 @@ public class Entreprise implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
 
     @Override
     public int hashCode() {

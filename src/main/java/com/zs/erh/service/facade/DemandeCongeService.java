@@ -1,6 +1,7 @@
 package com.zs.erh.service.facade;
 
 import com.zs.erh.bean.DemandeConge;
+import com.zs.erh.service.vo.DemandeCongeVo;
 
 import java.util.Date;
 import java.util.List;
@@ -13,5 +14,7 @@ public interface DemandeCongeService {
     void deleteById(Long id);
     int save(DemandeConge demandeConge);
     int update(DemandeConge demandeConge);
+    public Long calcNombreJourTotal(Long collaborateurId, Date dateDebut, Date dateFin);
+    public List<DemandeCongeVo> findByCollaborateurAndDateMinAndMax(Long collaborateurId, Date dateDebut, Date dateFin);
 }
 

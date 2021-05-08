@@ -2,6 +2,7 @@ package com.zs.erh.ws.provided;
 
 import com.zs.erh.bean.DemandeConge;
 import com.zs.erh.service.facade.DemandeCongeService;
+import com.zs.erh.service.vo.DemandeCongeVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,7 +40,18 @@ public class DemandeCongeWS {
         return demandeCongeService.update(demandeConge);
     }
 
+    @GetMapping("/calcNombreJourTotal/collaborateurId/{collaborateurId}/dateDebut/{dateDebut}/dateFin/{dateFin}")
+    public Long calcNombreJourTotal(Long collaborateurId, Date dateDebut, Date dateFin) {
+        return demandeCongeService.calcNombreJourTotal(collaborateurId, dateDebut, dateFin);
+    }
+
+    @GetMapping("/collaborateurId/{collaborateurId}/dateDebut/{dateDebut}/dateFin/{dateFin}")
+    public List<DemandeCongeVo> findByCollaborateurAndDateMinAndMax(@PathVariable Long collaborateurId, @PathVariable Date dateDebut, @PathVariable Date dateFin) {
+        return demandeCongeService.findByCollaborateurAndDateMinAndMax(collaborateurId, dateDebut, dateFin);
+    }
+
     @Autowired
     private DemandeCongeService demandeCongeService;
+
 }
 
