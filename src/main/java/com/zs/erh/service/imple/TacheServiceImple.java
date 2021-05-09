@@ -167,6 +167,16 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 		return res;
 	}
 
+	public List<Tache> search(TacheVo tacheVo) {
+		System.out.println("tacheVo = " + tacheVo);
+		String query = "SELECT t FROM Tache t WHERE 1=1";
+		query += addCriteria(tacheVo);
+		query += " ORDER BY t.dateDemarrageEffective DESC, t.periode.id ASC,t.membreEquipe.collaborateur.nom ASC,t.membreEquipe.collaborateur.prenom ASC  ";
+
+		System.out.println("query = " + query);
+		return findMultipleResult(query);
+	}
+
 
 
 	@Override
