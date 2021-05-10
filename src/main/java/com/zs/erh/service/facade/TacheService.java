@@ -16,6 +16,7 @@ public interface TacheService {
 	public int deleteByGroupeTacheCode(String code);
 	public int deleteByCode(String code);
 	public int updateTache(Tache tache);
+	public List<Tache> search(TacheVo tacheVo);
 
 	/*Aymane Start here statistiques*/
 	public List<TacheVo> calcStatistique(TacheVo tacheVo);

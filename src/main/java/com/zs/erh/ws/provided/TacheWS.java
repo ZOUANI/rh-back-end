@@ -61,4 +61,8 @@ public class TacheWS {
     public List<CollaborateurVo> calcStatistiqueSuiviCollaborateur(@PathVariable Date dateMin, @PathVariable Date dateMax) {
         return tacheService.calcStatistiqueSuiviCollaborateur(dateMin, dateMax);
     }
+    @PostMapping("/search")
+    public List<Tache> search(@RequestBody TacheVo tacheVo){
+        return tacheService.search(tacheVo);
+    }
 }

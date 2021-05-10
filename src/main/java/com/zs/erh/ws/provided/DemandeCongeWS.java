@@ -28,8 +28,8 @@ public class DemandeCongeWS {
     }
 
     @DeleteMapping("/id/{id}")
-    public void deleteById(@PathVariable Long id) {
-        demandeCongeService.deleteById(id);
+    public int deleteById(@PathVariable  Long id) {
+        return demandeCongeService.deleteById(id);
     }
     @PostMapping("/")
     public int save(@RequestBody  DemandeConge demandeConge) {

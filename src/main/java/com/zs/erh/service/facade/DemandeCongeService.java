@@ -11,7 +11,7 @@ public interface DemandeCongeService {
     Optional<DemandeConge> findById(Long id);
     List<DemandeConge> findByEtatDemandeCongeCode(String code);
     List<DemandeConge> findAll();
-    void deleteById(Long id);
+    int deleteById(Long id);
     int save(DemandeConge demandeConge);
     int update(DemandeConge demandeConge);
     public Long calcNombreJourTotal(Long collaborateurId, Date dateDebut, Date dateFin);
