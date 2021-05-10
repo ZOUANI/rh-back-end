@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("etat-demande-conge/etatdemandeconge")
 public class EtatDemandeCongeWS {
     @GetMapping("/code/ {code}")
