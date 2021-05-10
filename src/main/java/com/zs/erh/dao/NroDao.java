@@ -11,5 +11,6 @@ import java.util.List;
 public interface NroDao extends JpaRepository<Nro, Long> {
     List<Nro> findAll();
     Nro findByCode(String Code);
+    Nro findById(double id);
     int deleteByCode(String code);
 }

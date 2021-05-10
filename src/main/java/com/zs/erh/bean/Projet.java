@@ -50,6 +50,10 @@ public class Projet implements Serializable {
     @ManyToOne
     private Client client;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "projet")
+    private List<ProjetEquipe> projetEquipes;
+
     public List<ProjetEquipe> getProjetEquipes() {
         return projetEquipes;
     }
@@ -57,10 +61,6 @@ public class Projet implements Serializable {
     public void setProjetEquipes(List<ProjetEquipe> projetEquipes) {
         this.projetEquipes = projetEquipes;
     }
-
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "projet")
-    private List<ProjetEquipe> projetEquipes;
 
     public Client getClient() {
         if (this.client == null) {

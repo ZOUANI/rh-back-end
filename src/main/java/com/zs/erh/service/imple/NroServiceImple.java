@@ -21,6 +21,17 @@ public class NroServiceImple implements NroService {
         return nroDao.deleteByCode(code);
     }
 
+    @Override
+    public int save(Nro nro) {
+        if (nroDao.findByCode(nro.getCode()) != null) {
+            return -1;
+        } else {
+            nro.setLibelle(nro.getCode());
+            nroDao.save(nro);
+            return 1;
+        }
+    }
+
     @Autowired
     public NroDao nroDao;
 }

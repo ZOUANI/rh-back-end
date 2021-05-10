@@ -10,4 +10,5 @@ public interface NroService {
     public Nro findByCode(String Code);
 
     public int deleteByCode(String code);
+    int save(Nro nro);
 }

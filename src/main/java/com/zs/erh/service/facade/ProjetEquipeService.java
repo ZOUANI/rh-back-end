@@ -11,4 +11,6 @@ public interface ProjetEquipeService {
     List<ProjetEquipe> findByProjetCode(String code);
     int deleteByProjetCode(String code);
     List<ProjetEquipe> findAll();
+    void deleteById(Long id);
+
 }

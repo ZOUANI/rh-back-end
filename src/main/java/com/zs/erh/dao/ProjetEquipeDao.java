@@ -8,4 +8,6 @@ import java.util.List;
 public interface ProjetEquipeDao extends JpaRepository<ProjetEquipe,Long> {
     List<ProjetEquipe> findByProjetCode(String code);
     int deleteByProjetCode(String code);
+     void deleteById(Long id);
+
 }

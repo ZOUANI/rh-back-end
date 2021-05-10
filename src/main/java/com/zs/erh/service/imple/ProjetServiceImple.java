@@ -1,9 +1,11 @@
 package com.zs.erh.service.imple;
 
+import com.zs.erh.bean.GroupeTache;
+import com.zs.erh.bean.Lot;
+import com.zs.erh.bean.Nro;
 import com.zs.erh.bean.Projet;
-import com.zs.erh.dao.ProjetDao;
-import com.zs.erh.service.facade.ProjetEquipeService;
-import com.zs.erh.service.facade.ProjetService;
+import com.zs.erh.dao.*;
+import com.zs.erh.service.facade.*;
 import com.zs.erh.service.util.StringUtil;
 import com.zs.erh.service.vo.ProjetVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,7 @@ public class ProjetServiceImple implements ProjetService {
         if (projetDao.findByCode(projet.getCode()) != null) {
             return -1;
         } else {
+            nroService.save(projet.getNro());
             projetDao.save(projet);
             projetEquipeService.save(projet,projet.getProjetEquipes());
             return 1;
@@ -53,6 +56,15 @@ public class ProjetServiceImple implements ProjetService {
 
     @Transactional
     public int deleteByCode(String code) {
+        List<Lot> lots=lottDao.findByProjetCode(code);
+        for (Lot lot:lots) {
+            List<GroupeTache> groupeTaches=groupeTacheDao.findByLotCode(lot.getCode());
+            for (GroupeTache groupeTache:groupeTaches) {
+                tacheService.deleteByGroupeTacheCode(groupeTache.getCode());
+            }
+            groupeTacheService.deleteByLotCode(lot.getCode());
+
+        }
         int resultProjetEquipe= projetEquipeService.deleteByProjetCode(code);
         int resultLot = lotServiceImple.deleteByProjetCode(code);
         int resultProjet = projetDao.deleteByCode(code);
@@ -73,7 +85,11 @@ public class ProjetServiceImple implements ProjetService {
         projet1.setNombreJoureHommeEffectif(projet.getNombreJoureHommeEffectif());
         projet1.setNombreJoureHommePrevu(projet.getNombreJoureHommePrevu());
         projet1.setNombreJoureHommeRetard(projet.getNombreJoureHommeRetard());
-        projet1.setNro(projet.getNro());
+        if (nroDao.findByCode(projet.getNro().getCode())==null){
+            nroService.save(projet.getNro());
+        }
+        Nro n = nroDao.findByCode(projet.getNro().getCode());
+        projet1.setNro(n);
         projet1.setResponsable(projet.getResponsable());
         projetDao.save(projet1);
     }
@@ -102,4 +118,18 @@ public class ProjetServiceImple implements ProjetService {
     public LotServiceImple lotServiceImple;
     @Autowired
     public ProjetEquipeService projetEquipeService;
+    @Autowired
+    public NroService nroService;
+    @Autowired
+    public NroDao nroDao;
+    @Autowired
+    public LottDao lottDao;
+    @Autowired
+    public GroupeTacheService groupeTacheService;
+    @Autowired
+    public GroupeTacheDao groupeTacheDao;
+    @Autowired
+    public TacheService tacheService;
+    @Autowired
+    public TacheDao tacheDao;
 }

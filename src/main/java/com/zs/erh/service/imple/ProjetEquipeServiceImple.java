@@ -37,6 +37,11 @@ public class ProjetEquipeServiceImple implements ProjetEquipeService {
         return projetEquipeDao.findAll();
     }
 
+
+    public void deleteById(Long id) {
+        projetEquipeDao.deleteById(id);
+    }
+
     @Autowired
     ProjetEquipeDao projetEquipeDao;
     @Autowired
