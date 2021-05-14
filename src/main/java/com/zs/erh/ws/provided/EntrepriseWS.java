@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("gestion-entreprise/entreprise")
+@RequestMapping("maneo-rh/entreprise")
 public class EntrepriseWS {
 
     @Autowired
