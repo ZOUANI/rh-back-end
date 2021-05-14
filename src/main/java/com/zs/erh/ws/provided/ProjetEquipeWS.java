@@ -11,12 +11,17 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "maneo-rh/projetequipe")
 public class ProjetEquipeWS {
+    @Autowired
+    ProjetEquipeService projetEquipeService;
     @DeleteMapping("/id/{id}")
     public void deleteById(@PathVariable Long id) {
         projetEquipeService.deleteById(id);
     }
-    @Autowired
-    ProjetEquipeService projetEquipeService;
+    @PostMapping("/dir/")
+    public int saveDirect(@RequestBody ProjetEquipe projetEquipe) {
+        return projetEquipeService.saveDirect(projetEquipe);
+    }
+
     @PostMapping("/")
     public int save(@RequestBody Projet projet,@RequestBody List<ProjetEquipe> projetEquipes) {
         return projetEquipeService.save(projet, projetEquipes);
