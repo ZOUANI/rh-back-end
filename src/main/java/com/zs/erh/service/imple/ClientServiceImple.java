@@ -17,6 +17,14 @@ import java.util.Optional;
 
 @Service
 public class ClientServiceImple implements ClientService {
+
+    @Autowired
+    private ClientDao clientDao;
+    @Autowired
+    private EntityManager entityManager;
+    @Autowired
+    private  EntrepriseService entrepriseService;
+
     public List<Client> findByEntrepriseCode(String code) {
         return clientDao.findByEntrepriseCode(code);
     }
@@ -26,18 +34,17 @@ public class ClientServiceImple implements ClientService {
         return clientDao.deleteByEntrepriseCode(code);
     }
 
-
-    public int save(Client client){
+    public Client save(Client client){
         if(findByCode(client.getCode())!=null) {
-            return -1;
+            return null;
         }else{
             Entreprise entreprise = entrepriseService.findByCode(client.getEntreprise().getCode());
             if(entreprise==null){
-                return -2;
+                return null;
             }else {
                 client.setEntreprise(entreprise);
                 clientDao.save(client);
-                return 1;
+                return client;
             }
         }
     }
@@ -54,7 +61,7 @@ public class ClientServiceImple implements ClientService {
     }
 
 
-    public int updateClient(Client client){
+    public Client update(Client client){
         Client client1 = findByCode(client.getCode());
         Optional<Entreprise> entreprise = entrepriseService.findById(client.getEntreprise().getId());
         if(entreprise.isPresent()){
@@ -62,12 +69,19 @@ public class ClientServiceImple implements ClientService {
             client1.setLibelle(client.getLibelle());
             client1.setDescription(client.getDescription());
             clientDao.save(client1);
-            return 1;
+            return client1;
         }else {
-            return -1;
+            return null;
         }
+    }
 
-
+    @Transactional
+    public int deleteByCode(List<Client> clients) {
+        int res=0;
+        for (int i = 0; i < clients.size(); i++) {
+            res+=deleteByCode(clients.get(i).getCode());
+        }
+        return res;
     }
 
     @Transactional
@@ -87,11 +101,4 @@ public class ClientServiceImple implements ClientService {
     public List<Client> findAll() {
         return clientDao.findAll();
     }
-
-    @Autowired
-    private ClientDao clientDao;
-    @Autowired
-    private EntityManager entityManager;
-    @Autowired
-    private  EntrepriseService entrepriseService;
 }
