@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("gestion-clients/client")
+@RequestMapping("maneo-rh/client")
 public class ClientWS {
     @GetMapping("/code/{code}")
     public List<Client> findByEntrepriseCode(@PathVariable String code) {
@@ -30,12 +30,12 @@ public class ClientWS {
         return clientService.findById(id);
     }
     @PutMapping("/")
-    public int updateClient(@RequestBody Client client) {
-        return clientService.updateClient(client);
+    public Client update(@RequestBody Client client) {
+        return clientService.update(client);
     }
 
     @PostMapping("/")
-    public int save( @RequestBody Client client) {
+    public Client save( @RequestBody Client client) {
         return clientService.save(client);
     }
     @GetMapping("/codee/{codee}")

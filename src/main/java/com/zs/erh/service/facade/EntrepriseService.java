@@ -9,11 +9,12 @@ import java.util.Optional;
 public interface EntrepriseService {
     Entreprise findByCode(String code);
     List<Entreprise> findByCodeLikeAndLibelleLike(String code, String libelle);
-    int deleteByCode(String code);
-    int updateEntreprise(Entreprise entreprise);
+    int deleteByCode (String code);
+    public int deleteByCode(List<Entreprise> entreprises);
+    Entreprise update (Entreprise entreprise);
     Optional<Entreprise> findById(Long id);
     List<Entreprise> findAll();
-    int save(Entreprise entreprise);
+    Entreprise save(Entreprise entreprise);
     List<Entreprise> findByCriteria(EntrepriseVO entrepriseVO);
 }
 

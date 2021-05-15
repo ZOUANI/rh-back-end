@@ -10,8 +10,12 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("gestion-entreprise/entreprise")
+@RequestMapping("maneo-rh/entreprise")
 public class EntrepriseWS {
+
+    @Autowired
+    private EntrepriseService entrepriseService;
+
     @GetMapping("/code/{code}")
     public Entreprise findByCode( @PathVariable String code) {
         return entrepriseService.findByCode(code);
@@ -29,7 +33,7 @@ public class EntrepriseWS {
         return entrepriseService.findAll();
     }
     @PostMapping("/")
-    public int save(@RequestBody Entreprise entreprise) {
+    public Entreprise save(@RequestBody Entreprise entreprise) {
         return entrepriseService.save(entreprise);
     }
     @GetMapping("/id/{id}")
@@ -37,13 +41,16 @@ public class EntrepriseWS {
         return entrepriseService.findById(id);
     }
     @PutMapping("/")
-    public int updateEntreprise(@RequestBody Entreprise entreprise) {
-        return entrepriseService.updateEntreprise(entreprise);
+    public Entreprise update(@RequestBody Entreprise entreprise) {
+        return entrepriseService.update(entreprise);
     }
     @PostMapping("/findByCriteria")
     public List<Entreprise> findByCriteria( @RequestBody EntrepriseVO entrepriseVO) {
         return entrepriseService.findByCriteria(entrepriseVO);
     }
-    @Autowired
-    private EntrepriseService entrepriseService;
+
+    @PostMapping("/multiples-codes")
+    public int deleteByCode(@RequestBody List<Entreprise> entreprises) {
+        return entrepriseService.deleteByCode(entreprises);
+    }
 }
