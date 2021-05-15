@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("etat-demande-conge/etatdemandeconge")
+@RequestMapping("maneo-rh/etatdemandeconge")
 public class EtatDemandeCongeWS {
     @GetMapping("/code/ {code}")
     public EtatDemandeConge findByCode(@PathVariable String code) {

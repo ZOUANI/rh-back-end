@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("demande-conge/conge")
+@RequestMapping("maneo-rh/conge")
 public class DemandeCongeWS {
     @GetMapping("/id/{id}")
     public Optional<DemandeConge> findById(Long id) {
