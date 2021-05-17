@@ -11,9 +11,12 @@ public interface DemandeCongeService {
     Optional<DemandeConge> findById(Long id);
     List<DemandeConge> findByEtatDemandeCongeCode(String code);
     List<DemandeConge> findAll();
-    int deleteById(Long id);
-    int save(DemandeConge demandeConge);
-    int update(DemandeConge demandeConge);
+    int deleteByCode(String code);
+    DemandeConge findByCode(String code);
+    int deleteByCode(List<DemandeConge> demandesConge);
+    List<DemandeConge> findByCriteriaConge(DemandeCongeVo demandeCongeVO);
+    DemandeConge save(DemandeConge demandeConge);
+    DemandeConge update(DemandeConge demandeConge);
     public Long calcNombreJourTotal(Long collaborateurId, Date dateDebut, Date dateFin);
     public List<DemandeCongeVo> findByCollaborateurAndDateMinAndMax(Long collaborateurId, Date dateDebut, Date dateFin);
 }

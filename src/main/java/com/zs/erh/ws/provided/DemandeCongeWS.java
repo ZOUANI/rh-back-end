@@ -27,16 +27,12 @@ public class DemandeCongeWS {
         return demandeCongeService.findAll();
     }
 
-    @DeleteMapping("/id/{id}")
-    public int deleteById(@PathVariable  Long id) {
-        return demandeCongeService.deleteById(id);
-    }
     @PostMapping("/")
-    public int save(@RequestBody  DemandeConge demandeConge) {
+    public DemandeConge save(@RequestBody  DemandeConge demandeConge) {
         return demandeCongeService.save(demandeConge);
     }
     @PutMapping("/")
-    public int update( @RequestBody DemandeConge demandeConge) {
+    public DemandeConge update( @RequestBody DemandeConge demandeConge) {
         return demandeCongeService.update(demandeConge);
     }
 
@@ -48,6 +44,23 @@ public class DemandeCongeWS {
     @GetMapping("/collaborateurId/{collaborateurId}/dateDebut/{dateDebut}/dateFin/{dateFin}")
     public List<DemandeCongeVo> findByCollaborateurAndDateMinAndMax(@PathVariable Long collaborateurId, @PathVariable Date dateDebut, @PathVariable Date dateFin) {
         return demandeCongeService.findByCollaborateurAndDateMinAndMax(collaborateurId, dateDebut, dateFin);
+    }
+
+    @DeleteMapping("/code/{code}")
+    public int deleteByCode( @PathVariable String code) {
+        return demandeCongeService.deleteByCode(code);
+    }
+    @GetMapping("/codee/{codee}")
+    public DemandeConge findByCode(@PathVariable String codee) {
+        return demandeCongeService.findByCode(codee);
+    }
+    @PostMapping ("/delete-multiple-by-code")
+    public int deleteByCode(@RequestBody List<DemandeConge> demandesConge) {
+        return demandeCongeService.deleteByCode(demandesConge);
+    }
+    @PostMapping("/findByCriteriaConge")
+    public List<DemandeConge> findByCriteriaConge(@RequestBody DemandeCongeVo demandeCongeVO) {
+        return demandeCongeService.findByCriteriaConge(demandeCongeVO);
     }
 
     @Autowired

@@ -8,6 +8,7 @@ import com.zs.erh.service.facade.CollaborateurService;
 import com.zs.erh.service.facade.DemandeCongeService;
 import com.zs.erh.service.facade.EtatDemandeCongeService;
 import com.zs.erh.service.util.DateUtil;
+import com.zs.erh.service.util.StringUtil;
 import com.zs.erh.service.vo.DemandeCongeVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,22 +39,25 @@ public class DemandeCongeServiceImple extends AbstractFacade<DemandeConge> imple
     }
 
 
-    public int save(DemandeConge demandeConge){
-        if(demandeConge.getDateDepart().compareTo(demandeConge.getDateFin())>0){
-            return -1;
-        }
-        EtatDemandeConge etatDemandeConge = etatDemandeCongeService.findByCode(demandeConge.getEtatDemandeConge().getCode());
-        Collaborateur collaborateur= collaborateurService.findByCode(demandeConge.getCollaborateur().getCode());
-        if(etatDemandeConge == null || collaborateur == null){
-            return  -2;
+    public DemandeConge save(DemandeConge demandeConge){
+        if(findByCode(demandeConge.getCode())!=null){
+            return  null;
         }else{
-            demandeConge.setCollaborateur(collaborateur);
-            demandeConge.setEtatDemandeConge(etatDemandeConge);
-            demandeCongeDao.save(demandeConge);
-            return  1;
+            EtatDemandeConge etatDemandeConge = etatDemandeCongeService.findByCode(demandeConge.getEtatDemandeConge().getCode());
+            Collaborateur collaborateur= collaborateurService.findByCode(demandeConge.getCollaborateur().getCode());
+            if(etatDemandeConge == null || collaborateur == null){
+                return null;
+            }else if (demandeConge.getDateDepart().compareTo(demandeConge.getDateFin())>0){
+                return null;
+            }else{
+                demandeConge.setCollaborateur(collaborateur);
+                demandeConge.setEtatDemandeConge(etatDemandeConge);
+                demandeCongeDao.save(demandeConge);
+                return demandeConge;
+            }
         }
     }
-    public int update(DemandeConge demandeConge) {
+    public DemandeConge update(DemandeConge demandeConge) {
         Optional<DemandeConge> demandeConge1 = findById(demandeConge.getId());
         if (demandeConge1.isPresent()) {
             Optional<EtatDemandeConge> etatDemandeConge = etatDemandeCongeService.findById(demandeConge.getEtatDemandeConge().getId());
@@ -65,15 +69,15 @@ public class DemandeCongeServiceImple extends AbstractFacade<DemandeConge> imple
                     demandeConge1.get().setCollaborateur(demandeConge.getCollaborateur());
                     demandeConge1.get().setCommentaireValidateur(demandeConge.getCommentaireValidateur());
                     demandeCongeDao.save(demandeConge1.get());
-                    return 1;
+                    return demandeConge;
                 }else{
-                    return -2;
+                    return null;
                 }
             }else {
-                return -3;
+                return null;
             }
         }else {
-            return -4;
+            return null;
         }
     }
 
@@ -118,10 +122,29 @@ public class DemandeCongeServiceImple extends AbstractFacade<DemandeConge> imple
 		return DemandeConge.class;
 	}
 
+
+
+    public DemandeConge findByCode(String code) {
+        return demandeCongeDao.findByCode(code);
+    }
     @Transactional
-    public int deleteById(Long id) {
-        demandeCongeDao.deleteById(id);
-        return 1;
+    public int deleteByCode(String code) {
+        return demandeCongeDao.deleteByCode(code);
+    }
+    @Transactional
+    public int deleteByCode(List<DemandeConge> demandesConge) {
+        int res=0;
+        for (int i = 0; i < demandesConge.size(); i++) {
+            res+=deleteByCode(demandesConge.get(i).getCode());
+        }
+        return res;
+    }
+    public List<DemandeConge> findByCriteriaConge(DemandeCongeVo demandeCongeVO) {
+        String query = "SELECT d FROM DemandeConge d WHERE 1=1";
+        if(StringUtil.isNotEmpty(demandeCongeVO.getNomCollaborateur())){
+            query+= " AND d.collaborateur.nom ||' '|| d.collaborateur.prenom LIKE '%"+demandeCongeVO.getNomCollaborateur()+"%'";
+        }
+        return entityManager.createQuery(query).getResultList();
     }
 
     @Autowired
@@ -130,5 +153,6 @@ public class DemandeCongeServiceImple extends AbstractFacade<DemandeConge> imple
     private EtatDemandeCongeService etatDemandeCongeService;
     @Autowired
     private CollaborateurService collaborateurService;
+
 
 }
