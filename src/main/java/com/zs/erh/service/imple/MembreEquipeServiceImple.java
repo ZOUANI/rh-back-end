@@ -31,6 +31,12 @@ public class MembreEquipeServiceImple implements MembreEquipeService {
    public List<MembreEquipe> findByEquipeCode(String code){
         return membreEquipeDao.findByEquipeCode(code);
     }
+
+    public List<MembreEquipe> findByEquipeId(Long id){
+        return membreEquipeDao.findByEquipeId(id);
+    }
+
+
     public int deleteByEquipeCode(String code){
         return membreEquipeDao.deleteByEquipeCode(code);
     }
