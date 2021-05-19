@@ -144,6 +144,11 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 	}
 
 
+
+	public List<CollaborateurVo> suivreCollaborateurs(CollaborateurVo collaborateurVo){
+		return calcStatistiqueSuiviCollaborateur(collaborateurVo.getDateDemarrageEffectiveMin(), collaborateurVo.getDateDemarrageEffectiveMax());
+	}
+
 	public List<CollaborateurVo> calcStatistiqueSuiviCollaborateur(Date dateMin, Date dateMax) {
         List<CollaborateurVo> collaborateurVos = calcTacheCount(dateMin, dateMax);
         Long totalJourWithoutWeekEnd = DateUtil.totalJourWithoutWeekEnd(dateMin, dateMax);
