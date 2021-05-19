@@ -58,9 +58,6 @@ public class EntrepriseServiceImple implements EntrepriseService {
 
     public List<Entreprise> findByCriteria(EntrepriseVO entrepriseVO){
         String query="SELECT e FROM Entreprise e WHERE 1=1";
-        if(StringUtil.isNotEmpty(entrepriseVO.getCode())){
-            query+=" AND e.code LIKE '%"+entrepriseVO.getCode()+"%'";
-        }
         if(StringUtil.isNotEmpty(entrepriseVO.getLibelle())){
             query+=" AND e.libelle LIKE '%"+entrepriseVO.getLibelle()+"%'";
         }

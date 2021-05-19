@@ -60,16 +60,17 @@ public class DemandeCongeServiceImple extends AbstractFacade<DemandeConge> imple
     public DemandeConge update(DemandeConge demandeConge) {
         Optional<DemandeConge> demandeConge1 = findById(demandeConge.getId());
         if (demandeConge1.isPresent()) {
-            Optional<EtatDemandeConge> etatDemandeConge = etatDemandeCongeService.findById(demandeConge.getEtatDemandeConge().getId());
-            if (etatDemandeConge.isPresent()) {
+            EtatDemandeConge etatDemandeConge = etatDemandeCongeService.findByCode(demandeConge.getEtatDemandeConge().getCode());
+            Collaborateur collaborateur= collaborateurService.findByCode(demandeConge.getCollaborateur().getCode());
+            if (etatDemandeConge!= null && collaborateur !=null) {
                 if (demandeConge.getEtatDemandeConge().getCode().equals("e2") || demandeConge.getEtatDemandeConge().getCode().equals("e3")) {
-                    demandeConge1.get().setEtatDemandeConge(demandeConge.getEtatDemandeConge());
+                    demandeConge1.get().setEtatDemandeConge(etatDemandeConge);
                     demandeConge1.get().setDateDepart(demandeConge.getDateDepart());
                     demandeConge1.get().setDateFin(demandeConge.getDateFin());
                     demandeConge1.get().setCollaborateur(demandeConge.getCollaborateur());
                     demandeConge1.get().setCommentaireValidateur(demandeConge.getCommentaireValidateur());
                     demandeCongeDao.save(demandeConge1.get());
-                    return demandeConge;
+                    return demandeConge1.get();
                 }else{
                     return null;
                 }
