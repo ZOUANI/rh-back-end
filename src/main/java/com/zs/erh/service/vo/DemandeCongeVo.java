@@ -11,7 +11,7 @@ public class DemandeCongeVo {
     private Long nbrJour;
     private Collaborateur collaborateur;
     private String nomCollaborateur;
-    private String prenomCollaborateur;
+
 
     public String getNomCollaborateur() {
         return nomCollaborateur;
@@ -21,13 +21,6 @@ public class DemandeCongeVo {
         this.nomCollaborateur = nomCollaborateur;
     }
 
-    public String getPrenomCollaborateur() {
-        return prenomCollaborateur;
-    }
-
-    public void setPrenomCollaborateur(String prenomCollaborateur) {
-        this.prenomCollaborateur = prenomCollaborateur;
-    }
 
     public Collaborateur getCollaborateur() {
         return collaborateur;

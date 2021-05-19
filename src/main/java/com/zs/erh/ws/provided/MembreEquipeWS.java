@@ -53,4 +53,8 @@ public class MembreEquipeWS {
         return membreEquipeService.update(id,membreEquipe);
     }
 
+    @GetMapping("/equipe/id/{id}")
+    public List<MembreEquipe> findByEquipeId(@PathVariable Long id) {
+        return membreEquipeService.findByEquipeId(id);
+    }
 }
