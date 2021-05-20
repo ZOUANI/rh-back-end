@@ -1,9 +1,7 @@
 package com.zs.erh.bean;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.zs.erh.bean.Pays;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -19,6 +17,9 @@ public class Ville implements Serializable {
     private Long id;
     private String libelle;
     private String code;
+
+    @ManyToOne
+    private Pays pays;
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -46,6 +47,14 @@ public class Ville implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public Pays getPays() {
+        return pays;
+    }
+
+    public void setPays(Pays pays) {
+        this.pays = pays;
     }
 
     @Override
