@@ -3,10 +3,7 @@ package com.zs.erh.ws.provided;
 import com.zs.erh.bean.Facture;
 import com.zs.erh.service.facade.FactureService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,11 +19,17 @@ public class FactureWS {
     }
 
     @GetMapping("/code/{code}")
-    public Facture findByCode(String code) {
+    public Facture findByCode(@PathVariable String code) {
         return factureService.findByCode(code);
     }
+
     @PostMapping("/")
-    public int save(Facture facture) {
+    public int save(@RequestBody Facture facture) {
         return factureService.save(facture);
+    }
+
+    @DeleteMapping("/code/{code}")
+    public int deleteByCode(@PathVariable String code) {
+        return factureService.deleteByCode(code);
     }
 }

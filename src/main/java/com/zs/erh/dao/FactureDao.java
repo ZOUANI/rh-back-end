@@ -10,4 +10,5 @@ import java.util.List;
 public interface FactureDao extends JpaRepository<Facture, Long> {
     public List<Facture> findAll();
     public Facture findByCode(String code);
+    public int deleteByCode(String code);
 }

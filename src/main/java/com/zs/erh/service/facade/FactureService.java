@@ -7,5 +7,5 @@ public interface FactureService {
     public List<Facture> findAll();
     public Facture findByCode(String code);
     public int save(Facture facture);
-
+    public int deleteByCode(String code);
 }

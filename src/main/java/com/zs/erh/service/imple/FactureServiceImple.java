@@ -35,6 +35,10 @@ public class FactureServiceImple extends AbstractFacade<Facture> implements Fact
         }
     }
 
+    public int deleteByCode(String code) {
+        return factureDao.deleteByCode(code);
+    }
+
     @Override
     protected EntityManager getEntityManager() {
         return entityManager;
