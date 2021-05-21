@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 @Service
 public class EtatFactureServiceImple extends AbstractFacade<EtatFacture> implements EtatFactureService {
@@ -16,8 +17,13 @@ public class EtatFactureServiceImple extends AbstractFacade<EtatFacture> impleme
     private EtatFactureDao etatFactureDao;
 
 
+    public List<EtatFacture> findAll() {
+        return etatFactureDao.findAll();
+    }
 
-
+    public EtatFacture findByCode(String code) {
+        return etatFactureDao.findByCode(code);
+    }
 
     @Override
     protected EntityManager getEntityManager() {

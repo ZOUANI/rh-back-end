@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 @Service
 public class FactureServiceImple extends AbstractFacade<Facture> implements FactureService {
@@ -16,8 +17,23 @@ public class FactureServiceImple extends AbstractFacade<Facture> implements Fact
     private FactureDao factureDao;
 
 
+    public List<Facture> findAll() {
+        return factureDao.findAll();
+    }
 
+    public Facture findByCode(String code) {
+        return factureDao.findByCode(code);
+    }
 
+    public int save(Facture facture) {
+        if (factureDao.findByCode(facture.getCode()) != null) {
+            return -1;
+        }
+        else {
+            factureDao.save(facture);
+            return 1;
+        }
+    }
 
     @Override
     protected EntityManager getEntityManager() {
