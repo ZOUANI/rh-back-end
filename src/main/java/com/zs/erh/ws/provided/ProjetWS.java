@@ -47,6 +47,12 @@ public class ProjetWS {
     public int deleteByCode(@PathVariable String code) {
         return projetService.deleteByCode(code);
     }
+
+    @PostMapping("/delete-multiple-by-code")
+    public int deleteMultiple(@RequestBody List<Projet> projets) {
+        return projetService.deleteMultiple(projets);
+    }
+
     @PutMapping("/")
     public void update(@RequestBody Projet projet) {
          projetService.update(projet);
