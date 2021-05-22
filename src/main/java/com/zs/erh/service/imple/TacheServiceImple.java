@@ -76,6 +76,7 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 		}
 	}
 
+
 	public int updateTache(Tache tache){
 		Tache tacheUpdated = findByCode(tache.getCode());
 		tacheUpdated.setCode(tache.getCode());
