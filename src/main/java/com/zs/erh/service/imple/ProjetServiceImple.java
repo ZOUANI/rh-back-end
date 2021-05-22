@@ -71,6 +71,15 @@ public class ProjetServiceImple implements ProjetService {
         return resultProjetEquipe+resultLot + resultProjet;
     }
 
+    @Transactional
+    public int deleteMultiple(List<Projet> projets) {
+        int res=0;
+        for (int i = 0; i < projets.size(); i++) {
+            res+=deleteByCode(projets.get(i).getCode());
+        }
+        return res;
+    }
+
     public void update(Projet projet) {
         Projet projet1 = projetDao.findId(projet.getId());
         projet1.setCode(projet.getCode());
