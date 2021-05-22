@@ -39,6 +39,23 @@ public class FactureServiceImple extends AbstractFacade<Facture> implements Fact
         return factureDao.deleteByCode(code);
     }
 
+    public int updateFacture(Facture facture) {
+        Facture grp = findByCode(facture.getCode());
+        grp.setCode(facture.getCode());
+        grp.setLibelle(facture.getLibelle());
+        grp.setDescription(facture.getDescription());
+        grp.setMontantCalcule(facture.getMontantCalcule());
+        grp.setTotalHeursCalcules(facture.getTotalHeursCalcules());
+        grp.setEtatFacture(facture.getEtatFacture());
+        grp.setClient(facture.getClient());
+        grp.setMontantFacture(facture.getMontantFacture());
+        grp.setTotalHeursFactures(facture.getTotalHeursFactures());
+        grp.setEtatFacture(facture.getEtatFacture());
+
+        factureDao.save(grp);
+        return 1;
+    }
+
     @Override
     protected EntityManager getEntityManager() {
         return entityManager;
