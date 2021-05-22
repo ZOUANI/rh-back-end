@@ -3,6 +3,7 @@ package com.zs.erh.bean;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Entity
 public class Facture implements Serializable {
@@ -18,11 +19,11 @@ public class Facture implements Serializable {
     private BigDecimal TotalHeursFactures;
     private double montantCalcule;
     private double montantFacture;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date DateFacture;
 
     @ManyToOne
     private Client client;
-    @ManyToOne
-    private Tache tache;
     @ManyToOne
     private EtatFacture etatFacture;
 
@@ -57,6 +58,14 @@ public class Facture implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Date getDateFacture() {
+        return DateFacture;
+    }
+
+    public void setDateFacture(Date dateFacture) {
+        DateFacture = dateFacture;
     }
 
     public BigDecimal getTotalHeursCalcules() {
@@ -97,14 +106,6 @@ public class Facture implements Serializable {
 
     public void setClient(Client client) {
         this.client = client;
-    }
-
-    public Tache getTache() {
-        return tache;
-    }
-
-    public void setTache(Tache tache) {
-        this.tache = tache;
     }
 
     public EtatFacture getEtatFacture() {
