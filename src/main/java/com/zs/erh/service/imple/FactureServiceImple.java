@@ -3,7 +3,6 @@ package com.zs.erh.service.imple;
 import com.zs.erh.bean.Facture;
 import com.zs.erh.dao.FactureDao;
 import com.zs.erh.service.facade.FactureService;
-import com.zs.erh.service.vo.FactureVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,20 +38,6 @@ public class FactureServiceImple extends AbstractFacade<Facture> implements Fact
     public int deleteByCode(String code) {
         return factureDao.deleteByCode(code);
     }
-
-    public List<Facture> search(FactureVO factureVO) {
-        String query = "SELECT f FROM Facture f where 1=1";
-
-        if (factureVO.getClientId() != null) {
-            query += " AND f.client.id = " + factureVO.getClientId();
-        }
-
-        if (factureVO.getEtatFactureId() != null) {
-            query += " AND f.etatFacture.id = " + factureVO.getEtatFactureId();
-        }
-        return entityManager.createQuery(query).getResultList();
-    }
-
 
     @Override
     protected EntityManager getEntityManager() {

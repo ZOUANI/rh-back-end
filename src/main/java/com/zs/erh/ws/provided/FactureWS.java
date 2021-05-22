@@ -13,6 +13,10 @@ import java.util.List;
 public class FactureWS {
     @Autowired
     private FactureService factureService;
+    @PutMapping("/")
+    public int updateFacture(@RequestBody Facture facture) {
+        return factureService.updateFacture(facture);
+    }
 
     @GetMapping("/")
     public List<Facture> findAll() {

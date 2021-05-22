@@ -17,8 +17,8 @@ public class Facture implements Serializable {
     private String description;
     private BigDecimal TotalHeursCalcules;
     private BigDecimal TotalHeursFactures;
-    private double montantCalcule;
-    private double montantFacture;
+    private BigDecimal montantCalcule;
+    private BigDecimal montantFacture;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date DateFacture;
 
@@ -84,19 +84,19 @@ public class Facture implements Serializable {
         TotalHeursFactures = totalHeursFactures;
     }
 
-    public double getMontantCalcule() {
+    public BigDecimal getMontantCalcule() {
         return montantCalcule;
     }
 
-    public void setMontantCalcule(double montantCalcule) {
+    public void setMontantCalcule(BigDecimal montantCalcule) {
         this.montantCalcule = montantCalcule;
     }
 
-    public double getMontantFacture() {
+    public BigDecimal getMontantFacture() {
         return montantFacture;
     }
 
-    public void setMontantFacture(double montantFacture) {
+    public void setMontantFacture(BigDecimal montantFacture) {
         this.montantFacture = montantFacture;
     }
 
