@@ -60,25 +60,20 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 			return -2;
 		}else{
 			GroupeTache groupeTache = groupeTacheService.findByCode(tache.getGroupeTache().getCode());
-			if(groupeTache==null){
+			if(groupeTache==null) {
 				return -1;
-			}else {
+			}
+			else {
 				tache.setGroupeTache(groupeTache);
+				tache.setCategorieTache(categorieTacheService.findByCode(tache.getCategorieTache().getCode()));
+				tache.setEtatTache(etatTacheService.findByCode(tache.getEtatTache().getCode()));
+				tache.setPeriode(periodeService.findByCode(tache.getPeriode().getCode()));
+				tache.setMembreEquipe(membreEquipeService.findByEquipeCodeAndCollaborateurCode(tache.getMembreEquipe().getEquipe().getCode(),
+						tache.getMembreEquipe().getCollaborateur().getCode()));
 				tacheDao.save(tache);
 				return 1;
 			}
 		}
-//			else {
-//				tache.setCode(tache.getLibelle());
-//				tache.setGroupeTache(groupeTacheService.findByCode(tache.getGroupeTache().getCode()));
-//				tache.setCategorieTache(categorieTacheService.findByCode(tache.getCategorieTache().getCode()));
-//				tache.setEtatTache(etatTacheService.findByCode(tache.getEtatTache().getCode()));
-//				tache.setPeriode(periodeService.findByCode(tache.getPeriode().getCode()));
-//				tache.setMembreEquipe(membreEquipeService.findByEquipeCodeAndCollaborateurCode(tache.getMembreEquipe().getEquipe().getCode(),
-//						tache.getMembreEquipe().getCollaborateur().getCode()));
-//				tacheDao.save(tache);
-//				return 1;
-//			}
 	}
 
 	public int updateTache(Tache tache){

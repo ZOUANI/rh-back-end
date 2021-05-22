@@ -6,8 +6,8 @@ public class FactureVO {
 
     private Long clientId;
     private Long etatFactureId;
-    private Date dateDemarrageEffectiveMin;
-    private Date dateDemarrageEffectiveMax;
+    private Date dateMin;
+    private Date dateMax;
 
     public Long getClientId() {
         return clientId;
@@ -25,20 +25,19 @@ public class FactureVO {
         this.etatFactureId = etatFactureId;
     }
 
-    public Date getDateDemarrageEffectiveMin() {
-        return dateDemarrageEffectiveMin;
+    public Date getDateMin() {
+        return dateMin;
     }
 
-    public void setDateDemarrageEffectiveMin(Date dateDemarrageEffectiveMin) {
-        this.dateDemarrageEffectiveMin = dateDemarrageEffectiveMin;
+    public void setDateMin(Date dateMin) {
+        this.dateMin = dateMin;
     }
 
-    public Date getDateDemarrageEffectiveMax() {
-        return dateDemarrageEffectiveMax;
+    public Date getDateMax() {
+        return dateMax;
     }
 
-    public void setDateDemarrageEffectiveMax(Date dateDemarrageEffectiveMax) {
-        this.dateDemarrageEffectiveMax = dateDemarrageEffectiveMax;
+    public void setDateMax(Date dateMax) {
+        this.dateMax = dateMax;
     }
-
 }
