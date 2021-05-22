@@ -15,12 +15,12 @@ public class Facture implements Serializable {
     private String libelle;
     private String code;
     private String description;
-    private BigDecimal TotalHeursCalcules;
-    private BigDecimal TotalHeursFactures;
+    private BigDecimal totalHeursCalcules;
+    private BigDecimal totalHeursFactures;
     private BigDecimal montantCalcule;
     private BigDecimal montantFacture;
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date DateFacture;
+    private Date dateFacture;
 
     @ManyToOne
     private Client client;
@@ -60,28 +60,28 @@ public class Facture implements Serializable {
         this.description = description;
     }
 
-    public Date getDateFacture() {
-        return DateFacture;
-    }
-
-    public void setDateFacture(Date dateFacture) {
-        DateFacture = dateFacture;
-    }
-
     public BigDecimal getTotalHeursCalcules() {
-        return TotalHeursCalcules;
+        return totalHeursCalcules;
     }
 
     public void setTotalHeursCalcules(BigDecimal totalHeursCalcules) {
-        TotalHeursCalcules = totalHeursCalcules;
+        this.totalHeursCalcules = totalHeursCalcules;
     }
 
     public BigDecimal getTotalHeursFactures() {
-        return TotalHeursFactures;
+        return totalHeursFactures;
     }
 
     public void setTotalHeursFactures(BigDecimal totalHeursFactures) {
-        TotalHeursFactures = totalHeursFactures;
+        this.totalHeursFactures = totalHeursFactures;
+    }
+
+    public Date getDateFacture() {
+        return dateFacture;
+    }
+
+    public void setDateFacture(Date dateFacture) {
+        this.dateFacture = dateFacture;
     }
 
     public BigDecimal getMontantCalcule() {

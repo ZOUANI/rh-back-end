@@ -13,10 +13,6 @@ import java.util.List;
 public class FactureWS {
     @Autowired
     private FactureService factureService;
-    @PutMapping("/")
-    public int updateFacture(@RequestBody Facture facture) {
-        return factureService.updateFacture(facture);
-    }
 
     @GetMapping("/")
     public List<Facture> findAll() {
@@ -33,13 +29,17 @@ public class FactureWS {
         return factureService.save(facture);
     }
 
+    @PutMapping("/")
+    public int updateFacture(@RequestBody Facture facture) { return factureService.updateFacture(facture); }
+
+    @PostMapping("/search")
+    public List<Facture> search(@RequestBody FactureVO factureVO) {
+        return factureService.search(factureVO);
+    }
+
     @DeleteMapping("/code/{code}")
     public int deleteByCode(@PathVariable String code) {
         return factureService.deleteByCode(code);
     }
 
-     @PostMapping("/search")
-    public List<Facture> search(@RequestBody FactureVO factureVO) {
-        return factureService.search(factureVO);
-    }
 }
