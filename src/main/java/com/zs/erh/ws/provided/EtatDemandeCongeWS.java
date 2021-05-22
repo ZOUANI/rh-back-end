@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
-@RequestMapping("etat-demande-conge/etatdemandeconge")
+@RestController
+@RequestMapping("maneo-rh/etatdemandeconge")
 public class EtatDemandeCongeWS {
     @GetMapping("/code/ {code}")
     public EtatDemandeConge findByCode(@PathVariable String code) {

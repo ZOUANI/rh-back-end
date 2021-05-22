@@ -13,6 +13,7 @@ import java.util.Optional;
 public interface DemandeCongeDao extends JpaRepository<DemandeConge,Long> {
     Optional<DemandeConge> findById(Long id);
     List<DemandeConge> findByEtatDemandeCongeCode(String code);
-    void deleteById(Long id);
+    DemandeConge findByCode(String code);
+    int deleteByCode(String code);
 }
 

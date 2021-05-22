@@ -49,6 +49,8 @@ public class Projet implements Serializable {
     private Nro nro;
     @ManyToOne
     private Client client;
+    @ManyToOne
+    private Agence agence;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "projet")
@@ -60,6 +62,14 @@ public class Projet implements Serializable {
 
     public void setProjetEquipes(List<ProjetEquipe> projetEquipes) {
         this.projetEquipes = projetEquipes;
+    }
+
+    public Agence getAgence() {
+        return agence;
+    }
+
+    public void setAgence(Agence agence) {
+        this.agence = agence;
     }
 
     public Client getClient() {

@@ -10,6 +10,17 @@ public class DemandeCongeVo {
     private Date dateDemarrageEffectiveMax;
     private Long nbrJour;
     private Collaborateur collaborateur;
+    private String nomCollaborateur;
+
+
+    public String getNomCollaborateur() {
+        return nomCollaborateur;
+    }
+
+    public void setNomCollaborateur(String nomCollaborateur) {
+        this.nomCollaborateur = nomCollaborateur;
+    }
+
 
     public Collaborateur getCollaborateur() {
         return collaborateur;

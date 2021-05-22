@@ -11,11 +11,12 @@ import java.util.Optional;
 public interface ClientService {
     List<Client> findByEntrepriseCode(String code);
     int deleteByEntrepriseCode(String code);
-    int save(Client client);
+    Client save(Client client);
     List<Client> search(ClientVO clientVO);
     int deleteByCode(String code);
+    int deleteByCode(List<Client> clients);
     Optional<Client> findById(Long id);
-    int updateClient(Client client);
+    Client update(Client client);
     Client findByCode(String code);
     List<Client> findAll();
 

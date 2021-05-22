@@ -6,11 +6,7 @@ import java.util.Optional;
 import com.zs.erh.bean.Collaborateur;
 import com.zs.erh.service.facade.CollaborateurService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -21,7 +17,14 @@ public class CollaborateurWS{
 		 return collaborateurService.findById(id);
 	 }
 
-
+	@GetMapping("/login/{login}")
+	public Collaborateur findByLogin(@PathVariable String login) {
+		return collaborateurService.findByLogin(login);
+	}
+	@PostMapping("/")
+	public int save(@RequestBody Collaborateur collaborateur) {
+		return collaborateurService.save(collaborateur);
+	}
 
 	@GetMapping("/")
 	public List<Collaborateur> findAll() {

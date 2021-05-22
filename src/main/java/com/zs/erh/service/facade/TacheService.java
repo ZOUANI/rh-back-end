@@ -18,8 +18,9 @@ public interface TacheService {
 	public int updateTache(Tache tache);
 	public List<Tache> search(TacheVo tacheVo);
 
-	/*Aymane Start here statistiques*/
 	public List<TacheVo> calcStatistique(TacheVo tacheVo);
+
+	public List<CollaborateurVo> suivreCollaborateurs(CollaborateurVo collaborateurVo);
 
 	public List<CollaborateurVo> calcStatistiqueSuiviCollaborateur(Date dateMin, Date dateMax);
 }

@@ -57,6 +57,11 @@ public class TacheWS {
         return tacheService.calcStatistique(tacheVo);
     }
 
+    @PostMapping("/suivreCollaborateurs")
+    public List<CollaborateurVo> suivreCollaborateurs(@RequestBody CollaborateurVo collaborateurVo) {
+        return tacheService.suivreCollaborateurs(collaborateurVo);
+    }
+
     @GetMapping("/dateMin/{dateMin}/dateMax/{dateMax}")
     public List<CollaborateurVo> calcStatistiqueSuiviCollaborateur(@PathVariable Date dateMin, @PathVariable Date dateMax) {
         return tacheService.calcStatistiqueSuiviCollaborateur(dateMin, dateMax);

@@ -23,7 +23,6 @@ public class Equipe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @ManyToOne
     private Collaborateur responsable;
     @ManyToOne
@@ -31,6 +30,17 @@ public class Equipe implements Serializable {
     private String libelle;
     private String code;
     private String description;
+
+    @ManyToOne
+    private Agence agence;
+
+    public Agence getAgence() {
+        return agence;
+    }
+
+    public void setAgence(Agence agence) {
+        this.agence = agence;
+    }
 
     public EtatEquipe getEtatEquipe() {
         if (etatEquipe == null) {
