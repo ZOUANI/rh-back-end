@@ -2,7 +2,6 @@ package com.zs.erh.ws.provided;
 
 import com.zs.erh.bean.ChefAgence;
 import com.zs.erh.service.facade.ChefAgenceService;
-import com.zs.erh.service.vo.ChefAgenceVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,11 +13,9 @@ import java.util.Optional;
 public class ChefAgenceWS {
     @Autowired
     private ChefAgenceService chefAgenceService;
-
-
-    @PostMapping("/findByCriteriaChefAgence")
-    public List<ChefAgence> findByCriteriaChefAgence(@RequestBody ChefAgenceVO chefAgenceVO) {
-        return chefAgenceService.findByCriteriaChefAgence(chefAgenceVO);
+    @GetMapping("/login/{login}")
+    public ChefAgence findByLogin(@PathVariable String login) {
+        return chefAgenceService.findByLogin(login);
     }
 
     @GetMapping("/code{code}")

@@ -1,11 +1,9 @@
 package com.zs.erh.service.imple;
 
 import com.zs.erh.bean.ChefAgence;
-import com.zs.erh.bean.Entreprise;
 import com.zs.erh.dao.ChefAgenceDao;
 import com.zs.erh.service.facade.ChefAgenceService;
 import com.zs.erh.service.util.StringUtil;
-import com.zs.erh.service.vo.ChefAgenceVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +14,16 @@ import java.util.Optional;
 
 @Service
 public class ChefAgenceServiceImple implements ChefAgenceService {
+
     @Autowired
     private ChefAgenceDao chefAgenceDao;
-    @Autowired
-    private EntityManager entityManager;
+
+    public ChefAgence findByLogin(String login) {
+        return chefAgenceDao.findByLogin(login);
+    }
+
+
+
 
 
     public ChefAgence findByCode(String code) {
@@ -49,17 +53,7 @@ public class ChefAgenceServiceImple implements ChefAgenceService {
         }
     }
 
-    public List<ChefAgence> findByCriteriaChefAgence(ChefAgenceVO chefAgenceVO){
-        String query = "SELECT c FROM ChefAgence c WHERE 1=1";
-        if(StringUtil.isNotEmpty(chefAgenceVO.getLogin())  ){
-            query+=" AND c.login="+chefAgenceVO.getLogin();
-        }
-        if (StringUtil.isNotEmpty(chefAgenceVO.getPassword())){
-            query+=" AND c.password="+chefAgenceVO.getPassword();
-        }
-        return entityManager.createQuery(query).getResultList();
 
-    }
 
 
    public ChefAgence update(ChefAgence chefAgence){

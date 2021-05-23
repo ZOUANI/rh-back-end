@@ -12,6 +12,5 @@ public interface ChefAgenceDao extends JpaRepository<ChefAgence,Long> {
     ChefAgence findByCode(String code);
     Optional<ChefAgence> findById(Long id);
     int deleteByCode(String code);
-    //List<ChefAgence> findByLogin(String login);
-    //ChefAgence findByPassword(String password);
+    ChefAgence findByLogin(String login);
 }
