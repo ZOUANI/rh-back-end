@@ -38,6 +38,9 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
     @Autowired
     private EntityManager entityManager;
 
+    public List<GroupeTache> findByLotProjetAgenceChefAgenceCode(String code){
+        return groupeTacheDao.findByLotProjetAgenceChefAgenceCode(code);
+    }
 
     public List<GroupeTache> findByEquipeCode(String code) {
         return groupeTacheDao.findByEquipeCode(code);

@@ -18,6 +18,8 @@ public interface ProjetService {
 
     int deleteByCode(String code);
 
+    int deleteMultiple(List<Projet> projets);
+
     int save(Projet projet);
 
     int deleteByNroCode(String code);

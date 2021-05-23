@@ -3,6 +3,7 @@ package com.zs.erh.bean;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Entity
 public class Facture implements Serializable {
@@ -14,15 +15,15 @@ public class Facture implements Serializable {
     private String libelle;
     private String code;
     private String description;
-    private BigDecimal TotalHeursCalcules;
-    private BigDecimal TotalHeursFactures;
-    private double montantCalcule;
-    private double montantFacture;
+    private BigDecimal totalHeursCalcules;
+    private BigDecimal totalHeursFactures;
+    private BigDecimal montantCalcule;
+    private BigDecimal montantFacture;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dateFacture;
 
     @ManyToOne
     private Client client;
-    @ManyToOne
-    private Tache tache;
     @ManyToOne
     private EtatFacture etatFacture;
 
@@ -60,34 +61,42 @@ public class Facture implements Serializable {
     }
 
     public BigDecimal getTotalHeursCalcules() {
-        return TotalHeursCalcules;
+        return totalHeursCalcules;
     }
 
     public void setTotalHeursCalcules(BigDecimal totalHeursCalcules) {
-        TotalHeursCalcules = totalHeursCalcules;
+        this.totalHeursCalcules = totalHeursCalcules;
     }
 
     public BigDecimal getTotalHeursFactures() {
-        return TotalHeursFactures;
+        return totalHeursFactures;
     }
 
     public void setTotalHeursFactures(BigDecimal totalHeursFactures) {
-        TotalHeursFactures = totalHeursFactures;
+        this.totalHeursFactures = totalHeursFactures;
     }
 
-    public double getMontantCalcule() {
+    public Date getDateFacture() {
+        return dateFacture;
+    }
+
+    public void setDateFacture(Date dateFacture) {
+        this.dateFacture = dateFacture;
+    }
+
+    public BigDecimal getMontantCalcule() {
         return montantCalcule;
     }
 
-    public void setMontantCalcule(double montantCalcule) {
+    public void setMontantCalcule(BigDecimal montantCalcule) {
         this.montantCalcule = montantCalcule;
     }
 
-    public double getMontantFacture() {
+    public BigDecimal getMontantFacture() {
         return montantFacture;
     }
 
-    public void setMontantFacture(double montantFacture) {
+    public void setMontantFacture(BigDecimal montantFacture) {
         this.montantFacture = montantFacture;
     }
 
@@ -97,14 +106,6 @@ public class Facture implements Serializable {
 
     public void setClient(Client client) {
         this.client = client;
-    }
-
-    public Tache getTache() {
-        return tache;
-    }
-
-    public void setTache(Tache tache) {
-        this.tache = tache;
     }
 
     public EtatFacture getEtatFacture() {
