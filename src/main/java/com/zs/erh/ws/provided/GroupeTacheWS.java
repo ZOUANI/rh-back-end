@@ -15,6 +15,11 @@ public class GroupeTacheWS {
     @Autowired
     private GroupeTacheService groupeTacheService;
 
+    @GetMapping("/codeChefAgence/{code}")
+    public List<GroupeTache> findByLotProjetAgenceChefAgenceCode(@PathVariable String code) {
+        return groupeTacheService.findByLotProjetAgenceChefAgenceCode(code);
+    }
+
     @GetMapping("/codeEquipe/{code}")
     public List<GroupeTache> findByEquipeCode(@PathVariable String code) {
         return groupeTacheService.findByEquipeCode(code);
