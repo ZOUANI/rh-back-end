@@ -10,7 +10,7 @@ public interface EntrepriseService {
     Entreprise findByCode(String code);
     List<Entreprise> findByCodeLikeAndLibelleLike(String code, String libelle);
     int deleteByCode (String code);
-    public int deleteByCode(List<Entreprise> entreprises);
+    int deleteByCode(List<Entreprise> entreprises);
     Entreprise update (Entreprise entreprise);
     Optional<Entreprise> findById(Long id);
     List<Entreprise> findAll();
