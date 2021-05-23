@@ -12,6 +12,16 @@ import javax.persistence.EntityManager;
 
 @Service
 public class AdminServiceImple extends AbstractFacade<Admin> implements AdminService {
+    @Override
+    protected EntityManager getEntityManager() {
+        return null;
+    }
+
+    @Override
+    public Class<Admin> getEntityClass() {
+        return Admin.class;
+    }
+
     @Autowired
     private AdminDao adminDao;
 
@@ -44,13 +54,17 @@ public class AdminServiceImple extends AbstractFacade<Admin> implements AdminSer
 //
 //    }
 
-    @Override
-    protected EntityManager getEntityManager() {
-        return null;
-    }
 
     @Override
-    public Class<Admin> getEntityClass() {
-        return Admin.class;
+    public Admin SeConnecter(Admin admin) {
+        Admin foundedAdmin = this.adminDao.findByLogin(admin.getLogin());
+        if(foundedAdmin == null){
+            return null;
+        }
+        if (!foundedAdmin.getPassword().equals(admin.getPassword())){
+            return null;
+        }else{
+            return foundedAdmin;
+        }
     }
 }
