@@ -20,4 +20,9 @@ public class AdminWS {
     public int save(@RequestBody Admin admin) {
         return adminService.save(admin);
     }
+
+    @PostMapping("/seconnecter")
+    public Admin SeConnecter(@RequestBody Admin admin) {
+        return adminService.SeConnecter(admin);
+    }
 }
