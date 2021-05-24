@@ -34,6 +34,31 @@ public class CollaborateurServiceImple implements CollaborateurService {
             return 1;
         }
 	}
+	public Collaborateur findByLoginAndPassword(String login, String password){
+		return collaborateurDao.findByLoginAndPassword(login,password);
+	}
+
+	public Collaborateur saveCollaborateur(Collaborateur collaborateur){
+		if(collaborateurDao.findByLogin(collaborateur.getLogin()) != null){
+			return null;
+		}else{
+			collaborateurDao.save(collaborateur);
+			return collaborateur;
+		}
+	}
+	public Collaborateur signIn(Collaborateur collaborateur){
+		if(collaborateurDao.findByLogin(collaborateur.getLogin()) != null){
+			Collaborateur foundedCollab = collaborateurDao.findByLoginAndPassword(collaborateur.getLogin(),collaborateur.getPassword());
+			if(foundedCollab.getPassword().equals(collaborateur.getPassword())){
+				 return foundedCollab;
+			}else throw new RuntimeException("Password incorrect!");
+		}
+		else throw new RuntimeException("login not found!");
+
+	}
+
+
+
 
 //	public int save(Collaborateur collaborateur) {
 //		Collaborateur c = findByLogin(collaborateur.getLogin());

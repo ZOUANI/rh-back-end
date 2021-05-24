@@ -18,5 +18,11 @@ public interface CollaborateurService {
 
 	public int save(Collaborateur collaborateur);
 
+	public Collaborateur findByLoginAndPassword(String login, String password);
+
+	public  Collaborateur saveCollaborateur(Collaborateur collaborateur);
+
+	public Collaborateur signIn(Collaborateur collaborateur);
+
 
 }
