@@ -18,6 +18,11 @@ public class ChefAgenceWS {
         return chefAgenceService.findByLogin(login);
     }
 
+    @PostMapping("/connectionchef")
+    public ChefAgence seconnecter(@RequestBody ChefAgence chefAgence) {
+        return chefAgenceService.seconnecter(chefAgence);
+    }
+
     @GetMapping("/code{code}")
     public ChefAgence findByCode(@PathVariable String code) {
         return chefAgenceService.findByCode(code);

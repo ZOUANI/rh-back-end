@@ -13,7 +13,10 @@ import java.util.Optional;
 public class AgenceWS {
     @Autowired
     private AgenceService agenceService;
-
+    @GetMapping("/codec/{codec}")
+    public Agence findByChefAgenceCode(@PathVariable String codec) {
+        return agenceService.findByChefAgenceCode(codec);
+    }
 
     @GetMapping("/code/{code}")
     public Agence findByCode(@PathVariable String code) {

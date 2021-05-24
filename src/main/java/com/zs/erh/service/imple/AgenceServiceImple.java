@@ -20,6 +20,11 @@ import java.util.Optional;
 public class AgenceServiceImple implements AgenceService {
     @Autowired
     private AgenceDao agenceDao;
+
+    public Agence findByChefAgenceCode(String code) {
+        return agenceDao.findByChefAgenceCode(code);
+    }
+
     @Autowired
     private ChefAgenceService chefAgenceService;
     @Autowired

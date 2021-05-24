@@ -12,6 +12,7 @@ public interface ChefAgenceService {
     List<ChefAgence> findAll();
     ChefAgence  save(ChefAgence chefAgence);
     ChefAgence findByLogin(String login);
+    ChefAgence seconnecter(ChefAgence chefAgence);
     ChefAgence update(ChefAgence chefAgence);
 }
 
