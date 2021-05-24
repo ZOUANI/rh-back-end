@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/budget")
 @RequestMapping(value = "maneo-rh/budget")
 public class BudgetWS {
     @Autowired
@@ -26,6 +27,19 @@ public class BudgetWS {
 
     @PostMapping("/")
     public Budget save(@RequestBody Budget budget){
+
+    @GetMapping("/code/{code}")
+    public Budget findByCode(@PathVariable String code) {
+        return budgetService.findByCode(code);
+    }
+
+    @GetMapping("/etat-libelle/{libelle}")
+    public List<Budget> findByEtatBudgetLibelle(String libelle) {
+        return budgetService.findByEtatBudgetLibelle(libelle);
+    }
+
+    @PostMapping("/")
+    public Budget save(Budget budget) {
         return budgetService.save(budget);
     }
 }
