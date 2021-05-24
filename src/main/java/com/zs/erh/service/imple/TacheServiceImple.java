@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import com.zs.erh.bean.Entreprise;
+import com.zs.erh.bean.GroupeTache;
 import com.zs.erh.bean.Tache;
 import com.zs.erh.dao.TacheDao;
 import com.zs.erh.service.facade.*;
@@ -54,15 +56,15 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 	}
 
 	public int save(Tache tache) {
-		if(tache.getCode().isEmpty()){
-			tache.setCode(tache.getLibelle());
-			if (tacheDao.findByCode(tache.getCode()) != null)
-			{
+		if(findByCode(tache.getCode())!=null) {
+			return -2;
+		}else{
+			GroupeTache groupeTache = groupeTacheService.findByCode(tache.getGroupeTache().getCode());
+			if(groupeTache==null) {
 				return -1;
 			}
 			else {
-				tache.setCode(tache.getLibelle());
-				tache.setGroupeTache(groupeTacheService.findByCode(tache.getGroupeTache().getCode()));
+				tache.setGroupeTache(groupeTache);
 				tache.setCategorieTache(categorieTacheService.findByCode(tache.getCategorieTache().getCode()));
 				tache.setEtatTache(etatTacheService.findByCode(tache.getEtatTache().getCode()));
 				tache.setPeriode(periodeService.findByCode(tache.getPeriode().getCode()));
@@ -72,16 +74,8 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 				return 1;
 			}
 		}
-		else {
-			if (tacheDao.findByCode(tache.getCode()) != null) {
-				return -1;
-			} else {
-				tacheDao.save(tache);
-				return 1;
-			}
-		}
-
 	}
+
 
 	public int updateTache(Tache tache){
 		Tache tacheUpdated = findByCode(tache.getCode());
