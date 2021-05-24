@@ -7,7 +7,7 @@ import java.util.List;
 public interface BudgetService {
     List<Budget> findAll();
     Budget findByCode (String code);
-    List<Budget> findByEtatBudjetLibelle(String libelle);
+    List<Budget> findByEtatBudgetLibelle(String libelle);
 
     public Budget save (Budget budget);
 }
