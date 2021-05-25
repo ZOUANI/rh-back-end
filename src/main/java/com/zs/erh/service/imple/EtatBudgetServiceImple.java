@@ -33,4 +33,9 @@ public class EtatBudgetServiceImple implements EtatBudgetService {
     public int deleteByCode(String code) {
         return etatBudgetDao.deleteByCode(code);
     }
+
+    @Override
+    public List<EtatBudget> findByLibelle(String libelle) {
+        return etatBudgetDao.findByLibelle(libelle);
+    }
 }

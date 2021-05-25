@@ -1,8 +1,6 @@
 package com.zs.erh.ws.provided;
 
 import com.zs.erh.bean.Budget;
-import com.zs.erh.bean.Collaborateur;
-import com.zs.erh.bean.Equipe;
 import com.zs.erh.service.facade.BudgetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,12 +22,12 @@ public class BudgetWS {
         return budgetService.findByCode(code);
     }
     @PostMapping("/")
-    public Budget save(Budget budget) {
+    public Budget save(@RequestBody Budget budget){
         return budgetService.save(budget);
     }
 
     @GetMapping("/etat-libelle/{libelle}")
-    public List<Budget> findByEtatBudgetLibelle(String libelle) {
+    public List<Budget> findByEtatBudgetLibelle(@PathVariable String libelle) {
         return budgetService.findByEtatBudgetLibelle(libelle);
     }
 
