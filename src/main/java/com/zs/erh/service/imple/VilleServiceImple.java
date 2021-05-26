@@ -19,8 +19,6 @@ public class VilleServiceImple implements VilleService {
     @Autowired
     private PaysService paysService;
 
-
-
     @Override
     public List<Ville> findByPaysCode(String code) {
         return villeDao.findByPaysCode(code);

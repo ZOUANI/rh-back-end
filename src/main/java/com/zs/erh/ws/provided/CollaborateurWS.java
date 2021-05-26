@@ -21,10 +21,10 @@ public class CollaborateurWS{
 	public Collaborateur findByLogin(@PathVariable String login) {
 		return collaborateurService.findByLogin(login);
 	}
-	@PostMapping("/")
+	/*@PostMapping("/")
 	public int save(@RequestBody Collaborateur collaborateur) {
 		return collaborateurService.save(collaborateur);
-	}
+	}*/
 
 	@GetMapping("/")
 	public List<Collaborateur> findAll() {
@@ -35,7 +35,21 @@ public class CollaborateurWS{
 	public Collaborateur findByCode(@PathVariable String code) {
 		return collaborateurService.findByCode(code);
 	}
-	 @Autowired
+
+	@GetMapping("/login/{login}/password/{password}")
+	public Collaborateur findByLoginAndPassword(@PathVariable String login,@PathVariable String password){
+		return collaborateurService.findByLoginAndPassword(login,password);
+	}
+	@PostMapping("/")
+	public Collaborateur saveCollaborateur(@RequestBody Collaborateur collaborateur) {
+		return collaborateurService.saveCollaborateur(collaborateur);
+	}
+	@PostMapping("/signIn")
+	public Collaborateur signIn(@RequestBody Collaborateur collaborateur){
+		return collaborateurService.signIn(collaborateur);
+	}
+
+		@Autowired
 	 private CollaborateurService collaborateurService;
 
 }

@@ -22,6 +22,9 @@ public class BudgetServiceImple implements BudgetService {
         return budgetDao.findByCode(code);
     }
 
+    public List<Budget> findByEtatBudgetLibelle(String libelle) {
+        return budgetDao.findByEtatBudgetLibelle(libelle);
+    }
    /*public List<Budget> findByEtatBudjetLibelle(String libelle) {
         return budgetDao.findByEtatBudjetLibelle(libelle);
     }*/

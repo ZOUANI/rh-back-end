@@ -12,5 +12,6 @@ public interface EtatBudgetDao extends JpaRepository<EtatBudget,Long> {
     List<EtatBudget> findAll();
     Optional<EtatBudget> findById(Long id);
     EtatBudget findByCode(String code);
+    List<EtatBudget> findByLibelle(String libelle);
     int deleteByCode(String code);
 }

@@ -1,6 +1,8 @@
 package com.zs.erh.ws.provided;
 
+import com.zs.erh.bean.EtatFacture;
 import com.zs.erh.bean.EtatTache;
+import com.zs.erh.service.facade.EtatFactureService;
 import com.zs.erh.service.facade.EtatTacheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,15 +16,15 @@ import java.util.List;
 @RequestMapping(value = "maneo-rh/etatFacture")
 public class EtatFactureWS {
     @Autowired
-    private EtatTacheService etatTacheService;
+    private EtatFactureService etatFactureService;
 
     @GetMapping("/")
-    public List<EtatTache> findAll() {
-        return etatTacheService.findAll();
+    public List<EtatFacture> findAll() {
+        return etatFactureService.findAll();
     }
 
     @GetMapping("/code/{code}")
-    public EtatTache findByCode(@PathVariable String code) {
-        return etatTacheService.findByCode(code);
+    public EtatFacture findByCode(@PathVariable String code) {
+        return etatFactureService.findByCode(code);
     }
 }
