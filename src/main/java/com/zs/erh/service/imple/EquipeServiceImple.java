@@ -90,7 +90,7 @@ public class EquipeServiceImple implements EquipeService {
                 equipe.setEtatEquipe(etatEquipeFounded);
                 equipeDao.save(equipe);
             }
-            return null;
+            return equipe;
         }
     }
 
