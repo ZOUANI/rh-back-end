@@ -73,24 +73,24 @@ public class EquipeServiceImple implements EquipeService {
         equipeDao.deleteById(id);
     }
 
-    public int save(Equipe equipe) {
+    public Equipe save(Equipe equipe) {
         equipe.setCode(equipe.getLibelle());
         if (equipeDao.findByCode(equipe.getCode()) != null) {
-            return -1; // already exist !
+            return null; // already exist !
         } else {
             Collaborateur respoFounded = collaborateurService.findByCode(equipe.getResponsable().getCode());
             EtatEquipe etatEquipeFounded = etatEquipeService.findByCode(equipe.getEtatEquipe().getCode());
 
             if (respoFounded == null) {
-                return -2;
+                return null;
             } else if (etatEquipeFounded == null) {
-                return -3;
+                return null;
             } else {
                 equipe.setResponsable(respoFounded);
                 equipe.setEtatEquipe(etatEquipeFounded);
                 equipeDao.save(equipe);
             }
-            return 1;
+            return equipe;
         }
     }
 

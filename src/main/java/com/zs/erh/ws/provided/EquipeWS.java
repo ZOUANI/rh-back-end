@@ -45,7 +45,7 @@ public class EquipeWS {
     }
 
     @PostMapping("/")
-    public int save(@RequestBody Equipe equipe){
+    public Equipe save(@RequestBody Equipe equipe){
         return  equipeService.save(equipe);
     }
     @PostMapping("/search")
