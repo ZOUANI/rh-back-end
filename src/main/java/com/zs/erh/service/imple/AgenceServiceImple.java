@@ -1,9 +1,6 @@
 package com.zs.erh.service.imple;
 
-import com.zs.erh.bean.Agence;
-import com.zs.erh.bean.ChefAgence;
-import com.zs.erh.bean.EtatAgence;
-import com.zs.erh.bean.Ville;
+import com.zs.erh.bean.*;
 import com.zs.erh.dao.AgenceDao;
 import com.zs.erh.service.facade.AgenceService;
 import com.zs.erh.service.facade.ChefAgenceService;
@@ -20,6 +17,11 @@ import java.util.Optional;
 public class AgenceServiceImple implements AgenceService {
     @Autowired
     private AgenceDao agenceDao;
+
+    public Agence findByChefAgenceCode(String code) {
+        return agenceDao.findByChefAgenceCode(code);
+    }
+
     @Autowired
     private ChefAgenceService chefAgenceService;
     @Autowired
@@ -47,6 +49,15 @@ public class AgenceServiceImple implements AgenceService {
     @Transactional
     public int deleteByCode(String code) {
         return agenceDao.deleteByCode(code);
+    }
+
+    @Transactional
+    public int deleteByCode(List<Agence> agences) {
+        int res=0;
+        for (int i = 0; i < agences.size(); i++) {
+            res+=deleteByCode(agences.get(i).getCode());
+        }
+        return res;
     }
 
 

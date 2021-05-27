@@ -13,7 +13,15 @@ import java.util.Optional;
 public class AgenceWS {
     @Autowired
     private AgenceService agenceService;
+    @PostMapping("/delete-multiple-by-code")
+    public int deleteByCode(@RequestBody List<Agence> agences) {
+        return agenceService.deleteByCode(agences);
+    }
 
+    @GetMapping("/codec/{codec}")
+    public Agence findByChefAgenceCode(@PathVariable String codec) {
+        return agenceService.findByChefAgenceCode(codec);
+    }
 
     @GetMapping("/code/{code}")
     public Agence findByCode(@PathVariable String code) {

@@ -13,6 +13,16 @@ import java.util.Optional;
 public class ChefAgenceWS {
     @Autowired
     private ChefAgenceService chefAgenceService;
+    @GetMapping("/login/{login}")
+    public ChefAgence findByLogin(@PathVariable String login) {
+        return chefAgenceService.findByLogin(login);
+    }
+
+    @PostMapping("/connectionchef")
+    public ChefAgence seconnecter(@RequestBody ChefAgence chefAgence) {
+        return chefAgenceService.seconnecter(chefAgence);
+    }
+
     @GetMapping("/code{code}")
     public ChefAgence findByCode(@PathVariable String code) {
         return chefAgenceService.findByCode(code);
