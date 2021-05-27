@@ -12,6 +12,7 @@ public class Facture implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String reference;
     private String libelle;
     private String code;
     private String description;
@@ -34,6 +35,14 @@ public class Facture implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
     }
 
     public String getLibelle() {

@@ -36,6 +36,11 @@ public class FactureServiceImple extends AbstractFacade<Facture> implements Fact
         }
     }
 
+    @Override
+    public List<Facture> findByClientCode(String code) {
+        return factureDao.findByClientCode(code);
+    }
+
     public int updateFacture(Facture facture) {
         Facture grp = findByCode(facture.getCode());
         grp.setCode(facture.getCode());

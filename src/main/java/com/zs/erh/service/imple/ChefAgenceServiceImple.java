@@ -1,20 +1,40 @@
 package com.zs.erh.service.imple;
 
+import com.zs.erh.bean.Admin;
 import com.zs.erh.bean.ChefAgence;
-import com.zs.erh.bean.Entreprise;
 import com.zs.erh.dao.ChefAgenceDao;
 import com.zs.erh.service.facade.ChefAgenceService;
+import com.zs.erh.service.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ChefAgenceServiceImple implements ChefAgenceService {
+
     @Autowired
     private ChefAgenceDao chefAgenceDao;
+
+    public ChefAgence findByLogin(String login) {
+        return chefAgenceDao.findByLogin(login);
+    }
+
+    public ChefAgence seconnecter(ChefAgence chefAgence) {
+        ChefAgence foundedChefAgence = this.chefAgenceDao.findByLogin(chefAgence.getLogin());
+        if(foundedChefAgence  == null){
+            return null;
+        }
+        else if (!foundedChefAgence.getPassword().equals(chefAgence.getPassword())){
+            return null;
+        }else{
+            return foundedChefAgence;
+        }
+    }
+
 
 
     public ChefAgence findByCode(String code) {
@@ -43,6 +63,9 @@ public class ChefAgenceServiceImple implements ChefAgenceService {
 
         }
     }
+
+
+
 
    public ChefAgence update(ChefAgence chefAgence){
      chefAgenceDao.save(chefAgence);

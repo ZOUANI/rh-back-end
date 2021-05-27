@@ -14,23 +14,28 @@ public class EtatBudgetServiceImple implements EtatBudgetService {
     @Autowired
     private EtatBudgetDao etatBudgetDao;
 
-    public Optional<EtatBudget> findById(Long id){
-        return etatBudgetDao.findById(id);
-    }
-    public List<EtatBudget> findAll(){
+    @Override
+    public List<EtatBudget> findAll() {
         return etatBudgetDao.findAll();
     }
-    public EtatBudget findByCode(String code){
+
+    @Override
+    public Optional<EtatBudget> findById(Long id) {
+        return etatBudgetDao.findById(id);
+    }
+
+    @Override
+    public EtatBudget findByCode(String code) {
         return etatBudgetDao.findByCode(code);
     }
 
-    public List<EtatBudget> findByLibelle(String libelle) {
-        return etatBudgetDao.findByLibelle(libelle);
-    }
-
-    public int deleteByCode(String code){
+    @Override
+    public int deleteByCode(String code) {
         return etatBudgetDao.deleteByCode(code);
     }
 
-
+    @Override
+    public List<EtatBudget> findByLibelle(String libelle) {
+        return etatBudgetDao.findByLibelle(libelle);
+    }
 }

@@ -12,6 +12,7 @@ public interface AgenceDao extends JpaRepository<Agence,Long> {
     Agence findByCode(String code);
     Optional<Agence> findById(Long id);
     List<Agence> findByEtatAgenceCode(String code);
+    Agence findByChefAgenceCode(String code);
     List<Agence> findByVilleCode(String code);
     int deleteByCode(String code);
 }

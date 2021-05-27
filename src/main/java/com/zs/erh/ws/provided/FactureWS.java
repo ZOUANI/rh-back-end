@@ -28,6 +28,10 @@ public class FactureWS {
     public int save(@RequestBody Facture facture) {
         return factureService.save(facture);
     }
+    @GetMapping("/client/code/{code}")
+    public List<Facture> findByClientCode(@PathVariable String code) {
+        return factureService.findByClientCode(code);
+    }
 
     @PutMapping("/")
     public int updateFacture(@RequestBody Facture facture) { return factureService.updateFacture(facture); }

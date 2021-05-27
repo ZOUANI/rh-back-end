@@ -11,6 +11,8 @@ public interface ChefAgenceService {
     int deleteByCode(String code);
     List<ChefAgence> findAll();
     ChefAgence  save(ChefAgence chefAgence);
+    ChefAgence findByLogin(String login);
+    ChefAgence seconnecter(ChefAgence chefAgence);
     ChefAgence update(ChefAgence chefAgence);
 }
 
