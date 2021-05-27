@@ -25,7 +25,7 @@ public class FactureWS {
     }
 
     @PostMapping("/")
-    public int save(@RequestBody Facture facture) {
+    public Facture save(@RequestBody Facture facture) {
         return factureService.save(facture);
     }
     @GetMapping("/client/code/{code}")

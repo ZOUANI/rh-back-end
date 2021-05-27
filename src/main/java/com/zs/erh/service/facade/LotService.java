@@ -2,6 +2,7 @@ package com.zs.erh.service.facade;
 
 import com.zs.erh.bean.Client;
 import com.zs.erh.bean.Lot;
+import com.zs.erh.bean.Projet;
 import com.zs.erh.bean.Sro;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -21,9 +22,11 @@ public interface LotService {
 
     public int deleteByCode(String code);
 
+    int deleteMultiple(List<Lot> lots);
+
     public int deleteByProjetCode(String code);
 
-    public int save(Lot lot);
+    public Lot save(Lot lot);
 
     int updateLot(Lot lot);
 

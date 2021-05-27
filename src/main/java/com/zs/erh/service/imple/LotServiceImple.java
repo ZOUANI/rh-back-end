@@ -30,13 +30,13 @@ public class LotServiceImple implements LotService {
     @Autowired
     public GroupeTacheDao groupeTacheDao;
 
-    public int save(Lot lot) {
+    public Lot save(Lot lot) {
         if (lottDao.findByCode(lot.getCode()) != null)
-            return -1;
+            return null;
         Projet projet = projetServiceImple.findByCode(lot.getProjet().getCode());
         lot.setProjet(projet);
         lottDao.save(lot);
-        return 1;
+        return lot;
     }
 
     public Lot findIdLot(Long id) {
@@ -96,6 +96,14 @@ public class LotServiceImple implements LotService {
         int delGroup = groupeTacheServiceImple.deleteByLotCode(code);
         int delLot = lottDao.deleteByCode(code);
         return delGroup + delLot;
+    }
+    @Transactional
+    public int deleteMultiple(List<Lot> lots) {
+        int res=0;
+        for (int i = 0; i < lots.size(); i++) {
+            res+=deleteByCode(lots.get(i).getCode());
+        }
+        return res;
     }
 
     public int deleteByProjetCode(String code) {

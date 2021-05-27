@@ -26,13 +26,13 @@ public class FactureServiceImple extends AbstractFacade<Facture> implements Fact
         return factureDao.findByCode(code);
     }
 
-    public int save(Facture facture) {
+    public Facture save(Facture facture) {
         if (factureDao.findByCode(facture.getCode()) != null) {
-            return -1;
+            return null;
         }
         else {
             factureDao.save(facture);
-            return 1;
+            return facture;
         }
     }
 

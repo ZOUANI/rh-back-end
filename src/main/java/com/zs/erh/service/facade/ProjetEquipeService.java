@@ -8,7 +8,7 @@ import java.util.List;
 public interface ProjetEquipeService {
 
     int save(Projet projet, List<ProjetEquipe> projetEquipes);
-    int saveDirect(ProjetEquipe projetEquipe);
+    ProjetEquipe saveDirect(ProjetEquipe projetEquipe);
     List<ProjetEquipe> findByProjetCode(String code);
     int deleteByProjetCode(String code);
     List<ProjetEquipe> findAll();

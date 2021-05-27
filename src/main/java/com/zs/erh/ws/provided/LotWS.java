@@ -17,8 +17,13 @@ public class LotWS {
     public LotService lotService;
 
     @PostMapping("/")
-    public int save(@RequestBody Lot lot) {
+    public Lot save(@RequestBody Lot lot) {
         return lotService.save(lot);
+    }
+
+    @PostMapping("/delete-multiple-by-code")
+    public int deleteMultiple(@RequestBody List<Lot> lots) {
+        return lotService.deleteMultiple(lots);
     }
 
     @GetMapping("/projet/code/{code}")

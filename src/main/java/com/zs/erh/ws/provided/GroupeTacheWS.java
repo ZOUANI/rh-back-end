@@ -41,7 +41,7 @@ public class GroupeTacheWS {
     }
 
     @PostMapping("/")
-    public int save(@RequestBody GroupeTache groupeTache) {
+    public GroupeTache save(@RequestBody GroupeTache groupeTache) {
         return groupeTacheService.save(groupeTache);
     }
 

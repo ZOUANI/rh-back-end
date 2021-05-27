@@ -22,14 +22,14 @@ public class ProjetServiceImple implements ProjetService {
         return projetDao.findByClientId(id);
     }
 
-    public int save(Projet projet) {
+    public Projet save(Projet projet) {
         if (projetDao.findByCode(projet.getCode()) != null) {
-            return -1;
+            return null;
         } else {
             nroService.save(projet.getNro());
             projetDao.save(projet);
             projetEquipeService.save(projet,projet.getProjetEquipes());
-            return 1;
+            return projet;
         }
     }
 

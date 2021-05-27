@@ -55,13 +55,13 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 		return tacheDao.findAll();
 	}
 
-	public int save(Tache tache) {
+	public Tache save(Tache tache) {
 		if(findByCode(tache.getCode())!=null) {
-			return -2;
+			return null;
 		}else{
 			GroupeTache groupeTache = groupeTacheService.findByCode(tache.getGroupeTache().getCode());
 			if(groupeTache==null) {
-				return -1;
+				return null;
 			}
 			else {
 				tache.setGroupeTache(groupeTache);
@@ -71,7 +71,7 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 				tache.setMembreEquipe(membreEquipeService.findByEquipeCodeAndCollaborateurCode(tache.getMembreEquipe().getEquipe().getCode(),
 						tache.getMembreEquipe().getCollaborateur().getCode()));
 				tacheDao.save(tache);
-				return 1;
+				return tache;
 			}
 		}
 	}

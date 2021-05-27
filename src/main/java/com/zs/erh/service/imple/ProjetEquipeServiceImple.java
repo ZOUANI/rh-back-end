@@ -25,12 +25,12 @@ public class ProjetEquipeServiceImple implements ProjetEquipeService {
         return 1;
     }
 
-    public int saveDirect(ProjetEquipe projetEquipe) {
+    public ProjetEquipe saveDirect(ProjetEquipe projetEquipe) {
         if (projetEquipe.getEquipe() != null && projetEquipe.getEquipe().getCode() != null) {
             projetEquipe.setEquipe(equipeService.findByCode(projetEquipe.getEquipe().getCode()));
         }
         projetEquipeDao.save(projetEquipe);
-        return 1;
+        return projetEquipe;
     }
 
     public List<ProjetEquipe> findByProjetCode(String code) {

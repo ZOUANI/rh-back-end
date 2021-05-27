@@ -20,7 +20,7 @@ public interface ProjetService {
 
     int deleteMultiple(List<Projet> projets);
 
-    int save(Projet projet);
+    Projet save(Projet projet);
 
     int deleteByNroCode(String code);
     void update(Projet projet);

@@ -33,7 +33,7 @@ public class TacheWS {
     }
 
     @PostMapping("/")
-    public int save(@RequestBody Tache tache) {
+    public Tache save(@RequestBody Tache tache) {
         return tacheService.save(tache);
     }
 
