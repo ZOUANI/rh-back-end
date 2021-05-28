@@ -52,6 +52,11 @@ public class TacheWS {
         return tacheService.deleteByCode(code);
     }
 
+    @PostMapping("/delete-multiple-by-code")
+    public int deleteMultiple(@RequestBody List<Tache> taches) {
+        return tacheService.deleteMultiple(taches);
+    }
+
     @PostMapping("calcStatistique/")
     public List<TacheVo> calcStatistique(@RequestBody TacheVo tacheVo) {
         return tacheService.calcStatistique(tacheVo);

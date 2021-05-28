@@ -23,6 +23,8 @@ public interface GroupeTacheService {
 	
 	public int deleteByCode(String code);
 
+	public int deleteMultiple(List<GroupeTache> groupeTaches);
+
 	public GroupeTache save(GroupeTache groupeTache);
 
 	public Optional<GroupeTache> findById(Long id);

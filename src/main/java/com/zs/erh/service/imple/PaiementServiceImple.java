@@ -7,6 +7,7 @@ import com.zs.erh.service.facade.FactureService;
 import com.zs.erh.service.facade.PaiementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -63,10 +64,21 @@ public class PaiementServiceImple implements PaiementService {
         return 1;
     }
 
+    @Transactional
     public int deleteByCode(String code) {
         return paiementDao.deleteByCode(code);
     }
 
+    @Transactional
+    public int deleteMultiple(List<Paiement> paiements) {
+        int res = 0;
+        for (int i = 0; i < paiements.size(); i++) {
+            res += deleteByCode(paiements.get(i).getCode());
+        }
+        return res;
+    }
+
+    @Transactional
     public int deleteByReference(String reference) {
         return paiementDao.deleteByReference(reference);
     }
