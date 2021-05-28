@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 /**
- *
  * @author MoulaYounes
  */
 @Entity
@@ -31,7 +30,9 @@ public class Collaborateur implements Serializable {
     private String phone;
     private String email;
 
-    
+    @ManyToOne
+    private Agence agence;
+
     private int nbrCnx = 3;
     private boolean blocked;
     private boolean mustChangePassword = true;
@@ -39,7 +40,7 @@ public class Collaborateur implements Serializable {
     @ManyToOne
     private CategorieCollaborateur categorieCollaborateur;
 
-    
+
     public boolean isMustChangePassword() {
         return mustChangePassword;
     }
@@ -134,6 +135,14 @@ public class Collaborateur implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Agence getAgence() {
+        return agence;
+    }
+
+    public void setAgence(Agence agence) {
+        this.agence = agence;
     }
 
     @Override

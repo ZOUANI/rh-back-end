@@ -20,9 +20,7 @@ public class TacheVo {
     private Long lotId;
     private Long equipeId;
     private Long clientId;
-    private Long sroId;
     private Long groupeTacheId;
-    private Long nroId;
 
     private Long projetId;
     private Integer semaine;
@@ -43,14 +41,13 @@ public class TacheVo {
 
     private String code;
 
-    public TacheVo(Date dateDemarrageEffectiveMin, Date dateDemarrageEffectiveMax, Long equipeId, Long membreEquipeId, Long lotId, Long clientId, Long sroId, Long projetId, Integer semaine, Integer mois, Integer annee) {
+    public TacheVo(Date dateDemarrageEffectiveMin, Date dateDemarrageEffectiveMax, Long equipeId, Long membreEquipeId, Long lotId, Long clientId, Long projetId, Integer semaine, Integer mois, Integer annee) {
         this.dateDemarrageEffectiveMin = dateDemarrageEffectiveMin;
         this.dateDemarrageEffectiveMax = dateDemarrageEffectiveMax;
         this.equipeId = equipeId;
         this.membreEquipeId = membreEquipeId;
         this.lotId = lotId;
         this.clientId = clientId;
-        this.sroId = sroId;
         this.projetId = projetId;
         this.semaine = semaine;
         this.mois = mois;
@@ -65,7 +62,6 @@ public class TacheVo {
         this.lotId = lotId;
         this.clientId = clientId;
         this.projetId = projetId;
-
     }
 
     public Long getGroupeTacheId() {
@@ -76,10 +72,6 @@ public class TacheVo {
         this.groupeTacheId = groupeTacheId;
     }
 
-    public Long getSroId() {
-        return sroId;
-    }
-
     public String getCode() {
         return code;
     }
@@ -88,17 +80,6 @@ public class TacheVo {
         this.code = code;
     }
 
-    public void setSroId(Long sroId) {
-        this.sroId = sroId;
-    }
-
-    public Long getNroId() {
-        return nroId;
-    }
-
-    public void setNroId(Long nroId) {
-        this.nroId = nroId;
-    }
 
     public TacheVo() {
     }
@@ -247,7 +228,7 @@ public class TacheVo {
 
     @Override
     public String toString() {
-        return "TacheVo{" + "responsableId=" + responsableId + ", lotId=" + lotId + ", equipeId=" + equipeId + ", clientId=" + clientId + ", sroId=" + sroId + ", groupeTacheId=" + groupeTacheId + ", nroId=" + nroId + ", projetId=" + projetId + ", periodeId=" + periodeId + ", dateDemarrageEffective=" + dateDemarrageEffective + ", dateFinEffective=" + dateFinEffective + '}';
+        return "TacheVo{" + "responsableId=" + responsableId + ", lotId=" + lotId + ", equipeId=" + equipeId + ", clientId=" + clientId + ", groupeTacheId=" + groupeTacheId + ", projetId=" + projetId + ", periodeId=" + periodeId + ", dateDemarrageEffective=" + dateDemarrageEffective + ", dateFinEffective=" + dateFinEffective + '}';
     }
 
 }
