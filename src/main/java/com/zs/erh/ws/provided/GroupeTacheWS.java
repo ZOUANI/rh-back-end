@@ -55,6 +55,11 @@ public class GroupeTacheWS {
         return groupeTacheService.deleteByCode(code);
     }
 
+    @PostMapping("/delete-multiple-by-code")
+    public int deleteMultiple(@RequestBody List<GroupeTache> groupeTaches) {
+        return groupeTacheService.deleteMultiple(groupeTaches);
+    }
+
     @GetMapping("/id/{id}")
     public Optional<GroupeTache> findById(@PathVariable Long id) {
         return groupeTacheService.findById(id);

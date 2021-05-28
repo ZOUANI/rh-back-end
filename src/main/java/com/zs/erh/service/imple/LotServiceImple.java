@@ -3,17 +3,13 @@ package com.zs.erh.service.imple;
 import com.zs.erh.bean.*;
 import com.zs.erh.dao.GroupeTacheDao;
 import com.zs.erh.dao.LottDao;
-import com.zs.erh.dao.SroDao;
 import com.zs.erh.service.facade.LotService;
-import com.zs.erh.service.facade.SroService;
 import com.zs.erh.service.facade.TacheService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class LotServiceImple implements LotService {
@@ -23,8 +19,7 @@ public class LotServiceImple implements LotService {
     public ProjetServiceImple projetServiceImple;
     @Autowired
     public GroupeTacheServiceImple groupeTacheServiceImple;
-    @Autowired
-    public SroService sroService;
+
     @Autowired
     public TacheService tacheService;
     @Autowired
@@ -39,12 +34,9 @@ public class LotServiceImple implements LotService {
         return lot;
     }
 
-    public Lot findIdLot(Long id) {
-        return lottDao.findIdLot(id);
-    }
 
     public int updateLot(Lot lot) {
-        Lot lot1 = findIdLot(lot.getId());
+        Lot lot1 = lottDao.findById(lot.getId()).get();
         lot1.setSro(lot.getSro());
         lot1.setCode(lot.getCode());
         lot1.setDescription(lot.getDescription());
@@ -77,10 +69,6 @@ public class LotServiceImple implements LotService {
 
     public Lot findByCode(String code) {
         return lottDao.findByCode(code);
-    }
-
-    public List<Sro> findBySroCode(String code) {
-        return lottDao.findBySroCode(code);
     }
 
     public List<Lot> findAll() {

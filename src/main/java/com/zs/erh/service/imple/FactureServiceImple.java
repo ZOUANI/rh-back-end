@@ -1,6 +1,7 @@
 package com.zs.erh.service.imple;
 
 import com.zs.erh.bean.Facture;
+import com.zs.erh.bean.Tache;
 import com.zs.erh.dao.FactureDao;
 import com.zs.erh.service.facade.FactureService;
 import com.zs.erh.service.vo.FactureVO;
@@ -26,6 +27,7 @@ public class FactureServiceImple extends AbstractFacade<Facture> implements Fact
     public Facture findByCode(String code) {
         return factureDao.findByCode(code);
     }
+
 
     public Facture save(Facture facture) {
         if (factureDao.findByCode(facture.getCode()) != null) {
@@ -72,6 +74,7 @@ public class FactureServiceImple extends AbstractFacade<Facture> implements Fact
         }
         return entityManager.createQuery(query).getResultList();
     }
+
     @Transactional
     public int deleteByCode(String code) {
         return factureDao.deleteByCode(code);
@@ -79,9 +82,9 @@ public class FactureServiceImple extends AbstractFacade<Facture> implements Fact
 
     @Transactional
     public int deleteMultiple(List<Facture> factures) {
-        int res=0;
+        int res = 0;
         for (int i = 0; i < factures.size(); i++) {
-            res+=deleteByCode(factures.get(i).getCode());
+            res += deleteByCode(factures.get(i).getCode());
         }
         return res;
     }

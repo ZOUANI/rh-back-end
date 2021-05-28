@@ -2,7 +2,6 @@ package com.zs.erh.service.imple;
 
 import com.zs.erh.bean.GroupeTache;
 import com.zs.erh.bean.Lot;
-import com.zs.erh.bean.Nro;
 import com.zs.erh.bean.Projet;
 import com.zs.erh.dao.*;
 import com.zs.erh.service.facade.*;
@@ -26,7 +25,6 @@ public class ProjetServiceImple implements ProjetService {
         if (projetDao.findByCode(projet.getCode()) != null) {
             return null;
         } else {
-            nroService.save(projet.getNro());
             projetDao.save(projet);
             projetEquipeService.save(projet,projet.getProjetEquipes());
             return projet;
@@ -36,14 +34,6 @@ public class ProjetServiceImple implements ProjetService {
 
     public Projet findId(Long id) {
         return this.projetDao.findId(id);
-    }
-
-    public int deleteByNroCode(String code) {
-        return projetDao.deleteByCode(code);
-    }
-
-    public List<Projet> findByNroCode(String code) {
-        return projetDao.findByNroCode(code);
     }
 
     public List<Projet> findAll() {
@@ -94,11 +84,6 @@ public class ProjetServiceImple implements ProjetService {
         projet1.setNombreJoureHommeEffectif(projet.getNombreJoureHommeEffectif());
         projet1.setNombreJoureHommePrevu(projet.getNombreJoureHommePrevu());
         projet1.setNombreJoureHommeRetard(projet.getNombreJoureHommeRetard());
-        if (nroDao.findByCode(projet.getNro().getCode())==null){
-            nroService.save(projet.getNro());
-        }
-        Nro n = nroDao.findByCode(projet.getNro().getCode());
-        projet1.setNro(n);
         projet1.setResponsable(projet.getResponsable());
         projetDao.save(projet1);
     }
@@ -127,10 +112,7 @@ public class ProjetServiceImple implements ProjetService {
     public LotServiceImple lotServiceImple;
     @Autowired
     public ProjetEquipeService projetEquipeService;
-    @Autowired
-    public NroService nroService;
-    @Autowired
-    public NroDao nroDao;
+
     @Autowired
     public LottDao lottDao;
     @Autowired

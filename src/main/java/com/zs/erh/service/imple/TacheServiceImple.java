@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-import com.zs.erh.bean.Entreprise;
 import com.zs.erh.bean.GroupeTache;
 import com.zs.erh.bean.Tache;
 import com.zs.erh.dao.TacheDao;
@@ -102,6 +101,15 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 		return tacheDao.deleteBycode(code);
 	}
 
+	@Transactional
+	public int deleteMultiple(List<Tache> taches) {
+		int res = 0;
+		for (int i = 0; i < taches.size(); i++) {
+			res += deleteByCode(taches.get(i).getCode());
+		}
+		return res;
+	}
+
 	@Override
 	public EntityManager getEntityManager() {
 		return entityManager;
@@ -132,8 +140,6 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 		query += addConstraint("t.groupeTache.lot.id", tacheVo.getLotId());
 		query += addConstraint("t.groupeTache.lot.projet.client.id", tacheVo.getClientId());
 		query += addConstraint("t.periode.id", tacheVo.getPeriodeId());
-		query += addConstraint("t.groupeTache.lot.sro.id", tacheVo.getSroId());
-		query += addConstraint("t.groupeTache.lot.projet.nro.id", tacheVo.getNroId());
 		return query;
 	}
 

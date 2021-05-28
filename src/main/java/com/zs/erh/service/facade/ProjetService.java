@@ -12,8 +12,6 @@ public interface ProjetService {
 
     List<Projet> findAll();
 
-    List<Projet> findByNroCode(String code);
-
     Projet findByCode(String Code);
 
     int deleteByCode(String code);
@@ -22,7 +20,6 @@ public interface ProjetService {
 
     Projet save(Projet projet);
 
-    int deleteByNroCode(String code);
     void update(Projet projet);
     Projet findId( Long id);
 

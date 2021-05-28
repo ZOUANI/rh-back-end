@@ -1,11 +1,8 @@
 package com.zs.erh.ws.provided;
 
 import com.zs.erh.bean.Lot;
-import com.zs.erh.bean.Sro;
 import com.zs.erh.service.facade.LotService;
-import com.zs.erh.service.imple.LotServiceImple;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,16 +31,6 @@ public class LotWS {
     @GetMapping("/code/{code}")
     public Lot findByCode(@PathVariable String code) {
         return lotService.findByCode(code);
-    }
-
-    @GetMapping("/id/{id}")
-    public Lot findIdLot(@PathVariable Long id) {
-        return lotService.findIdLot(id);
-    }
-
-    @GetMapping("/sro/code/{code}")
-    public List<Sro> findBySroCode(@PathVariable String code) {
-        return lotService.findBySroCode(code);
     }
 
     @GetMapping("/")

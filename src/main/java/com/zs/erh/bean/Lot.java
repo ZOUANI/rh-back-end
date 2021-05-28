@@ -51,17 +51,14 @@ public class Lot implements Serializable {
 
     @ManyToOne
     private Collaborateur responsable;
-    @ManyToOne
-    private Sro sro;
 
-    public Sro getSro() {
-        if (sro == null) {
-            sro = new Sro();
-        }
+    private String sro;
+
+    public String getSro() {
         return sro;
     }
 
-    public void setSro(Sro sro) {
+    public void setSro(String sro) {
         this.sro = sro;
     }
 

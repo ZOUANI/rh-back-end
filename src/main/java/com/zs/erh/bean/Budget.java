@@ -14,6 +14,8 @@ public class Budget implements Serializable {
     private String libelle;
     private String code;
     private BigDecimal montant;
+    private String messageDemmande;
+    private String messageReponse;
 
     @Temporal(TemporalType.DATE)
     private Date dateDemmande;

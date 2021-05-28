@@ -28,11 +28,6 @@ public class ProjetWS {
         return projetService.save(projet);
     }
 
-    @GetMapping("/nro/code/{code}")
-    public List<Projet> findByNroCode(@PathVariable String code) {
-        return projetService.findByNroCode(code);
-    }
-
     @GetMapping("/")
     public List<Projet> findAll() {
         return projetService.findAll();
