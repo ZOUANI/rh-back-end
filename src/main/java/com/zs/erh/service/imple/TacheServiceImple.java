@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-import com.zs.erh.bean.Entreprise;
 import com.zs.erh.bean.GroupeTache;
 import com.zs.erh.bean.Tache;
 import com.zs.erh.dao.TacheDao;
@@ -100,6 +99,15 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 	@Transactional
 	public int deleteByCode(String code) {
 		return tacheDao.deleteBycode(code);
+	}
+
+	@Transactional
+	public int deleteMultiple(List<Tache> taches) {
+		int res = 0;
+		for (int i = 0; i < taches.size(); i++) {
+			res += deleteByCode(taches.get(i).getCode());
+		}
+		return res;
 	}
 
 	@Override

@@ -78,6 +78,15 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
     }
 
     @Transactional
+    public int deleteMultiple(List<GroupeTache> groupeTaches) {
+        int res = 0;
+        for (int i = 0; i < groupeTaches.size(); i++) {
+            res += deleteByCode(groupeTaches.get(i).getCode());
+        }
+        return res;
+    }
+
+    @Transactional
     public int deleteByLotCode(String code) {
         return groupeTacheDao.deleteByLotCode(code);
     }

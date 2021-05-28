@@ -1,6 +1,4 @@
 package com.zs.erh.service.facade;
-
-import com.zs.erh.bean.Facture;
 import com.zs.erh.bean.Paiement;
 
 import java.util.List;
@@ -14,4 +12,6 @@ public interface PaiementService {
     public int updatePaiement(Paiement paiement);
     public int deleteByCode(String code);
     public int deleteByReference(String reference);
+    public int deleteMultiple(List<Paiement> paiements);
+
 }

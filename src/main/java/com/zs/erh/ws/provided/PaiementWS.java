@@ -52,4 +52,9 @@ public class PaiementWS {
     public int deleteByReference(@PathVariable String reference) {
         return paiementService.deleteByReference(reference);
     }
+
+    @PostMapping("/delete-multiple-by-code")
+    public int deleteMultiple(@RequestBody List<Paiement> paiements) {
+        return paiementService.deleteMultiple(paiements);
+    }
 }
