@@ -40,6 +40,10 @@ public class FactureWS {
     public List<Facture> search(@RequestBody FactureVO factureVO) {
         return factureService.search(factureVO);
     }
+    @PostMapping("/delete-multiple-by-code")
+    public int deleteMultiple(@RequestBody List<Facture> factures) {
+        return factureService.deleteMultiple(factures);
+    }
 
     @DeleteMapping("/code/{code}")
     public int deleteByCode(@PathVariable String code) {

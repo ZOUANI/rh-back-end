@@ -6,6 +6,7 @@ import com.zs.erh.service.facade.FactureService;
 import com.zs.erh.service.vo.FactureVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -71,9 +72,18 @@ public class FactureServiceImple extends AbstractFacade<Facture> implements Fact
         }
         return entityManager.createQuery(query).getResultList();
     }
-
+    @Transactional
     public int deleteByCode(String code) {
         return factureDao.deleteByCode(code);
+    }
+
+    @Transactional
+    public int deleteMultiple(List<Facture> factures) {
+        int res=0;
+        for (int i = 0; i < factures.size(); i++) {
+            res+=deleteByCode(factures.get(i).getCode());
+        }
+        return res;
     }
 
     @Override
