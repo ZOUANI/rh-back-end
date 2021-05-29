@@ -30,6 +30,9 @@ public class BudgetServiceImple implements BudgetService {
     }*/
 
     public Budget save(Budget budget) {
+        if(budget.getAgence() != null && budget.getEtatBudget() != null  && budget.getMontant() !=null){
+            budgetDao.save(budget);
+        }
         return budget;
     }
 }
