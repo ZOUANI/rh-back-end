@@ -1,11 +1,13 @@
 package com.zs.erh.service.imple;
 
 import com.zs.erh.bean.Facture;
+import com.zs.erh.bean.Tache;
 import com.zs.erh.dao.FactureDao;
 import com.zs.erh.service.facade.FactureService;
 import com.zs.erh.service.vo.FactureVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -26,19 +28,18 @@ public class FactureServiceImple extends AbstractFacade<Facture> implements Fact
         return factureDao.findByCode(code);
     }
 
-    public int save(Facture facture) {
+    public List<Facture> findByClientCode(String code) {
+        return factureDao.findByClientCode(code);
+    }
+
+    public Facture save(Facture facture) {
         if (factureDao.findByCode(facture.getCode()) != null) {
-            return -1;
+            return null;
         }
         else {
             factureDao.save(facture);
-            return 1;
+            return facture;
         }
-    }
-
-    @Override
-    public List<Facture> findByClientCode(String code) {
-        return factureDao.findByClientCode(code);
     }
 
     public int updateFacture(Facture facture) {
@@ -72,8 +73,18 @@ public class FactureServiceImple extends AbstractFacade<Facture> implements Fact
         return entityManager.createQuery(query).getResultList();
     }
 
+    @Transactional
     public int deleteByCode(String code) {
         return factureDao.deleteByCode(code);
+    }
+
+    @Transactional
+    public int deleteMultiple(List<Facture> factures) {
+        int res = 0;
+        for (int i = 0; i < factures.size(); i++) {
+            res += deleteByCode(factures.get(i).getCode());
+        }
+        return res;
     }
 
     @Override

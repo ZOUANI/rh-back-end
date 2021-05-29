@@ -14,6 +14,8 @@ public class Budget implements Serializable {
     private String libelle;
     private String code;
     private BigDecimal montant;
+    private String messageDemmande;
+    private String messageReponse;
 
     @Temporal(TemporalType.DATE)
     private Date dateDemmande;
@@ -110,4 +112,19 @@ public class Budget implements Serializable {
         return true;
     }
 
+
+    @Override
+    public String toString() {
+        return "Budget{" +
+                "libelle='" + libelle + '\'' +
+                ", code='" + code + '\'' +
+                ", montant=" + montant +
+                ", messageDemmande='" + messageDemmande + '\'' +
+                ", messageReponse='" + messageReponse + '\'' +
+                ", dateDemmande=" + dateDemmande +
+                ", dateReponse=" + dateReponse +
+                ", etatBudget=" + etatBudget +
+                ", Agence=" + Agence +
+                '}';
+    }
 }

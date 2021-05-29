@@ -41,7 +41,7 @@ public class GroupeTacheWS {
     }
 
     @PostMapping("/")
-    public int save(@RequestBody GroupeTache groupeTache) {
+    public GroupeTache save(@RequestBody GroupeTache groupeTache) {
         return groupeTacheService.save(groupeTache);
     }
 
@@ -53,6 +53,11 @@ public class GroupeTacheWS {
     @DeleteMapping("/code/{code}")
     public int deleteByCode(@PathVariable String code) {
         return groupeTacheService.deleteByCode(code);
+    }
+
+    @PostMapping("/delete-multiple-by-code")
+    public int deleteMultiple(@RequestBody List<GroupeTache> groupeTaches) {
+        return groupeTacheService.deleteMultiple(groupeTaches);
     }
 
     @GetMapping("/id/{id}")

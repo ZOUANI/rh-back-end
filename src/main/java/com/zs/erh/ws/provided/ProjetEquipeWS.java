@@ -18,7 +18,7 @@ public class ProjetEquipeWS {
         projetEquipeService.deleteById(id);
     }
     @PostMapping("/dir/")
-    public int saveDirect(@RequestBody ProjetEquipe projetEquipe) {
+    public ProjetEquipe saveDirect(@RequestBody ProjetEquipe projetEquipe) {
         return projetEquipeService.saveDirect(projetEquipe);
     }
 

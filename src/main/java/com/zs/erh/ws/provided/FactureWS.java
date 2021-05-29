@@ -25,16 +25,19 @@ public class FactureWS {
     }
 
     @PostMapping("/")
-    public int save(@RequestBody Facture facture) {
+    public Facture save(@RequestBody Facture facture) {
         return factureService.save(facture);
     }
+
     @GetMapping("/client/code/{code}")
     public List<Facture> findByClientCode(@PathVariable String code) {
         return factureService.findByClientCode(code);
     }
 
     @PutMapping("/")
-    public int updateFacture(@RequestBody Facture facture) { return factureService.updateFacture(facture); }
+    public int updateFacture(@RequestBody Facture facture) {
+        return factureService.updateFacture(facture);
+    }
 
     @PostMapping("/search")
     public List<Facture> search(@RequestBody FactureVO factureVO) {
@@ -46,4 +49,8 @@ public class FactureWS {
         return factureService.deleteByCode(code);
     }
 
+    @PostMapping("/delete-multiple-by-code")
+    public int deleteMultiple(@RequestBody List<Facture> factures) {
+        return factureService.deleteMultiple(factures);
+    }
 }

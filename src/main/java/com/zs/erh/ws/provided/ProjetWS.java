@@ -24,13 +24,8 @@ public class ProjetWS {
     public ProjetServiceImple projetServiceImple;
 
     @PostMapping("/")
-    public int save(@RequestBody Projet projet) {
+    public Projet save(@RequestBody Projet projet) {
         return projetService.save(projet);
-    }
-
-    @GetMapping("/nro/code/{code}")
-    public List<Projet> findByNroCode(@PathVariable String code) {
-        return projetService.findByNroCode(code);
     }
 
     @GetMapping("/")

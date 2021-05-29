@@ -33,7 +33,7 @@ public class TacheWS {
     }
 
     @PostMapping("/")
-    public int save(@RequestBody Tache tache) {
+    public Tache save(@RequestBody Tache tache) {
         return tacheService.save(tache);
     }
 
@@ -50,6 +50,11 @@ public class TacheWS {
     @DeleteMapping("code/{code}")
     public int deleteByCode(@PathVariable String code) {
         return tacheService.deleteByCode(code);
+    }
+
+    @PostMapping("/delete-multiple-by-code")
+    public int deleteMultiple(@RequestBody List<Tache> taches) {
+        return tacheService.deleteMultiple(taches);
     }
 
     @PostMapping("calcStatistique/")

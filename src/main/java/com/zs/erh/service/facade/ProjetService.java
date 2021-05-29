@@ -12,17 +12,14 @@ public interface ProjetService {
 
     List<Projet> findAll();
 
-    List<Projet> findByNroCode(String code);
-
     Projet findByCode(String Code);
 
     int deleteByCode(String code);
 
     int deleteMultiple(List<Projet> projets);
 
-    int save(Projet projet);
+    Projet save(Projet projet);
 
-    int deleteByNroCode(String code);
     void update(Projet projet);
     Projet findId( Long id);
 
