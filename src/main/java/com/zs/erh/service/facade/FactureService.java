@@ -8,8 +8,10 @@ import java.util.List;
 public interface FactureService {
     public List<Facture> findAll();
     public Facture findByCode(String code);
-    public int save(Facture facture);
+    public List<Facture> findByClientCode(String code);
+    public Facture save(Facture facture);
     public int deleteByCode(String code);
+    public int deleteMultiple(List<Facture> factures);
     public int updateFacture(Facture facture);
     public List<Facture> search(FactureVO factureVO);
 }

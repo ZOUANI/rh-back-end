@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-import com.zs.erh.bean.Entreprise;
 import com.zs.erh.bean.GroupeTache;
 import com.zs.erh.bean.Tache;
 import com.zs.erh.dao.TacheDao;
@@ -55,13 +54,13 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 		return tacheDao.findAll();
 	}
 
-	public int save(Tache tache) {
+	public Tache save(Tache tache) {
 		if(findByCode(tache.getCode())!=null) {
-			return -2;
+			return null;
 		}else{
 			GroupeTache groupeTache = groupeTacheService.findByCode(tache.getGroupeTache().getCode());
 			if(groupeTache==null) {
-				return -1;
+				return null;
 			}
 			else {
 				tache.setGroupeTache(groupeTache);
@@ -71,7 +70,7 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 				tache.setMembreEquipe(membreEquipeService.findByEquipeCodeAndCollaborateurCode(tache.getMembreEquipe().getEquipe().getCode(),
 						tache.getMembreEquipe().getCollaborateur().getCode()));
 				tacheDao.save(tache);
-				return 1;
+				return tache;
 			}
 		}
 	}
@@ -100,6 +99,15 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 	@Transactional
 	public int deleteByCode(String code) {
 		return tacheDao.deleteBycode(code);
+	}
+
+	@Transactional
+	public int deleteMultiple(List<Tache> taches) {
+		int res = 0;
+		for (int i = 0; i < taches.size(); i++) {
+			res += deleteByCode(taches.get(i).getCode());
+		}
+		return res;
 	}
 
 	@Override
@@ -132,8 +140,6 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 		query += addConstraint("t.groupeTache.lot.id", tacheVo.getLotId());
 		query += addConstraint("t.groupeTache.lot.projet.client.id", tacheVo.getClientId());
 		query += addConstraint("t.periode.id", tacheVo.getPeriodeId());
-		query += addConstraint("t.groupeTache.lot.sro.id", tacheVo.getSroId());
-		query += addConstraint("t.groupeTache.lot.projet.nro.id", tacheVo.getNroId());
 		return query;
 	}
 

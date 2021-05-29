@@ -12,15 +12,13 @@ public interface TacheService {
 	public Tache findByCode(String code);
 	public List<Tache> findByGroupeTacheCode(String code);
 	public List<Tache> findAll();
-	public int save(Tache tache);
+	public Tache save(Tache tache);
 	public int deleteByGroupeTacheCode(String code);
 	public int deleteByCode(String code);
+	public int deleteMultiple(List<Tache> taches);
 	public int updateTache(Tache tache);
 	public List<Tache> search(TacheVo tacheVo);
-
 	public List<TacheVo> calcStatistique(TacheVo tacheVo);
-
 	public List<CollaborateurVo> suivreCollaborateurs(CollaborateurVo collaborateurVo);
-
 	public List<CollaborateurVo> calcStatistiqueSuiviCollaborateur(Date dateMin, Date dateMax);
 }

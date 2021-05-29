@@ -45,8 +45,9 @@ public class Projet implements Serializable {
 
     @ManyToOne
     private Collaborateur responsable;
-    @ManyToOne
-    private Nro nro;
+
+    private String nro;
+
     @ManyToOne
     private Client client;
     @ManyToOne
@@ -81,17 +82,6 @@ public class Projet implements Serializable {
 
     public void setClient(Client client) {
         this.client = client;
-    }
-
-    public Nro getNro() {
-        if (this.nro == null) {
-            this.nro = new Nro();
-        }
-        return nro;
-    }
-
-    public void setNro(Nro nro) {
-        this.nro = nro;
     }
 
     public String getLibelle() {
@@ -204,6 +194,14 @@ public class Projet implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getNro() {
+        return nro;
+    }
+
+    public void setNro(String nro) {
+        this.nro = nro;
     }
 
     @Override

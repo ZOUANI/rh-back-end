@@ -10,6 +10,7 @@ public interface PaiementDao extends JpaRepository<Paiement, Long> {
     public List<Paiement> findAll();
     public Paiement findByCode(String code);
     public Paiement findByReference(String reference);
+    public List<Paiement> findByFactureCode(String code);
     public int deleteByCode(String code);
     public int deleteByReference(String reference);
 }
