@@ -13,6 +13,10 @@ import java.util.Optional;
 @RestController
 @RequestMapping("maneo-rh/conge")
 public class DemandeCongeWS {
+    @Autowired
+    private DemandeCongeService demandeCongeService;
+
+
     @GetMapping("/id/{id}")
     public Optional<DemandeConge> findById(Long id) {
         return demandeCongeService.findById(id);
@@ -63,8 +67,10 @@ public class DemandeCongeWS {
         return demandeCongeService.findByCriteriaConge(demandeCongeVO);
     }
 
-    @Autowired
-    private DemandeCongeService demandeCongeService;
 
+    @GetMapping("/codec/codec")
+    public List<DemandeConge> findByCollaborateurCode(@PathVariable String codec) {
+        return demandeCongeService.findByCollaborateurCode(codec);
+    }
 }
 
