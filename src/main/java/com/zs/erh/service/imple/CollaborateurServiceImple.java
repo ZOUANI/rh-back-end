@@ -3,6 +3,7 @@ package com.zs.erh.service.imple;
 import java.util.List;
 import java.util.Optional;
 
+import com.zs.erh.bean.Admin;
 import com.zs.erh.bean.Collaborateur;
 import com.zs.erh.dao.CollaborateurDao;
 import com.zs.erh.service.facade.CategorieCollaborateurService;
@@ -47,14 +48,15 @@ public class CollaborateurServiceImple implements CollaborateurService {
 		}
 	}
 	public Collaborateur signIn(Collaborateur collaborateur){
-		if(collaborateurDao.findByLogin(collaborateur.getLogin()) != null){
-			Collaborateur foundedCollab = collaborateurDao.findByLoginAndPassword(collaborateur.getLogin(),collaborateur.getPassword());
-			if(foundedCollab.getPassword().equals(collaborateur.getPassword())){
-				 return foundedCollab;
-			}else throw new RuntimeException("Password incorrect!");
+		Collaborateur foundedCollaborateur = this.collaborateurDao.findByLogin(collaborateur.getLogin());
+		if(foundedCollaborateur == null){
+			return null;
 		}
-		else throw new RuntimeException("login not found!");
-
+		if (!foundedCollaborateur.getPassword().equals(collaborateur.getPassword())){
+			return null;
+		}else{
+			return foundedCollaborateur;
+		}
 	}
 
 
@@ -82,9 +84,7 @@ public class CollaborateurServiceImple implements CollaborateurService {
 		return collaborateurDao.findByCode(code);
 	}
 
-//	public List<Collaborateur> findByEquipeDefaultCode(String code) {
-//		return collaborateurDao.findByEquipeDefaultCode(code);
-//	}
+
 public Optional<Collaborateur> findById(Long id) {
 	return collaborateurDao.findById(id);
 }
