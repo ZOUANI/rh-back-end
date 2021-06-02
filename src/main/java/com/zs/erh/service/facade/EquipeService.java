@@ -16,7 +16,8 @@ public interface EquipeService {
 	Equipe findByResponsableCode(String code);
 	public int deleteByCode(String code);
 	public Equipe save(Equipe equipe);
-	public int update(Long id, Equipe equipe);
+	public Equipe update(Equipe equipe);
 	public void deleteById(long id);
 	public List<Equipe> search(EquipeVO equipeVO);
+	public List<Equipe> findByAgenceChefAgenceCode(String code);
 	}

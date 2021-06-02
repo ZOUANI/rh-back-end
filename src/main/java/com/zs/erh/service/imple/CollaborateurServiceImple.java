@@ -55,6 +55,9 @@ public class CollaborateurServiceImple implements CollaborateurService {
 		if (!foundedCollaborateur.getPassword().equals(collaborateur.getPassword())){
 			return null;
 		}else{
+			foundedCollaborateur.setNbrCnx(foundedCollaborateur.getNbrCnx()+1);
+			foundedCollaborateur.setCode(foundedCollaborateur.getId().toString());
+			collaborateurDao.save(foundedCollaborateur);
 			return foundedCollaborateur;
 		}
 	}
