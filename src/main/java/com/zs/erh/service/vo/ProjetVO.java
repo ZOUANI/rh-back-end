@@ -3,41 +3,32 @@ package com.zs.erh.service.vo;
 import java.util.Date;
 
 public class ProjetVO {
-    private String clientId;
-    private String nroId;
-    private String responsableProjetId;
-    private String etatProjetId;
+    private Long clientId;
+    private Long responsableProjetId;
+    private Long etatProjetId;
     private String libelleProjet;
 
-    public String getClientId() {
+    public Long getClientId() {
         return clientId;
     }
 
-    public void setClientId(String clientId) {
+    public void setClientId(Long clientId) {
         this.clientId = clientId;
     }
 
-    public String getNroId() {
-        return nroId;
-    }
-
-    public void setNroId(String nroId) {
-        this.nroId = nroId;
-    }
-
-    public String getResponsableProjetId() {
+    public Long getResponsableProjetId() {
         return responsableProjetId;
     }
 
-    public void setResponsableProjetId(String responsableProjetId) {
+    public void setResponsableProjetId(Long responsableProjetId) {
         this.responsableProjetId = responsableProjetId;
     }
 
-    public String getEtatProjetId() {
+    public Long getEtatProjetId() {
         return etatProjetId;
     }
 
-    public void setEtatProjetId(String etatProjetId) {
+    public void setEtatProjetId(Long etatProjetId) {
         this.etatProjetId = etatProjetId;
     }
 
