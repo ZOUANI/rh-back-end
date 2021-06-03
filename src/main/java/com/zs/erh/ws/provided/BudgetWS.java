@@ -2,6 +2,7 @@ package com.zs.erh.ws.provided;
 
 import com.zs.erh.bean.Budget;
 import com.zs.erh.service.facade.BudgetService;
+import com.zs.erh.service.vo.BudgetVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,5 +31,8 @@ public class BudgetWS {
     public List<Budget> findByEtatBudgetLibelle(@PathVariable String libelle) {
         return budgetService.findByEtatBudgetLibelle(libelle);
     }
-
+   @PostMapping("/statistic-budget")
+    public BudgetVO calculStatisticBudget(@RequestBody BudgetVO budgetVO) {
+        return budgetService.calculStatisticBudget(budgetVO);
+    }
 }

@@ -15,7 +15,10 @@ import java.util.Optional;
 public class DemandeCongeWS {
     @Autowired
     private DemandeCongeService demandeCongeService;
-
+    @GetMapping("/codechef/{codechef}")
+    public List<DemandeConge> findByCollaborateurAgenceChefAgenceCode(@PathVariable String codechef) {
+        return demandeCongeService.findByCollaborateurAgenceChefAgenceCode(codechef);
+    }
 
     @GetMapping("/id/{id}")
     public Optional<DemandeConge> findById(Long id) {
@@ -68,7 +71,7 @@ public class DemandeCongeWS {
     }
 
 
-    @GetMapping("/codec/codec")
+    @GetMapping("/codec/{codec}")
     public List<DemandeConge> findByCollaborateurCode(@PathVariable String codec) {
         return demandeCongeService.findByCollaborateurCode(codec);
     }

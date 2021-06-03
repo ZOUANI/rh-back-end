@@ -16,5 +16,6 @@ public interface DemandeCongeDao extends JpaRepository<DemandeConge,Long> {
     DemandeConge findByCode(String code);
     int deleteByCode(String code);
     List<DemandeConge> findByCollaborateurCode(String code);
+    List<DemandeConge> findByCollaborateurAgenceChefAgenceCode(String code);
 }
 

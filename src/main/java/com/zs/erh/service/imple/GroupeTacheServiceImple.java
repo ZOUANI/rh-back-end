@@ -19,7 +19,6 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
 
     @Autowired
     private GroupeTacheDao groupeTacheDao;
-
     @Autowired
     private TacheService tacheService;
 
@@ -76,6 +75,9 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
         int res1 = this.tacheService.deleteByGroupeTacheCode(code);
         return res1 + groupeTacheDao.deleteByCode(code);
     }
+
+
+
 
     @Transactional
     public int deleteMultiple(List<GroupeTache> groupeTaches) {
