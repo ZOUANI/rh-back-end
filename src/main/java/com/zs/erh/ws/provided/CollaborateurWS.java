@@ -41,11 +41,11 @@ public class CollaborateurWS{
 		return collaborateurService.findByLoginAndPassword(login,password);
 	}
 	@PostMapping("/")
-	public Collaborateur saveCollaborateur(@RequestBody Collaborateur collaborateur) {
+	public Collaborateur sinscrire(@RequestBody Collaborateur collaborateur) {
 		return collaborateurService.saveCollaborateur(collaborateur);
 	}
 	@PostMapping("/signIn")
-	public Collaborateur signIn(@RequestBody Collaborateur collaborateur){
+	public Collaborateur sauthentifier(@RequestBody Collaborateur collaborateur){
 		return collaborateurService.signIn(collaborateur);
 	}
 

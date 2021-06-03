@@ -90,17 +90,18 @@ public class ProjetServiceImple implements ProjetService {
 
     public List<Projet> search(ProjetVO projetVo) {
         String query = "SELECT p from Projet p WHERE 1=1 ";
-        if (StringUtil.isNotEmpty(projetVo.getClientId()))
-            query += "AND p.client.id ='" + projetVo.getClientId() + "'";
-        if (StringUtil.isNotEmpty(projetVo.getEtatProjetId()))
-            query += "AND p.etatProjet.id ='" + projetVo.getEtatProjetId() + "'";
-        if (StringUtil.isNotEmpty(projetVo.getLibelleProjet()))
-            query += "AND p.libelle ='" + projetVo.getLibelleProjet() + "'";
-        if (StringUtil.isNotEmpty(projetVo.getResponsableProjetId()))
-            query += "AND p.responsable.id ='" + projetVo.getResponsableProjetId() + "'";
-        if (StringUtil.isNotEmpty(projetVo.getNroId()))
-            query += "AND p.nro.id ='" + projetVo.getNroId() + "'";
-
+        if (projetVo.getClientId() != null) {
+            query += "AND p.client.id = " + projetVo.getClientId();
+        }
+        if (projetVo.getEtatProjetId() != null) {
+            query += "AND p.etatProjet.id = " + projetVo.getEtatProjetId();
+        }
+        if (StringUtil.isNotEmpty(projetVo.getLibelleProjet())) {
+            query += "AND p.libelle LIKE '%" + projetVo.getLibelleProjet() + "%'";
+        }
+        if (projetVo.getResponsableProjetId() != null) {
+            query += "AND p.responsable.id = " + projetVo.getResponsableProjetId();
+        }
         return entityManager.createQuery(query).getResultList();
     }
 

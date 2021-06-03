@@ -28,9 +28,6 @@ public class FactureServiceImple extends AbstractFacade<Facture> implements Fact
         return factureDao.findByCode(code);
     }
 
-    public List<Facture> findByClientCode(String code) {
-        return factureDao.findByClientCode(code);
-    }
 
     public Facture save(Facture facture) {
         if (factureDao.findByCode(facture.getCode()) != null) {
@@ -40,6 +37,11 @@ public class FactureServiceImple extends AbstractFacade<Facture> implements Fact
             factureDao.save(facture);
             return facture;
         }
+    }
+
+    @Override
+    public List<Facture> findByClientCode(String code) {
+        return factureDao.findByClientCode(code);
     }
 
     public int updateFacture(Facture facture) {

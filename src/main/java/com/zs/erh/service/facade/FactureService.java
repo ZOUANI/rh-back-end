@@ -1,6 +1,7 @@
 package com.zs.erh.service.facade;
 
 import com.zs.erh.bean.Facture;
+import com.zs.erh.bean.Projet;
 import com.zs.erh.service.vo.FactureVO;
 
 import java.util.List;

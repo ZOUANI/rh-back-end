@@ -116,4 +116,19 @@ public class Budget implements Serializable {
         return true;
     }
 
+
+    @Override
+    public String toString() {
+        return "Budget{" +
+                "libelle='" + libelle + '\'' +
+                ", code='" + code + '\'' +
+                ", montant=" + montant +
+                ", messageDemmande='" + messageDemmande + '\'' +
+                ", messageReponse='" + messageReponse + '\'' +
+                ", dateDemmande=" + dateDemmande +
+                ", dateReponse=" + dateReponse +
+                ", etatBudget=" + etatBudget +
+                ", Agence=" + Agence +
+                '}';
+    }
 }
