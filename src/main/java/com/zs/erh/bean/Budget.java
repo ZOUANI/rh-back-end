@@ -128,7 +128,7 @@ public class Budget implements Serializable {
                 ", dateDemmande=" + dateDemmande +
                 ", dateReponse=" + dateReponse +
                 ", etatBudget=" + etatBudget +
-                ", Agence=" + Agence +
+                ", Agence=" + agence +
                 '}';
     }
 }
