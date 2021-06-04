@@ -154,9 +154,14 @@ public class DemandeCongeServiceImple extends AbstractFacade<DemandeConge> imple
         return demandeCongeDao.findByCollaborateurCode(code);
     }
 
+
+
+    public List<DemandeConge> findByCollaborateurAgenceChefAgenceCode(String code) {
+        return demandeCongeDao.findByCollaborateurAgenceChefAgenceCode(code);
+    }
+
     @Autowired
     private DemandeCongeDao demandeCongeDao;
-
     @Autowired
     private EtatDemandeCongeService etatDemandeCongeService;
     @Autowired

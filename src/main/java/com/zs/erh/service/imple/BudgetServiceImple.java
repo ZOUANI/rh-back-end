@@ -2,11 +2,13 @@ package com.zs.erh.service.imple;
 
 import com.zs.erh.bean.Agence;
 import com.zs.erh.bean.Budget;
+import com.zs.erh.bean.Tache;
 import com.zs.erh.dao.BudgetDao;
 import com.zs.erh.service.facade.AgenceService;
 import com.zs.erh.service.facade.BudgetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.xml.crypto.Data;
 import java.math.BigDecimal;
@@ -33,9 +35,6 @@ public class BudgetServiceImple implements BudgetService {
     public List<Budget> findByEtatBudgetLibelle(String libelle) {
         return budgetDao.findByEtatBudgetLibelle(libelle);
     }
-   /*public List<Budget> findByEtatBudjetLibelle(String libelle) {
-        return budgetDao.findByEtatBudjetLibelle(libelle);
-    }*/
 
     public Budget save(Budget budget) {
         System.out.println("budget = " + budget);
@@ -54,5 +53,19 @@ public class BudgetServiceImple implements BudgetService {
         } else {
             return null;
         }
+    }
+
+    @Transactional
+    public int deleteByCode(String code) {
+        return budgetDao.deleteByCode(code);
+    }
+
+    @Transactional
+    public int deleteMultiple(List<Tache> taches) {
+        int res = 0;
+        for (int i = 0; i < taches.size(); i++) {
+            res += deleteByCode(taches.get(i).getCode());
+        }
+        return res;
     }
 }

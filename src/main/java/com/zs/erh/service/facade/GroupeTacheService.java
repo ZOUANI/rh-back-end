@@ -32,4 +32,6 @@ public interface GroupeTacheService {
 	public int updateGroupeTache(GroupeTache groupeTache);
 
 	public List<GroupeTache> search(GroupeTacheVO groupeTacheVO);
+
+
 }
