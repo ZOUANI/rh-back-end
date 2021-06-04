@@ -1,7 +1,7 @@
 package com.zs.erh.service.facade;
 
 import com.zs.erh.bean.Budget;
-import com.zs.erh.service.vo.BudgetVO;
+import com.zs.erh.bean.Tache;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ public interface BudgetService {
     List<Budget> findAll();
     Budget findByCode (String code);
     List<Budget> findByEtatBudgetLibelle(String libelle);
-    //List<Budget> findByEtatBudjetLibelle(String libelle);
-    BudgetVO calculStatisticBudget(BudgetVO budgetVO);
+    public int deleteByCode(String code);
+    public int deleteMultiple(List<Tache> taches);
     public Budget save (Budget budget);
 }
