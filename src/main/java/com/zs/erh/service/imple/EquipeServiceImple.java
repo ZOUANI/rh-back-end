@@ -1,16 +1,10 @@
 package com.zs.erh.service.imple;
 
-import com.zs.erh.bean.Client;
-import com.zs.erh.bean.Collaborateur;
-import com.zs.erh.bean.Equipe;
-import com.zs.erh.bean.EtatEquipe;
+import com.zs.erh.bean.*;
 import com.zs.erh.dao.CollaborateurDao;
 import com.zs.erh.dao.EquipeDao;
 import com.zs.erh.dao.EtatEquipeDao;
-import com.zs.erh.service.facade.CollaborateurService;
-import com.zs.erh.service.facade.EquipeService;
-import com.zs.erh.service.facade.EtatEquipeService;
-import com.zs.erh.service.facade.MembreEquipeService;
+import com.zs.erh.service.facade.*;
 import com.zs.erh.service.util.StringUtil;
 import com.zs.erh.service.vo.ClientVO;
 import com.zs.erh.service.vo.EquipeVO;
@@ -38,6 +32,8 @@ public class EquipeServiceImple implements EquipeService {
     private EtatEquipeService etatEquipeService;
     @Autowired
     private EtatEquipeDao etatEquipeDao;
+    @Autowired
+    private AgenceService agenceService;
     @Autowired
     private EntityManager entityManager;
 
@@ -74,38 +70,44 @@ public class EquipeServiceImple implements EquipeService {
     }
 
     public Equipe save(Equipe equipe) {
-        equipe.setCode(equipe.getLibelle());
-        if (equipeDao.findByCode(equipe.getCode()) != null) {
-            return null; // already exist !
-        } else {
-            Collaborateur respoFounded = collaborateurService.findByCode(equipe.getResponsable().getCode());
-            EtatEquipe etatEquipeFounded = etatEquipeService.findByCode(equipe.getEtatEquipe().getCode());
-
-            if (respoFounded == null) {
-                return null;
-            } else if (etatEquipeFounded == null) {
-                return null;
-            } else {
-                equipe.setResponsable(respoFounded);
-                equipe.setEtatEquipe(etatEquipeFounded);
-                equipeDao.save(equipe);
+       if(findByCode(equipe.getCode())!=null){
+           return null;
+       }else{
+           Collaborateur responsable = collaborateurService.findByCode(equipe.getResponsable().getCode());
+           EtatEquipe etatEquipe = etatEquipeService.findByCode(equipe.getEtatEquipe().getCode());
+           Agence agence = agenceService.findByCode(equipe.getAgence().getCode());
+           if(responsable == null || etatEquipe == null || agence == null){
+               return null;
+           }else{
+               equipe.setResponsable(responsable);
+               equipe.setEtatEquipe(etatEquipe);
+               equipe.setAgence(agence);
+               equipeDao.save(equipe);
+               return equipe;
+           }
+       }
+    }
+    public Equipe update(Equipe equipe){
+        Optional<Equipe> equipeFounded = equipeDao.findById(equipe.getId());
+        if(equipeFounded.isPresent()){
+            Collaborateur responsable = collaborateurService.findByCode(equipe.getResponsable().getCode());
+            EtatEquipe etatEquipe = etatEquipeService.findByCode(equipe.getEtatEquipe().getCode());
+            Agence agence = agenceService.findByCode(equipe.getAgence().getCode());
+            if (responsable != null && etatEquipe != null && agence != null){
+                equipeFounded.get().setLibelle(equipe.getLibelle());
+                equipeFounded.get().setCode(equipe.getLibelle());
+                equipeFounded.get().setResponsable(responsable);
+                equipeFounded.get().setEtatEquipe(etatEquipe);
+                equipeFounded.get().setAgence(agence);
+                equipeDao.save(equipeFounded.get());
+                return equipeFounded.get();
+            }else {
+                return  null;
             }
-            return equipe;
+        }else {
+            return  null;
         }
     }
-
-  public int update(Long id,Equipe equipe){
-        Optional<Equipe> foundedEquipe = equipeDao.findById(id);
-        if (foundedEquipe.isPresent()) {
-                foundedEquipe.get().setLibelle(equipe.getLibelle());
-                foundedEquipe.get().setDescription(equipe.getDescription());
-                foundedEquipe.get().setResponsable(equipe.getResponsable());
-                foundedEquipe.get().setEtatEquipe(equipe.getEtatEquipe());
-                equipeDao.save(foundedEquipe.get());
-                return 1;
-            }else
-                return -1;
-            }
 
     public List<Equipe> search(EquipeVO equipeVO){
         String query = "SELECT e FROM Equipe e where 1=1";
@@ -117,6 +119,10 @@ public class EquipeServiceImple implements EquipeService {
             query +=" AND e.responsable.id = " + equipeVO.getResponsableId();
         }
         return  entityManager.createQuery(query).getResultList();
+    }
+
+    public  List<Equipe> findByAgenceChefAgenceCode(String code){
+        return equipeDao.findByAgenceChefAgenceCode(code);
     }
 }
 

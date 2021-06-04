@@ -12,5 +12,6 @@ public interface EquipeDao extends JpaRepository<Equipe,Long> {
     int deleteByCode(String code);
     Equipe findByResponsableCode(String code);
     List<Equipe> findByEtatEquipeCode(String code);
+    List<Equipe> findByAgenceChefAgenceCode(String code);
 
 }

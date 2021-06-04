@@ -7,12 +7,7 @@ package com.zs.erh.bean;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
+import javax.persistence.*;
 
 /**
  *
@@ -37,7 +32,7 @@ public class Tache implements Serializable {
     private Integer semaine;
     private Integer mois;
     private Integer annee;
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date dateDemarrageEffective;
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date dateFinEffective;
