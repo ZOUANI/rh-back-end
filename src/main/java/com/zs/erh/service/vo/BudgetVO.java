@@ -12,6 +12,8 @@ public class BudgetVO {
     private Long agenceId;
     private Integer nbrBudget;
     private BigDecimal total;
+    private  Integer nbrFacture;
+    private BigDecimal totalMontantFacture;
 
     public  BudgetVO( BigDecimal total,Integer nbrBudget){
 

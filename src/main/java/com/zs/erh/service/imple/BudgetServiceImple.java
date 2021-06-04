@@ -6,18 +6,23 @@ import com.zs.erh.bean.Tache;
 import com.zs.erh.dao.BudgetDao;
 import com.zs.erh.service.facade.AgenceService;
 import com.zs.erh.service.facade.BudgetService;
+import com.zs.erh.service.vo.BudgetVO;
+import com.zs.erh.service.vo.TacheVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import javax.xml.crypto.Data;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 @Service
-public class BudgetServiceImple implements BudgetService {
+public class BudgetServiceImple extends AbstractFacade<Budget> implements BudgetService {
 
+    @Autowired
+    private EntityManager entityManager;
     @Autowired
     private BudgetDao budgetDao;
 
@@ -54,7 +59,10 @@ public class BudgetServiceImple implements BudgetService {
             return null;
         }
     }
-
+    @Override
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
     @Transactional
     public int deleteByCode(String code) {
         return budgetDao.deleteByCode(code);
@@ -67,5 +75,29 @@ public class BudgetServiceImple implements BudgetService {
             res += deleteByCode(taches.get(i).getCode());
         }
         return res;
+    }
+
+
+    public BudgetVO calcStatistique(BudgetVO budgetVO) {
+        String query = "SELECT new com.zs.erh.service.vo.BudgetVO(SUM (b.montant),COUNT(b)) FROM Budget  b WHERE 1=1";
+        query += addCriteria(budgetVO);
+        System.out.println("query = " + query);
+        BudgetVO res =(BudgetVO) getEntityManager().createQuery(query).getSingleResult();
+        System.out.println("res = " + res);
+        return res;
+    }
+
+    public String addCriteria(BudgetVO budgetVO) {
+        String query = "";
+        query += addConstraintMinMaxDate("b", "dateReponse", budgetVO.getDateMin(), budgetVO.getDateMax());
+        query += addConstraint("b.agence.id", budgetVO.getAgenceId());
+
+
+        return query;
+    }
+
+    @Override
+    public Class<Budget> getEntityClass() {
+        return Budget.class;
     }
 }
