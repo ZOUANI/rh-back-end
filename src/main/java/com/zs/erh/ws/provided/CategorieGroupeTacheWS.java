@@ -17,7 +17,7 @@ public class CategorieGroupeTacheWS {
     public List<CategorieGroupeTache> findAll() {
         return categorieGroupeTacheService.findAll();
     }
-    @GetMapping("/code/code")
+    @GetMapping("/code/{code}")
     public CategorieGroupeTache findByCode(@PathVariable String code) {
         return categorieGroupeTacheService.findByCode(code);
     }
