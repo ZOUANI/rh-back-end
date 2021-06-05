@@ -1,5 +1,6 @@
 package com.zs.erh.ws.provided;
 
+import com.zs.erh.bean.ChefAgence;
 import com.zs.erh.bean.Projet;
 import com.zs.erh.service.facade.ProjetService;
 import com.zs.erh.service.imple.ProjetServiceImple;
@@ -15,17 +16,23 @@ import java.util.List;
 public class ProjetWS {
     @Autowired
     public ProjetService projetService;
+
+    @Autowired
+    public ProjetServiceImple projetServiceImple;
+
     @PostMapping("/search")
     public List<Projet> search(@RequestBody ProjetVO projetVo) {
         return projetServiceImple.search(projetVo);
     }
 
-    @Autowired
-    public ProjetServiceImple projetServiceImple;
-
     @PostMapping("/")
     public Projet save(@RequestBody Projet projet) {
         return projetService.save(projet);
+    }
+
+    @GetMapping("/agence/chefAgence/{chefAgence}")
+    public List<Projet> findByAgence_ChefAgence(@RequestBody ChefAgence chefAgence) {
+        return projetService.findByAgence_ChefAgence(chefAgence);
     }
 
     @GetMapping("/")
@@ -62,5 +69,9 @@ public class ProjetWS {
     public List<Projet> findByClientId(@PathVariable Long id) {
         return projetService.findByClientId(id);
     }
-}
 
+    @GetMapping("/responsable/login/{login}")
+    public List<Projet> findByResponsableLogin(@PathVariable String login) {
+        return projetService.findByResponsableLogin(login);
+    }
+}
