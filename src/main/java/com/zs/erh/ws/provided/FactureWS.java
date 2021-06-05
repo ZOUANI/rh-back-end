@@ -19,6 +19,11 @@ public class FactureWS {
         return factureService.findAll();
     }
 
+    @GetMapping("/codeChefAgence/{code}")
+    public List<Facture> findByAgenceChefAgenceCode(@PathVariable String code) {
+        return factureService.findByAgenceChefAgenceCode(code);
+    }
+
     @GetMapping("/code/{code}")
     public Facture findByCode(@PathVariable String code) {
         return factureService.findByCode(code);

@@ -12,9 +12,8 @@ public class Facture implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String reference;
-    private String libelle;
     private String code;
+    private String libelle;
     private String description;
     private BigDecimal totalHeursCalcules;
     private BigDecimal totalHeursFactures;
@@ -27,6 +26,8 @@ public class Facture implements Serializable {
     private Client client;
     @ManyToOne
     private EtatFacture etatFacture;
+    @ManyToOne
+    private Agence agence;
 
 
     public Long getId() {
@@ -37,12 +38,12 @@ public class Facture implements Serializable {
         this.id = id;
     }
 
-    public String getReference() {
-        return reference;
+    public String getCode() {
+        return code;
     }
 
-    public void setReference(String reference) {
-        this.reference = reference;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getLibelle() {
@@ -51,14 +52,6 @@ public class Facture implements Serializable {
 
     public void setLibelle(String libelle) {
         this.libelle = libelle;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     public String getDescription() {
@@ -123,6 +116,14 @@ public class Facture implements Serializable {
 
     public void setEtatFacture(EtatFacture etatFacture) {
         this.etatFacture = etatFacture;
+    }
+
+    public Agence getAgence() {
+        return agence;
+    }
+
+    public void setAgence(Agence agence) {
+        this.agence = agence;
     }
 
     @Override
