@@ -33,12 +33,12 @@ public class BudgetWS {
     }
 
     @DeleteMapping("/delete/{code}")
-    public int deleteByCode(String code) {
+    public int deleteByCode(@PathVariable String code) {
         return budgetService.deleteByCode(code);
     }
 
     @PostMapping("/delete/")
-    public int deleteMultiple(List<Tache> taches) {
+    public int deleteMultiple(@RequestBody List<Tache> taches) {
         return budgetService.deleteMultiple(taches);
     }
 }
