@@ -1,6 +1,7 @@
 package com.zs.erh.ws.provided;
 
 import com.zs.erh.bean.Budget;
+import com.zs.erh.bean.Tache;
 import com.zs.erh.service.facade.BudgetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,4 +32,13 @@ public class BudgetWS {
         return budgetService.findByEtatBudgetLibelle(libelle);
     }
 
+    @DeleteMapping("/delete/{code}")
+    public int deleteByCode(@PathVariable String code) {
+        return budgetService.deleteByCode(code);
+    }
+
+    @PostMapping("/delete/")
+    public int deleteMultiple(@RequestBody List<Tache> taches) {
+        return budgetService.deleteMultiple(taches);
+    }
 }

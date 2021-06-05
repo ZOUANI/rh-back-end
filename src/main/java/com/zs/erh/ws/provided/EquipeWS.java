@@ -53,8 +53,13 @@ public class EquipeWS {
         return equipeService.search(equipeVO);
     }
 
-    @PutMapping("/id/{id}")
-    public int update(@PathVariable long id, @RequestBody Equipe equipe){
-        return equipeService.update(id,equipe);
+    @PutMapping("/update")
+    public Equipe update(@RequestBody Equipe equipe){
+        return equipeService.update(equipe);
+    }
+
+    @GetMapping("/agenceChefAgenceCode/{code}")
+    public List<Equipe> findByAgenceChefAgenceCode(@PathVariable String code){
+        return equipeService.findByAgenceChefAgenceCode(code);
     }
 }

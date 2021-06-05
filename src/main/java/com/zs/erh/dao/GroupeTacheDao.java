@@ -19,4 +19,5 @@ public interface GroupeTacheDao extends JpaRepository<GroupeTache, Long> {
 	public Optional<GroupeTache> findById(Long id);
 	public int deleteByCode(String code);
 	public int deleteByLotCode(String code);
+
 }
