@@ -78,7 +78,7 @@ public class BudgetServiceImple extends AbstractFacade<Budget> implements Budget
     }
 
 
-    public BudgetVO calcStatistique(BudgetVO budgetVO) {
+    public BudgetVO calcStatistiqueBudget(BudgetVO budgetVO) {
         String query = "SELECT new com.zs.erh.service.vo.BudgetVO(SUM (b.montant),COUNT(b)) FROM Budget  b WHERE 1=1";
         query += addCriteria(budgetVO);
         System.out.println("query = " + query);

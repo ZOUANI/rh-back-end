@@ -10,16 +10,9 @@ public class BudgetVO {
     private Date dateMax;
 
     private Long agenceId;
-    private Integer nbrBudget;
-    private BigDecimal total;
-    private  Integer nbrFacture;
-    private BigDecimal totalMontantFacture;
+    private Long nbrBudget;
+    private BigDecimal totalMontantBudget;
 
-    public  BudgetVO( BigDecimal total,Integer nbrBudget){
-
-        this.total = total;
-        this.nbrBudget = nbrBudget;
-    }
 
     public Date getDateMin() {
         return dateMin;
@@ -37,25 +30,6 @@ public class BudgetVO {
         this.dateMax = dateMax;
     }
 
-
-    public Integer getNbrBudget() {
-        return nbrBudget;
-    }
-
-    public void setNbrBudget(Integer nbrBudget) {
-        this.nbrBudget = nbrBudget;
-    }
-
-    public BigDecimal getTotal() {
-        return total;
-    }
-
-    public void setTotal(BigDecimal total) {
-        this.total = total;
-    }
-
-
-
     public Long getAgenceId() {
         return agenceId;
     }
@@ -63,4 +37,31 @@ public class BudgetVO {
     public void setAgenceId(Long agenceId) {
         this.agenceId = agenceId;
     }
+
+    public Long getNbrBudget() {
+        return nbrBudget;
+    }
+
+    public void setNbrBudget(Long nbrBudget) {
+        this.nbrBudget = nbrBudget;
+    }
+
+    public BigDecimal getTotalMontantBudget() {
+        return totalMontantBudget;
+    }
+
+    public void setTotalMontantBudget(BigDecimal totalMontantBudget) {
+        this.totalMontantBudget = totalMontantBudget;
+    }
+
+
+
+    public  BudgetVO(BigDecimal totalMontantBudget, Long nbrBudget) {
+        this.totalMontantBudget = totalMontantBudget;
+        this.nbrBudget = nbrBudget;
+    }
+
+
+
+
 }

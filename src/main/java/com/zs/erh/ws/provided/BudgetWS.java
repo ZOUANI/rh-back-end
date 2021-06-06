@@ -15,8 +15,8 @@ public class BudgetWS {
     @Autowired
     private BudgetService budgetService;
     @PostMapping("/statistic-budget")
-    public BudgetVO calcStatistique(@RequestBody BudgetVO budgetVO) {
-        return budgetService.calcStatistique(budgetVO);
+    public BudgetVO calcStatistiqueBudget(@RequestBody BudgetVO budgetVO) {
+        return budgetService.calcStatistiqueBudget(budgetVO);
     }
 
     @GetMapping("/")

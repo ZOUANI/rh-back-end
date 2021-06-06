@@ -15,4 +15,5 @@ public interface FactureService {
     public int deleteMultiple(List<Facture> factures);
     public int updateFacture(Facture facture);
     public List<Facture> search(FactureVO factureVO);
+    FactureVO calcStatistiqueFacture(FactureVO factureVO);
 }

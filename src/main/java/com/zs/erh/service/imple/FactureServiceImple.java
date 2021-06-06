@@ -4,6 +4,7 @@ import com.zs.erh.bean.Facture;
 import com.zs.erh.bean.Tache;
 import com.zs.erh.dao.FactureDao;
 import com.zs.erh.service.facade.FactureService;
+import com.zs.erh.service.vo.BudgetVO;
 import com.zs.erh.service.vo.FactureVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -97,5 +98,23 @@ public class FactureServiceImple extends AbstractFacade<Facture> implements Fact
     @Override
     public Class<Facture> getEntityClass() {
         return Facture.class;
+    }
+
+    public FactureVO calcStatistiqueFacture(FactureVO factureVO) {
+        String query = "SELECT new com.zs.erh.service.vo.FactureVO(SUM (f.montantFacture),COUNT(f)) FROM Facture f WHERE 1=1";
+        query += addCriteria(factureVO);
+        System.out.println("query = " + query);
+       FactureVO res =(FactureVO) getEntityManager().createQuery(query).getSingleResult();
+        System.out.println("res = " + res);
+        return res;
+    }
+
+    public String addCriteria(FactureVO factureVO) {
+        String query = "";
+        query += addConstraintMinMaxDate("f", "dateFacture", factureVO.getDateMin(), factureVO.getDateMax());
+        query += addConstraint("f.client.id", factureVO.getClientId());
+
+
+        return query;
     }
 }

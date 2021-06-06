@@ -13,5 +13,5 @@ public interface BudgetService {
     public int deleteByCode(String code);
     public int deleteMultiple(List<Tache> taches);
     public Budget save (Budget budget);
-    BudgetVO calcStatistique(BudgetVO budgetVO);
+    BudgetVO calcStatistiqueBudget(BudgetVO budgetVO);
 }

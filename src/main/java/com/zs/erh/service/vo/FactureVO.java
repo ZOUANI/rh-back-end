@@ -1,5 +1,6 @@
 package com.zs.erh.service.vo;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class FactureVO {
@@ -8,6 +9,8 @@ public class FactureVO {
     private Long etatFactureId;
     private Date dateMin;
     private Date dateMax;
+    private  Long nbrFacture;
+    private BigDecimal totalMontantFacture;
 
     public Long getClientId() {
         return clientId;
@@ -39,5 +42,26 @@ public class FactureVO {
 
     public void setDateMax(Date dateMax) {
         this.dateMax = dateMax;
+    }
+
+    public Long getNbrFacture() {
+        return nbrFacture;
+    }
+
+    public void setNbrFacture(Long nbrFacture) {
+        this.nbrFacture = nbrFacture;
+    }
+
+    public BigDecimal getTotalMontantFacture() {
+        return totalMontantFacture;
+    }
+
+    public void setTotalMontantFacture(BigDecimal totalMontantFacture) {
+        this.totalMontantFacture = totalMontantFacture;
+    }
+
+    public  FactureVO(BigDecimal totalMontantFacture, Long nbrFacture) {
+        this.totalMontantFacture = totalMontantFacture;
+        this.nbrFacture = nbrFacture;
     }
 }
