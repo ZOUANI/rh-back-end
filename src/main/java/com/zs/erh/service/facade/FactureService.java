@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface FactureService {
     public List<Facture> findAll();
+    public List<Facture> findByAgenceChefAgenceCode(String code);
     public Facture findByCode(String code);
     public List<Facture> findByClientCode(String code);
     public Facture save(Facture facture);
