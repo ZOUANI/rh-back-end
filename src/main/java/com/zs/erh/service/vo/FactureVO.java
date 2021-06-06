@@ -6,11 +6,20 @@ import java.util.Date;
 public class FactureVO {
 
     private Long clientId;
+    private Long agenceId;
     private Long etatFactureId;
     private Date dateMin;
     private Date dateMax;
     private  Long nbrFacture;
     private BigDecimal totalMontantFacture;
+
+    public Long getAgenceId() {
+        return agenceId;
+    }
+
+    public void setAgenceId(Long agenceId) {
+        this.agenceId = agenceId;
+    }
 
     public Long getClientId() {
         return clientId;
