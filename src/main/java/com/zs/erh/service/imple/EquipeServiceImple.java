@@ -45,7 +45,7 @@ public class EquipeServiceImple implements EquipeService {
         return equipeDao.findByCode(code);
     }
 
-    public Equipe findByResponsableCode(String code) {
+    public List<Equipe> findByResponsableCode(String code) {
         return equipeDao.findByResponsableCode(code);
     }
 
@@ -82,6 +82,7 @@ public class EquipeServiceImple implements EquipeService {
                equipe.setResponsable(responsable);
                equipe.setEtatEquipe(etatEquipe);
                equipe.setAgence(agence);
+               equipe.setCode(equipe.getLibelle());
                equipeDao.save(equipe);
                return equipe;
            }
@@ -92,13 +93,13 @@ public class EquipeServiceImple implements EquipeService {
         if(equipeFounded.isPresent()){
             Collaborateur responsable = collaborateurService.findByCode(equipe.getResponsable().getCode());
             EtatEquipe etatEquipe = etatEquipeService.findByCode(equipe.getEtatEquipe().getCode());
-            Agence agence = agenceService.findByCode(equipe.getAgence().getCode());
-            if (responsable != null && etatEquipe != null && agence != null){
+           // Agence agence = agenceService.findByCode(equipe.getAgence().getCode());
+            if (responsable != null && etatEquipe != null){
                 equipeFounded.get().setLibelle(equipe.getLibelle());
                 equipeFounded.get().setCode(equipe.getLibelle());
                 equipeFounded.get().setResponsable(responsable);
                 equipeFounded.get().setEtatEquipe(etatEquipe);
-                equipeFounded.get().setAgence(agence);
+               // equipeFounded.get().setAgence(agence);
                 equipeDao.save(equipeFounded.get());
                 return equipeFounded.get();
             }else {

@@ -66,9 +66,16 @@ public class LotServiceImple implements LotService {
         return lottDao.findByProjetId(id);
     }
 
-
     public Lot findByCode(String code) {
         return lottDao.findByCode(code);
+    }
+
+    public List<Lot> findByProjetAgenceChefAgenceCode(String code) {
+        return lottDao.findByProjetAgenceChefAgenceCode(code);
+    }
+
+    public List<Lot> findByResponsableCode(String code) {
+        return lottDao.findByResponsableCode(code);
     }
 
     public List<Lot> findAll() {

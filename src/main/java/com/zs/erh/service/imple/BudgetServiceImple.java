@@ -6,6 +6,7 @@ import com.zs.erh.bean.Tache;
 import com.zs.erh.dao.BudgetDao;
 import com.zs.erh.service.facade.AgenceService;
 import com.zs.erh.service.facade.BudgetService;
+import com.zs.erh.service.util.StringUtil;
 import com.zs.erh.service.vo.BudgetVO;
 import com.zs.erh.service.vo.StatisticVO;
 import com.zs.erh.service.vo.TacheVo;
@@ -111,8 +112,22 @@ public class BudgetServiceImple extends AbstractFacade<Budget> implements Budget
         String query = "";
         query += addConstraintMinMaxDate("b", "dateReponse", budgetVO.getDateMin(), budgetVO.getDateMax());
         query += addConstraint("b.agence.id", budgetVO.getAgenceId());
+        query += addConstraint("b.etatBudget.id", budgetVO.getEtatBudgetId());
+
+
         return query;
     }
+       public List<Budget> search(BudgetVO budgetVO){
+           System.out.println("budgetVo = " + budgetVO);
+           String query = "SELECT b FROM Budget b WHERE 1=1";
+           query += addCriteria(budgetVO);
+           query += " ORDER BY b.dateReponse DESC, b.agence.id ASC,b.etatBudget.id ASC";
+
+           System.out.println("query = " + query);
+           return findMultipleResult(query);
+       }
+
+
 
 
 

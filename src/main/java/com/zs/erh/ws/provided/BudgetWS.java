@@ -46,4 +46,10 @@ public class BudgetWS {
     public int deleteMultiple(@RequestBody List<Tache> taches) {
         return budgetService.deleteMultiple(taches);
     }
-}
+
+    @PostMapping("/search")
+    public List<Budget> search(@RequestBody BudgetVO budgetVO){
+        return budgetService.search(budgetVO);
+    }
+
+    }

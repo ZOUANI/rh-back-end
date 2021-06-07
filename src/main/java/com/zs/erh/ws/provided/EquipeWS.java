@@ -29,7 +29,7 @@ public class EquipeWS {
         return this.equipeService.findByEtatEquipeCode(code);
     }
     @GetMapping("/collaborateur/code/{code}")
-    public Equipe findByResponsableCode(@PathVariable String code) {
+    public List<Equipe> findByResponsableCode(@PathVariable String code) {
         return equipeService.findByResponsableCode(code);
     }
 
