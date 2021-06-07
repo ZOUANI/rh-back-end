@@ -12,6 +12,10 @@ import java.util.Optional;
 @RestController
 @RequestMapping("maneo-rh/client")
 public class ClientWS {
+    @Autowired
+    private ClientService clientService;
+
+
     @GetMapping("/code/{code}")
     public List<Client> findByEntrepriseCode(@PathVariable String code) {
         return clientService.findByEntrepriseCode(code);
@@ -46,7 +50,8 @@ public class ClientWS {
     public List<Client> findAll() {
         return clientService.findAll();
     }
-
-    @Autowired
-    private ClientService clientService;
+    @PostMapping("/multiples-codes")
+    public int deleteByCode(@RequestBody List<Client> clients) {
+        return clientService.deleteByCode(clients);
+    }
 }

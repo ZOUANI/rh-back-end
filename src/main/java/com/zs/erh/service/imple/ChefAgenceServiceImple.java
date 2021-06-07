@@ -26,9 +26,11 @@ public class ChefAgenceServiceImple implements ChefAgenceService {
     public ChefAgence seconnecter(ChefAgence chefAgence) {
         ChefAgence foundedChefAgence = this.chefAgenceDao.findByLogin(chefAgence.getLogin());
         if(foundedChefAgence  == null){
+
             return null;
         }
         else if (!foundedChefAgence.getPassword().equals(chefAgence.getPassword())){
+
             return null;
         }else{
             return foundedChefAgence;

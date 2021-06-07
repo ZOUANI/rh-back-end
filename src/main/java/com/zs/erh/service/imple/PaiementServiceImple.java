@@ -22,10 +22,6 @@ public class PaiementServiceImple implements PaiementService {
         return paiementDao.findAll();
     }
 
-    public Paiement findByCode(String code) {
-        return paiementDao.findByCode(code);
-    }
-
     public Paiement findByReference(String reference) {
         return paiementDao.findByReference(reference);
     }
@@ -35,7 +31,7 @@ public class PaiementServiceImple implements PaiementService {
     }
 
     public int save(Paiement paiement) {
-        if(findByCode(paiement.getCode())!=null) {
+        if(findByReference(paiement.getReference())!=null) {
             return -2;
         }else{
             Facture facture = factureService.findByCode(paiement.getFacture().getCode());
@@ -50,11 +46,10 @@ public class PaiementServiceImple implements PaiementService {
     }
 
     public int updatePaiement(Paiement paiement) {
-        Paiement p = findByCode(paiement.getCode());
-        p.setCode(paiement.getCode());
+        Paiement p = findByReference(paiement.getReference());
+        p.setReference(paiement.getReference());
         p.setLibelle(paiement.getLibelle());
         p.setDescription(paiement.getDescription());
-        p.setReference(paiement.getReference());
         p.setMontant(paiement.getMontant());
         p.setEtatPaiement(paiement.getEtatPaiement());
         p.setDatePaiement(paiement.getDatePaiement());
@@ -65,21 +60,22 @@ public class PaiementServiceImple implements PaiementService {
     }
 
     @Transactional
-    public int deleteByCode(String code) {
-        return paiementDao.deleteByCode(code);
+    public int deleteByReference(String reference) {
+        return paiementDao.deleteByReference(reference);
+    }
+
+    @Transactional
+    public int deleteByFactureCode(String code) {
+        return paiementDao.deleteByFactureCode(code);
     }
 
     @Transactional
     public int deleteMultiple(List<Paiement> paiements) {
         int res = 0;
         for (int i = 0; i < paiements.size(); i++) {
-            res += deleteByCode(paiements.get(i).getCode());
+            res += deleteByReference(paiements.get(i).getReference());
         }
         return res;
     }
 
-    @Transactional
-    public int deleteByReference(String reference) {
-        return paiementDao.deleteByReference(reference);
-    }
 }

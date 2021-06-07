@@ -148,6 +148,18 @@ public class DemandeCongeServiceImple extends AbstractFacade<DemandeConge> imple
         return entityManager.createQuery(query).getResultList();
     }
 
+
+
+    public List<DemandeConge> findByCollaborateurCode(String code) {
+        return demandeCongeDao.findByCollaborateurCode(code);
+    }
+
+
+
+    public List<DemandeConge> findByCollaborateurAgenceChefAgenceCode(String code) {
+        return demandeCongeDao.findByCollaborateurAgenceChefAgenceCode(code);
+    }
+
     @Autowired
     private DemandeCongeDao demandeCongeDao;
     @Autowired

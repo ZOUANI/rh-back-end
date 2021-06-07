@@ -20,6 +20,11 @@ public class GroupeTacheWS {
         return groupeTacheService.findByLotProjetAgenceChefAgenceCode(code);
     }
 
+    @GetMapping("/codeResponsable/{code}")
+    public List<GroupeTache> findByEquipeResponsableCode(@PathVariable String code) {
+        return groupeTacheService.findByEquipeResponsableCode(code);
+    }
+
     @GetMapping("/codeEquipe/{code}")
     public List<GroupeTache> findByEquipeCode(@PathVariable String code) {
         return groupeTacheService.findByEquipeCode(code);

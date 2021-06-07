@@ -17,6 +17,8 @@ public interface DemandeCongeService {
     List<DemandeConge> findByCriteriaConge(DemandeCongeVo demandeCongeVO);
     DemandeConge save(DemandeConge demandeConge);
     DemandeConge update(DemandeConge demandeConge);
+    List<DemandeConge> findByCollaborateurCode(String code);
+    public List<DemandeConge> findByCollaborateurAgenceChefAgenceCode(String code);
     public Long calcNombreJourTotal(Long collaborateurId, Date dateDebut, Date dateFin);
     public List<DemandeCongeVo> findByCollaborateurAndDateMinAndMax(Long collaborateurId, Date dateDebut, Date dateFin);
 }

@@ -19,7 +19,6 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
 
     @Autowired
     private GroupeTacheDao groupeTacheDao;
-
     @Autowired
     private TacheService tacheService;
 
@@ -40,6 +39,10 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
 
     public List<GroupeTache> findByLotProjetAgenceChefAgenceCode(String code){
         return groupeTacheDao.findByLotProjetAgenceChefAgenceCode(code);
+    }
+
+    public List<GroupeTache> findByEquipeResponsableCode(String code) {
+        return groupeTacheDao.findByEquipeResponsableCode(code);
     }
 
     public List<GroupeTache> findByEquipeCode(String code) {
@@ -94,7 +97,6 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
     public Optional<GroupeTache> findById(Long id) {
         return groupeTacheDao.findById(id);
     }
-
 
     public int updateGroupeTache(GroupeTache groupeTache){
         GroupeTache grp = findByCode(groupeTache.getCode());
