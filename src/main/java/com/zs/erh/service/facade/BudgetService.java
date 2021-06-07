@@ -14,4 +14,5 @@ public interface BudgetService {
     public int deleteMultiple(List<Tache> taches);
     public Budget save (Budget budget);
     BudgetVO calcStatistiqueBudget(BudgetVO budgetVO);
+    List<Budget> search(BudgetVO budgetVO);
 }

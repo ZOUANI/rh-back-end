@@ -8,11 +8,28 @@ import java.util.Date;
 public class BudgetVO {
     private Date dateMin;
     private Date dateMax;
+    private Date dateReponse;
 
     private Long agenceId;
+    private Long etatBudgetId;
     private Long nbrBudget;
     private BigDecimal totalMontantBudget;
 
+    public Date getDateReponse() {
+        return dateReponse;
+    }
+
+    public void setDateReponse(Date dateReponse) {
+        this.dateReponse = dateReponse;
+    }
+
+    public Long getEtatBudgetId() {
+        return etatBudgetId;
+    }
+
+    public void setEtatBudgetId(Long etatBudgetId) {
+        this.etatBudgetId = etatBudgetId;
+    }
 
     public Date getDateMin() {
         return dateMin;
