@@ -7,6 +7,7 @@ import com.zs.erh.dao.BudgetDao;
 import com.zs.erh.service.facade.AgenceService;
 import com.zs.erh.service.facade.BudgetService;
 import com.zs.erh.service.vo.BudgetVO;
+import com.zs.erh.service.vo.StatisticVO;
 import com.zs.erh.service.vo.TacheVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.xml.crypto.Data;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -77,6 +79,24 @@ public class BudgetServiceImple extends AbstractFacade<Budget> implements Budget
         return res;
     }
 
+   public StatisticVO lahysame7likYaAymane(StatisticVO statisticVO){
+        List<String> times = new ArrayList<>();
+        List<BigDecimal> budgetsTotal = new ArrayList<>();
+     for (int i=0; i<statisticVO.getShowNumber(); i++){
+         times.add(statisticVO.getDateMax().toString());
+         /*****fhad la ligne bghit n7at dik la dateMax f budgetVo bach hia li nkhdam f la méthode li flta7t*****/
+         //BudgetVO budgetVO = statisticVO.getBudgetVO().setDateMax((Date) times[i]);
+         /*****fhad la ligne bghit n7at dakchi li kadiro la fonction , katrja3 lia dak totalMontantBudget li tdar f dik
+         lmodda li3tito (dateMax)*****/
+         //BudgetVO budgetVO1 = calcStatistiqueBudget(budgetVO);
+         /****hna kan3mar dak Array dial buget dial kolla chhar*****/
+        // budgetsTotal.add(budgetVO1.getTotalMontantBudget());
+         /****fhad la ligne bghit n9as mn dik lmodda bach nb9a ghadia o kanhbaat bdik la dateMax****/
+        // statisticVO.setDateMax(statisticVO.getDateMax().toInstant().minus(1));
+     }
+     statisticVO.setTimes(times);
+     return statisticVO;
+   }
 
     public BudgetVO calcStatistiqueBudget(BudgetVO budgetVO) {
         String query = "SELECT new com.zs.erh.service.vo.BudgetVO(SUM (b.montant),COUNT(b)) FROM Budget  b WHERE 1=1";
@@ -91,10 +111,10 @@ public class BudgetServiceImple extends AbstractFacade<Budget> implements Budget
         String query = "";
         query += addConstraintMinMaxDate("b", "dateReponse", budgetVO.getDateMin(), budgetVO.getDateMax());
         query += addConstraint("b.agence.id", budgetVO.getAgenceId());
-
-
         return query;
     }
+
+
 
     @Override
     public Class<Budget> getEntityClass() {
