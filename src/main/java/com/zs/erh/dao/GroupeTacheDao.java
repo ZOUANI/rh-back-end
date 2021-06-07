@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 public interface GroupeTacheDao extends JpaRepository<GroupeTache, Long> {
 	public List<GroupeTache> findByLotProjetAgenceChefAgenceCode(String code);
 	public List<GroupeTache> findByEquipeResponsableCode(String code);
+	public List<GroupeTache> findByLotResponsableCode(String code);
 	public List<GroupeTache> findByEquipeCode(String code);
 	public List<GroupeTache> findAll();
 	public List<GroupeTache> findByLotCode(String code);

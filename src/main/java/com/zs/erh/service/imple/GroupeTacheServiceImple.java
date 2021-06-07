@@ -45,6 +45,10 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
         return groupeTacheDao.findByEquipeResponsableCode(code);
     }
 
+    public List<GroupeTache> findByLotResponsableCode(String code) {
+        return groupeTacheDao.findByLotResponsableCode(code);
+    }
+
     public List<GroupeTache> findByEquipeCode(String code) {
         return groupeTacheDao.findByEquipeCode(code);
     }

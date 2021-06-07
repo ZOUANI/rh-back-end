@@ -11,6 +11,10 @@ public interface LotService {
 
     public Lot findByCode(String code);
 
+    public List<Lot> findByProjetAgenceChefAgenceCode(String code);
+
+    public List<Lot> findByResponsableCode(String code);
+
     public List<Lot> findAll();
 
     public int deleteByCode(String code);
