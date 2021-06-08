@@ -14,7 +14,6 @@ public class Paiement implements Serializable {
 
     private String reference;
     private String libelle;
-    private String code;
     private String description;
     private BigDecimal montant;
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -35,28 +34,20 @@ public class Paiement implements Serializable {
         this.id = id;
     }
 
-    public String getLibelle() {
-        return libelle;
-    }
-
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
     public String getReference() {
         return reference;
     }
 
     public void setReference(String reference) {
         this.reference = reference;
+    }
+
+    public String getLibelle() {
+        return libelle;
+    }
+
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
     }
 
     public String getDescription() {

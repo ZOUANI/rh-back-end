@@ -41,6 +41,14 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
         return groupeTacheDao.findByLotProjetAgenceChefAgenceCode(code);
     }
 
+    public List<GroupeTache> findByEquipeResponsableCode(String code) {
+        return groupeTacheDao.findByEquipeResponsableCode(code);
+    }
+
+    public List<GroupeTache> findByLotResponsableCode(String code) {
+        return groupeTacheDao.findByLotResponsableCode(code);
+    }
+
     public List<GroupeTache> findByEquipeCode(String code) {
         return groupeTacheDao.findByEquipeCode(code);
     }
@@ -76,9 +84,6 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
         return res1 + groupeTacheDao.deleteByCode(code);
     }
 
-
-
-
     @Transactional
     public int deleteMultiple(List<GroupeTache> groupeTaches) {
         int res = 0;
@@ -96,7 +101,6 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
     public Optional<GroupeTache> findById(Long id) {
         return groupeTacheDao.findById(id);
     }
-
 
     public int updateGroupeTache(GroupeTache groupeTache){
         GroupeTache grp = findByCode(groupeTache.getCode());

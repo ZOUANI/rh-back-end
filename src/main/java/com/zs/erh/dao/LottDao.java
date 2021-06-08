@@ -13,13 +13,18 @@ public interface LottDao extends JpaRepository<Lot, Long> {
 
     public List<Lot> findByProjetId(Long id);
 
-    public Lot findByCode(String code);
+    public List<Lot> findByResponsableCode(String code);
 
     public List<Lot> findAll();
+
+    public Lot findByCode(String code);
 
     public int deleteByCode(String code);
 
     public int deleteByProjetCode(String code);
 
     public Optional<Lot> findById(Long id);
+
+    public List<Lot> findByProjetAgenceChefAgenceCode(String code);
+
 }

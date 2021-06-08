@@ -11,6 +11,10 @@ import java.util.Optional;
 public interface GroupeTacheService {
 	public List<GroupeTache> findByLotProjetAgenceChefAgenceCode(String code);
 
+	public List<GroupeTache> findByEquipeResponsableCode(String code);
+
+	public List<GroupeTache> findByLotResponsableCode(String code);
+
 	public List<GroupeTache> findByEquipeCode(String code);
 
 	public List<GroupeTache> findAll();

@@ -18,11 +18,6 @@ public class PaiementWS {
         return paiementService.findAll();
     }
 
-    @GetMapping("/code/{code}")
-    public Paiement findByCode(@PathVariable String code) {
-        return paiementService.findByCode(code);
-    }
-
     @GetMapping("/reference/{reference}")
     public Paiement findByReference(@PathVariable String reference) {
         return paiementService.findByReference(reference);
@@ -43,14 +38,14 @@ public class PaiementWS {
         return paiementService.updatePaiement(paiement);
     }
 
-    @DeleteMapping("/code/{code}")
-    public int deleteByCode(@PathVariable String code) {
-        return paiementService.deleteByCode(code);
-    }
-
     @DeleteMapping("/reference/{reference}")
     public int deleteByReference(@PathVariable String reference) {
         return paiementService.deleteByReference(reference);
+    }
+
+    @DeleteMapping("FactureCode/{code}")
+    public int deleteByFactureCode(String code) {
+        return paiementService.deleteByFactureCode(code);
     }
 
     @PostMapping("/delete-multiple-by-code")

@@ -22,11 +22,13 @@ public class Budget implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dateReponse;
 
+
+
     @ManyToOne
     private EtatBudget etatBudget;
 
     @ManyToOne
-    private Agence Agence;
+    private Agence agence;
 
     public Long getId() {
         return id;
@@ -69,11 +71,11 @@ public class Budget implements Serializable {
     }
 
     public Agence getAgence() {
-        return Agence;
+        return agence;
     }
 
     public void setAgence(Agence agence) {
-        Agence = agence;
+        agence = agence;
     }
 
     public Date getDateDemmande() {
@@ -91,6 +93,8 @@ public class Budget implements Serializable {
     public void setDateReponse(Date dateReponse) {
         this.dateReponse = dateReponse;
     }
+
+
 
     @Override
     public int hashCode() {
@@ -124,7 +128,7 @@ public class Budget implements Serializable {
                 ", dateDemmande=" + dateDemmande +
                 ", dateReponse=" + dateReponse +
                 ", etatBudget=" + etatBudget +
-                ", Agence=" + Agence +
+                ", Agence=" + agence +
                 '}';
     }
 }
