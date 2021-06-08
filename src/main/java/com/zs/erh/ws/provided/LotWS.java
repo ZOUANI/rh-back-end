@@ -33,6 +33,16 @@ public class LotWS {
         return lotService.findByCode(code);
     }
 
+    @GetMapping("/codeChefAgence/{code}")
+    public List<Lot> findByProjetAgenceChefAgenceCode(@PathVariable String code) {
+        return lotService.findByProjetAgenceChefAgenceCode(code);
+    }
+
+    @GetMapping("/codeResponsable/{code}")
+    public List<Lot> findByResponsableCode(@PathVariable String code) {
+        return lotService.findByResponsableCode(code);
+    }
+
     @GetMapping("/")
     public List<Lot> findAll() {
         return lotService.findAll();

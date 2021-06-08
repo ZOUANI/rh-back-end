@@ -48,6 +48,11 @@ public class CollaborateurWS{
 	public Collaborateur sauthentifier(@RequestBody Collaborateur collaborateur){
 		return collaborateurService.signIn(collaborateur);
 	}
+	@PostMapping("/connexion")
+	public Collaborateur connexionChefEquipe(@RequestBody Collaborateur collaborateur){
+		return collaborateurService.connexionChefEquipe(collaborateur);
+	}
+
 
 		@Autowired
 	 private CollaborateurService collaborateurService;

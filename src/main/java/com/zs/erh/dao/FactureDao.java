@@ -12,6 +12,8 @@ public interface FactureDao extends JpaRepository<Facture, Long> {
 
     public Facture findByCode(String code);
 
+    public List<Facture> findByAgenceChefAgenceCode(String code);
+
     public List<Facture> findByClientCode(String code);
 
     public int deleteByCode(String code);

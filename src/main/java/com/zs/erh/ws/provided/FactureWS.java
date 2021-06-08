@@ -14,9 +14,19 @@ public class FactureWS {
     @Autowired
     private FactureService factureService;
 
+    @PostMapping("/statistic-facture")
+    public FactureVO calcStatistiqueFacture(@RequestBody FactureVO factureVO) {
+        return factureService.calcStatistiqueFacture(factureVO);
+    }
+
     @GetMapping("/")
     public List<Facture> findAll() {
         return factureService.findAll();
+    }
+
+    @GetMapping("/codeChefAgence/{code}")
+    public List<Facture> findByAgenceChefAgenceCode(@PathVariable String code) {
+        return factureService.findByAgenceChefAgenceCode(code);
     }
 
     @GetMapping("/code/{code}")

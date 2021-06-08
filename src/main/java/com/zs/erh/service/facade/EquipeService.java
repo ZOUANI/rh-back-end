@@ -13,7 +13,7 @@ public interface EquipeService {
 	public List<Equipe> findAll();
 	public List<Equipe> findByEtatEquipeCode(String code);
 	public Equipe findByCode(String code);
-	Equipe findByResponsableCode(String code);
+	List<Equipe> findByResponsableCode(String code);
 	public int deleteByCode(String code);
 	public Equipe save(Equipe equipe);
 	public Equipe update(Equipe equipe);

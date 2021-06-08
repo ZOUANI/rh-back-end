@@ -10,7 +10,7 @@ import java.util.List;
 public interface EquipeDao extends JpaRepository<Equipe,Long> {
     Equipe findByCode(String code);
     int deleteByCode(String code);
-    Equipe findByResponsableCode(String code);
+    List<Equipe> findByResponsableCode(String code);
     List<Equipe> findByEtatEquipeCode(String code);
     List<Equipe> findByAgenceChefAgenceCode(String code);
 

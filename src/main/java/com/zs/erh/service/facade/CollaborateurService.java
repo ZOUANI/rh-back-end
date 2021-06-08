@@ -24,5 +24,7 @@ public interface CollaborateurService {
 
 	public Collaborateur signIn(Collaborateur collaborateur);
 
+	public Collaborateur connexionChefEquipe(Collaborateur collaborateur);
+
 
 }
