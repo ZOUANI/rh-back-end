@@ -2,6 +2,7 @@ package com.zs.erh.ws.provided;
 
 import com.zs.erh.bean.Paiement;
 import com.zs.erh.service.facade.PaiementService;
+import com.zs.erh.service.vo.PaiementVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,12 +45,17 @@ public class PaiementWS {
     }
 
     @DeleteMapping("FactureCode/{code}")
-    public int deleteByFactureCode(String code) {
+    public int deleteByFactureCode(@PathVariable String code) {
         return paiementService.deleteByFactureCode(code);
     }
 
     @PostMapping("/delete-multiple-by-code")
     public int deleteMultiple(@RequestBody List<Paiement> paiements) {
         return paiementService.deleteMultiple(paiements);
+    }
+
+    @PostMapping("/statistic-paiement")
+    public PaiementVO calcStatistiquePaiement(@RequestBody PaiementVO paiementVO) {
+        return paiementService.calcStatistiquePaiement(paiementVO);
     }
 }
