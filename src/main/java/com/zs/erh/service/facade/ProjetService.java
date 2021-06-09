@@ -10,6 +10,10 @@ public interface ProjetService {
 
     public List<Projet> findByClientId(Long id);
 
+    public List<Projet> findByClientIdAndAgenceChefAgenceCode(Long id, String code);
+
+    public List<Projet> findByClientIdAndResponsableCode(Long id, String code);
+
     List<Projet> findAll();
 
     Projet findByCode(String Code);

@@ -68,4 +68,8 @@ public class LotWS {
         return lotService.findByProjetId(id);
     }
 
+    @GetMapping("/projetId/{id}/responsableCode/{code}")
+    public List<Lot> findByProjetIdAndResponsableCode(@PathVariable Long id, @PathVariable String code) {
+        return lotService.findByProjetIdAndResponsableCode(id, code);
+    }
 }
