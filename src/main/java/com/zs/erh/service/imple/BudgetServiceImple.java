@@ -95,7 +95,6 @@ public class BudgetServiceImple extends AbstractFacade<Budget> implements Budget
          /****fhad la ligne bghit n9as mn dik lmodda bach nb9a ghadia o kanhbaat bdik la dateMax****/
         // statisticVO.setDateMax(statisticVO.getDateMax().toInstant().minus(1));
      }
-     statisticVO.setTimes(times);
      return statisticVO;
    }
 
@@ -110,9 +109,9 @@ public class BudgetServiceImple extends AbstractFacade<Budget> implements Budget
 
     public String addCriteria(BudgetVO budgetVO) {
         String query = "";
-        query += addConstraintMinMaxDate("b", "dateReponse", budgetVO.getDateMin(), budgetVO.getDateMax());
         query += addConstraint("b.agence.id", budgetVO.getAgenceId());
         query += addConstraint("b.etatBudget.id", budgetVO.getEtatBudgetId());
+        query += addConstraintMinMaxDate("b", "dateReponse", budgetVO.getDateMin(), budgetVO.getDateMax());
 
 
         return query;
