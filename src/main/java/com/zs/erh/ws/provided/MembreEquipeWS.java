@@ -48,9 +48,9 @@ public class MembreEquipeWS {
     public MembreEquipe save(@RequestBody MembreEquipe membreEquipe){
         return membreEquipeService.save(membreEquipe);
     }
-    @PutMapping("/id/{id}")
-    public int update(@PathVariable long id,@RequestBody MembreEquipe membreEquipe){
-        return membreEquipeService.update(id,membreEquipe);
+    @PutMapping("/")
+    public MembreEquipe update(@RequestBody MembreEquipe membreEquipe){
+        return membreEquipeService.update(membreEquipe);
     }
 
     @GetMapping("/equipe/id/{id}")
