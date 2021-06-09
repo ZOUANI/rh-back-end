@@ -6,7 +6,8 @@ import com.zs.erh.bean.ProjetEquipe;
 import java.util.List;
 
 public interface ProjetEquipeService {
-
+    public List<ProjetEquipe> findByProjetClientIdAndEquipeResponsableCode(Long id, String code);
+    public List<ProjetEquipe> findByEquipeResponsableCode(String code);
     int save(Projet projet, List<ProjetEquipe> projetEquipes);
     ProjetEquipe saveDirect(ProjetEquipe projetEquipe);
     List<ProjetEquipe> findByProjetCode(String code);

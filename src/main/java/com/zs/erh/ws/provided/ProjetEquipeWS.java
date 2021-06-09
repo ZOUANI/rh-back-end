@@ -13,19 +13,32 @@ import java.util.List;
 public class ProjetEquipeWS {
     @Autowired
     ProjetEquipeService projetEquipeService;
+
+    @GetMapping("/clientId/{id}/codeChefEquipe/{code}")
+    public List<ProjetEquipe> findByProjetClientIdAndEquipeResponsableCode(@PathVariable Long id, @PathVariable String code) {
+        return projetEquipeService.findByProjetClientIdAndEquipeResponsableCode(id, code);
+    }
+
+    @GetMapping("/codeChefEquipe/{code}")
+    public List<ProjetEquipe> findByEquipeResponsableCode(@PathVariable String code) {
+        return projetEquipeService.findByEquipeResponsableCode(code);
+    }
+
     @DeleteMapping("/id/{id}")
     public void deleteById(@PathVariable Long id) {
         projetEquipeService.deleteById(id);
     }
+
     @PostMapping("/dir/")
     public ProjetEquipe saveDirect(@RequestBody ProjetEquipe projetEquipe) {
         return projetEquipeService.saveDirect(projetEquipe);
     }
 
     @PostMapping("/")
-    public int save(@RequestBody Projet projet,@RequestBody List<ProjetEquipe> projetEquipes) {
+    public int save(@RequestBody Projet projet, @RequestBody List<ProjetEquipe> projetEquipes) {
         return projetEquipeService.save(projet, projetEquipes);
     }
+
     @GetMapping("/")
     public List<ProjetEquipe> findAll() {
         return projetEquipeService.findAll();
@@ -35,6 +48,7 @@ public class ProjetEquipeWS {
     public List<ProjetEquipe> findByProjetCode(@PathVariable String code) {
         return projetEquipeService.findByProjetCode(code);
     }
+
     @DeleteMapping("/projet/code/{code}")
     public int deleteByProjetCode(@PathVariable String code) {
         return projetEquipeService.deleteByProjetCode(code);
