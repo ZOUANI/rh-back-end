@@ -73,4 +73,9 @@ public class FactureVO {
         this.totalMontantFacture = totalMontantFacture;
         this.nbrFacture = nbrFacture;
     }
+
+    public FactureVO(Date dateMin, Date dateMax) {
+        this.dateMin = dateMin;
+        this.dateMax = dateMax;
+    }
 }

@@ -25,6 +25,9 @@ public class StatisticVO implements Serializable {
     private String showType;
     private Long showNumber;
     private List<BigDecimal> budgetTotal;
+    private List<BigDecimal> facturesTotal;
+    private List<BigDecimal> paiementsTotal;
+
     private  BudgetVO budgetVO;
 
     public BudgetVO getBudgetVO() {
@@ -93,6 +96,16 @@ public class StatisticVO implements Serializable {
         this.budgetTotal = budgetTotal;
     }
 
+
+    public List<BigDecimal> getFacturesTotal() {
+        if (this.facturesTotal == null)
+            this.facturesTotal = new ArrayList<BigDecimal>();
+        return facturesTotal;
+    }
+
+    public void setFacturesTotal(List<BigDecimal> facturesTotal) {
+        this.facturesTotal = facturesTotal;
+    }
 
     public void Times (){
         this.times.clear();

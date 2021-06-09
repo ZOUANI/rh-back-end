@@ -112,7 +112,7 @@ public class FactureServiceImple extends AbstractFacade<Facture> implements Fact
         String query = "SELECT new com.zs.erh.service.vo.FactureVO(SUM (f.montantFacture),COUNT(f)) FROM Facture f WHERE 1=1";
         query += addCriteria(factureVO);
         System.out.println("query = " + query);
-       FactureVO res =(FactureVO) getEntityManager().createQuery(query).getSingleResult();
+        FactureVO res =(FactureVO) getEntityManager().createQuery(query).getSingleResult();
         System.out.println("res = " + res);
         return res;
     }

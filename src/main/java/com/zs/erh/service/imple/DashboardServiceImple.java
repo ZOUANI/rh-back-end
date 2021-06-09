@@ -1,5 +1,7 @@
 package com.zs.erh.service.imple;
 
+import com.zs.erh.service.facade.FactureService;
+import com.zs.erh.service.vo.FactureVO;
 import com.zs.erh.service.vo.StatisticVO;
 import com.zs.erh.service.vo.BudgetVO;
 
@@ -13,28 +15,34 @@ public class DashboardServiceImple implements DashboardService {
     @Autowired
     private BudgetService budgetService;
 
+    @Autowired
+    private FactureService factureService;
+
 
     public StatisticVO calcStatistiques(StatisticVO statisticVO) {
         StatisticVO result = new StatisticVO();
-
+        result.getFacturesTotal().clear();
+        result.getBudgetTotal().clear();
         statisticVO.Times();
         result.setTimes(statisticVO.getTimes());
 
         BudgetVO budgetVO;
+        FactureVO factureVO;
 
         for (int i=0;i<statisticVO.getShowNumber();i++){
             budgetVO = new BudgetVO(result.getTimes().get(i+1),
                                     result.getTimes().get(i));
-            System.out.println("3tina " + budgetVO);
+
+            factureVO = new FactureVO(result.getTimes().get(i+1),
+                    result.getTimes().get(i));
+
+
             budgetVO = budgetService.calcStatistiqueBudget(budgetVO);
-            System.out.println("rd lina " + budgetVO);
-
             result.getBudgetTotal().add(budgetVO.getTotalMontantBudget());
+
+            factureVO = factureService.calcStatistiqueFacture(factureVO);
+            result.getFacturesTotal().add(factureVO.getTotalMontantFacture());
         }
-
-        System.out.println("result = " + statisticVO);
-
-
         return result;
     }
 }
