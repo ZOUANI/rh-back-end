@@ -1,18 +1,33 @@
 package com.zs.erh.service.vo;
 
 
+import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class StatisticVO {
+public class StatisticVO implements Serializable {
     private Date dateMax;
     private Date dateMin;
+    private Date currentDate;
+
+    public Date getCurrentDate() {
+        return currentDate;
+    }
+
+    public void setCurrentDate(Date currentDate) {
+        this.currentDate = currentDate;
+    }
+
     private Long chefAgenceId;
-    private List<String> times;
+    private List<Date> times;
     private String showType;
     private Long showNumber;
     private List<BigDecimal> budgetTotal;
+    private List<BigDecimal> facturesTotal;
+    private List<BigDecimal> paiementsTotal;
+
     private  BudgetVO budgetVO;
 
     public BudgetVO getBudgetVO() {
@@ -22,12 +37,6 @@ public class StatisticVO {
     public void setBudgetVO(BudgetVO budgetVO) {
         this.budgetVO = budgetVO;
     }
-
-   /* public StatisticVO (Date dateMax, String showType, Long showNumber) {
-        this.dateMax = dateMax;
-        this.showType = showType;
-        this.showNumber = showNumber;
-    }*/
 
     public Date getDateMax() {
         return dateMax;
@@ -53,11 +62,11 @@ public class StatisticVO {
         this.chefAgenceId = chefAgenceId;
     }
 
-    public List<String> getTimes() {
+    public List<Date> getTimes() {
         return times;
     }
 
-    public void setTimes(List<String> times) {
+    public void setTimes(List<Date> times) {
         this.times = times;
     }
 
@@ -78,10 +87,50 @@ public class StatisticVO {
     }
 
     public List<BigDecimal> getBudgetTotal() {
+        if (this.budgetTotal == null)
+            this.budgetTotal = new ArrayList<BigDecimal>();
         return budgetTotal;
     }
 
     public void setBudgetTotal(List<BigDecimal> budgetTotal) {
         this.budgetTotal = budgetTotal;
+    }
+
+
+    public List<BigDecimal> getFacturesTotal() {
+        if (this.facturesTotal == null)
+            this.facturesTotal = new ArrayList<BigDecimal>();
+        return facturesTotal;
+    }
+
+    public void setFacturesTotal(List<BigDecimal> facturesTotal) {
+        this.facturesTotal = facturesTotal;
+    }
+
+    public void Times (){
+        this.times.clear();
+        this.getTimes().add(this.currentDate);
+        int year = this.currentDate.getYear();
+        int month = this.currentDate.getMonth();
+
+        if (this.showType.equals("years")){
+            month = 1;
+            for (int i=0;i<this.showNumber;i++){
+                this.times.add(new Date(year-i,month,1));
+            }
+            System.out.println(this.times);
+        }
+        /*
+        else if(this.showType.equals("months")){
+            for (int i=0;i<this.showNumber;i++){
+                this.times.add(new Date(year,month,1));
+                if (month == 1){
+                    month = 12;
+                    year -= 1;
+                }
+            }
+            System.out.println();
+        }
+        */
     }
 }

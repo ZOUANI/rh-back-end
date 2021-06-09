@@ -21,6 +21,14 @@ public class ProjetServiceImple implements ProjetService {
         return projetDao.findByClientId(id);
     }
 
+    public List<Projet> findByClientIdAndAgenceChefAgenceCode(Long id, String code) {
+        return projetDao.findByClientIdAndAgenceChefAgenceCode(id, code);
+    }
+
+    public List<Projet> findByClientIdAndResponsableCode(Long id, String code) {
+        return projetDao.findByClientIdAndResponsableCode(id, code);
+    }
+
     public Projet save(Projet projet) {
         if (projetDao.findByCode(projet.getCode()) != null) {
             return null;

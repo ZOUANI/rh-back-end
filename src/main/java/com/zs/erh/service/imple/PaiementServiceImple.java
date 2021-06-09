@@ -5,18 +5,23 @@ import com.zs.erh.bean.Paiement;
 import com.zs.erh.dao.PaiementDao;
 import com.zs.erh.service.facade.FactureService;
 import com.zs.erh.service.facade.PaiementService;
+import com.zs.erh.service.vo.PaiementVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 
 @Service
-public class PaiementServiceImple implements PaiementService {
+public class PaiementServiceImple extends AbstractFacade<Paiement> implements PaiementService {
     @Autowired
     private PaiementDao paiementDao;
     @Autowired
     private FactureService factureService;
+    @Autowired
+    private EntityManager entityManager;
+
 
     public List<Paiement> findAll() {
         return paiementDao.findAll();
@@ -31,13 +36,13 @@ public class PaiementServiceImple implements PaiementService {
     }
 
     public int save(Paiement paiement) {
-        if(findByReference(paiement.getReference())!=null) {
+        if (findByReference(paiement.getReference()) != null) {
             return -2;
-        }else{
+        } else {
             Facture facture = factureService.findByCode(paiement.getFacture().getCode());
-            if(facture==null){
+            if (facture == null) {
                 return -1;
-            }else {
+            } else {
                 paiement.setFacture(facture);
                 paiementDao.save(paiement);
                 return 1;
@@ -76,6 +81,32 @@ public class PaiementServiceImple implements PaiementService {
             res += deleteByReference(paiements.get(i).getReference());
         }
         return res;
+    }
+
+    @Override
+    protected EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    @Override
+    public Class<Paiement> getEntityClass() {
+        return Paiement.class;
+    }
+
+    public PaiementVO calcStatistiquePaiement(PaiementVO paiementVO) {
+        String query = "SELECT new com.zs.erh.service.vo.PaiementVO(SUM (p.montant), COUNT(p)) FROM Paiement p WHERE 1=1";
+        query += addCriteria(paiementVO);
+        System.out.println("query = " + query);
+        PaiementVO res = (PaiementVO) getEntityManager().createQuery(query).getSingleResult();
+        System.out.println("res = " + res);
+        return res;
+    }
+
+    public String addCriteria(PaiementVO paiementVO) {
+        String query = "";
+        query += addConstraintMinMaxDate("p", "datePaiement", paiementVO.getDateMin(), paiementVO.getDateMax());
+        query += addConstraint("p.facture.id", paiementVO.getFactureId());
+        return query;
     }
 
 }

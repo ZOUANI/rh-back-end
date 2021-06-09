@@ -62,5 +62,15 @@ public class ProjetWS {
     public List<Projet> findByClientId(@PathVariable Long id) {
         return projetService.findByClientId(id);
     }
+
+    @GetMapping("/clientId/{id}/codeChefAgence/{code}")
+    public List<Projet> findByClientIdAndAgenceChefAgenceCode(@PathVariable Long id, @PathVariable String code) {
+        return projetService.findByClientIdAndAgenceChefAgenceCode(id, code);
+    }
+
+    @GetMapping("/clientId/{id}/codeResponsable/{code}")
+    public List<Projet> findByClientIdAndResponsableCode(@PathVariable Long id, @PathVariable String code) {
+        return projetService.findByClientIdAndResponsableCode(id, code);
+    }
 }
 

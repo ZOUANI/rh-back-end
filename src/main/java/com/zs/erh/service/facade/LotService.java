@@ -9,6 +9,8 @@ public interface LotService {
 
     public List<Lot> findByProjetId(Long id);
 
+    public List<Lot> findByProjetIdAndResponsableCode(Long id, String code);
+
     public Lot findByCode(String code);
 
     public List<Lot> findByProjetAgenceChefAgenceCode(String code);

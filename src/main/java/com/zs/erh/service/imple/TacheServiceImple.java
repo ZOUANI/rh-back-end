@@ -142,6 +142,8 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 		query += addConstraint("t.groupeTache.lot.id", tacheVo.getLotId());
 		query += addConstraint("t.groupeTache.lot.projet.client.id", tacheVo.getClientId());
 		query += addConstraint("t.periode.id", tacheVo.getPeriodeId());
+		query += addConstraint("t.groupeTache.lot.projet.agence.chefAgence.id", tacheVo.getChefAgenceId());
+		query += addConstraint("t.periode.id", tacheVo.getPeriodeId());
 		return query;
 	}
 
