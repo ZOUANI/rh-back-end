@@ -45,7 +45,7 @@ public class MembreEquipeWS {
         return membreEquipeService.deleteByEquipeCodeAndCollaborateurCode(codeEquipe,codeCollaborateur);
     }
     @PostMapping("/")
-    public int save(@RequestBody MembreEquipe membreEquipe){
+    public MembreEquipe save(@RequestBody MembreEquipe membreEquipe){
         return membreEquipeService.save(membreEquipe);
     }
     @PutMapping("/id/{id}")
