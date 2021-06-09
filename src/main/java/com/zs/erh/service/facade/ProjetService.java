@@ -11,9 +11,9 @@ public interface ProjetService {
 
     public List<Projet> findByClientId(Long id);
 
-    public List<Projet> findByAgence_ChefAgence(ChefAgence chefAgence);;
+    public List<Projet> findByAgenceChefAgenceCode(String code);;
 
-    public List<Projet> findByResponsableLogin(String login);
+    public List<Projet> findByResponsableCode(String code);
 
     List<Projet> findAll();
 

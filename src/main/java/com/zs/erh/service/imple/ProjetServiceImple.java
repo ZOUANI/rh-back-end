@@ -22,12 +22,12 @@ public class ProjetServiceImple implements ProjetService {
         return projetDao.findByClientId(id);
     }
 
-    public List<Projet> findByResponsableLogin(String login) {
-        return projetDao.findByResponsableLogin(login);
+    public List<Projet> findByResponsableCode(String code) {
+        return projetDao.findByResponsableCode(code);
     }
 
-    public List<Projet> findByAgence_ChefAgence(ChefAgence chefAgence) {
-        return projetDao.findByAgence_ChefAgence(chefAgence);
+    public List<Projet> findByAgenceChefAgenceCode(String code) {
+        return projetDao.findByAgenceChefAgenceCode(code);
     }
 
     public Projet save(Projet projet) {

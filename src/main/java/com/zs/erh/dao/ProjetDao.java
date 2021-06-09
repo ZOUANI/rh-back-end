@@ -14,8 +14,8 @@ import java.util.Optional;
 @Repository
 public interface ProjetDao extends JpaRepository<Projet, Long> {
     public List<Projet> findByClientId(Long id);
-    public List<Projet> findByAgence_ChefAgence(ChefAgence chefAgence);
-    public List<Projet> findByResponsableLogin(String login);
+    public List<Projet> findByAgenceChefAgenceCode(String code);
+    public List<Projet> findByResponsableCode(String code);
     public List<Projet> findAll();
     public Projet findByCode(String code);
     public int deleteByCode(String code);

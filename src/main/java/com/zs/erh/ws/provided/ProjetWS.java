@@ -30,9 +30,9 @@ public class ProjetWS {
         return projetService.save(projet);
     }
 
-    @GetMapping("/agence/chefAgence/{chefAgence}")
-    public List<Projet> findByAgence_ChefAgence(@RequestBody ChefAgence chefAgence) {
-        return projetService.findByAgence_ChefAgence(chefAgence);
+    @GetMapping("/agence/chefAgence/code/{code}")
+    public List<Projet> findByAgenceChefAgenceCode(@PathVariable String code) {
+        return projetService.findByAgenceChefAgenceCode(code);
     }
 
     @GetMapping("/")
@@ -70,8 +70,8 @@ public class ProjetWS {
         return projetService.findByClientId(id);
     }
 
-    @GetMapping("/responsable/login/{login}")
-    public List<Projet> findByResponsableLogin(@PathVariable String login) {
-        return projetService.findByResponsableLogin(login);
+    @GetMapping("/responsable/code/{code}")
+    public List<Projet> findByResponsableCode(@PathVariable String code) {
+        return projetService.findByResponsableCode(code);
     }
 }
