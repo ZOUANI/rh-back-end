@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/maneo-rh/dashboard")
-public class DasboardWS {
+public class DashboardWS {
     @Autowired
     private DashboardService dashboardService;
 

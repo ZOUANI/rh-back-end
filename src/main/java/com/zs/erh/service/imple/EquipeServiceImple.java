@@ -84,6 +84,10 @@ public class EquipeServiceImple implements EquipeService {
                equipe.setAgence(agence);
                equipe.setCode(equipe.getLibelle());
                equipeDao.save(equipe);
+               MembreEquipe membreResponsable = new MembreEquipe();
+               membreResponsable.setEquipe(equipe);
+               membreResponsable.setCollaborateur(responsable);
+               membreEquipeService.save(membreResponsable);
                return equipe;
            }
        }
