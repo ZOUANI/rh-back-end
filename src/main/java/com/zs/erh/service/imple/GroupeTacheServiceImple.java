@@ -129,15 +129,17 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
     public List<GroupeTache> search(GroupeTacheVO groupeTacheVO) {
         String query = "SELECT g FROM GroupeTache g where 1=1";
 
-        if (groupeTacheVO.getClientId() != null) {
+        if (groupeTacheVO.getChefAgenceId() != null) {
+            query += " AND g.lot.projet.agence.chefAgence.id = " + groupeTacheVO.getChefAgenceId();
+        }if (groupeTacheVO.getChefEquipeId() != null) {
+            query += " AND g.equipe.responsable.id = " + groupeTacheVO.getChefEquipeId();
+        }if (groupeTacheVO.getCollaborateurId() != null) {
+            query += " AND g.lot.responsable.id = " + groupeTacheVO.getCollaborateurId();
+        }if (groupeTacheVO.getClientId() != null) {
             query += " AND g.lot.projet.client.id = " + groupeTacheVO.getClientId();
-        }
-
-        if (groupeTacheVO.getProjetId() != null) {
+        }if (groupeTacheVO.getProjetId() != null) {
             query += " AND g.lot.projet.id = " + groupeTacheVO.getProjetId();
-        }
-
-        if (groupeTacheVO.getLotId() != null) {
+        }if (groupeTacheVO.getLotId() != null) {
             query += " AND g.lot.id = " + groupeTacheVO.getLotId();
         }
         return entityManager.createQuery(query).getResultList();
