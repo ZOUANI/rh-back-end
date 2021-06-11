@@ -8,6 +8,10 @@ import java.util.List;
 
 public interface ProjetService {
 
+    public List<Projet> findByAgenceChefAgenceId(Long id);
+
+    public List<Projet> findByAgenceChefAgenceCode(String code);
+
     public List<Projet> findByClientId(Long id);
 
     public List<Projet> findByClientIdAndAgenceChefAgenceCode(Long id, String code);

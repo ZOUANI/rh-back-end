@@ -15,6 +15,17 @@ import java.util.List;
 public class ProjetWS {
     @Autowired
     public ProjetService projetService;
+
+    @GetMapping("/chefAgenceId/{id}")
+    public List<Projet> findByAgenceChefAgenceId(@PathVariable Long id) {
+        return projetService.findByAgenceChefAgenceId(id);
+    }
+
+    @GetMapping("/agence/chefAgence/code/{code}")
+    public List<Projet> findByAgenceChefAgenceCode(@PathVariable String code) {
+        return projetService.findByAgenceChefAgenceCode(code);
+    }
+
     @PostMapping("/search")
     public List<Projet> search(@RequestBody ProjetVO projetVo) {
         return projetServiceImple.search(projetVo);

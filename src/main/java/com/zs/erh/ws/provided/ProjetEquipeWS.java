@@ -44,6 +44,16 @@ public class ProjetEquipeWS {
         return projetEquipeService.findAll();
     }
 
+    @GetMapping("/projet/id/{id}")
+    public List<ProjetEquipe> findByProjetId(@PathVariable Long id) {
+        return projetEquipeService.findByProjetId(id);
+    }
+
+    @GetMapping("/projetId/{projetId}/chefAgenceId/{chefId}")
+    public List<ProjetEquipe> findByProjetIdAndEquipeAgenceChefAgenceId(@PathVariable Long projetId, @PathVariable Long chefId) {
+        return projetEquipeService.findByProjetIdAndEquipeAgenceChefAgenceId(projetId, chefId);
+    }
+
     @GetMapping("/projet/code/{code}")
     public List<ProjetEquipe> findByProjetCode(@PathVariable String code) {
         return projetEquipeService.findByProjetCode(code);
