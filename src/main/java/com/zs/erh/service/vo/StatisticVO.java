@@ -4,6 +4,7 @@ package com.zs.erh.service.vo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -63,6 +64,8 @@ public class StatisticVO implements Serializable {
     }
 
     public List<Date> getTimes() {
+        if(this.times == null)
+            this.times = new ArrayList<Date>();
         return times;
     }
 
@@ -108,7 +111,7 @@ public class StatisticVO implements Serializable {
     }
 
     public void Times (){
-        this.times.clear();
+        this.getTimes().clear();
         this.getTimes().add(this.currentDate);
         int year = this.currentDate.getYear();
         int month = this.currentDate.getMonth();
@@ -120,17 +123,17 @@ public class StatisticVO implements Serializable {
             }
             System.out.println(this.times);
         }
-        /*
+
         else if(this.showType.equals("months")){
             for (int i=0;i<this.showNumber;i++){
-                this.times.add(new Date(year,month,1));
+                this.times.add(new Date(year,month-i,1));
                 if (month == 1){
                     month = 12;
                     year -= 1;
                 }
             }
-            System.out.println();
         }
-        */
+
+        Collections.reverse(times);
     }
 }

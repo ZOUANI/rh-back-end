@@ -4,6 +4,7 @@ import com.zs.erh.bean.Entreprise;
 import com.zs.erh.service.facade.EntrepriseService;
 import com.zs.erh.service.vo.EntrepriseVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +29,9 @@ public class EntrepriseWS {
     public int deleteByCode(@PathVariable String code) {
         return entrepriseService.deleteByCode(code);
     }
+
+
+    @PreAuthorize("hasRole('CHEF_AGENCE') or hasRole('ADMIN')")
     @GetMapping("/")
     public List<Entreprise> findAll() {
         return entrepriseService.findAll();

@@ -4,6 +4,7 @@ import com.zs.erh.bean.DemandeConge;
 import com.zs.erh.service.facade.DemandeCongeService;
 import com.zs.erh.service.vo.DemandeCongeVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -70,7 +71,7 @@ public class DemandeCongeWS {
         return demandeCongeService.findByCriteriaConge(demandeCongeVO);
     }
 
-
+    @PreAuthorize("hasRole('CHEF_AGENCE') or hasRole('ADMIN') or hasRole('COLLABORATEUR')")
     @GetMapping("/codec/{codec}")
     public List<DemandeConge> findByCollaborateurCode(@PathVariable String codec) {
         return demandeCongeService.findByCollaborateurCode(codec);

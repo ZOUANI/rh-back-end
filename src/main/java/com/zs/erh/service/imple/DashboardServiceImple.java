@@ -10,6 +10,8 @@ import com.zs.erh.service.facade.DashboardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 public class DashboardServiceImple implements DashboardService {
     @Autowired
@@ -30,19 +32,25 @@ public class DashboardServiceImple implements DashboardService {
         FactureVO factureVO;
 
         for (int i=0;i<statisticVO.getShowNumber();i++){
-            budgetVO = new BudgetVO(result.getTimes().get(i+1),
-                                    result.getTimes().get(i));
+            budgetVO = new BudgetVO(result.getTimes().get(i),
+                                    result.getTimes().get(i+1),statisticVO.getChefAgenceId());
 
             factureVO = new FactureVO(result.getTimes().get(i+1),
                     result.getTimes().get(i));
 
 
             budgetVO = budgetService.calcStatistiqueBudget(budgetVO);
-            result.getBudgetTotal().add(budgetVO.getTotalMontantBudget());
+            if(budgetVO.getTotalMontantBudget() == null){
+                result.getBudgetTotal().add(BigDecimal.ZERO);
+            }else{
+                result.getBudgetTotal().add(budgetVO.getTotalMontantBudget());
+            }
 
             factureVO = factureService.calcStatistiqueFacture(factureVO);
             result.getFacturesTotal().add(factureVO.getTotalMontantFacture());
         }
+
+
         return result;
     }
 }
