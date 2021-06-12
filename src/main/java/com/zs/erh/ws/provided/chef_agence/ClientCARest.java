@@ -1,4 +1,4 @@
-package com.zs.erh.ws.provided.admin;
+package com.zs.erh.ws.provided.chef_agence;
 
 import com.zs.erh.bean.Client;
 import com.zs.erh.service.facade.ClientService;
@@ -7,12 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("maneo-rh/admin/client")
+@RequestMapping("maneo-rh/chef-agence/client")
 
-public class ClientRest {
+public class ClientCARest {
     @Autowired
     private ClientService clientService;
 
@@ -44,7 +43,7 @@ public class ClientRest {
         return clientService.deleteByCode(clients);
     }
 
-
+    
     // Update Services
     @PutMapping("/")
     public Client update(@RequestBody Client client) {

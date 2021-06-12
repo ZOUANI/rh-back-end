@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "maneo-rh/chef-agence/budget")
-public class BudgetRest {
+public class BudgetCARest {
     @Autowired
     private BudgetService budgetService;
 

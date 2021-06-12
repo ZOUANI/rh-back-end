@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("maneo-rh/chef-equipe/client")
 
-public class ClientRest {
+public class ClientCERest {
     @Autowired
     private ClientService clientService;
 

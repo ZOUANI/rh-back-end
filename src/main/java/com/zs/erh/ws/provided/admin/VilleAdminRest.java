@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("maneo-rh/admin/ville")
-public class VilleRest {
+public class VilleAdminRest {
     @Autowired
     private VilleService villeService;
 

@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("maneo-rh/collaborateur/client")
 
-public class ClientRest {
+public class ClientCollabRest {
     @Autowired
     private ClientService clientService;
 

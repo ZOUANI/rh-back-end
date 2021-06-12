@@ -1,18 +1,16 @@
-package com.zs.erh.ws.provided.admin;
+package com.zs.erh.ws.provided.chef_agence;
 
 import com.zs.erh.bean.Entreprise;
 import com.zs.erh.service.facade.EntrepriseService;
 import com.zs.erh.service.vo.EntrepriseVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("maneo-rh/admin/entreprise")
-public class EntrepriseRest {
+@RequestMapping("maneo-rh/chef-agence/entreprise")
+public class EntrepriseCARest {
 
     @Autowired
     private EntrepriseService entrepriseService;
