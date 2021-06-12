@@ -1,4 +1,4 @@
-package com.zs.erh.ws.provided;
+package com.zs.erh.ws.provided.admin;
 
 import com.zs.erh.bean.GroupeTache;
 import com.zs.erh.service.facade.GroupeTacheService;
@@ -10,10 +10,17 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "maneo-rh/groupeTache")
-public class GroupeTacheWS {
+@RequestMapping(value = "maneo-rh/admin/groupeTache")
+public class GroupeTacheAdminRest {
     @Autowired
     private GroupeTacheService groupeTacheService;
+
+    // Read Services
+
+    @GetMapping("/")
+    public List<GroupeTache> findAll() {
+        return groupeTacheService.findAll();
+    }
 
     @GetMapping("/codeChefAgence/{code}")
     public List<GroupeTache> findByLotProjetAgenceChefAgenceCode(@PathVariable String code) {
@@ -35,31 +42,30 @@ public class GroupeTacheWS {
         return groupeTacheService.findByEquipeCode(code);
     }
 
-    @GetMapping("/")
-    public List<GroupeTache> findAll() {
-        return groupeTacheService.findAll();
-    }
-
     @GetMapping("/codeLot/{code}")
     public List<GroupeTache> findByLotCode(@PathVariable String code) {
         return groupeTacheService.findByLotCode(code);
     }
 
-    @GetMapping("/code/{code}")
-    public GroupeTache findByCode(@PathVariable String code) {
-        return groupeTacheService.findByCode(code);
+    @PostMapping("/search")
+    public List<GroupeTache> search(@RequestBody GroupeTacheVO groupeTacheVO) {
+        return groupeTacheService.search(groupeTacheVO);
     }
+
+    // Create Services
 
     @PostMapping("/")
     public GroupeTache save(@RequestBody GroupeTache groupeTache) {
         return groupeTacheService.save(groupeTache);
     }
 
-    @DeleteMapping("/DeleteLotCode/{code}")
-    public int deleteByLotCode(@PathVariable String code) {
-        return groupeTacheService.deleteByLotCode(code);
+    // Update Services
+    @PutMapping("/")
+    public int updateGroupeTache(@RequestBody GroupeTache groupeTache) {
+        return groupeTacheService.updateGroupeTache(groupeTache);
     }
 
+    // Delete Services
     @DeleteMapping("/code/{code}")
     public int deleteByCode(@PathVariable String code) {
         return groupeTacheService.deleteByCode(code);
@@ -70,19 +76,8 @@ public class GroupeTacheWS {
         return groupeTacheService.deleteMultiple(groupeTaches);
     }
 
-    @GetMapping("/id/{id}")
-    public Optional<GroupeTache> findById(@PathVariable Long id) {
-        return groupeTacheService.findById(id);
+    @DeleteMapping("/DeleteLotCode/{code}")
+    public int deleteByLotCode(@PathVariable String code) {
+        return groupeTacheService.deleteByLotCode(code);
     }
-
-    @PutMapping("/")
-    public int updateGroupeTache(@RequestBody GroupeTache groupeTache) {
-        return groupeTacheService.updateGroupeTache(groupeTache);
-    }
-
-    @PostMapping("/search")
-    public List<GroupeTache> search(@RequestBody GroupeTacheVO groupeTacheVO) {
-        return groupeTacheService.search(groupeTacheVO);
-    }
-
 }
