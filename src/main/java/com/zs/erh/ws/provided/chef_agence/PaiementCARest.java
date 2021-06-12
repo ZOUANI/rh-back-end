@@ -1,4 +1,4 @@
-package com.zs.erh.ws.provided;
+package com.zs.erh.ws.provided.chef_agence;
 
 import com.zs.erh.bean.Paiement;
 import com.zs.erh.service.facade.PaiementService;
@@ -9,19 +9,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "maneo-rh/paiement")
-public class PaiementWS {
+@RequestMapping(value = "maneo-rh/chef-agence/paiement")
+public class PaiementCARest {
+
     @Autowired
     private PaiementService paiementService;
+
+    // Read Methods
 
     @GetMapping("/")
     public List<Paiement> findAll() {
         return paiementService.findAll();
-    }
-
-    @GetMapping("/reference/{reference}")
-    public Paiement findByReference(@PathVariable String reference) {
-        return paiementService.findByReference(reference);
     }
 
     @GetMapping("/codeFacture/{code}")
@@ -29,21 +27,28 @@ public class PaiementWS {
         return paiementService.findByFactureCode(code);
     }
 
+    // Statistiques Methods
+
+    @PostMapping("/statistic-paiement")
+    public PaiementVO calcStatistiquePaiement(@RequestBody PaiementVO paiementVO) {
+        return paiementService.calcStatistiquePaiement(paiementVO);
+    }
+
+    // Create Methods
+
     @PostMapping("/")
     public int save(@RequestBody Paiement paiement) {
         return paiementService.save(paiement);
     }
+
+    // Update Methods
 
     @PutMapping("/")
     public int updatePaiement(@RequestBody Paiement paiement) {
         return paiementService.updatePaiement(paiement);
     }
 
-    @DeleteMapping("/reference/{reference}")
-    public int deleteByReference(@PathVariable String reference) {
-        return paiementService.deleteByReference(reference);
-    }
-
+    // Delete Methods
     @DeleteMapping("FactureCode/{code}")
     public int deleteByFactureCode(@PathVariable String code) {
         return paiementService.deleteByFactureCode(code);
@@ -54,8 +59,8 @@ public class PaiementWS {
         return paiementService.deleteMultiple(paiements);
     }
 
-    @PostMapping("/statistic-paiement")
-    public PaiementVO calcStatistiquePaiement(@RequestBody PaiementVO paiementVO) {
-        return paiementService.calcStatistiquePaiement(paiementVO);
+    @DeleteMapping("/reference/{reference}")
+    public int deleteByReference(@PathVariable String reference) {
+        return paiementService.deleteByReference(reference);
     }
 }

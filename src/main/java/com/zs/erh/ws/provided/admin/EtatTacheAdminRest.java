@@ -1,4 +1,4 @@
-package com.zs.erh.ws.provided;
+package com.zs.erh.ws.provided.admin;
 
 import com.zs.erh.bean.EtatTache;
 import com.zs.erh.service.facade.EtatTacheService;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "maneo-rh/etatTache")
-public class EtatTacheWS {
+@RequestMapping(value = "maneo-rh/admin/etatTache")
+public class EtatTacheAdminRest {
     @Autowired
     private EtatTacheService etatTacheService;
 
@@ -26,6 +26,4 @@ public class EtatTacheWS {
     public EtatTache findByCode(@PathVariable String code) {
         return etatTacheService.findByCode(code);
     }
-
-
 }
