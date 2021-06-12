@@ -15,7 +15,6 @@ public class VilleRest {
     private VilleService villeService;
 
     // Tout le monde a le doit de voir les ville
-
     @GetMapping("/")
     public List<Ville> findAll() {
         return villeService.findAll();

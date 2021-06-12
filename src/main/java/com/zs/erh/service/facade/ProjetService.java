@@ -1,6 +1,7 @@
 package com.zs.erh.service.facade;
 
 import com.zs.erh.bean.Projet;
+import com.zs.erh.service.vo.ProjetVO;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -31,4 +32,5 @@ public interface ProjetService {
     void update(Projet projet);
     Projet findId( Long id);
 
+    public List<Projet> search(ProjetVO projetVo);
 }
