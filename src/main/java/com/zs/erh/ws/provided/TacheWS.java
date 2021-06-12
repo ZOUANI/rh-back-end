@@ -17,6 +17,11 @@ public class TacheWS {
     @Autowired
     private TacheService tacheService;
 
+    @GetMapping("/collaborateurId/{id}")
+    public List<Tache> findByMembreEquipeCollaborateurId(@PathVariable Long id) {
+        return tacheService.findByMembreEquipeCollaborateurId(id);
+    }
+
     @GetMapping("/")
     public List<Tache> findAll() {
         return tacheService.findAll();

@@ -9,6 +9,7 @@ import java.util.List;
 
 
 public interface TacheService {
+	public List<Tache> findByMembreEquipeCollaborateurId (Long id);
 	public Tache findByCode(String code);
 	public List<Tache> findByGroupeTacheCode(String code);
 	public List<Tache> findAll();
