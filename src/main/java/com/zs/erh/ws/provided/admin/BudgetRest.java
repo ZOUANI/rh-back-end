@@ -1,4 +1,4 @@
-package com.zs.erh.ws.provided;
+package com.zs.erh.ws.provided.admin;
 
 import com.zs.erh.bean.Budget;
 import com.zs.erh.bean.Tache;
@@ -10,26 +10,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "maneo-rh/budget")
-public class BudgetWS {
+@RequestMapping(value = "maneo-rh/admin/budget")
+public class BudgetRest {
     @Autowired
     private BudgetService budgetService;
-    @PostMapping("/statistic-budget")
-    public BudgetVO calcStatistiqueBudget(@RequestBody BudgetVO budgetVO) {
-        return budgetService.calcStatistiqueBudget(budgetVO);
-    }
 
+    // Read Services
     @GetMapping("/")
     public List<Budget> findAll() {
         return budgetService.findAll();
     }
-    @GetMapping("/code/{code}")
-    public Budget findByCode(@PathVariable String code){
-        return budgetService.findByCode(code);
-    }
-    @PostMapping("/")
-    public Budget save(@RequestBody Budget budget){
-        return budgetService.save(budget);
+
+    @PostMapping("/statistic-budget")
+    public BudgetVO calcStatistiqueBudget(@RequestBody BudgetVO budgetVO) {
+        return budgetService.calcStatistiqueBudget(budgetVO);
     }
 
     @GetMapping("/etat-libelle/{libelle}")
@@ -37,6 +31,19 @@ public class BudgetWS {
         return budgetService.findByEtatBudgetLibelle(libelle);
     }
 
+    @PostMapping("/search")
+    public List<Budget> search(@RequestBody BudgetVO budgetVO){
+        return budgetService.search(budgetVO);
+    }
+
+    // Create Services
+    @PostMapping("/")
+    public Budget save(@RequestBody Budget budget){
+        return budgetService.save(budget);
+    }
+
+
+    // Delete Services
     @DeleteMapping("/delete/{code}")
     public int deleteByCode(@PathVariable String code) {
         return budgetService.deleteByCode(code);
@@ -46,10 +53,4 @@ public class BudgetWS {
     public int deleteMultiple(@RequestBody List<Tache> taches) {
         return budgetService.deleteMultiple(taches);
     }
-
-    @PostMapping("/search")
-    public List<Budget> search(@RequestBody BudgetVO budgetVO){
-        return budgetService.search(budgetVO);
-    }
-
     }
