@@ -1,4 +1,4 @@
-package com.zs.erh.ws.provided;
+package com.zs.erh.ws.provided.admin;
 
 import com.zs.erh.bean.TypePaiement;
 import com.zs.erh.service.facade.TypePaiementService;
@@ -8,10 +8,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "maneo-rh/typePaiement")
-public class TypePaiementWS {
+@RequestMapping(value = "maneo-rh/admin/typePaiement")
+public class TypePaiementAdminRest {
     @Autowired
     private TypePaiementService typePaiementService;
+
 
     @GetMapping("/")
     public List<TypePaiement> findAll() {
