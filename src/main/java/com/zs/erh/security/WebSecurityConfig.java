@@ -58,6 +58,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 			.authorizeRequests().antMatchers("/maneo-rh/auth/**").permitAll()
 			.antMatchers("/maneo-rh/agence").permitAll()
+			.antMatchers("/maneo-rh/admin/**").hasRole("ADMIN")
+			.antMatchers("/maneo-rh/chef-agence/**").hasRole("CHEF_AGENCE")
+			.antMatchers("/maneo-rh/chef-equipe/**").hasRole("CHEF_EQUIPE")
+			.antMatchers("/maneo-rh/collaborateur/**").hasRole("COLLABORATEUR")
 			.anyRequest().authenticated();
 
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
