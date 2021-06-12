@@ -1,4 +1,4 @@
-package com.zs.erh.ws.provided;
+package com.zs.erh.ws.provided.admin;
 
 import com.zs.erh.service.facade.DashboardService;
 import com.zs.erh.service.vo.StatisticVO;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/maneo-rh/dashboard")
-public class DashboardWS {
+@RequestMapping(value = "/maneo-rh/admin/dashboard")
+public class DashboardRest {
     @Autowired
     private DashboardService dashboardService;
 

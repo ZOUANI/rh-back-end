@@ -1,4 +1,4 @@
-package com.zs.erh.ws.provided;
+package com.zs.erh.ws.provided.general;
 
 import com.zs.erh.bean.CalendrierJourFeries;
 import com.zs.erh.service.facade.CalendrierJourFeriesService;
@@ -13,8 +13,8 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("maneo-rh/calendrierJourFeries")
-public class CalendrierJourFeriesWS {
+@RequestMapping("maneo-rh/general/calendrierJourFeries")
+public class CalendrierJourFeriesRest {
     @Autowired
     private CalendrierJourFeriesService calendrierJourFeriesService;
 

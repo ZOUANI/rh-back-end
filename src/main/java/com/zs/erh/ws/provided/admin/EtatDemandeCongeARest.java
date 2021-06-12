@@ -1,17 +1,19 @@
-package com.zs.erh.ws.provided;
+package com.zs.erh.ws.provided.admin;
 
 import com.zs.erh.bean.EtatDemandeConge;
 import com.zs.erh.service.facade.EtatDemandeCongeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("maneo-rh/etatdemandeconge")
-public class EtatDemandeCongeWS {
+@RequestMapping("maneo-rh/admin/etatdemandeconge")
+public class EtatDemandeCongeARest {
     @GetMapping("/code/ {code}")
     public EtatDemandeConge findByCode(@PathVariable String code) {
         return etatDemandeCongeService.findByCode(code);

@@ -1,4 +1,4 @@
-package com.zs.erh.ws.provided;
+package com.zs.erh.ws.provided.admin;
 
 import com.zs.erh.bean.CategorieCollaborateur;
 import com.zs.erh.service.facade.CategorieCollaborateurService;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("maneo-rh/categorieCollaborateur")
-public class CategorieCollaborateurWS {
+@RequestMapping("maneo-rh/admin/categorieCollaborateur")
+public class CategorieCollaborateurARest {
     @Autowired
     private CategorieCollaborateurService categorieCollaborateurService;
 

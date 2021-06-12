@@ -1,4 +1,4 @@
-package com.zs.erh.ws.provided;
+package com.zs.erh.ws.provided.admin;
 
 
 import com.zs.erh.bean.EtatGroupeTache;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "maneo-rh/etatGroupeTache")
-public class EtatGroupeTacheWS {
+@RequestMapping(value = "maneo-rh/admin/etatGroupeTache")
+public class EtatGroupeTacheARest {
 
     @GetMapping("/")
     public List<EtatGroupeTache> findAll() {

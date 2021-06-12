@@ -1,4 +1,4 @@
-package com.zs.erh.ws.provided;
+package com.zs.erh.ws.provided.admin;
 
 import com.zs.erh.bean.Projet;
 import com.zs.erh.bean.ProjetEquipe;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "maneo-rh/projetequipe")
-public class ProjetEquipeWS {
+@RequestMapping(value = "maneo-rh/admin/projetequipe")
+public class ProjetEquipeARest {
     @Autowired
     ProjetEquipeService projetEquipeService;
 

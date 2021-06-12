@@ -1,4 +1,4 @@
-package com.zs.erh.ws.provided;
+package com.zs.erh.ws.provided.admin;
 
 import com.zs.erh.bean.DemandeConge;
 import com.zs.erh.service.facade.DemandeCongeService;
@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("maneo-rh/conge")
-public class DemandeCongeWS {
+@RequestMapping("maneo-rh/admin/conge")
+public class DemandeCongeARest {
     @Autowired
     private DemandeCongeService demandeCongeService;
     @GetMapping("/codechef/{codechef}")

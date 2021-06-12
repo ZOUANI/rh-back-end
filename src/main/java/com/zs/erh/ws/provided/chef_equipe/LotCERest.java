@@ -1,4 +1,4 @@
-package com.zs.erh.ws.provided;
+package com.zs.erh.ws.provided.chef_equipe;
 
 import com.zs.erh.bean.Lot;
 import com.zs.erh.service.facade.LotService;
@@ -8,20 +8,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "maneo-rh/lot")
-public class LotWS {
+@RequestMapping(value = "maneo-rh/chef-equipe/lot")
+public class LotCERest {
     @Autowired
     public LotService lotService;
 
-    @PostMapping("/")
-    public Lot save(@RequestBody Lot lot) {
-        return lotService.save(lot);
-    }
 
-    @PostMapping("/delete-multiple-by-code")
-    public int deleteMultiple(@RequestBody List<Lot> lots) {
-        return lotService.deleteMultiple(lots);
-    }
 
     @GetMapping("/projet/code/{code}")
     public List<Lot> findByProjetCode(@PathVariable String code) {
@@ -46,21 +38,6 @@ public class LotWS {
     @GetMapping("/")
     public List<Lot> findAll() {
         return lotService.findAll();
-    }
-
-    @DeleteMapping("/code/{code}")
-    public int deleteByCode(@PathVariable String code) {
-        return lotService.deleteByCode(code);
-    }
-
-    @DeleteMapping("/projet/code/{code}")
-    public int deleteByProjetCode(@PathVariable String code) {
-        return lotService.deleteByProjetCode(code);
-    }
-
-    @PutMapping("/")
-    public int updateLot(@RequestBody Lot lot) {
-        return lotService.updateLot(lot);
     }
 
     @GetMapping("/projet/id/{id}")
