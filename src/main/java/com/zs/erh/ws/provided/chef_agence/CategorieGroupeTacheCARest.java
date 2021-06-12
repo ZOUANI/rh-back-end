@@ -1,4 +1,4 @@
-package com.zs.erh.ws.provided;
+package com.zs.erh.ws.provided.chef_agence;
 
 import com.zs.erh.bean.CategorieGroupeTache;
 import com.zs.erh.service.facade.CategorieGroupeTacheService;
@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("maneo-rh/categorie-groupe-tache")
-public class CategorieGroupeTacheWS {
+@RequestMapping("maneo-rh/chef-agence/categorie-groupe-tache")
+public class CategorieGroupeTacheCARest {
     @Autowired
     private CategorieGroupeTacheService categorieGroupeTacheService;
    @GetMapping("/")

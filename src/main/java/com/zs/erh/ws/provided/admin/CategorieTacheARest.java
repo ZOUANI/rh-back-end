@@ -1,4 +1,4 @@
-package com.zs.erh.ws.provided;
+package com.zs.erh.ws.provided.admin;
 
 import com.zs.erh.bean.CategorieTache;
 import com.zs.erh.service.facade.CategorieTacheService;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("maneo-rh/categorie-tache")
-public class CategorieTacheWS {
+@RequestMapping("maneo-rh/admin/categorie-tache")
+public class CategorieTacheARest {
     @Autowired
     private CategorieTacheService categorieTacheService;
     @GetMapping("/")
