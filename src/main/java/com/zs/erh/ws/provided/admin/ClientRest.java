@@ -1,4 +1,4 @@
-package com.zs.erh.ws.provided;
+package com.zs.erh.ws.provided.admin;
 
 import com.zs.erh.bean.Client;
 import com.zs.erh.service.facade.ClientService;
@@ -10,48 +10,50 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("maneo-rh/client")
-public class ClientWS {
+@RequestMapping("maneo-rh/admin/client")
+
+public class ClientRest {
     @Autowired
     private ClientService clientService;
 
+    // Read Services C ( R ) U D
+
+    @GetMapping("/")
+    public List<Client> findAll() {
+        return clientService.findAll();
+    }
 
     @GetMapping("/code/{code}")
     public List<Client> findByEntrepriseCode(@PathVariable String code) {
         return clientService.findByEntrepriseCode(code);
     }
 
-    @DeleteMapping("/code/{code}")
-    public int deleteByCode( @PathVariable String code) {
-        return clientService.deleteByCode(code);
-    }
     @PostMapping("/search")
     public List<Client> search(@RequestBody ClientVO clientVO) {
         return clientService.search(clientVO);
     }
-    @GetMapping("/id/{id}")
-    public Optional<Client> findById( @PathVariable Long id) {
-        return clientService.findById(id);
+
+    // Delete services
+    @DeleteMapping("/code/{code}")
+    public int deleteByCode(@PathVariable String code) {
+        return clientService.deleteByCode(code);
     }
+
+    @PostMapping("/multiples-codes")
+    public int deleteByCode(@RequestBody List<Client> clients) {
+        return clientService.deleteByCode(clients);
+    }
+
+
+    // Update Services
     @PutMapping("/")
     public Client update(@RequestBody Client client) {
         return clientService.update(client);
     }
 
+    // Create Services
     @PostMapping("/")
-    public Client save( @RequestBody Client client) {
+    public Client save(@RequestBody Client client) {
         return clientService.save(client);
-    }
-    @GetMapping("/codee/{codee}")
-    public Client findByCode(@PathVariable String codee) {
-        return clientService.findByCode(codee);
-    }
-    @GetMapping("/")
-    public List<Client> findAll() {
-        return clientService.findAll();
-    }
-    @PostMapping("/multiples-codes")
-    public int deleteByCode(@RequestBody List<Client> clients) {
-        return clientService.deleteByCode(clients);
     }
 }

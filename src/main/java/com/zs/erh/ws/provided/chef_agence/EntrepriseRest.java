@@ -1,53 +1,47 @@
-package com.zs.erh.ws.provided;
+package com.zs.erh.ws.provided.chef_agence;
 
 import com.zs.erh.bean.Entreprise;
 import com.zs.erh.service.facade.EntrepriseService;
 import com.zs.erh.service.vo.EntrepriseVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("maneo-rh/entreprise")
-public class EntrepriseWS {
+@RequestMapping("maneo-rh/chef-agence/entreprise")
+public class EntrepriseRest {
 
     @Autowired
     private EntrepriseService entrepriseService;
 
-    @GetMapping("/code/{code}")
-    public Entreprise findByCode( @PathVariable String code) {
-        return entrepriseService.findByCode(code);
+    @GetMapping("/")
+    public List<Entreprise> findAll() {
+        return entrepriseService.findAll();
     }
+
     @GetMapping("/code/{code}/libelle/{libelle}")
     public List<Entreprise> findByCodeLikeAndLibelleLike( @PathVariable String code,@PathVariable String libelle) {
         return entrepriseService.findByCodeLikeAndLibelleLike(code, libelle);
     }
+
     @DeleteMapping("/code/{code}")
     public int deleteByCode(@PathVariable String code) {
         return entrepriseService.deleteByCode(code);
     }
 
 
-    @PreAuthorize("hasRole('CHEF_AGENCE') or hasRole('ADMIN')")
-    @GetMapping("/")
-    public List<Entreprise> findAll() {
-        return entrepriseService.findAll();
-    }
+
     @PostMapping("/")
     public Entreprise save(@RequestBody Entreprise entreprise) {
         return entrepriseService.save(entreprise);
     }
-    @GetMapping("/id/{id}")
-    public Optional<Entreprise> findById( @PathVariable Long id) {
-        return entrepriseService.findById(id);
-    }
+
     @PutMapping("/")
     public Entreprise update(@RequestBody Entreprise entreprise) {
         return entrepriseService.update(entreprise);
     }
+
     @PostMapping("/findByCriteria")
     public List<Entreprise> findByCriteria( @RequestBody EntrepriseVO entrepriseVO) {
         return entrepriseService.findByCriteria(entrepriseVO);
