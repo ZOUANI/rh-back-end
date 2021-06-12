@@ -1,4 +1,4 @@
-package com.zs.erh.ws.provided;
+package com.zs.erh.ws.provided.admin;
 
 import com.zs.erh.bean.Facture;
 import com.zs.erh.service.facade.FactureService;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "maneo-rh/facture")
-public class FactureWS {
+@RequestMapping(value = "maneo-rh/admin/facture")
+public class FactureAdminRest {
     @Autowired
     private FactureService factureService;
 

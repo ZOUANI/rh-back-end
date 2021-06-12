@@ -1,4 +1,4 @@
-package com.zs.erh.ws.provided;
+package com.zs.erh.ws.provided.general;
 
 import com.zs.erh.bean.Periode;
 import com.zs.erh.service.facade.PeriodeService;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("maneo-rh/periode")
-public class PeriodeWS {
+@RequestMapping("maneo-rh/general/periode")
+public class PeriodeRest {
     @Autowired
     private PeriodeService periodeService;
 
