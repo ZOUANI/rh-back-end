@@ -18,6 +18,14 @@ import java.util.List;
 @Service
 public class ProjetServiceImple implements ProjetService {
 
+    public List<Projet> findByAgenceChefAgenceId(Long id) {
+        return projetDao.findByAgenceChefAgenceId(id);
+    }
+
+    public List<Projet> findByAgenceChefAgenceCode(String code) {
+        return projetDao.findByAgenceChefAgenceCode(code);
+    }
+
     public List<Projet> findByClientId(Long id) {
         return projetDao.findByClientId(id);
     }
@@ -28,6 +36,14 @@ public class ProjetServiceImple implements ProjetService {
 
     public List<Projet> findByAgenceChefAgenceCode(String code) {
         return projetDao.findByAgenceChefAgenceCode(code);
+    }
+
+    public List<Projet> findByClientIdAndAgenceChefAgenceCode(Long id, String code) {
+        return projetDao.findByClientIdAndAgenceChefAgenceCode(id, code);
+    }
+
+    public List<Projet> findByClientIdAndResponsableCode(Long id, String code) {
+        return projetDao.findByClientIdAndResponsableCode(id, code);
     }
 
     public Projet save(Projet projet) {

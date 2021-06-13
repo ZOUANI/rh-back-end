@@ -6,7 +6,10 @@ import com.zs.erh.bean.ProjetEquipe;
 import java.util.List;
 
 public interface ProjetEquipeService {
-
+    public List<ProjetEquipe> findByProjetId(Long id);
+    public List<ProjetEquipe> findByProjetIdAndEquipeAgenceChefAgenceId(Long projetId, Long chefId);
+    public List<ProjetEquipe> findByProjetClientIdAndEquipeResponsableCode(Long id, String code);
+    public List<ProjetEquipe> findByEquipeResponsableCode(String code);
     int save(Projet projet, List<ProjetEquipe> projetEquipes);
     ProjetEquipe saveDirect(ProjetEquipe projetEquipe);
     List<ProjetEquipe> findByProjetCode(String code);

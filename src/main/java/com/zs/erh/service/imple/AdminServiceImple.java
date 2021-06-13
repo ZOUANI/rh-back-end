@@ -6,9 +6,13 @@ import com.zs.erh.service.facade.AdminService;
 import com.zs.erh.service.util.HashageUtil;
 import com.zs.erh.service.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.Optional;
 
 @Service
 public class AdminServiceImple extends AbstractFacade<Admin> implements AdminService {
@@ -25,46 +29,24 @@ public class AdminServiceImple extends AbstractFacade<Admin> implements AdminSer
     @Autowired
     private AdminDao adminDao;
 
-    public Admin findByLogin(String login) {
+    @Override
+    public Optional<Admin> findByLogin(String login) {
         return adminDao.findByLogin(login);
     }
 
-    public int save(Admin admin) {
-        if (adminDao.findByLogin(admin.getLogin()) != null) {
-            return -1;
-        }
-        else {
-            adminDao.save(admin);
-            return 1;
-        }
+    @Override
+    public Boolean existsByLogin(String login) {
+        return adminDao.existsByLogin(login);
     }
-
-//    public int save(Admin admin) {
-//        if (StringUtil.isEmpty(admin.getLogin())) {
-//            return -2;
-//        }
-//        Admin c = findByLogin(admin.getLogin());
-//        String hash = HashageUtil.sha256(admin.getPassword());
-//        if (c == null) {
-//            admin.setPassword(hash);
-//            adminDao.save(admin);
-//            return 1;
-//        }
-//        return -1;
-//
-//    }
-
 
     @Override
-    public Admin SeConnecter(Admin admin) {
-        Admin foundedAdmin = this.adminDao.findByLogin(admin.getLogin());
-        if(foundedAdmin == null){
-            return null;
-        }
-        if (!foundedAdmin.getPassword().equals(admin.getPassword())){
-            return null;
-        }else{
-            return foundedAdmin;
-        }
+    public Boolean existsByEmail(String email) {
+        return adminDao.existsByEmail(email);
     }
+
+    @Override
+    public Admin save(Admin user) {
+        return adminDao.save(user);
+    }
+
 }

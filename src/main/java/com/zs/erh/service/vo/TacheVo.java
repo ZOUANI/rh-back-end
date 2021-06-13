@@ -21,6 +21,7 @@ public class TacheVo {
     private Long equipeId;
     private Long clientId;
     private Long groupeTacheId;
+    private Long chefAgenceId;
 
     private Long projetId;
     private Integer semaine;
@@ -224,6 +225,14 @@ public class TacheVo {
 
     public void setMembreEquipeId(Long membreEquipeId) {
         this.membreEquipeId = membreEquipeId;
+    }
+
+    public Long getChefAgenceId() {
+        return chefAgenceId;
+    }
+
+    public void setChefAgenceId(Long chefAgenceId) {
+        this.chefAgenceId = chefAgenceId;
     }
 
     @Override

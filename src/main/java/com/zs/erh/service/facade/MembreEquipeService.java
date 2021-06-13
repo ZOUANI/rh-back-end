@@ -13,8 +13,8 @@ public interface MembreEquipeService {
 	public List<MembreEquipe> findByEquipeId(Long id);
 	public int deleteByEquipeCode(String code);
 	List<MembreEquipe> findByCollaborateurCode(String code);
-	public int update(Long id,MembreEquipe membreEquipe);
-	public int save(MembreEquipe membreEquipe);
+	public MembreEquipe update(MembreEquipe membreEquipe);
+	public MembreEquipe save(MembreEquipe membreEquipe);
 	public MembreEquipe findByEquipeCodeAndCollaborateurCode(String codeEquipe, String codeCollaborateur);
 	public int deleteByEquipeCodeAndCollaborateurCode(String codeEquipe,String codeCollaborateur);
 }

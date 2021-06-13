@@ -2,8 +2,14 @@ package com.zs.erh.service.facade;
 
 import com.zs.erh.bean.Admin;
 
+import java.util.Optional;
+
 public interface AdminService {
-	public Admin findByLogin(String login);
-	public int save(Admin admin);
-	public Admin SeConnecter(Admin admin);
+	Optional<Admin> findByLogin (String login);
+
+	Boolean existsByLogin(String login);
+
+	Boolean existsByEmail(String email);
+
+	public Admin save (Admin user);
 }
