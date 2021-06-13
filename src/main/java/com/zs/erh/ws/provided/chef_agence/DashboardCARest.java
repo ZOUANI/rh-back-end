@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/maneo-rh/chef-agence/dashboard")
-public class DashboardRest {
+public class DashboardCARest {
     @Autowired
     private DashboardService dashboardService;
 
