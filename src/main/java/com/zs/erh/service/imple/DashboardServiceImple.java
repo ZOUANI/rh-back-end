@@ -1,7 +1,9 @@
 package com.zs.erh.service.imple;
 
 import com.zs.erh.service.facade.FactureService;
+import com.zs.erh.service.facade.PaiementService;
 import com.zs.erh.service.vo.FactureVO;
+import com.zs.erh.service.vo.PaiementVO;
 import com.zs.erh.service.vo.StatisticVO;
 import com.zs.erh.service.vo.BudgetVO;
 
@@ -17,17 +19,21 @@ public class DashboardServiceImple implements DashboardService {
 
     @Autowired
     private FactureService factureService;
+    @Autowired
+    private PaiementService paiementService;
 
 
     public StatisticVO calcStatistiques(StatisticVO statisticVO) {
         StatisticVO result = new StatisticVO();
         result.getFacturesTotal().clear();
-        result.getBudgetTotal().clear();
+        result.getBudgetsTotal().clear();
+        result.getPaiementsTotal().clear();
         statisticVO.Times();
         result.setTimes(statisticVO.getTimes());
 
         BudgetVO budgetVO;
         FactureVO factureVO;
+        PaiementVO paiementVO;
 
         for (int i=0;i<statisticVO.getShowNumber();i++){
             budgetVO = new BudgetVO(result.getTimes().get(i+1),
@@ -36,12 +42,17 @@ public class DashboardServiceImple implements DashboardService {
             factureVO = new FactureVO(result.getTimes().get(i+1),
                     result.getTimes().get(i));
 
+             paiementVO = new PaiementVO(result.getTimes().get(i+1),
+                     result.getTimes().get(i));
 
             budgetVO = budgetService.calcStatistiqueBudget(budgetVO);
-            result.getBudgetTotal().add(budgetVO.getTotalMontantBudget());
+            result.getBudgetsTotal().add(budgetVO.getTotalMontantBudget());
 
             factureVO = factureService.calcStatistiqueFacture(factureVO);
             result.getFacturesTotal().add(factureVO.getTotalMontantFacture());
+
+            paiementVO = paiementService.calcStatistiquePaiement(paiementVO);
+            result.getPaiementsTotal().add(paiementVO.getTotalMontantPaiement());
         }
         return result;
     }

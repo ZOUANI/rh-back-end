@@ -19,6 +19,14 @@ public class DemandeCongeWS {
     public List<DemandeConge> findByCollaborateurAgenceChefAgenceCode(@PathVariable String codechef) {
         return demandeCongeService.findByCollaborateurAgenceChefAgenceCode(codechef);
     }
+    @PostMapping("/search-demande-conge")
+    public List<DemandeConge> searchDemandeConge(@RequestBody DemandeCongeVo demandeCongeVo) {
+        return demandeCongeService.searchDemandeConge(demandeCongeVo);
+    }
+    @PutMapping("/all")
+    public DemandeConge updateAll(@RequestBody DemandeConge demandeConge) {
+        return demandeCongeService.updateAll(demandeConge);
+    }
 
     @GetMapping("/id/{id}")
     public Optional<DemandeConge> findById(Long id) {

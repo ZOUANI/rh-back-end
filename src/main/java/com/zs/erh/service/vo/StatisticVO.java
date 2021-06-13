@@ -24,11 +24,22 @@ public class StatisticVO implements Serializable {
     private List<Date> times;
     private String showType;
     private Long showNumber;
-    private List<BigDecimal> budgetTotal;
+    private List<BigDecimal> budgetsTotal;
     private List<BigDecimal> facturesTotal;
     private List<BigDecimal> paiementsTotal;
 
     private  BudgetVO budgetVO;
+
+    public List<BigDecimal> getPaiementsTotal() {
+        if(this.paiementsTotal == null){
+            this.paiementsTotal = new ArrayList<BigDecimal>();
+        }
+        return paiementsTotal;
+    }
+
+    public void setPaiementsTotal(List<BigDecimal> paiementsTotal) {
+        this.paiementsTotal = paiementsTotal;
+    }
 
     public BudgetVO getBudgetVO() {
         return budgetVO;
@@ -63,6 +74,9 @@ public class StatisticVO implements Serializable {
     }
 
     public List<Date> getTimes() {
+        if(this.times == null){
+            this.times = new ArrayList<Date>();
+        }
         return times;
     }
 
@@ -86,14 +100,14 @@ public class StatisticVO implements Serializable {
         this.showNumber = showNumber;
     }
 
-    public List<BigDecimal> getBudgetTotal() {
-        if (this.budgetTotal == null)
-            this.budgetTotal = new ArrayList<BigDecimal>();
-        return budgetTotal;
+    public List<BigDecimal> getBudgetsTotal() {
+        if (this.budgetsTotal == null)
+            this.budgetsTotal = new ArrayList<BigDecimal>();
+        return budgetsTotal;
     }
 
-    public void setBudgetTotal(List<BigDecimal> budgetTotal) {
-        this.budgetTotal = budgetTotal;
+    public void setBudgetsTotal(List<BigDecimal> budgetsTotal) {
+        this.budgetsTotal = budgetsTotal;
     }
 
 
@@ -108,7 +122,7 @@ public class StatisticVO implements Serializable {
     }
 
     public void Times (){
-        this.times.clear();
+        this.getTimes().clear();
         this.getTimes().add(this.currentDate);
         int year = this.currentDate.getYear();
         int month = this.currentDate.getMonth();
@@ -120,17 +134,17 @@ public class StatisticVO implements Serializable {
             }
             System.out.println(this.times);
         }
-        /*
-        else if(this.showType.equals("months")){
+
+       else if(this.showType.equals("months")){
             for (int i=0;i<this.showNumber;i++){
-                this.times.add(new Date(year,month,1));
+                this.times.add(new Date(year,month-i,1));
                 if (month == 1){
                     month = 12;
                     year -= 1;
                 }
             }
-            System.out.println();
+
         }
-        */
+
     }
 }

@@ -32,6 +32,8 @@ public class Collaborateur implements Serializable {
 
     @ManyToOne
     private Agence agence;
+    @ManyToOne
+    private MessageDetail messageDetail;
 
     private int nbrCnx = 3;
     private boolean blocked;

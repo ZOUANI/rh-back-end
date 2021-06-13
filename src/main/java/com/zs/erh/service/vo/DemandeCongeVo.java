@@ -11,7 +11,42 @@ public class DemandeCongeVo {
     private Long nbrJour;
     private Collaborateur collaborateur;
     private String nomCollaborateur;
+    private Long collaborateurId;
+    private Date dateMin;
+    private Date dateMax;
+    private Long etatDemandeCongeId;
 
+    public Long getCollaborateurId() {
+        return collaborateurId;
+    }
+
+    public void setCollaborateurId(Long collaborateurId) {
+        this.collaborateurId = collaborateurId;
+    }
+
+    public Date getDateMin() {
+        return dateMin;
+    }
+
+    public void setDateMin(Date dateMin) {
+        this.dateMin = dateMin;
+    }
+
+    public Date getDateMax() {
+        return dateMax;
+    }
+
+    public void setDateMax(Date dateMax) {
+        this.dateMax = dateMax;
+    }
+
+    public Long getEtatDemandeCongeId() {
+        return etatDemandeCongeId;
+    }
+
+    public void setEtatDemandeCongeId(Long etatDemandeCongeId) {
+        this.etatDemandeCongeId = etatDemandeCongeId;
+    }
 
     public String getNomCollaborateur() {
         return nomCollaborateur;

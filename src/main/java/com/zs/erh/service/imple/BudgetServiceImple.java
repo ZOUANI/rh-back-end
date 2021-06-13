@@ -80,23 +80,7 @@ public class BudgetServiceImple extends AbstractFacade<Budget> implements Budget
         return res;
     }
 
-   public StatisticVO lahysame7likYaAymane(StatisticVO statisticVO){
-        List<String> times = new ArrayList<>();
-        List<BigDecimal> budgetsTotal = new ArrayList<>();
-     for (int i=0; i<statisticVO.getShowNumber(); i++){
-         times.add(statisticVO.getDateMax().toString());
-         /*****fhad la ligne bghit n7at dik la dateMax f budgetVo bach hia li nkhdam f la méthode li flta7t*****/
-         //BudgetVO budgetVO = statisticVO.getBudgetVO().setDateMax((Date) times[i]);
-         /*****fhad la ligne bghit n7at dakchi li kadiro la fonction , katrja3 lia dak totalMontantBudget li tdar f dik
-         lmodda li3tito (dateMax)*****/
-         //BudgetVO budgetVO1 = calcStatistiqueBudget(budgetVO);
-         /****hna kan3mar dak Array dial buget dial kolla chhar*****/
-        // budgetsTotal.add(budgetVO1.getTotalMontantBudget());
-         /****fhad la ligne bghit n9as mn dik lmodda bach nb9a ghadia o kanhbaat bdik la dateMax****/
-        // statisticVO.setDateMax(statisticVO.getDateMax().toInstant().minus(1));
-     }
-     return statisticVO;
-   }
+
 
     public BudgetVO calcStatistiqueBudget(BudgetVO budgetVO) {
         String query = "SELECT new com.zs.erh.service.vo.BudgetVO(SUM (b.montant),COUNT(b)) FROM Budget  b WHERE 1=1";

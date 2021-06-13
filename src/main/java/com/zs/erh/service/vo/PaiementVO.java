@@ -1,15 +1,27 @@
 package com.zs.erh.service.vo;
 
+import com.zs.erh.bean.Facture;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
 public class PaiementVO {
 
     private Long factureId;
+    private Long agenceId;
+
     private Date dateMin;
     private Date dateMax;
     private Long nbrPaiement;
     private BigDecimal totalMontantPaiement;
+
+    public Long getAgenceId() {
+        return agenceId;
+    }
+
+    public void setAgenceId(Long agenceId) {
+        this.agenceId = agenceId;
+    }
 
     public Long getFactureId() {
         return factureId;
@@ -54,6 +66,10 @@ public class PaiementVO {
     public PaiementVO(BigDecimal totalMontantPaiement, Long nbrPaiement) {
         this.totalMontantPaiement = totalMontantPaiement;
         this.nbrPaiement = nbrPaiement;
+    }
+    public PaiementVO(Date dateMin, Date dateMax) {
+        this.dateMin = dateMin;
+        this.dateMax = dateMax;
     }
 
 }
