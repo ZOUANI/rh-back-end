@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class ProjetVO {
     private Long clientId;
+    private Long agenceId;
     private Long responsableProjetId;
     private Long etatProjetId;
     private String libelleProjet;
@@ -38,5 +39,13 @@ public class ProjetVO {
 
     public void setLibelleProjet(String libelleProjet) {
         this.libelleProjet = libelleProjet;
+    }
+
+    public Long getAgenceId() {
+        return agenceId;
+    }
+
+    public void setAgenceId(Long agenceId) {
+        this.agenceId = agenceId;
     }
 }

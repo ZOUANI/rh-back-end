@@ -1,5 +1,6 @@
 package com.zs.erh.service.imple;
 
+import com.zs.erh.bean.ChefAgence;
 import com.zs.erh.bean.GroupeTache;
 import com.zs.erh.bean.Lot;
 import com.zs.erh.bean.Projet;
@@ -28,6 +29,11 @@ public class ProjetServiceImple implements ProjetService {
     public List<Projet> findByClientId(Long id) {
         return projetDao.findByClientId(id);
     }
+
+    public List<Projet> findByResponsableCode(String code) {
+        return projetDao.findByResponsableCode(code);
+    }
+
 
     public List<Projet> findByClientIdAndAgenceChefAgenceCode(Long id, String code) {
         return projetDao.findByClientIdAndAgenceChefAgenceCode(id, code);
@@ -111,6 +117,9 @@ public class ProjetServiceImple implements ProjetService {
         }
         if (projetVo.getEtatProjetId() != null) {
             query += "AND p.etatProjet.id = " + projetVo.getEtatProjetId();
+        }
+        if (projetVo.getAgenceId() != null) {
+            query += "AND p.agence.id = " + projetVo.getAgenceId();
         }
         if (StringUtil.isNotEmpty(projetVo.getLibelleProjet())) {
             query += "AND p.libelle LIKE '%" + projetVo.getLibelleProjet() + "%'";

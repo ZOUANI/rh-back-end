@@ -1,5 +1,6 @@
 package com.zs.erh.service.facade;
 
+import com.zs.erh.bean.ChefAgence;
 import com.zs.erh.bean.Projet;
 import com.zs.erh.service.vo.ProjetVO;
 import org.springframework.data.jpa.repository.Query;
@@ -14,6 +15,8 @@ public interface ProjetService {
     public List<Projet> findByAgenceChefAgenceCode(String code);
 
     public List<Projet> findByClientId(Long id);
+
+    public List<Projet> findByResponsableCode(String code);
 
     public List<Projet> findByClientIdAndAgenceChefAgenceCode(Long id, String code);
 

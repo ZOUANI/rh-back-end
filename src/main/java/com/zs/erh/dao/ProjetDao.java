@@ -17,12 +17,10 @@ public interface ProjetDao extends JpaRepository<Projet, Long> {
     public List<Projet> findByClientId(Long id);
     public List<Projet> findByClientIdAndAgenceChefAgenceCode(Long id, String code);
     public List<Projet> findByClientIdAndResponsableCode(Long id, String code);
+    public List<Projet> findByResponsableCode(String code);
     public List<Projet> findAll();
     public Projet findByCode(String code);
     public int deleteByCode(String code);
-
-
-    // TODO Msh 3ad Zmr !!!!!! ASAHBI dir findById
     @Query("SELECT p FROM Projet p WHERE p.id = :id")
      Projet findId(@Param("id") Long id);
 }
