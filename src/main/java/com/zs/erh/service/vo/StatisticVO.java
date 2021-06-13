@@ -4,6 +4,7 @@ package com.zs.erh.service.vo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class StatisticVO implements Serializable {
     private List<Date> times;
     private String showType;
     private Long showNumber;
-    private List<BigDecimal> budgetsTotal;
+    private List<BigDecimal> budgetTotal;
     private List<BigDecimal> facturesTotal;
     private List<BigDecimal> paiementsTotal;
 
@@ -74,9 +75,8 @@ public class StatisticVO implements Serializable {
     }
 
     public List<Date> getTimes() {
-        if(this.times == null){
+        if(this.times == null)
             this.times = new ArrayList<Date>();
-        }
         return times;
     }
 
@@ -100,14 +100,14 @@ public class StatisticVO implements Serializable {
         this.showNumber = showNumber;
     }
 
-    public List<BigDecimal> getBudgetsTotal() {
-        if (this.budgetsTotal == null)
-            this.budgetsTotal = new ArrayList<BigDecimal>();
-        return budgetsTotal;
+    public List<BigDecimal> getBudgetTotal() {
+        if (this.budgetTotal == null)
+            this.budgetTotal = new ArrayList<BigDecimal>();
+        return budgetTotal;
     }
 
-    public void setBudgetsTotal(List<BigDecimal> budgetsTotal) {
-        this.budgetsTotal = budgetsTotal;
+    public void setBudgetTotal(List<BigDecimal> budgetTotal) {
+        this.budgetTotal = budgetTotal;
     }
 
 
@@ -122,7 +122,7 @@ public class StatisticVO implements Serializable {
     }
 
     public void Times (){
-        this.getTimes().clear();
+        this.times.clear();
         this.getTimes().add(this.currentDate);
         int year = this.currentDate.getYear();
         int month = this.currentDate.getMonth();
@@ -135,7 +135,7 @@ public class StatisticVO implements Serializable {
             System.out.println(this.times);
         }
 
-       else if(this.showType.equals("months")){
+        else if(this.showType.equals("months")){
             for (int i=0;i<this.showNumber;i++){
                 this.times.add(new Date(year,month-i,1));
                 if (month == 1){
@@ -143,8 +143,8 @@ public class StatisticVO implements Serializable {
                     year -= 1;
                 }
             }
-
         }
 
+        Collections.reverse(times);
     }
 }

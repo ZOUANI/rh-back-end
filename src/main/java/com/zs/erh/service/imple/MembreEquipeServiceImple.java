@@ -53,33 +53,41 @@ public class MembreEquipeServiceImple implements MembreEquipeService {
     public int deleteByEquipeCodeAndCollaborateurCode(String codeEquipe,String codeCollaborateur){
         return membreEquipeDao.deleteByEquipeCodeAndCollaborateurCode(codeEquipe,codeCollaborateur);
     }
-    public int save(MembreEquipe membreEquipe){
+    public MembreEquipe save(MembreEquipe membreEquipe){
         if (membreEquipeDao.findByEquipeCodeAndCollaborateurCode(membreEquipe.getEquipe().getCode(),membreEquipe.getCollaborateur().getCode())!=null ){
-            return -1; // already exist !
+            return null; // already exist !
         } else {
             Collaborateur collaborateurFounded = collaborateurService.findByCode(membreEquipe.getCollaborateur().getCode());
             Equipe equipeFounded = equipeService.findByCode(membreEquipe.getEquipe().getCode());
 
             if (collaborateurFounded == null) {
-                return -2;
+                return null;
             } else if (equipeFounded == null) {
-                return -3;
+                return null;
             } else {
                 membreEquipe.setEquipe(equipeFounded);
                 membreEquipe.setCollaborateur(collaborateurFounded);
                 membreEquipeDao.save(membreEquipe);
             }
-            return 1;
+            return membreEquipe;
         }
     }
-    public int update(Long id,MembreEquipe membreEquipe){
-        Optional<MembreEquipe> foundedMembreEquipe = membreEquipeDao.findById(id);
-        if (foundedMembreEquipe.isPresent()) {
-           foundedMembreEquipe.get().setCollaborateur(membreEquipe.getCollaborateur());
-           membreEquipeDao.save(foundedMembreEquipe.get());
-            return 1;
-        }else
-            return -1;
+
+    public MembreEquipe update(MembreEquipe membreEquipe){
+        Optional<MembreEquipe> membreEquipeFounded = membreEquipeDao.findById(membreEquipe.getId());
+        if(membreEquipeFounded.isPresent()){
+            Collaborateur collaborateur = collaborateurService.findByCode(membreEquipe.getCollaborateur().getCode());
+           // Equipe equipe = equipeService.findByCode(membreEquipe.getEquipe().getCode());
+            if (collaborateur != null){
+                membreEquipeFounded.get().setCollaborateur(collaborateur);
+                membreEquipeDao.save(membreEquipeFounded.get());
+                return membreEquipeFounded.get();
+            }else {
+                return  null;
+            }
+        }else {
+            return  null;
+        }
     }
 
 }

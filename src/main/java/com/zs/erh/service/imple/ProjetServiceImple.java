@@ -17,6 +17,14 @@ import java.util.List;
 @Service
 public class ProjetServiceImple implements ProjetService {
 
+    public List<Projet> findByAgenceChefAgenceId(Long id) {
+        return projetDao.findByAgenceChefAgenceId(id);
+    }
+
+    public List<Projet> findByAgenceChefAgenceCode(String code) {
+        return projetDao.findByAgenceChefAgenceCode(code);
+    }
+
     public List<Projet> findByClientId(Long id) {
         return projetDao.findByClientId(id);
     }

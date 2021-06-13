@@ -13,6 +13,21 @@ import java.util.List;
 @Service
 public class ProjetEquipeServiceImple implements ProjetEquipeService {
 
+    public List<ProjetEquipe> findByProjetId(Long id) {
+        return projetEquipeDao.findByProjetId(id);
+    }
+
+    public List<ProjetEquipe> findByProjetIdAndEquipeAgenceChefAgenceId(Long projetId, Long chefId) {
+        return projetEquipeDao.findByProjetIdAndEquipeAgenceChefAgenceId(projetId, chefId);
+    }
+
+    public List<ProjetEquipe> findByProjetClientIdAndEquipeResponsableCode(Long id, String code) {
+        return projetEquipeDao.findByProjetClientIdAndEquipeResponsableCode(id, code);
+    }
+
+    public List<ProjetEquipe> findByEquipeResponsableCode(String code) {
+        return projetEquipeDao.findByEquipeResponsableCode(code);
+    }
 
     public int save(Projet projet, List<ProjetEquipe> projetEquipes) {
         for (ProjetEquipe projetEquipe : projetEquipes) {

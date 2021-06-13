@@ -41,7 +41,11 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 	@Autowired
 	private DemandeCongeService demandeCongeService;
 
-	
+
+	public List<Tache> findByMembreEquipeCollaborateurId(Long id) {
+		return tacheDao.findByMembreEquipeCollaborateurId(id);
+	}
+
 	public Tache findByCode(String code) {
 		return tacheDao.findByCode(code);
 	}

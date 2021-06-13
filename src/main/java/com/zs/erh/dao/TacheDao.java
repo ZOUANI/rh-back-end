@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TacheDao extends JpaRepository<Tache, Long> {
-
+	public List<Tache> findByMembreEquipeCollaborateurId (Long id);
 	public Tache findByCode (String code);
 	public List<Tache> findByGroupeTacheCode(String code);
 	public int deleteByGroupeTacheCode(String code);

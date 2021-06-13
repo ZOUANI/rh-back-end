@@ -4,7 +4,14 @@ import com.zs.erh.bean.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface AdminDao extends JpaRepository<Admin, Long> {
-    public Admin findByLogin(String login);
+
+    Optional<Admin> findByLogin (String login);
+
+    Boolean existsByLogin(String login);
+
+    Boolean existsByEmail(String email);
 }
