@@ -34,9 +34,6 @@ public class ProjetServiceImple implements ProjetService {
         return projetDao.findByResponsableCode(code);
     }
 
-    public List<Projet> findByAgenceChefAgenceCode(String code) {
-        return projetDao.findByAgenceChefAgenceCode(code);
-    }
 
     public List<Projet> findByClientIdAndAgenceChefAgenceCode(Long id, String code) {
         return projetDao.findByClientIdAndAgenceChefAgenceCode(id, code);

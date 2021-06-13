@@ -68,16 +68,6 @@ public class ProjetAdminRest {
         return projetService.save(projet);
     }
 
-    @GetMapping("/agence/chefAgence/code/{code}")
-    public List<Projet> findByAgenceChefAgenceCode(@PathVariable String code) {
-        return projetService.findByAgenceChefAgenceCode(code);
-    }
-
-    @GetMapping("/")
-    public List<Projet> findAll() {
-        return projetService.findAll();
-
-
     // Update Methods
     @PutMapping("/")
     public void update(@RequestBody Projet projet) {
@@ -93,25 +83,7 @@ public class ProjetAdminRest {
 
     @PostMapping("/delete-multiple-by-code")
     public int deleteMultiple(@RequestBody List<Projet> projets) {
-        return projetService.deleteMultiple(projets);
-    }
-
-}
-
-    @PutMapping("/")
-    public void update(@RequestBody Projet projet) {
-         projetService.update(projet);
-    }
-
-    @GetMapping("/id/{id}")
-    public Projet findId(@PathVariable Long id) {
-        return projetService.findId(id);
-    }
-
-    @GetMapping("/client/id/{id}")
-    public List<Projet> findByClientId(@PathVariable Long id) {
-        return projetService.findByClientId(id);
-    }
+        return projetService.deleteMultiple(projets);}
 
     @GetMapping("/responsable/code/{code}")
     public List<Projet> findByResponsableCode(@PathVariable String code) {
