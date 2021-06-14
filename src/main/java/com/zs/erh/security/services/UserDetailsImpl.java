@@ -16,6 +16,8 @@ public class UserDetailsImpl implements UserDetails {
 
 	private Long id;
 
+	private String code;
+
 	private String login;
 
 	private String email;
@@ -79,6 +81,14 @@ public class UserDetailsImpl implements UserDetails {
 
 	public String getPrenom() {
 		return prenom;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public void setNom(String nom) {

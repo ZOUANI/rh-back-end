@@ -78,6 +78,7 @@ public class AuthServiceImple {
 
         return ResponseEntity.ok(new JwtResponse(jwt,
                 userDetails.getId(),
+                userDetails.getCode(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),
                 roles,userDetails.getNom(),userDetails.getPrenom()));

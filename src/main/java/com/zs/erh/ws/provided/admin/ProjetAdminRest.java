@@ -1,5 +1,6 @@
 package com.zs.erh.ws.provided.admin;
 
+import com.zs.erh.bean.ChefAgence;
 import com.zs.erh.bean.Projet;
 import com.zs.erh.service.facade.ProjetService;
 import com.zs.erh.service.imple.ProjetServiceImple;
@@ -14,6 +15,10 @@ import java.util.List;
 public class ProjetAdminRest {
     @Autowired
     public ProjetService projetService;
+
+    @Autowired
+    public ProjetServiceImple projetServiceImple;
+
 
     //Read Methodes
 
@@ -63,8 +68,6 @@ public class ProjetAdminRest {
         return projetService.save(projet);
     }
 
-
-
     // Update Methods
     @PutMapping("/")
     public void update(@RequestBody Projet projet) {
@@ -80,8 +83,10 @@ public class ProjetAdminRest {
 
     @PostMapping("/delete-multiple-by-code")
     public int deleteMultiple(@RequestBody List<Projet> projets) {
-        return projetService.deleteMultiple(projets);
+        return projetService.deleteMultiple(projets);}
+
+    @GetMapping("/responsable/code/{code}")
+    public List<Projet> findByResponsableCode(@PathVariable String code) {
+        return projetService.findByResponsableCode(code);
     }
-
 }
-
