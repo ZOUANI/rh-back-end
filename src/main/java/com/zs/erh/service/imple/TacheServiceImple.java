@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.zs.erh.bean.GroupeTache;
+import com.zs.erh.bean.MembreEquipe;
 import com.zs.erh.bean.Tache;
 import com.zs.erh.dao.TacheDao;
 import com.zs.erh.service.facade.*;
@@ -41,6 +42,10 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 	@Autowired
 	private DemandeCongeService demandeCongeService;
 
+
+	public List<Tache> findByGroupeTacheIdAndMembreEquipeCollaborateurId(Long grpId, Long collabId) {
+		return tacheDao.findByGroupeTacheIdAndMembreEquipeCollaborateurId(grpId, collabId);
+	}
 
 	public List<Tache> findByMembreEquipeCollaborateurId(Long id) {
 		return tacheDao.findByMembreEquipeCollaborateurId(id);
@@ -190,7 +195,27 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 		return findMultipleResult(query);
 	}
 
-
+	public Tache saveForCollaborateur(Tache tache) {
+		if(findByCode(tache.getCode())!=null) {
+			return null;
+		}else{
+			GroupeTache groupeTache = groupeTacheService.findByCode(tache.getGroupeTache().getCode());
+			MembreEquipe membreEquipe = this.membreEquipeService.findByEquipeCodeAndCollaborateurLogin(tache.getMembreEquipe().getEquipe().getCode(),
+					tache.getMembreEquipe().getCollaborateur().getLogin());
+			if(groupeTache==null) {
+				return null;
+			}
+			else {
+				tache.setGroupeTache(groupeTache);
+				tache.setMembreEquipe(membreEquipe);
+				tache.setCategorieTache(categorieTacheService.findByCode(tache.getCategorieTache().getCode()));
+				tache.setEtatTache(etatTacheService.findByCode(tache.getEtatTache().getCode()));
+				tache.setPeriode(periodeService.findByCode(tache.getPeriode().getCode()));
+				tacheDao.save(tache);
+				return tache;
+			}
+		}
+	}
 
 	@Override
 	public Class<Tache> getEntityClass() {

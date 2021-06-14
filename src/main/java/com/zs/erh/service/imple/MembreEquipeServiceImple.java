@@ -45,6 +45,10 @@ public class MembreEquipeServiceImple implements MembreEquipeService {
         return membreEquipeDao.findAll();
     }
 
+    public MembreEquipe findByEquipeCodeAndCollaborateurLogin(String codeEquipe, String loginCollaborateur) {
+        return membreEquipeDao.findByEquipeCodeAndCollaborateurLogin(codeEquipe, loginCollaborateur);
+    }
+
     public MembreEquipe findByEquipeCodeAndCollaborateurCode(String codeEquipe, String codeCollaborateur){
         return membreEquipeDao.findByEquipeCodeAndCollaborateurCode(codeEquipe,codeCollaborateur);
     }

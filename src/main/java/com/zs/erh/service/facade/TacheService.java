@@ -9,6 +9,7 @@ import java.util.List;
 
 
 public interface TacheService {
+	public List<Tache> findByGroupeTacheIdAndMembreEquipeCollaborateurId(Long grpId, Long collabId);
 	public List<Tache> findByMembreEquipeCollaborateurId (Long id);
 	public Tache findByCode(String code);
 	public List<Tache> findByGroupeTacheCode(String code);
@@ -22,4 +23,5 @@ public interface TacheService {
 	public List<TacheVo> calcStatistique(TacheVo tacheVo);
 	public List<CollaborateurVo> suivreCollaborateurs(CollaborateurVo collaborateurVo);
 	public List<CollaborateurVo> calcStatistiqueSuiviCollaborateur(Date dateMin, Date dateMax);
+	public Tache saveForCollaborateur(Tache tache);
 }
