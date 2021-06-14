@@ -43,11 +43,6 @@ public class TacheCollabRest {
     }
 
     //Create Methode
-    @PostMapping("/")
-    public Tache save(@RequestBody Tache tache) {
-        return tacheService.save(tache);
-    }
-
     @PostMapping("/saveForCollaborateur")
     public Tache saveForCollaborateur(@RequestBody Tache tache) {
         return tacheService.saveForCollaborateur(tache);
