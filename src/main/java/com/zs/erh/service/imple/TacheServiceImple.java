@@ -88,6 +88,7 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 		tacheUpdated.setDateDemarrageEffective(tache.getDateDemarrageEffective());
 		tacheUpdated.setDateFinEffective(tache.getDateFinEffective());
 		tacheUpdated.setPeriode(periodeService.findByCode(tache.getPeriode().getCode()));
+		tacheUpdated.setGroupeTache(groupeTacheService.findByCode(tache.getGroupeTache().getCode()));
 		tacheUpdated.setCategorieTache(categorieTacheService.findByCode(tache.getCategorieTache().getCode()));
 		tacheUpdated.setEtatTache(etatTacheService.findByCode(tache.getEtatTache().getCode()));
 		tacheUpdated.setMembreEquipe(membreEquipeService.findByEquipeCodeAndCollaborateurCode(tache.getMembreEquipe().getEquipe().getCode(),
