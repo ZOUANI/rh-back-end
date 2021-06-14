@@ -25,7 +25,7 @@ public class StatisticVO implements Serializable {
     private List<Date> times;
     private String showType;
     private Long showNumber;
-    private List<BigDecimal> budgetTotal;
+    private List<BigDecimal> budgetsTotal;
     private List<BigDecimal> facturesTotal;
     private List<BigDecimal> paiementsTotal;
 
@@ -100,14 +100,14 @@ public class StatisticVO implements Serializable {
         this.showNumber = showNumber;
     }
 
-    public List<BigDecimal> getBudgetTotal() {
-        if (this.budgetTotal == null)
-            this.budgetTotal = new ArrayList<BigDecimal>();
-        return budgetTotal;
+    public List<BigDecimal> getBudgetsTotal() {
+        if (this.budgetsTotal == null)
+            this.budgetsTotal = new ArrayList<BigDecimal>();
+        return budgetsTotal;
     }
 
-    public void setBudgetTotal(List<BigDecimal> budgetTotal) {
-        this.budgetTotal = budgetTotal;
+    public void setBudgetsTotal(List<BigDecimal> budgetTotal) {
+        this.budgetsTotal = budgetTotal;
     }
 
 

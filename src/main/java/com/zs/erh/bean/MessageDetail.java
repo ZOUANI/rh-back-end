@@ -12,9 +12,10 @@ public class MessageDetail implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "messageDetail")
-     private List<Collaborateur> distinataires;
+    /*@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "messageDetail")*/
+    @OneToMany
+    private List<Collaborateur> distinataires;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateLecture;
     @ManyToOne

@@ -49,11 +49,6 @@ public class DashboardServiceImple implements DashboardService {
 
             budgetVO = budgetService.calcStatistiqueBudget(budgetVO);
             result.getBudgetsTotal().add(budgetVO.getTotalMontantBudget());
-            if(budgetVO.getTotalMontantBudget() == null){
-                result.getBudgetTotal().add(BigDecimal.ZERO);
-            }else{
-                result.getBudgetTotal().add(budgetVO.getTotalMontantBudget());
-            }
 
             factureVO = factureService.calcStatistiqueFacture(factureVO);
             result.getFacturesTotal().add(factureVO.getTotalMontantFacture());
