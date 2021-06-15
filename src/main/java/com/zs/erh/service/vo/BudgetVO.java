@@ -77,10 +77,9 @@ public class BudgetVO {
         this.nbrBudget = nbrBudget;
     }
 
-    public BudgetVO(Date dateMin, Date dateMax,Long chefAgenceId) {
+    public BudgetVO(Date dateMin, Date dateMax) {
         this.dateMin = dateMin;
         this.dateMax = dateMax;
-        this.chefAgenceId = chefAgenceId;
     }
 
     public BudgetVO() {

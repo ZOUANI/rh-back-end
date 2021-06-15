@@ -3,6 +3,7 @@ package com.zs.erh.service.imple;
 import com.zs.erh.bean.Collaborateur;
 import com.zs.erh.bean.DemandeConge;
 import com.zs.erh.bean.EtatDemandeConge;
+import com.zs.erh.bean.Facture;
 import com.zs.erh.dao.DemandeCongeDao;
 import com.zs.erh.service.facade.CollaborateurService;
 import com.zs.erh.service.facade.DemandeCongeService;
@@ -10,6 +11,7 @@ import com.zs.erh.service.facade.EtatDemandeCongeService;
 import com.zs.erh.service.util.DateUtil;
 import com.zs.erh.service.util.StringUtil;
 import com.zs.erh.service.vo.DemandeCongeVo;
+import com.zs.erh.service.vo.FactureVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +38,22 @@ public class DemandeCongeServiceImple extends AbstractFacade<DemandeConge> imple
 
     public List<DemandeConge> findAll() {
         return demandeCongeDao.findAll();
+    }
+
+
+    public List<DemandeConge> searchDemandeConge(DemandeCongeVo demandeCongeVo) {
+        String query = "SELECT d FROM DemandeConge d where 1=1";
+        if (demandeCongeVo.getCollaborateurId() != null) {
+            query += " AND d.collaborateur.id= " +demandeCongeVo.getCollaborateurId();
+        }
+        if (demandeCongeVo.getEtatDemandeCongeId() != null) {
+            query += " AND d.etatDemandeConge.id = " + demandeCongeVo.getEtatDemandeCongeId();
+        }
+
+         query += addConstraintMinMaxDate("d", "dateDepart", demandeCongeVo.getDateMin(), demandeCongeVo.getDateMax());
+         query += addConstraintMinMaxDate("d", "dateFin", demandeCongeVo.getDateMin(), demandeCongeVo.getDateMax());
+
+        return entityManager.createQuery(query).getResultList();
     }
 
 
@@ -74,6 +92,27 @@ public class DemandeCongeServiceImple extends AbstractFacade<DemandeConge> imple
                 }else{
                     return null;
                 }
+            }else {
+                return null;
+            }
+        }else {
+            return null;
+        }
+    }
+
+    public DemandeConge updateAll(DemandeConge demandeConge) {
+        Optional<DemandeConge> demandeConge1 = findById(demandeConge.getId());
+        if (demandeConge1.isPresent()) {
+            EtatDemandeConge etatDemandeConge = etatDemandeCongeService.findByCode(demandeConge.getEtatDemandeConge().getCode());
+            Collaborateur collaborateur= collaborateurService.findByCode(demandeConge.getCollaborateur().getCode());
+            if (etatDemandeConge!= null && collaborateur !=null) {
+                    demandeConge1.get().setEtatDemandeConge(etatDemandeConge);
+                    demandeConge1.get().setDateDepart(demandeConge.getDateDepart());
+                    demandeConge1.get().setDateFin(demandeConge.getDateFin());
+                    demandeConge1.get().setCollaborateur(demandeConge.getCollaborateur());
+                    demandeConge1.get().setCommentaireValidateur(demandeConge.getCommentaireValidateur());
+                    demandeCongeDao.save(demandeConge1.get());
+                    return demandeConge1.get();
             }else {
                 return null;
             }

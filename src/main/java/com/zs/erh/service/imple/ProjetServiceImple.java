@@ -121,6 +121,9 @@ public class ProjetServiceImple implements ProjetService {
         if (projetVo.getAgenceId() != null) {
             query += "AND p.agence.id = " + projetVo.getAgenceId();
         }
+        if (projetVo.getChefAgenceId() != null) {
+            query += "AND p.agence.chefAgence.id = " + projetVo.getChefAgenceId();
+        }
         if (StringUtil.isNotEmpty(projetVo.getLibelleProjet())) {
             query += "AND p.libelle LIKE '%" + projetVo.getLibelleProjet() + "%'";
         }

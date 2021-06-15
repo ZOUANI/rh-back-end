@@ -17,4 +17,5 @@ public interface CollaborateurDao extends JpaRepository<Collaborateur, Long>{
 	Optional<Collaborateur> findById(Long id);
 	public Collaborateur findByLogin(String login);
 	public Collaborateur findByLoginAndPassword(String login, String password);
+	List<Collaborateur> findByAgenceChefAgenceCode(String code);
 }
