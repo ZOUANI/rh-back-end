@@ -1,9 +1,11 @@
 package com.zs.erh.service.imple;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import com.zs.erh.bean.GroupeTache;
+import com.zs.erh.bean.MembreEquipe;
 import com.zs.erh.dao.GroupeTacheDao;
 import com.zs.erh.service.facade.*;
 import com.zs.erh.service.vo.GroupeTacheVO;
@@ -33,6 +35,9 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
 
     @Autowired
     private EtatGroupeTacheService etatGroupeTacheService;
+
+    @Autowired
+    private MembreEquipeService membreEquipeService;
 
     @Autowired
     private EntityManager entityManager;
@@ -145,4 +150,20 @@ public class GroupeTacheServiceImple implements GroupeTacheService {
         return entityManager.createQuery(query).getResultList();
     }
 
+    public List<GroupeTache> tacheDeCollaborateur(String code) {
+        List<MembreEquipe> membreEquipes = this.membreEquipeService.findByCollaborateurCode(code);
+        if (membreEquipes == null){
+            return null;
+        } else {
+            List<GroupeTache> results = new ArrayList<GroupeTache>();
+            List<GroupeTache> miniResults = new ArrayList<GroupeTache>();
+            for (MembreEquipe membreEquipe: membreEquipes) {
+                miniResults = this.findByEquipeCode(membreEquipe.getEquipe().getCode());
+                if (miniResults != null){
+                    results.addAll(miniResults);
+                }
+            }
+            return results;
+        }
+    }
 }

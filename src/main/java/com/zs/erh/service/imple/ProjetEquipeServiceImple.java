@@ -6,6 +6,7 @@ import com.zs.erh.dao.ProjetEquipeDao;
 import com.zs.erh.service.facade.EquipeService;
 import com.zs.erh.service.facade.ProjetEquipeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,6 +47,14 @@ public class ProjetEquipeServiceImple implements ProjetEquipeService {
         }
         projetEquipeDao.save(projetEquipe);
         return projetEquipe;
+    }
+
+    public List<Projet> findProjetsByChefEquipeId(Long chefEquipeId) {
+        return projetEquipeDao.findProjetsByChefEquipeId(chefEquipeId);
+    }
+
+    public List<Projet> findProjetsByClientIdAndChefEquipeId(Long clientId, Long chefEquipeId) {
+        return projetEquipeDao.findProjetsByClientIdAndChefEquipeId(clientId, chefEquipeId);
     }
 
     public List<ProjetEquipe> findByProjetCode(String code) {
