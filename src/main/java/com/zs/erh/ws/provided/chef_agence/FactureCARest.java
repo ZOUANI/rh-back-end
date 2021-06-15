@@ -53,6 +53,7 @@ public class FactureCARest {
     public List<Facture> search(@RequestBody FactureVO factureVO) {
         return factureService.search(factureVO);
     }
+
     @PostMapping("/delete-multiple-by-code")
     public int deleteMultiple(@RequestBody List<Facture> factures) {
         return factureService.deleteMultiple(factures);
@@ -62,6 +63,5 @@ public class FactureCARest {
     public int deleteByCode(@PathVariable String code) {
         return factureService.deleteByCode(code);
     }
-
 
 }
