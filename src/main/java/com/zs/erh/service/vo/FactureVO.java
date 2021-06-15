@@ -78,4 +78,7 @@ public class FactureVO {
         this.dateMin = dateMin;
         this.dateMax = dateMax;
     }
+
+    public FactureVO() {
+    }
 }

@@ -36,4 +36,9 @@ public class BudgetCARest {
         return budgetService.search(budgetVO);
     }
 
+    // Update Methode :
+    @PutMapping("/")
+    public Budget update(Budget budget) {
+        return budgetService.update(budget);
+    }
 }

@@ -45,7 +45,6 @@ public class BudgetServiceImple extends AbstractFacade<Budget> implements Budget
     }
 
     public Budget save(Budget budget) {
-        System.out.println("budget = " + budget);
         Agence agence = this.agenceService.findByCode(budget.getAgence().getCode());
         if (agence != null) {
             if (budget.getMontant().compareTo(BigDecimal.ZERO) <= 0) {
@@ -125,8 +124,20 @@ public class BudgetServiceImple extends AbstractFacade<Budget> implements Budget
        }
 
 
-
-
+    public Budget update(Budget budget) {
+        Agence agence = this.agenceService.findByCode(budget.getAgence().getCode());
+        if (agence != null) {
+            if (budget.getMontant().compareTo(BigDecimal.ZERO) <= 0) {
+                return null;
+            } else {
+                budget.setAgence(agence);
+                budgetDao.save(budget);
+                return budget;
+            }
+        } else {
+            return null;
+        }
+    }
 
     @Override
     public Class<Budget> getEntityClass() {
