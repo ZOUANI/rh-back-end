@@ -21,15 +21,26 @@ public class StatisticVO implements Serializable {
         this.currentDate = currentDate;
     }
 
-    private Long chefAgenceId;
+    private String chefAgenceLogin;
     private List<Date> times;
     private String showType;
     private Long showNumber;
-    private List<BigDecimal> budgetTotal;
+    private List<BigDecimal> budgetsTotal;
     private List<BigDecimal> facturesTotal;
     private List<BigDecimal> paiementsTotal;
 
     private  BudgetVO budgetVO;
+
+    public List<BigDecimal> getPaiementsTotal() {
+        if(this.paiementsTotal == null){
+            this.paiementsTotal = new ArrayList<BigDecimal>();
+        }
+        return paiementsTotal;
+    }
+
+    public void setPaiementsTotal(List<BigDecimal> paiementsTotal) {
+        this.paiementsTotal = paiementsTotal;
+    }
 
     public BudgetVO getBudgetVO() {
         return budgetVO;
@@ -55,12 +66,12 @@ public class StatisticVO implements Serializable {
         this.dateMin = dateMin;
     }
 
-    public Long getChefAgenceId() {
-        return chefAgenceId;
+    public String getChefAgenceLogin() {
+        return chefAgenceLogin;
     }
 
-    public void setChefAgenceId(Long chefAgenceId) {
-        this.chefAgenceId = chefAgenceId;
+    public void setChefAgenceLogin(String chefAgenceLogin) {
+        this.chefAgenceLogin = chefAgenceLogin;
     }
 
     public List<Date> getTimes() {
@@ -89,14 +100,14 @@ public class StatisticVO implements Serializable {
         this.showNumber = showNumber;
     }
 
-    public List<BigDecimal> getBudgetTotal() {
-        if (this.budgetTotal == null)
-            this.budgetTotal = new ArrayList<BigDecimal>();
-        return budgetTotal;
+    public List<BigDecimal> getBudgetsTotal() {
+        if (this.budgetsTotal == null)
+            this.budgetsTotal = new ArrayList<BigDecimal>();
+        return budgetsTotal;
     }
 
-    public void setBudgetTotal(List<BigDecimal> budgetTotal) {
-        this.budgetTotal = budgetTotal;
+    public void setBudgetsTotal(List<BigDecimal> budgetTotal) {
+        this.budgetsTotal = budgetTotal;
     }
 
 
@@ -111,7 +122,6 @@ public class StatisticVO implements Serializable {
     }
 
     public void Times (){
-        this.getTimes().clear();
         this.getTimes().add(this.currentDate);
         int year = this.currentDate.getYear();
         int month = this.currentDate.getMonth();

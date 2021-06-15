@@ -28,6 +28,10 @@ public class CollaborateurServiceImple implements CollaborateurService {
 	@Autowired
 	private CollaborateurService collaborateurService;
 
+	public List<Collaborateur> findByAgenceChefAgenceCode(String code) {
+		return collaborateurDao.findByAgenceChefAgenceCode(code);
+	}
+
 	public Collaborateur findByLogin(String login) {
 		return collaborateurDao.findByLogin(login);
 	}

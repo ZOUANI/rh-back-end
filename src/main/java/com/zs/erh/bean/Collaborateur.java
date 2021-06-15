@@ -18,6 +18,8 @@ public class Collaborateur extends User implements Serializable {
 
     @ManyToOne
     private Agence agence;
+    /*@ManyToOne
+    private MessageDetail messageDetail;*/
 
     @ManyToOne
     private CategorieCollaborateur categorieCollaborateur;

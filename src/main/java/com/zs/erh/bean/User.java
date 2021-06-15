@@ -144,4 +144,21 @@ public class User implements Serializable {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", code='" + code + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", nbrCnx=" + nbrCnx +
+                ", blocked=" + blocked +
+                ", mustChangePassword=" + mustChangePassword +
+                ", roles=" + roles +
+                '}';
+    }
 }

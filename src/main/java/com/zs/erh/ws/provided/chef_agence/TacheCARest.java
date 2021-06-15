@@ -23,6 +23,7 @@ public class TacheCARest {
         return tacheService.findByMembreEquipeCollaborateurId(id);
     }
 
+
     @GetMapping("/codeGroupeTache/{code}")
     public List<Tache> findByGroupeTacheCode(@PathVariable String code) {
         return tacheService.findByGroupeTacheCode(code);
