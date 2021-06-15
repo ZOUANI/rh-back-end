@@ -5,9 +5,18 @@ import java.util.Date;
 public class ProjetVO {
     private Long clientId;
     private Long agenceId;
+    private Long ChefAgenceId;
     private Long responsableProjetId;
     private Long etatProjetId;
     private String libelleProjet;
+
+    public Long getChefAgenceId() {
+        return ChefAgenceId;
+    }
+
+    public void setChefAgenceId(Long chefAgenceId) {
+        ChefAgenceId = chefAgenceId;
+    }
 
     public Long getClientId() {
         return clientId;

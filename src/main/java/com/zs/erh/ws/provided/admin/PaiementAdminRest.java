@@ -37,7 +37,7 @@ public class PaiementAdminRest {
     // Create Methods
 
     @PostMapping("/")
-    public int save(@RequestBody Paiement paiement) {
+    public Paiement save(@RequestBody Paiement paiement) {
         return paiementService.save(paiement);
     }
 

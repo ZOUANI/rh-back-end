@@ -8,7 +8,7 @@ public interface PaiementService {
     public List<Paiement> findAll();
     public Paiement findByReference(String reference);
     public List<Paiement> findByFactureCode(String code);
-    public int save(Paiement paiement);
+    public Paiement save(Paiement paiement);
     public int updatePaiement(Paiement paiement);
     public int deleteByReference(String reference);
     public int deleteByFactureCode(String code);

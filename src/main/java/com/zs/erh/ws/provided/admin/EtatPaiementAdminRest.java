@@ -1,4 +1,4 @@
-package com.zs.erh.ws.provided.chef_equipe;
+package com.zs.erh.ws.provided.admin;
 
 import com.zs.erh.bean.EtatPaiement;
 import com.zs.erh.service.facade.EtatPaiementService;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "maneo-rh/chef-equipe/etatPaiement")
-public class EtatPaiementCERest {
+@RequestMapping(value = "maneo-rh/admin/etatPaiement")
+public class EtatPaiementAdminRest {
     @Autowired
     private EtatPaiementService etatPaiementService;
 

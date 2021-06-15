@@ -44,9 +44,12 @@ public class CollaborateurAdminRest {
 	public Collaborateur connexionChefEquipe(@RequestBody Collaborateur collaborateur){
 		return collaborateurService.connexionChefEquipe(collaborateur);
 	}
+    @GetMapping("codec/codec")
+	public List<Collaborateur> findByAgenceChefAgenceCode(@PathVariable String codec) {
+		return collaborateurService.findByAgenceChefAgenceCode(codec);
+	}
 
-
-		@Autowired
+	@Autowired
 	 private CollaborateurService collaborateurService;
 
 }

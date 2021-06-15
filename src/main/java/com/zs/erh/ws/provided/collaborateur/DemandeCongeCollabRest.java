@@ -1,4 +1,4 @@
-package com.zs.erh.ws.provided.chef_agence;
+package com.zs.erh.ws.provided.collaborateur;
 
 import com.zs.erh.bean.DemandeConge;
 import com.zs.erh.service.facade.DemandeCongeService;
@@ -12,21 +12,13 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("maneo-rh/chef-agence/conge")
-public class DemandeCongeCARest {
+@RequestMapping("maneo-rh/collaborateur/conge")
+public class DemandeCongeCollabRest {
     @Autowired
     private DemandeCongeService demandeCongeService;
 
-    @GetMapping("/codechef/{codechef}")
-    public List<DemandeConge> findByCollaborateurAgenceChefAgenceCode(@PathVariable String codechef) {
-        return demandeCongeService.findByCollaborateurAgenceChefAgenceCode(codechef);
-    }
 
 
-    @GetMapping("/id/{id}")
-    public Optional<DemandeConge> findById(Long id) {
-        return demandeCongeService.findById(id);
-    }
 
     @GetMapping("/code/{code}")
     public List<DemandeConge> findByEtatDemandeCongeCode(String code) {
@@ -74,12 +66,8 @@ public class DemandeCongeCARest {
     public int deleteByCode(@RequestBody List<DemandeConge> demandesConge) {
         return demandeCongeService.deleteByCode(demandesConge);
     }
-    @PostMapping("/findByCriteriaConge")
-    public List<DemandeConge> findByCriteriaConge(@RequestBody DemandeCongeVo demandeCongeVO) {
-        return demandeCongeService.findByCriteriaConge(demandeCongeVO);
-    }
 
-    @PreAuthorize("hasRole('CHEF_AGENCE') or hasRole('ADMIN') or hasRole('COLLABORATEUR')")
+
     @GetMapping("/codec/{codec}")
     public List<DemandeConge> findByCollaborateurCode(@PathVariable String codec) {
         return demandeCongeService.findByCollaborateurCode(codec);

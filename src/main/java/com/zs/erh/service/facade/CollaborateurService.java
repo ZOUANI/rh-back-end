@@ -15,6 +15,7 @@ public interface CollaborateurService {
 	Optional<Collaborateur> findById(Long id);
 
 	public Collaborateur findByLogin(String login);
+	List<Collaborateur> findByAgenceChefAgenceCode(String code);
 
 	public int save(Collaborateur collaborateur);
 

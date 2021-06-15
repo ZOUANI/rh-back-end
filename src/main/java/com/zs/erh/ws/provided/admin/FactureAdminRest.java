@@ -53,6 +53,7 @@ public class FactureAdminRest {
     public List<Facture> search(@RequestBody FactureVO factureVO) {
         return factureService.search(factureVO);
     }
+
     @PostMapping("/delete-multiple-by-code")
     public int deleteMultiple(@RequestBody List<Facture> factures) {
         return factureService.deleteMultiple(factures);
