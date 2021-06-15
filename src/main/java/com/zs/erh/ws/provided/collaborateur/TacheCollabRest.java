@@ -18,6 +18,11 @@ public class TacheCollabRest {
     @Autowired
     private TacheService tacheService;
 
+    @GetMapping("/groupeId/{grpId}/collaborateurId/{collabId}")
+    public List<Tache> findByGroupeTacheIdAndMembreEquipeCollaborateurId(@PathVariable Long grpId, @PathVariable Long collabId) {
+        return tacheService.findByGroupeTacheIdAndMembreEquipeCollaborateurId(grpId, collabId);
+    }
+
     @GetMapping("/collaborateurId/{id}")
     public List<Tache> findByMembreEquipeCollaborateurId(@PathVariable Long id) {
         return tacheService.findByMembreEquipeCollaborateurId(id);
@@ -38,9 +43,9 @@ public class TacheCollabRest {
     }
 
     //Create Methode
-    @PostMapping("/")
-    public Tache save(@RequestBody Tache tache) {
-        return tacheService.save(tache);
+    @PostMapping("/saveForCollaborateur")
+    public Tache saveForCollaborateur(@RequestBody Tache tache) {
+        return tacheService.saveForCollaborateur(tache);
     }
 
     // Update Methode

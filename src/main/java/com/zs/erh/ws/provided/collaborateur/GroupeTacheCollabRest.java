@@ -45,4 +45,9 @@ public class GroupeTacheCollabRest {
     public List<GroupeTache> search(@RequestBody GroupeTacheVO groupeTacheVO) {
         return groupeTacheService.search(groupeTacheVO);
     }
+
+    @GetMapping("/collabcode/{code}")
+    public List<GroupeTache> tacheDeCollaborateur(@PathVariable String code) {
+        return groupeTacheService.tacheDeCollaborateur(code);
+    }
 }

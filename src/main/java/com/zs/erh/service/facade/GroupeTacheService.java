@@ -37,5 +37,6 @@ public interface GroupeTacheService {
 
 	public List<GroupeTache> search(GroupeTacheVO groupeTacheVO);
 
+	public List<GroupeTache> tacheDeCollaborateur(String code);
 
 }

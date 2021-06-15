@@ -14,6 +14,17 @@ public class ProjetEquipeCERest {
     @Autowired
     ProjetEquipeService projetEquipeService;
 
+
+    @GetMapping("/chefEquipeId/{chefEquipeId}")
+    public List<Projet> findProjetsByChefEquipeId(@PathVariable Long chefEquipeId) {
+        return projetEquipeService.findProjetsByChefEquipeId(chefEquipeId);
+    }
+
+    @GetMapping("/clientId/{clientId}/chefEquipeId/{chefEquipeId}")
+    public List<Projet> findProjetsByClientIdAndChefEquipeId(@PathVariable Long clientId, @PathVariable Long chefEquipeId) {
+        return projetEquipeService.findProjetsByClientIdAndChefEquipeId(clientId, chefEquipeId);
+    }
+
     @GetMapping("/clientId/{id}/codeChefEquipe/{code}")
     public List<ProjetEquipe> findByProjetClientIdAndEquipeResponsableCode(@PathVariable Long id, @PathVariable String code) {
         return projetEquipeService.findByProjetClientIdAndEquipeResponsableCode(id, code);
