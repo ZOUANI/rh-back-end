@@ -38,14 +38,14 @@ public class DashboardServiceImple implements DashboardService {
         PaiementVO paiementVO;
 
         for (int i=0;i<statisticVO.getShowNumber();i++){
-            budgetVO = new BudgetVO(result.getTimes().get(i+1),
-                                    result.getTimes().get(i));
+            budgetVO = new BudgetVO(result.getTimes().get(i),
+                                    result.getTimes().get(i+1));
 
-            factureVO = new FactureVO(result.getTimes().get(i+1),
-                    result.getTimes().get(i));
+            factureVO = new FactureVO(result.getTimes().get(i),
+                    result.getTimes().get(i+1),statisticVO.getChefAgenceLogin());
 
-             paiementVO = new PaiementVO(result.getTimes().get(i+1),
-                     result.getTimes().get(i));
+             paiementVO = new PaiementVO(result.getTimes().get(i),
+                     result.getTimes().get(i+1),statisticVO.getChefAgenceLogin());
 
             budgetVO = budgetService.calcStatistiqueBudget(budgetVO);
             result.getBudgetsTotal().add(budgetVO.getTotalMontantBudget());

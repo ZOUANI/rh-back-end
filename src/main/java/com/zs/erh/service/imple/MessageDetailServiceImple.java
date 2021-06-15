@@ -23,11 +23,4 @@ public class MessageDetailServiceImple implements MessageDetailService {
         return messageDetailDao.findAll();
     }
 
-    public void  save(Message message, List<MessageDetail> messageDetails) {
-        for (MessageDetail messageDetail :messageDetails){
-            messageDetail.setMessage(message);
-            messageDetailDao.save(messageDetail);
-        }
-
-    }
 }

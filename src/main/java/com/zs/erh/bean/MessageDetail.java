@@ -12,10 +12,8 @@ public class MessageDetail implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    /*@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "messageDetail")*/
-    @OneToMany
-    private List<Collaborateur> distinataires;
+    @ManyToOne
+    private User destinataire;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateLecture;
     @ManyToOne
@@ -24,14 +22,14 @@ public class MessageDetail implements Serializable {
     private EtatMessage etatMessage;
 
 
-
-    public List<Collaborateur> getDistinataires() {
-        return distinataires;
+    public User getDistinataire() {
+        return destinataire;
     }
 
-    public void setDistinataires(List<Collaborateur> distinataires) {
-        this.distinataires = distinataires;
+    public void setDistinataire(User distinataire) {
+        this.destinataire = distinataire;
     }
+
     public Long getId() {
         return id;
     }
@@ -63,5 +61,16 @@ public class MessageDetail implements Serializable {
 
     public void setEtatMessage(EtatMessage etatMessage) {
         this.etatMessage = etatMessage;
+    }
+
+    @Override
+    public String toString() {
+        return "MessageDetail{" +
+                "id=" + id +
+                ", destinataire=" + destinataire +
+                ", dateLecture=" + dateLecture +
+                ", message=" + message +
+                ", etatMessage=" + etatMessage +
+                '}';
     }
 }

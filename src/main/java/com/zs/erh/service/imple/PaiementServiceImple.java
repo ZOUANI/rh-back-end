@@ -105,7 +105,7 @@ public class PaiementServiceImple extends AbstractFacade<Paiement> implements Pa
     public String addCriteria(PaiementVO paiementVO) {
         String query = "";
         query += addConstraintMinMaxDate("p", "datePaiement", paiementVO.getDateMin(), paiementVO.getDateMax());
-        query += addConstraint("p.facture.agence.id", paiementVO.getAgenceId());
+        query += addConstraint("p.facture.agence.chefAgence.login", paiementVO.getChefAgenceLogin());
         return query;
     }
 

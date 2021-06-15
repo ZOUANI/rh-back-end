@@ -21,7 +21,7 @@ public class StatisticVO implements Serializable {
         this.currentDate = currentDate;
     }
 
-    private Long chefAgenceId;
+    private String chefAgenceLogin;
     private List<Date> times;
     private String showType;
     private Long showNumber;
@@ -66,12 +66,12 @@ public class StatisticVO implements Serializable {
         this.dateMin = dateMin;
     }
 
-    public Long getChefAgenceId() {
-        return chefAgenceId;
+    public String getChefAgenceLogin() {
+        return chefAgenceLogin;
     }
 
-    public void setChefAgenceId(Long chefAgenceId) {
-        this.chefAgenceId = chefAgenceId;
+    public void setChefAgenceLogin(String chefAgenceLogin) {
+        this.chefAgenceLogin = chefAgenceLogin;
     }
 
     public List<Date> getTimes() {
@@ -122,7 +122,6 @@ public class StatisticVO implements Serializable {
     }
 
     public void Times (){
-        this.times.clear();
         this.getTimes().add(this.currentDate);
         int year = this.currentDate.getYear();
         int month = this.currentDate.getMonth();

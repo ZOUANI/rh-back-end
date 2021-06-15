@@ -1,17 +1,13 @@
 package com.zs.erh.service.imple;
 
-import com.zs.erh.bean.Collaborateur;
-import com.zs.erh.bean.EtatDemandeConge;
-import com.zs.erh.bean.EtatMessage;
-import com.zs.erh.bean.Message;
+import com.zs.erh.bean.*;
 import com.zs.erh.dao.MessageDao;
-import com.zs.erh.service.facade.CollaborateurService;
-import com.zs.erh.service.facade.EtatMessageService;
-import com.zs.erh.service.facade.MessageDetailService;
-import com.zs.erh.service.facade.MessageService;
+import com.zs.erh.dao.MessageDetailDao;
+import com.zs.erh.service.facade.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,14 +16,16 @@ public class MessageServiceImple  implements MessageService {
     @Autowired
     private MessageDao messageDao;
     @Autowired
-    private CollaborateurService collaborateurService;
+    private MessageDetailDao messageDetailDao;
+    @Autowired
+    private UserService userService;
     @Autowired
     private EtatMessageService etatMessageService;
     @Autowired
     private MessageDetailService messageDetailService;
 
-    public List<Message> findBySourceCode(String code) {
-        return messageDao.findBySourceCode(code);
+    public List<Message> findBySourceLogin(String login) {
+        return messageDao.findBySourceLogin(login);
     }
 
     public Optional<Message> findById(Long id) {
@@ -39,13 +37,27 @@ public class MessageServiceImple  implements MessageService {
     }
 
     public Message save(Message message) {
-        EtatMessage etatMessage = etatMessageService.findByCode(message.getEtatMessage().getCode());
-        Collaborateur source = collaborateurService.findByCode(message.getSource().getCode());
+        EtatMessage etatMessage = etatMessageService.findByCode("e2");
+        User source = userService.findByLogin(message.getSource().getLogin()).get();
         if(etatMessage == null || source == null){
+            System.out.println(etatMessage);
+            System.out.println(source);
             return null;
         }else{
-            messageDetailService.save(message, message.getMessageDetails());
+            MessageDetail messageDetail = new MessageDetail();
+            message.setDateEnvoi(new Date());
+            message.setSource(source);
+            message.setEtatMessage(etatMessage);
             messageDao.save(message);
+            System.out.println(message.getMessageDetails());
+            for (int i=0; i<message.getMessageDetails().toArray().length;i++){
+                messageDetail = message.getMessageDetails().get(i);
+                System.out.println(messageDetail);
+                messageDetail.setMessage(message);
+                messageDetail.setDistinataire(userService.findByLogin(messageDetail.getDistinataire().getLogin()).get());
+                messageDetail.setEtatMessage(etatMessage);
+                messageDetailDao.save(messageDetail);
+            }
             return message;
         }
 

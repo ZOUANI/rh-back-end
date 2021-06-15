@@ -17,7 +17,7 @@ public class Message implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateEnvoi;
     @ManyToOne
-    private  Collaborateur source;
+    private  User source;
     @ManyToOne
     private EtatMessage etatMessage;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -65,11 +65,11 @@ public class Message implements Serializable {
         this.dateEnvoi = dateEnvoi;
     }
 
-    public Collaborateur getSource() {
+    public User getSource() {
         return source;
     }
 
-    public void setSource(Collaborateur source) {
+    public void setSource(User source) {
         this.source = source;
     }
 

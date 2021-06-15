@@ -9,5 +9,4 @@ import java.util.Optional;
 public interface MessageDetailService {
     Optional<MessageDetail> findById(Long id);
     List<MessageDetail> findAll();
-    void  save(Message message, List<MessageDetail> messageDetails);
 }

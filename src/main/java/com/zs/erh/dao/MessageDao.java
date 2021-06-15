@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Repository
 public interface MessageDao extends JpaRepository<Message,Long> {
-   List<Message> findBySourceCode(String code);
+   List<Message> findBySourceLogin(String login);
 
     @Override
     Optional<Message> findById(Long id);

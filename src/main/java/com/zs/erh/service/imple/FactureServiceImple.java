@@ -119,7 +119,7 @@ public class FactureServiceImple extends AbstractFacade<Facture> implements Fact
     public String addCriteria(FactureVO factureVO) {
         String query = "";
         query += addConstraintMinMaxDate("f", "dateFacture", factureVO.getDateMin(), factureVO.getDateMax());
-        query += addConstraint("f.agence.id", factureVO.getAgenceId());
+        query += addConstraint("f.agence.chefAgence.login", factureVO.getChefAgenceLogin());
         return query;
     }
 }
