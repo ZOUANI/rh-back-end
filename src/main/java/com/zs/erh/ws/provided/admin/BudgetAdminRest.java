@@ -42,6 +42,11 @@ public class BudgetAdminRest {
         return budgetService.save(budget);
     }
 
+    // Update Service
+    @PutMapping("/")
+    public Budget update(Budget budget) {
+        return budgetService.update(budget);
+    }
 
     // Delete Services
     @DeleteMapping("/delete/{code}")

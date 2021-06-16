@@ -59,14 +59,17 @@ public class MembreEquipeServiceImple implements MembreEquipeService {
     }
     public MembreEquipe save(MembreEquipe membreEquipe){
         if (membreEquipeDao.findByEquipeCodeAndCollaborateurCode(membreEquipe.getEquipe().getCode(),membreEquipe.getCollaborateur().getCode())!=null ){
+            System.out.println("already exist");
             return null; // already exist !
         } else {
             Collaborateur collaborateurFounded = collaborateurService.findByCode(membreEquipe.getCollaborateur().getCode());
             Equipe equipeFounded = equipeService.findByCode(membreEquipe.getEquipe().getCode());
 
             if (collaborateurFounded == null) {
+                System.out.println("collab null");
                 return null;
             } else if (equipeFounded == null) {
+                System.out.println("equipe null");
                 return null;
             } else {
                 membreEquipe.setEquipe(equipeFounded);

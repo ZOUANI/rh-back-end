@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "maneo-rh/projet")
+@RequestMapping(value = "maneo-rh/admin/projet")
 public class ProjetAdminRest {
 
     @Autowired
@@ -32,11 +32,6 @@ public class ProjetAdminRest {
     @GetMapping("/")
     public List<Projet> findAll() {
         return projetService.findAll();
-    }
-
-    @GetMapping("/agence/chefAgence/code/{code}")
-    public List<Projet> findByAgenceChefAgenceCode(@PathVariable String code) {
-        return projetService.findByAgenceChefAgenceCode(code);
     }
 
     @GetMapping("/code/{code}")

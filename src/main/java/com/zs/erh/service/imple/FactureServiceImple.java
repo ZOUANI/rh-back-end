@@ -77,6 +77,9 @@ public class FactureServiceImple extends AbstractFacade<Facture> implements Fact
         if (factureVO.getEtatFactureId() != null) {
             query += " AND f.etatFacture.id = " + factureVO.getEtatFactureId();
         }
+        if (factureVO.getChefAgenceLogin() != null) {
+            query += " AND f.agence.chefAgence.login = '" + factureVO.getChefAgenceLogin() + "'";
+        }
         if (factureVO.getDateMin() !=null && factureVO.getDateMax() != null) {
             query += addConstraintMinMaxDate("f", "dateFacture", factureVO.getDateMin(), factureVO.getDateMax());
         }

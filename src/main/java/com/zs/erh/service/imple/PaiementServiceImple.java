@@ -35,17 +35,17 @@ public class PaiementServiceImple extends AbstractFacade<Paiement> implements Pa
         return paiementDao.findByFactureCode(code);
     }
 
-    public int save(Paiement paiement) {
+    public Paiement save(Paiement paiement) {
         if (findByReference(paiement.getReference()) != null) {
-            return -2;
+            return null;
         } else {
             Facture facture = factureService.findByCode(paiement.getFacture().getCode());
             if (facture == null) {
-                return -1;
+                return null;
             } else {
                 paiement.setFacture(facture);
                 paiementDao.save(paiement);
-                return 1;
+                return paiement;
             }
         }
     }

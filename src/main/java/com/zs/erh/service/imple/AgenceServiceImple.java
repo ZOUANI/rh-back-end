@@ -75,6 +75,7 @@ public class AgenceServiceImple implements AgenceService {
             if (chefAgence == null || etatAgence == null || ville == null) {
                 return null;
             } else {
+                agence.setId(null);
                 agence.setChefAgence(chefAgence);
                 agence.setEtatAgence(etatAgence);
                 agence.setVille(ville);

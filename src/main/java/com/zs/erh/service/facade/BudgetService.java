@@ -10,9 +10,10 @@ public interface BudgetService {
     List<Budget> findAll();
     Budget findByCode (String code);
     List<Budget> findByEtatBudgetLibelle(String libelle);
-    public int deleteByCode(String code);
-    public int deleteMultiple(List<Tache> taches);
-    public Budget save (Budget budget);
+    int deleteByCode(String code);
+    int deleteMultiple(List<Tache> taches);
+    Budget save (Budget budget);
     BudgetVO calcStatistiqueBudget(BudgetVO budgetVO);
     List<Budget> search(BudgetVO budgetVO);
+    Budget update (Budget budget);
 }

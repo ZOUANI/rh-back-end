@@ -79,4 +79,7 @@ public class FactureVO {
         this.dateMax = dateMax;
         this.chefAgenceLogin = chefAgenceLogin;
     }
+
+    public FactureVO() {
+    }
 }
