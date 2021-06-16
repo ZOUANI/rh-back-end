@@ -11,6 +11,12 @@ public class BudgetVO {
     private Date dateReponse;
 
     private Long chefAgenceId;
+    private Long agenceId;
+
+    public Long getAgenceId() {
+        return agenceId;
+    }
+
     private Long etatBudgetId;
     private Long nbrBudget;
     private BigDecimal totalMontantBudget;
