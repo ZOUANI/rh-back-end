@@ -45,6 +45,11 @@ public class CollaborateurCERest {
 		return collaborateurService.connexionChefEquipe(collaborateur);
 	}
 
+	@GetMapping("/findCollaborateurs/{login}")
+	public List<Collaborateur> findCollaborateurs(@PathVariable String login){
+		return collaborateurService.findCollaborateurs(login);
+	}
+
 
 		@Autowired
 	 private CollaborateurService collaborateurService;
