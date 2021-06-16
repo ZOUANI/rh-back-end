@@ -35,6 +35,14 @@ public class CollaborateurServiceImple implements CollaborateurService {
 	public Collaborateur findByLogin(String login) {
 		return collaborateurDao.findByLogin(login);
 	}
+	public List<Collaborateur> findByAgenceCode(String code){
+		return collaborateurDao.findByAgenceCode(code);
+	}
+
+	public List<Collaborateur> findCollaborateurs(String login){
+		Collaborateur collaborateur = collaborateurDao.findByLogin(login);
+		return collaborateurDao.findByAgenceCode(collaborateur.getAgence().getCode());
+	}
 
 	public int save(Collaborateur collaborateur) {
 		if (collaborateurDao.findByCode(collaborateur.getCode()) != null) {

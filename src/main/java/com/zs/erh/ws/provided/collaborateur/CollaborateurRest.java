@@ -45,7 +45,10 @@ public class CollaborateurRest {
 	public List<Collaborateur> findByAgenceChefAgenceCode(String codec) {
 		return collaborateurService.findByAgenceChefAgenceCode(codec);
 	}
-
+	@GetMapping("/findCollaborateurs/{login}")
+	public List<Collaborateur> findCollaborateurs(@PathVariable String login){
+		return collaborateurService.findCollaborateurs(login);
+	}
 	@Autowired
 	private CollaborateurService collaborateurService;
 }
