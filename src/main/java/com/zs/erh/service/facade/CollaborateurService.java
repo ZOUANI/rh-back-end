@@ -19,7 +19,11 @@ public interface CollaborateurService {
 
 	public int save(Collaborateur collaborateur);
 
-	public Collaborateur findByLoginAndPassword(String login, String password);
+	public List<Collaborateur> findByAgenceCode(String code);
+
+	public List<Collaborateur> findCollaborateurs(String login);
+
+		public Collaborateur findByLoginAndPassword(String login, String password);
 
 	public  Collaborateur saveCollaborateur(Collaborateur collaborateur);
 
