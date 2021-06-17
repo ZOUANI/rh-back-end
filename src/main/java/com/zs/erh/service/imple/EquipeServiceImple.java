@@ -9,6 +9,7 @@ import com.zs.erh.service.util.StringUtil;
 import com.zs.erh.service.vo.ClientVO;
 import com.zs.erh.service.vo.EquipeVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -124,6 +125,9 @@ public class EquipeServiceImple implements EquipeService {
             query +=" AND e.responsable.id = " + equipeVO.getResponsableId();
         }
         return  entityManager.createQuery(query).getResultList();
+    }
+    public List<Equipe> findEquipesByEtatEquipeId(@Param("etatEquipeId") Long etatEquipeId){
+        return equipeDao.findEquipesByEtatEquipeId(etatEquipeId);
     }
 
     public  List<Equipe> findByAgenceChefAgenceCode(String code){

@@ -2,6 +2,7 @@ package com.zs.erh.service.facade;
 
 import com.zs.erh.bean.Equipe;
 import com.zs.erh.service.vo.EquipeVO;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,4 +21,6 @@ public interface EquipeService {
 	public void deleteById(long id);
 	public List<Equipe> search(EquipeVO equipeVO);
 	public List<Equipe> findByAgenceChefAgenceCode(String code);
-	}
+	public List<Equipe> findEquipesByEtatEquipeId(@Param("etatEquipeId") Long etatEquipeId);
+
+}
