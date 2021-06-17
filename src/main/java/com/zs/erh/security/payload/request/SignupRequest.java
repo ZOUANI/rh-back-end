@@ -26,4 +26,6 @@ public class SignupRequest extends User {
     public void setAgenceCode(String agenceCode) {
         this.agenceCode = agenceCode;
     }
+
+
 }

@@ -86,6 +86,7 @@ public class AuthServiceImple {
 
     @PostMapping("/admin-signup")
     public ResponseEntity<?> adminRegister(@Valid @RequestBody SignupRequest signUpRequest) {
+        System.out.println();
         if (userRepository.existsByLogin(signUpRequest.getLogin())) {
             return ResponseEntity
                     .badRequest()
@@ -100,6 +101,7 @@ public class AuthServiceImple {
 
         // Create new user's account
         Admin user = new Admin();
+            user.setId(null);
             user.setLogin(signUpRequest.getLogin());
             user.setEmail(signUpRequest.getEmail());
             user.setPhone(signUpRequest.getPhone());
@@ -181,6 +183,7 @@ public class AuthServiceImple {
 
 
         Set<Role> roles = new HashSet<>();
+        System.out.println(signUpRequest.getAgenceCode());
         Agence agence = agenceService.findByCode(signUpRequest.getAgenceCode());
 
         Role userRole = roleRepository.findByName(Roles.ROLE_ADMIN)
