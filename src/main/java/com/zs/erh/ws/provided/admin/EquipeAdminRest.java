@@ -62,8 +62,4 @@ public class EquipeAdminRest {
     public List<Equipe> findByAgenceChefAgenceCode(@PathVariable String code){
         return equipeService.findByAgenceChefAgenceCode(code);
     }
-     @GetMapping("/etatEquipeId/{etatEquipeId}")
-    public List<Equipe> findEquipesByEtatEquipeId(@PathVariable Long etatEquipeId){
-        return equipeService.findEquipesByEtatEquipeId(etatEquipeId);
-    }
 }

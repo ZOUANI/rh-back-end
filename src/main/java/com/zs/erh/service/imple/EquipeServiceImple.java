@@ -126,9 +126,6 @@ public class EquipeServiceImple implements EquipeService {
         }
         return  entityManager.createQuery(query).getResultList();
     }
-    public List<Equipe> findEquipesByEtatEquipeId(@Param("etatEquipeId") Long etatEquipeId){
-        return equipeDao.findEquipesByEtatEquipeId(etatEquipeId);
-    }
 
     public  List<Equipe> findByAgenceChefAgenceCode(String code){
         return equipeDao.findByAgenceChefAgenceCode(code);

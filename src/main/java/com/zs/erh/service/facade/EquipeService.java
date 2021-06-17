@@ -21,6 +21,4 @@ public interface EquipeService {
 	public void deleteById(long id);
 	public List<Equipe> search(EquipeVO equipeVO);
 	public List<Equipe> findByAgenceChefAgenceCode(String code);
-	public List<Equipe> findEquipesByEtatEquipeId(@Param("etatEquipeId") Long etatEquipeId);
-
 }
