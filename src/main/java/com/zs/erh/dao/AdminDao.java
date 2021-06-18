@@ -9,7 +9,7 @@ import java.util.Optional;
 @Repository
 public interface AdminDao extends JpaRepository<Admin, Long> {
 
-    Optional<Admin> findByLogin (String login);
+    Admin findByLogin (String login);
 
     Boolean existsByLogin(String login);
 
