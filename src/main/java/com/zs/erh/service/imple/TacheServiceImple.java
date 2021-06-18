@@ -182,26 +182,28 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 
 
     public List<CollaborateurVo> suivreCollaborateurs(CollaborateurVo collaborateurVo) {
-        return calcStatistiqueSuiviCollaborateur(collaborateurVo.getDateDemarrageEffectiveMin(), collaborateurVo.getDateDemarrageEffectiveMax());
+        return calcStatistiqueSuiviCollaborateur(collaborateurVo);
     }
 
-    public List<CollaborateurVo> calcStatistiqueSuiviCollaborateur(Date dateMin, Date dateMax) {
-        List<CollaborateurVo> collaborateurVos = calcTacheCount(dateMin, dateMax);
-        Long totalJourWithoutWeekEnd = DateUtil.totalJourWithoutWeekEnd(dateMin, dateMax);
-        Long jourFierie = calendrierJourFeriesService.calcNombreJourTotal(dateMin, dateMax);
+    public List<CollaborateurVo> calcStatistiqueSuiviCollaborateur(CollaborateurVo collabVo) {
+        List<CollaborateurVo> collaborateurVos = calcTacheCount(collabVo);
+        Long totalJourWithoutWeekEnd = DateUtil.totalJourWithoutWeekEnd(collabVo.getDateDemarrageEffectiveMin(), collabVo.getDateDemarrageEffectiveMax());
+        Long jourFierie = calendrierJourFeriesService.calcNombreJourTotal(collabVo.getDateDemarrageEffectiveMin(), collabVo.getDateDemarrageEffectiveMax());
         System.out.println("totalJourWithoutWeekEnd = " + totalJourWithoutWeekEnd + "  jourFierie = " + jourFierie);
         for (CollaborateurVo collaborateurVo : collaborateurVos) {
             collaborateurVo.setSommeJourNonWeekEnd(BigDecimal.valueOf(totalJourWithoutWeekEnd - jourFierie));
-            Long conge = demandeCongeService.calcNombreJourTotal(collaborateurVo.getCollaborateur().getId(), dateMin, dateMax);
+            Long conge = demandeCongeService.calcNombreJourTotal(collaborateurVo.getCollaborateur().getId(), collabVo.getDateDemarrageEffectiveMin(), collabVo.getDateDemarrageEffectiveMax());
             collaborateurVo.setSommeJourConge(new BigDecimal(conge));
             collaborateurVo.setSommeJourDecalage(collaborateurVo.getSommeJourNonWeekEnd().subtract(collaborateurVo.getSommeJourTravail().add(collaborateurVo.getSommeJourConge())));
         }
         return collaborateurVos;
     }
 
-    public List<CollaborateurVo> calcTacheCount(Date dateMin, Date dateMax) {
+    public List<CollaborateurVo> calcTacheCount(CollaborateurVo collabVo) {
         String query = "SELECT new com.zs.erh.service.vo.CollaborateurVo(t.membreEquipe.collaborateur,COUNT(t.id)) FROM Tache t WHERE 1=1";
-        query += addConstraintMinMaxDate("t", "dateDemarrageEffective", dateMin, dateMax);
+        query += addConstraintMinMaxDate("t", "dateDemarrageEffective", collabVo.getDateDemarrageEffectiveMin(), collabVo.getDateDemarrageEffectiveMax());
+        query += addConstraint("t", "groupeTache.lot.projet.agence.chefAgence.id", "=" , collabVo.getChefAgenceId());
+        query += addConstraint("t", "groupeTache.equipe.responsable.id", "=" , collabVo.getChefEquipeId());
         query += " GROUP BY t.membreEquipe.collaborateur.id ORDER BY t.membreEquipe.collaborateur.nom ASC,t.membreEquipe.collaborateur.prenom ASC";
         System.out.println("query = " + query);
         List<CollaborateurVo> res = getEntityManager().createQuery(query).getResultList();
