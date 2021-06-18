@@ -103,6 +103,35 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
         }
     }
 
+    public Tache saveForCollaborateur(Tache tache) {
+        if (findByCode(tache.getCode()) != null) {
+            return null;
+        } else {
+            GroupeTache groupeTache = groupeTacheService.findByCode(tache.getGroupeTache().getCode());
+            MembreEquipe membreEquipe = this.membreEquipeService.findByEquipeCodeAndCollaborateurLogin(tache.getMembreEquipe().getEquipe().getCode(),
+                    tache.getMembreEquipe().getCollaborateur().getLogin());
+            if (groupeTache == null) {
+                return null;
+            }
+            if (tache.getDateDemarrageEffective() == null) {
+                return null;
+            } else if (findByPeriodeIdAndMembreEquipeIdAndDateDemarrageEffective(tache) != null) {
+                return null;
+            } else {
+                tache.setGroupeTache(groupeTache);
+                if (tache.getLibelle() == null) {
+                    tache.setLibelle(groupeTache.getLibelle());
+                }
+                tache.setGroupeTache(groupeTache);
+                tache.setMembreEquipe(membreEquipe);
+                tache.setCategorieTache(categorieTacheService.findByCode(tache.getCategorieTache().getCode()));
+                tache.setEtatTache(etatTacheService.findByCode(tache.getEtatTache().getCode()));
+                tache.setPeriode(periodeService.findByCode(tache.getPeriode().getCode()));
+                tacheDao.save(tache);
+                return tache;
+            }
+        }
+    }
 
     public int updateTache(Tache tache) {
         Tache tacheUpdated = findByCode(tache.getCode());
@@ -117,13 +146,8 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
         tacheUpdated.setEtatTache(etatTacheService.findByCode(tache.getEtatTache().getCode()));
         tacheUpdated.setMembreEquipe(membreEquipeService.findByEquipeCodeAndCollaborateurCode(tache.getMembreEquipe().getEquipe().getCode(),
                 tache.getMembreEquipe().getCollaborateur().getCode()));
-        if (findByPeriodeIdAndMembreEquipeIdAndDateDemarrageEffective(tacheUpdated) != null
-            && findByPeriodeIdAndMembreEquipeIdAndDateDemarrageEffective(tacheUpdated) != tache) {
-            return -1;
-        } else {
-            tacheDao.save(tacheUpdated);
-            return 1;
-        }
+        tacheDao.save(tacheUpdated);
+        return 1;
     }
 
     @Transactional
@@ -164,6 +188,7 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
 
     public String addCriteria(TacheVo tacheVo) {
         String query = "";
+        query += addConstraint("t.libelle", tacheVo.getLibelle(), "LIKE");
         query += addConstraint("t.annee", tacheVo.getAnnee());
         query += addConstraint("t.mois", tacheVo.getMois());
         query += addConstraint("t.semaine", tacheVo.getSemaine());
@@ -176,7 +201,7 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
         query += addConstraint("t.groupeTache.lot.projet.client.id", tacheVo.getClientId());
         query += addConstraint("t.periode.id", tacheVo.getPeriodeId());
         query += addConstraint("t.groupeTache.lot.projet.agence.chefAgence.id", tacheVo.getChefAgenceId());
-        query += addConstraint("t.periode.id", tacheVo.getPeriodeId());
+        query += addConstraint("t.etatTache.id", tacheVo.getEtatTacheId());
         return query;
     }
 
@@ -202,8 +227,8 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
     public List<CollaborateurVo> calcTacheCount(CollaborateurVo collabVo) {
         String query = "SELECT new com.zs.erh.service.vo.CollaborateurVo(t.membreEquipe.collaborateur,COUNT(t.id)) FROM Tache t WHERE 1=1";
         query += addConstraintMinMaxDate("t", "dateDemarrageEffective", collabVo.getDateDemarrageEffectiveMin(), collabVo.getDateDemarrageEffectiveMax());
-        query += addConstraint("t", "groupeTache.lot.projet.agence.chefAgence.id", "=" , collabVo.getChefAgenceId());
-        query += addConstraint("t", "groupeTache.equipe.responsable.id", "=" , collabVo.getChefEquipeId());
+        query += addConstraint("t", "groupeTache.lot.projet.agence.chefAgence.id", "=", collabVo.getChefAgenceId());
+        query += addConstraint("t", "groupeTache.equipe.responsable.id", "=", collabVo.getChefEquipeId());
         query += " GROUP BY t.membreEquipe.collaborateur.id ORDER BY t.membreEquipe.collaborateur.nom ASC,t.membreEquipe.collaborateur.prenom ASC";
         System.out.println("query = " + query);
         List<CollaborateurVo> res = getEntityManager().createQuery(query).getResultList();
@@ -220,26 +245,6 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
         return findMultipleResult(query);
     }
 
-    public Tache saveForCollaborateur(Tache tache) {
-        if (findByCode(tache.getCode()) != null) {
-            return null;
-        } else {
-            GroupeTache groupeTache = groupeTacheService.findByCode(tache.getGroupeTache().getCode());
-            MembreEquipe membreEquipe = this.membreEquipeService.findByEquipeCodeAndCollaborateurLogin(tache.getMembreEquipe().getEquipe().getCode(),
-                    tache.getMembreEquipe().getCollaborateur().getLogin());
-            if (groupeTache == null) {
-                return null;
-            } else {
-                tache.setGroupeTache(groupeTache);
-                tache.setMembreEquipe(membreEquipe);
-                tache.setCategorieTache(categorieTacheService.findByCode(tache.getCategorieTache().getCode()));
-                tache.setEtatTache(etatTacheService.findByCode(tache.getEtatTache().getCode()));
-                tache.setPeriode(periodeService.findByCode(tache.getPeriode().getCode()));
-                tacheDao.save(tache);
-                return tache;
-            }
-        }
-    }
 
     @Override
     public Class<Tache> getEntityClass() {
