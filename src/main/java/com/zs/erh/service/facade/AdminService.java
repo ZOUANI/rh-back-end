@@ -5,7 +5,7 @@ import com.zs.erh.bean.Admin;
 import java.util.Optional;
 
 public interface AdminService {
-	Optional<Admin> findByLogin (String login);
+	Admin findByLogin (String login);
 
 	Boolean existsByLogin(String login);
 
