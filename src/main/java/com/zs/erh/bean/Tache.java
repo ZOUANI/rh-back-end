@@ -34,7 +34,7 @@ public class Tache implements Serializable {
     private Integer annee;
     @Temporal(TemporalType.DATE)
     private Date dateDemarrageEffective;
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date dateFinEffective;
     @ManyToOne
     private Periode periode;

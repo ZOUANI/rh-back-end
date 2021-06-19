@@ -8,7 +8,6 @@ import com.zs.erh.service.vo.TacheVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -29,10 +28,6 @@ public class TacheCARest {
         return tacheService.findByGroupeTacheCode(code);
     }
 
-    @GetMapping("/dateMin/{dateMin}/dateMax/{dateMax}")
-    public List<CollaborateurVo> calcStatistiqueSuiviCollaborateur(@PathVariable Date dateMin, @PathVariable Date dateMax) {
-        return tacheService.calcStatistiqueSuiviCollaborateur(dateMin, dateMax);
-    }
     @PostMapping("/search")
     public List<Tache> search(@RequestBody TacheVo tacheVo){
         return tacheService.search(tacheVo);

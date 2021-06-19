@@ -3,12 +3,10 @@ package com.zs.erh.ws.provided.collaborateur;
 
 import com.zs.erh.bean.Tache;
 import com.zs.erh.service.facade.TacheService;
-import com.zs.erh.service.vo.CollaborateurVo;
 import com.zs.erh.service.vo.TacheVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -33,10 +31,6 @@ public class TacheCollabRest {
         return tacheService.findByGroupeTacheCode(code);
     }
 
-    @GetMapping("/dateMin/{dateMin}/dateMax/{dateMax}")
-    public List<CollaborateurVo> calcStatistiqueSuiviCollaborateur(@PathVariable Date dateMin, @PathVariable Date dateMax) {
-        return tacheService.calcStatistiqueSuiviCollaborateur(dateMin, dateMax);
-    }
     @PostMapping("/search")
     public List<Tache> search(@RequestBody TacheVo tacheVo){
         return tacheService.search(tacheVo);

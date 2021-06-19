@@ -11,6 +11,7 @@ import com.zs.erh.service.facade.CollaborateurService;
 import com.zs.erh.service.facade.EquipeService;
 import com.zs.erh.service.util.HashageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -27,6 +28,8 @@ public class CollaborateurServiceImple implements CollaborateurService {
 
 	@Autowired
 	private CollaborateurService collaborateurService;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	public List<Collaborateur> findByAgenceChefAgenceCode(String code) {
 		return collaborateurDao.findByAgenceChefAgenceCode(code);
@@ -62,6 +65,7 @@ public class CollaborateurServiceImple implements CollaborateurService {
 			return null;
 		}else{
 			collaborateur.setCode(collaborateur.getLogin());
+			passwordEncoder.encode(collaborateur.getPassword());
 			collaborateurDao.save(collaborateur);
 			return collaborateur;
 		}
