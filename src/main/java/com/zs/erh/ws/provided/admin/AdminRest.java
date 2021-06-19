@@ -8,15 +8,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
-@RequestMapping(value = "maneo-rh/admin")
+@RequestMapping(value = "maneo-rh/admin/admin")
 public class AdminRest {
 
     @Autowired
     private AdminService adminService;
 
-    @GetMapping("/login")
-    public Admin findBylogin(@PathVariable String login){
+    @GetMapping("/login/{login}")
+    public Optional<Admin> findBylogin(@PathVariable String login){
         return this.adminService.findByLogin(login);
     }
 

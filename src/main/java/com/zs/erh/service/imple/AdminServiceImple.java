@@ -30,7 +30,7 @@ public class AdminServiceImple extends AbstractFacade<Admin> implements AdminSer
     private AdminDao adminDao;
 
     @Override
-    public Admin findByLogin(String login) {
+    public Optional<Admin> findByLogin(String login) {
         return adminDao.findByLogin(login);
     }
 
