@@ -1,7 +1,9 @@
 package com.zs.erh.service.facade;
 import com.zs.erh.bean.Paiement;
 import com.zs.erh.service.vo.PaiementVO;
+import org.springframework.data.repository.query.Param;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface PaiementService {
@@ -14,4 +16,6 @@ public interface PaiementService {
     public int deleteByFactureCode(String code);
     public int deleteMultiple(List<Paiement> paiements);
     public PaiementVO calcStatistiquePaiement(PaiementVO paiementVO);
+    public BigDecimal totalPaye(Long factureId);
+    public BigDecimal totalNonPaye(Paiement paiement);
 }
