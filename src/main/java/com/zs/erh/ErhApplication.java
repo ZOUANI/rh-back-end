@@ -13,8 +13,4 @@ public class ErhApplication {
         SpringApplication.run(ErhApplication.class, args);
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
 }

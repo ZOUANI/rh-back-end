@@ -2,6 +2,7 @@ package com.zs.erh.service.imple;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -18,6 +19,7 @@ import com.zs.erh.security.services.UserDetailsImpl;
 import com.zs.erh.service.facade.AgenceService;
 import com.zs.erh.service.facade.CollaborateurService;
 import com.zs.erh.service.util.Roles;
+import com.zs.erh.service.vo.ChangePwdVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,11 +27,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -58,6 +56,9 @@ public class AuthServiceImple {
 
     @Autowired
     PasswordEncoder encoder;
+
+    @Autowired
+    UserServiceImple userService;
 
     @Autowired
     JwtUtils jwtUtils;
@@ -199,4 +200,38 @@ public class AuthServiceImple {
             return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
         }
     }
+
+    @PostMapping("/changePassword/{id}")
+    public int changePassword(@PathVariable long id, @RequestBody ChangePwdVo changePwdVo) {
+        Optional<User> userFounded = userService.findById(id);
+        if (userFounded.isPresent()) {
+            User user = userFounded.get();
+            if (encoder.matches(changePwdVo.getCurrentPassword(), user.getPassword())) {
+                user.setPassword(encoder.encode(changePwdVo.getNewPassword()));
+                userService.save(user);
+                return 1;
+            } else {
+                return -1;
+            }
+        }else
+            return 0;
+    }
+
+    // url/id
+    // body { "currentPasswors": "password", "newPassword" : "newPassword" }
+    //int changePassword(Long id,PasswordChange passwordChange) {
+    // Optional userOp = userDao.findById(id);
+    // if(userOp.isPresent) {
+        // User user = userOp.get();
+        // if(encoder.matches(passwordChange.getCurrentPassword(), user.getPassword()) {
+        // user.setPassword(encoder.encode(passwordChange.getNewPassword()));
+        // userDao.save(user);
+        // retrun 1;  data == 1 tokenService.signOut();
+        //} else {
+        // return 2;  data == 2  passwordIncorrect
+        // }
+    // }
+    // return 0;
+    //
+    // Api//Post   changePassword/id/{id} //
 }
