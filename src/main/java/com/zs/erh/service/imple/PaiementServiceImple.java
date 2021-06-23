@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -35,6 +36,19 @@ public class PaiementServiceImple extends AbstractFacade<Paiement> implements Pa
         return paiementDao.findByFactureCode(code);
     }
 
+    public BigDecimal totalPaye(Long factureId) {
+        return paiementDao.totalPaye(factureId);
+    }
+
+    public BigDecimal totalNonPaye(Paiement paiement) {
+        BigDecimal totalPaye = paiementDao.totalPaye(paiement.getFacture().getId());
+        if (totalPaye == null){
+            return paiement.getFacture().getMontantFacture();
+        }else {
+            return paiement.getFacture().getMontantFacture().subtract(totalPaye);
+        }
+    }
+
     public Paiement save(Paiement paiement) {
         if (findByReference(paiement.getReference()) != null) {
             return null;
@@ -43,9 +57,15 @@ public class PaiementServiceImple extends AbstractFacade<Paiement> implements Pa
             if (facture == null) {
                 return null;
             } else {
-                paiement.setFacture(facture);
-                paiementDao.save(paiement);
-                return paiement;
+                BigDecimal totalNonPaye = totalNonPaye(paiement);
+                if (paiement.getMontant().compareTo(totalNonPaye) > 0){
+                    return null;
+                }
+                else {
+                    paiement.setFacture(facture);
+                    paiementDao.save(paiement);
+                    return paiement;
+                }
             }
         }
     }

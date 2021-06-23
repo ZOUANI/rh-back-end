@@ -135,6 +135,5 @@ public class EquipeServiceImple implements EquipeService {
     public  List<Equipe> findByAgenceChefAgenceCode(String code){
         return equipeDao.findByAgenceChefAgenceCode(code);
     }
-
 }
 
