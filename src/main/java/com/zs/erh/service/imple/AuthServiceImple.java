@@ -82,7 +82,7 @@ public class AuthServiceImple {
                 userDetails.getCode(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),
-                roles,userDetails.getNom(),userDetails.getPrenom()));
+                roles,userDetails.getNom(),userDetails.getPrenom(),userDetails.getPhone()));
     }
 
     @PostMapping("/admin-signup")

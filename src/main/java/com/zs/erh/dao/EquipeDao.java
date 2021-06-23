@@ -12,7 +12,12 @@ import java.util.List;
 public interface EquipeDao extends JpaRepository<Equipe,Long> {
     Equipe findByCode(String code);
     int deleteByCode(String code);
+    @Query(value = "SELECT e FROM Equipe e where e.etatEquipe.id = 401 AND e.responsable.id = :id")
+    List<Equipe> findByResponsable(@Param("id") Long id);
+
+
     List<Equipe> findByResponsableCode(String code);
+
     List<Equipe> findByEtatEquipeCode(String code);
     List<Equipe> findByAgenceChefAgenceCode(String code);
 

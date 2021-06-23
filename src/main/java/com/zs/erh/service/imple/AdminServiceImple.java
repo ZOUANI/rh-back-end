@@ -1,8 +1,10 @@
 package com.zs.erh.service.imple;
 
 import com.zs.erh.bean.Admin;
+import com.zs.erh.bean.User;
 import com.zs.erh.dao.AdminDao;
 import com.zs.erh.service.facade.AdminService;
+import com.zs.erh.service.facade.UserService;
 import com.zs.erh.service.util.HashageUtil;
 import com.zs.erh.service.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,9 @@ public class AdminServiceImple extends AbstractFacade<Admin> implements AdminSer
     @Autowired
     private AdminDao adminDao;
 
+    @Autowired
+    private UserService userService;
+
     @Override
     public Optional<Admin> findByLogin(String login) {
         return adminDao.findByLogin(login);
@@ -48,5 +53,4 @@ public class AdminServiceImple extends AbstractFacade<Admin> implements AdminSer
     public Admin save(Admin user) {
         return adminDao.save(user);
     }
-
 }

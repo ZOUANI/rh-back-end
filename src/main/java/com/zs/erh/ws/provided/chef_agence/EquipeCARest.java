@@ -22,10 +22,7 @@ public class EquipeCARest {
     public List<Equipe> findByEtatEquipeCode(@PathVariable String code) {
         return this.equipeService.findByEtatEquipeCode(code);
     }
-    @GetMapping("/collaborateur/code/{code}")
-    public List<Equipe> findByResponsableCode(@PathVariable String code) {
-        return equipeService.findByResponsableCode(code);
-    }
+
     @GetMapping("/agenceChefAgenceCode/{code}")
     public List<Equipe> findByAgenceChefAgenceCode(@PathVariable String code){
         return equipeService.findByAgenceChefAgenceCode(code);

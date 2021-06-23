@@ -46,14 +46,19 @@ public class EquipeServiceImple implements EquipeService {
         return equipeDao.findByCode(code);
     }
 
-    public List<Equipe> findByResponsableCode(String code) {
-        return equipeDao.findByResponsableCode(code);
+
+    public List<Equipe> findByResponsable(Long id) {
+        return equipeDao.findByResponsable(id);
     }
+
 
     public List<Equipe> findByEtatEquipeCode(String code) {
         return equipeDao.findByEtatEquipeCode(code);
     }
 
+    public List<Equipe> findByResponsableCode(String code) {
+        return equipeDao.findByResponsableCode(code);
+    }
     @Transactional
     public int deleteByCode(String code) {
         if (equipeDao.findByCode(code) == null) {

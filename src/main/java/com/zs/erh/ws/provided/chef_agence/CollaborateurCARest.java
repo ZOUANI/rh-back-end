@@ -32,21 +32,6 @@ public class CollaborateurCARest {
 		return collaborateurService.findByCode(code);
 	}
 
-	@GetMapping("/login/{login}/password/{password}")
-	public Collaborateur findByLoginAndPassword(@PathVariable String login,@PathVariable String password){
-		return collaborateurService.findByLoginAndPassword(login,password);
-	}
-	@PostMapping("/signIn")
-	public Collaborateur sauthentifier(@RequestBody Collaborateur collaborateur){
-		return collaborateurService.signIn(collaborateur);
-	}
-	@PostMapping("/connexion")
-	public Collaborateur connexionChefEquipe(@RequestBody Collaborateur collaborateur){
-		return collaborateurService.connexionChefEquipe(collaborateur);
-	}
-
-
-		@Autowired
+	@Autowired
 	 private CollaborateurService collaborateurService;
-
 }

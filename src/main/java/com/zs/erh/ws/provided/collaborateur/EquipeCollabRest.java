@@ -22,10 +22,6 @@ public class EquipeCollabRest {
     public List<Equipe> findByEtatEquipeCode(@PathVariable String code) {
         return this.equipeService.findByEtatEquipeCode(code);
     }
-    @GetMapping("/collaborateur/code/{code}")
-    public List<Equipe> findByResponsableCode(@PathVariable String code) {
-        return equipeService.findByResponsableCode(code);
-    }
 
     @PostMapping("/search")
     public List<Equipe> search(@RequestBody EquipeVO equipeVO){

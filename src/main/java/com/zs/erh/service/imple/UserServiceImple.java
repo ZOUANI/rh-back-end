@@ -25,6 +25,7 @@ public class UserServiceImple  implements UserService {
     public User save(User user){
         return userDao.save(user);
     }
+
     public User editePersonnel(User user){
         Optional<User> userFounded = userDao.findById(user.getId());
         if(userFounded.isPresent()){
@@ -37,5 +38,4 @@ public class UserServiceImple  implements UserService {
         }else
             return null;
     }
-
 }

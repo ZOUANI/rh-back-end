@@ -14,7 +14,5 @@ public interface UserDao extends JpaRepository<User, Long> {
     Boolean existsByLogin(String login);
 
     Boolean existsByEmail(String email);
-    public User editePersonnel(User user);
-
 
 }
