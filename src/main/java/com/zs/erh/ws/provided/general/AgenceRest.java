@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("maneo-rh/agence")
+@RequestMapping("maneo-rh/general/agence")
 public class AgenceRest {
     @Autowired
     private AgenceService agenceService;

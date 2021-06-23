@@ -46,8 +46,6 @@ public class Projet implements Serializable {
     @ManyToOne
     private Collaborateur responsable;
 
-    private String nro;
-
     @ManyToOne
     private Client client;
     @ManyToOne
@@ -196,13 +194,6 @@ public class Projet implements Serializable {
         this.id = id;
     }
 
-    public String getNro() {
-        return nro;
-    }
-
-    public void setNro(String nro) {
-        this.nro = nro;
-    }
 
     @Override
     public int hashCode() {
