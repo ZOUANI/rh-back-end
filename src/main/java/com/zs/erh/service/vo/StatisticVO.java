@@ -21,10 +21,11 @@ public class StatisticVO implements Serializable {
         this.currentDate = currentDate;
     }
 
-    private String chefAgenceLogin;
+    private Long chefAgencecId;
     private List<Date> times;
     private String showType;
     private Long showNumber;
+    private List<Long> nbrTache;
     private List<BigDecimal> budgetsTotal;
     private List<BigDecimal> facturesTotal;
     private List<BigDecimal> paiementsTotal;
@@ -36,6 +37,17 @@ public class StatisticVO implements Serializable {
             this.paiementsTotal = new ArrayList<BigDecimal>();
         }
         return paiementsTotal;
+    }
+
+   public List<Long> getNbrTache() {
+        if( this.nbrTache == null){
+            this.nbrTache = new ArrayList<Long>() ;
+        }
+        return nbrTache;
+    }
+
+    public void setNbrTache(List<Long> nbrTache) {
+        this.nbrTache = nbrTache;
     }
 
     public void setPaiementsTotal(List<BigDecimal> paiementsTotal) {
@@ -66,12 +78,12 @@ public class StatisticVO implements Serializable {
         this.dateMin = dateMin;
     }
 
-    public String getChefAgenceLogin() {
-        return chefAgenceLogin;
+    public Long getChefAgencecId() {
+        return chefAgencecId;
     }
 
-    public void setChefAgenceLogin(String chefAgenceLogin) {
-        this.chefAgenceLogin = chefAgenceLogin;
+    public void setChefAgencecId(Long chefAgencecId) {
+        this.chefAgencecId = chefAgencecId;
     }
 
     public List<Date> getTimes() {
@@ -122,7 +134,7 @@ public class StatisticVO implements Serializable {
     }
 
     public void Times (){
-        this.getTimes().add(this.currentDate);
+            this.getTimes().add(this.currentDate);
         int year = this.currentDate.getYear();
         int month = this.currentDate.getMonth();
 

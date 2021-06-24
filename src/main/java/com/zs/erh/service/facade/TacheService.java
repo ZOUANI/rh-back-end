@@ -25,4 +25,5 @@ public interface TacheService {
 	public List<CollaborateurVo> calcStatistiqueSuiviCollaborateur(Date dateMin, Date dateMax);
 	public Tache saveForCollaborateur(Tache tache);
 	public Tache findByPeriodeIdAndMembreEquipeIdAndDateDemarrageEffective(Tache tache);
+	public Long calculNbrTache(TacheVo tacheVo);
 }

@@ -6,9 +6,13 @@ import com.zs.erh.service.facade.AgenceService;
 import com.zs.erh.service.facade.ChefAgenceService;
 import com.zs.erh.service.facade.EtatAgenceService;
 import com.zs.erh.service.facade.VilleService;
+import com.zs.erh.service.util.StringUtil;
+import com.zs.erh.service.vo.AgenceVO;
+import com.zs.erh.service.vo.DemandeCongeVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +32,8 @@ public class AgenceServiceImple implements AgenceService {
     private EtatAgenceService etatAgenceService;
     @Autowired
     private VilleService villeService;
+    @Autowired
+    private EntityManager entityManager;
 
 
     public Agence findByCode(String code) {
@@ -83,6 +89,13 @@ public class AgenceServiceImple implements AgenceService {
                 return agence;
             }
         }
+    }
+    public List<Agence> findByCriteriaConge(AgenceVO agenceVO) {
+        String query = "SELECT a FROM Agence a WHERE 1=1";
+        if(StringUtil.isNotEmpty(agenceVO.getChefAgenceNom())){
+            query+= " AND a.chefAgence.nom ||' '|| a.chefAgence.prenom LIKE '%"+agenceVO.getChefAgenceNom()+"%'";
+        }
+        return entityManager.createQuery(query).getResultList();
     }
   public Agence update(Agence agence){
         Optional<Agence> agence1 = findById(agence.getId());

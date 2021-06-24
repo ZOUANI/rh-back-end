@@ -138,8 +138,10 @@ public abstract class AbstractFacade<T> {
         return addConstraint("item", atributeName, "=", DateUtil.convertFormUtilToSql(value));
     }
 
-    public String addConstraintMinMaxDate(String beanAbrev, String atributeName, Date valueMin, Date valueMax) {
-        return addConstraintMinMax(beanAbrev, atributeName, DateUtil.convertFormUtilToSql(valueMin), DateUtil.convertFormUtilToSql(valueMax));
+    public String addConstraintMinMaxDate(String beanAbrev, String atributeName
+            , Date valueMin, Date valueMax) {
+        return addConstraintMinMax(beanAbrev, atributeName, DateUtil.convertFormUtilToSql(valueMin),
+                DateUtil.convertFormUtilToSql(valueMax));
     }
 
     public String supprimerCleEtranger(String beanAbrev, String atributeName, String condition, Object value) {

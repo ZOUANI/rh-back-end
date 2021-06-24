@@ -2,6 +2,7 @@ package com.zs.erh.ws.provided.admin;
 
 import com.zs.erh.bean.Agence;
 import com.zs.erh.service.facade.AgenceService;
+import com.zs.erh.service.vo.AgenceVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,5 +56,9 @@ public class AgenceAdminRest {
     @PutMapping("/")
     public Agence update(@RequestBody Agence agence) {
         return agenceService.update(agence);
+    }
+    @PostMapping("/search")
+    public List<Agence> findByCriteriaConge(@RequestBody AgenceVO agenceVO) {
+        return agenceService.findByCriteriaConge(agenceVO);
     }
 }
