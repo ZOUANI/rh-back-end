@@ -37,7 +37,6 @@ public class LotServiceImple implements LotService {
 
     public int updateLot(Lot lot) {
         Lot lot1 = lottDao.findById(lot.getId()).get();
-        lot1.setSro(lot.getSro());
         lot1.setCode(lot.getCode());
         lot1.setDescription(lot.getDescription());
         lot1.setLibelle(lot.getLibelle());

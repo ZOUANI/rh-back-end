@@ -9,17 +9,37 @@ public class JwtResponse {
     private String login;
     private String email;
     private String nom;
+    private String code;
+    private String phone;
     private String prenom;
     private List<String> roles;
 
-    public JwtResponse(String accessToken, Long id,String code, String login, String email, List<String> roles, String nom, String prenom) {
+    public JwtResponse(String accessToken, Long id, String code, String login, String email, List<String> roles, String nom, String prenom, String phone) {
         this.token = accessToken;
         this.id = id;
         this.login = login;
         this.email = email;
         this.roles = roles;
         this.nom = nom;
+        this.code = code;
+        this.phone = phone;
         this.prenom = prenom;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getAccessToken() {

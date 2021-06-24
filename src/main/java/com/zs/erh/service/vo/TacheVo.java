@@ -29,6 +29,7 @@ public class TacheVo {
     private Integer annee;
 
     private Long periodeId;
+    private Long etatTacheId;
 
     private Lot lot;
     private Long totalPeriode;
@@ -41,6 +42,7 @@ public class TacheVo {
     private Date dateFinEffective;
 
     private String code;
+    private String libelle;
 
 
     public TacheVo(Date dateDemarrageEffectiveMin, Date dateDemarrageEffectiveMax, Long equipeId, Long membreEquipeId, Long lotId, Long clientId, Long projetId, Integer semaine, Integer mois, Integer annee) {
@@ -82,6 +84,17 @@ public class TacheVo {
         this.code = code;
     }
 
+    public String getLibelle() { return libelle; }
+
+    public void setLibelle(String libelle) { this.libelle = libelle; }
+
+    public Long getEtatTacheId() {
+        return etatTacheId;
+    }
+
+    public void setEtatTacheId(Long etatTacheId) {
+        this.etatTacheId = etatTacheId;
+    }
 
     public TacheVo() {
     }

@@ -16,6 +16,9 @@ public class CollaborateurVo {
     private Date dateDemarrageEffectiveMin;
     private Date dateDemarrageEffectiveMax;
 
+    private Long chefAgenceId;
+    private Long chefEquipeId;
+
     public CollaborateurVo(Collaborateur collaborateur, Long sommeDemiJournee) {
         this.collaborateur = collaborateur;
         this.sommeJourTravail = BigDecimal.valueOf(sommeDemiJournee).divide(new BigDecimal(2));
@@ -83,4 +86,19 @@ public class CollaborateurVo {
         this.dateDemarrageEffectiveMax = dateDemarrageEffectiveMax;
     }
 
+    public Long getChefAgenceId() {
+        return chefAgenceId;
+    }
+
+    public void setChefAgenceId(Long chefAgenceId) {
+        this.chefAgenceId = chefAgenceId;
+    }
+
+    public Long getChefEquipeId() {
+        return chefEquipeId;
+    }
+
+    public void setChefEquipeId(Long chefEquipeId) {
+        this.chefEquipeId = chefEquipeId;
+    }
 }

@@ -11,7 +11,6 @@ public interface CollaborateurService {
 
 	public Collaborateur findByCode(String code);
 
-	//public List<Collaborateur> findByEquipeDefaultCode(String code);
 	Optional<Collaborateur> findById(Long id);
 
 	public Collaborateur findByLogin(String login);
@@ -22,14 +21,5 @@ public interface CollaborateurService {
 	public List<Collaborateur> findByAgenceCode(String code);
 
 	public List<Collaborateur> findCollaborateurs(String login);
-
-		public Collaborateur findByLoginAndPassword(String login, String password);
-
-	public  Collaborateur saveCollaborateur(Collaborateur collaborateur);
-
-	public Collaborateur signIn(Collaborateur collaborateur);
-
-	public Collaborateur connexionChefEquipe(Collaborateur collaborateur);
-
 
 }

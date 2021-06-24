@@ -23,14 +23,24 @@ public class EquipeCERest {
     public Equipe findByCode(@PathVariable String code){
         return equipeService.findByCode(code);
     }
+
+    @GetMapping("/collaborateur/code/{code}")
+    public List<Equipe> findByResponsableCode(@PathVariable String  code) {
+        return equipeService.findByResponsableCode(code);
+    }
     @GetMapping("/etatEquipeCode/{code}")
     public List<Equipe> findByEtatEquipeCode(@PathVariable String code) {
         return this.equipeService.findByEtatEquipeCode(code);
     }
-    @GetMapping("/collaborateur/code/{code}")
-    public List<Equipe> findByResponsableCode(@PathVariable String code) {
-        return equipeService.findByResponsableCode(code);
+
+
+    @GetMapping("/collaborateur/id/{id}")
+    public List<Equipe> findByResponsable(@PathVariable Long id) {
+        System.out.println("mrd");
+        return equipeService.findByResponsable(id);
     }
+
+
     @GetMapping("/agenceChefAgenceCode/{code}")
     public List<Equipe> findByAgenceChefAgenceCode(@PathVariable String code){
         return equipeService.findByAgenceChefAgenceCode(code);

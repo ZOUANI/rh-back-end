@@ -6,6 +6,7 @@ import com.zs.erh.service.vo.PaiementVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -49,6 +50,7 @@ public class PaiementAdminRest {
     }
 
     // Delete Methods
+
     @DeleteMapping("FactureCode/{code}")
     public int deleteByFactureCode(@PathVariable String code) {
         return paiementService.deleteByFactureCode(code);
@@ -63,4 +65,12 @@ public class PaiementAdminRest {
     public int deleteByReference(@PathVariable String reference) {
         return paiementService.deleteByReference(reference);
     }
+
+    //total montant non paye
+
+    @PostMapping("/calcTotalNonPaye")
+    public BigDecimal totalNonPaye(@RequestBody Paiement paiement) {
+        return paiementService.totalNonPaye(paiement);
+    }
+
 }

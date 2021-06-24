@@ -24,31 +24,16 @@ public class CollaborateurRest {
 		return collaborateurService.findByCode(code);
 	}
 
-	@GetMapping("/login/{login}/password/{password}")
-	public Collaborateur findByLoginAndPassword(@PathVariable String login,@PathVariable String password){
-		return collaborateurService.findByLoginAndPassword(login,password);
-	}
-	@PostMapping("/")
-	public Collaborateur sinscrire(@RequestBody Collaborateur collaborateur) {
-		return collaborateurService.saveCollaborateur(collaborateur);
-	}
-	@PostMapping("/signIn")
-	public Collaborateur sauthentifier(@RequestBody Collaborateur collaborateur){
-		return collaborateurService.signIn(collaborateur);
-	}
-	@PostMapping("/connexion")
-	public Collaborateur connexionChefEquipe(@RequestBody Collaborateur collaborateur){
-		return collaborateurService.connexionChefEquipe(collaborateur);
-	}
-
     @GetMapping("/codec/codec")
 	public List<Collaborateur> findByAgenceChefAgenceCode(String codec) {
 		return collaborateurService.findByAgenceChefAgenceCode(codec);
 	}
+
 	@GetMapping("/findCollaborateurs/{login}")
 	public List<Collaborateur> findCollaborateurs(@PathVariable String login){
 		return collaborateurService.findCollaborateurs(login);
 	}
+
 	@Autowired
 	private CollaborateurService collaborateurService;
 }

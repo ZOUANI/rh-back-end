@@ -11,6 +11,7 @@ import com.zs.erh.service.facade.CollaborateurService;
 import com.zs.erh.service.facade.EquipeService;
 import com.zs.erh.service.util.HashageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -27,6 +28,8 @@ public class CollaborateurServiceImple implements CollaborateurService {
 
 	@Autowired
 	private CollaborateurService collaborateurService;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	public List<Collaborateur> findByAgenceChefAgenceCode(String code) {
 		return collaborateurDao.findByAgenceChefAgenceCode(code);
@@ -62,6 +65,7 @@ public class CollaborateurServiceImple implements CollaborateurService {
 			return null;
 		}else{
 			collaborateur.setCode(collaborateur.getLogin());
+			passwordEncoder.encode(collaborateur.getPassword());
 			collaborateurDao.save(collaborateur);
 			return collaborateur;
 		}
@@ -81,37 +85,6 @@ public class CollaborateurServiceImple implements CollaborateurService {
 		}
 	}
 
-	public Collaborateur connexionChefEquipe(Collaborateur collaborateur){
-		Collaborateur foundedCollaborateur = this.collaborateurService.signIn(collaborateur);
-		if(foundedCollaborateur == null){
-			System.out.println("null1");
-			return null;
-		}if(equipeService.findByResponsableCode(foundedCollaborateur.getCode()) == null){
-			System.out.println("null2");
-			return null;
-		}else{
-			return foundedCollaborateur;
-		}
-	}
-
-
-
-
-
-//	public int save(Collaborateur collaborateur) {
-//		Collaborateur c = findByLogin(collaborateur.getLogin());
-//		if (c == null) {
-//			collaborateur.setCategorieCollaborateur(categorieCollaborateurService.findByCode("agent"));
-//			String hash = HashageUtil.sha256(collaborateur.getPassword());
-//			collaborateur.setPassword(hash);
-////			collaborateur.setId(generateId("id"));
-//			collaborateur.setMustChangePassword(false);
-//			collaborateurDao.save(collaborateur);
-//			return 1;
-//		}
-//		return -1;
-//	}
-
 	public List<Collaborateur> findAll() {
 		return collaborateurDao.findAll();
 	}
@@ -121,8 +94,8 @@ public class CollaborateurServiceImple implements CollaborateurService {
 	}
 
 
-public Optional<Collaborateur> findById(Long id) {
-	return collaborateurDao.findById(id);
-}
+	public Optional<Collaborateur> findById(Long id) {
+		return collaborateurDao.findById(id);
+	}
 	
 }

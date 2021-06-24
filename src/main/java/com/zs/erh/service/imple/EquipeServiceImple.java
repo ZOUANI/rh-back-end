@@ -9,6 +9,7 @@ import com.zs.erh.service.util.StringUtil;
 import com.zs.erh.service.vo.ClientVO;
 import com.zs.erh.service.vo.EquipeVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -45,14 +46,19 @@ public class EquipeServiceImple implements EquipeService {
         return equipeDao.findByCode(code);
     }
 
-    public List<Equipe> findByResponsableCode(String code) {
-        return equipeDao.findByResponsableCode(code);
+
+    public List<Equipe> findByResponsable(Long id) {
+        return equipeDao.findByResponsable(id);
     }
+
 
     public List<Equipe> findByEtatEquipeCode(String code) {
         return equipeDao.findByEtatEquipeCode(code);
     }
 
+    public List<Equipe> findByResponsableCode(String code) {
+        return equipeDao.findByResponsableCode(code);
+    }
     @Transactional
     public int deleteByCode(String code) {
         if (equipeDao.findByCode(code) == null) {
@@ -129,6 +135,5 @@ public class EquipeServiceImple implements EquipeService {
     public  List<Equipe> findByAgenceChefAgenceCode(String code){
         return equipeDao.findByAgenceChefAgenceCode(code);
     }
-
 }
 

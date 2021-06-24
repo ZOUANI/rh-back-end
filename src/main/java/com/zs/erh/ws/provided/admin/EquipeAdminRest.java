@@ -4,6 +4,7 @@ import com.zs.erh.bean.Equipe;
 import com.zs.erh.service.facade.EquipeService;
 import com.zs.erh.service.vo.EquipeVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,10 +27,6 @@ public class EquipeAdminRest {
     @GetMapping("/etatEquipeCode/{code}")
     public List<Equipe> findByEtatEquipeCode(@PathVariable String code) {
         return this.equipeService.findByEtatEquipeCode(code);
-    }
-    @GetMapping("/collaborateur/code/{code}")
-    public List<Equipe> findByResponsableCode(@PathVariable String code) {
-        return equipeService.findByResponsableCode(code);
     }
 
     @DeleteMapping("/code/{code}")

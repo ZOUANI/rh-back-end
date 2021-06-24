@@ -22,7 +22,7 @@ public interface TacheService {
 	public List<Tache> search(TacheVo tacheVo);
 	public List<TacheVo> calcStatistique(TacheVo tacheVo);
 	public List<CollaborateurVo> suivreCollaborateurs(CollaborateurVo collaborateurVo);
-	public List<CollaborateurVo> calcStatistiqueSuiviCollaborateur(Date dateMin, Date dateMax);
+	public List<CollaborateurVo> calcStatistiqueSuiviCollaborateur(CollaborateurVo collabVo);
 	public Tache saveForCollaborateur(Tache tache);
 	public Tache findByPeriodeIdAndMembreEquipeIdAndDateDemarrageEffective(Tache tache);
 	public Long calculNbrTache(TacheVo tacheVo);

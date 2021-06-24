@@ -32,18 +32,6 @@ public class CollaborateurAdminRest {
 		return collaborateurService.findByCode(code);
 	}
 
-	@GetMapping("/login/{login}/password/{password}")
-	public Collaborateur findByLoginAndPassword(@PathVariable String login,@PathVariable String password){
-		return collaborateurService.findByLoginAndPassword(login,password);
-	}
-	@PostMapping("/signIn")
-	public Collaborateur sauthentifier(@RequestBody Collaborateur collaborateur){
-		return collaborateurService.signIn(collaborateur);
-	}
-	@PostMapping("/connexion")
-	public Collaborateur connexionChefEquipe(@RequestBody Collaborateur collaborateur){
-		return collaborateurService.connexionChefEquipe(collaborateur);
-	}
     @GetMapping("codec/codec")
 	public List<Collaborateur> findByAgenceChefAgenceCode(@PathVariable String codec) {
 		return collaborateurService.findByAgenceChefAgenceCode(codec);
