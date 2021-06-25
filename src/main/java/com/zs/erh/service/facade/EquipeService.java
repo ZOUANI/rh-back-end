@@ -15,7 +15,7 @@ public interface EquipeService {
 	public List<Equipe> findByEtatEquipeCode(String code);
 	public Equipe findByCode(String code);
 	List<Equipe> findByResponsable(Long id);
-
+	List<Equipe> findByCollab(String code);
 	List<Equipe> findByResponsableCode(String code);
 	public int deleteByCode(String code);
 	public Equipe save(Equipe equipe);

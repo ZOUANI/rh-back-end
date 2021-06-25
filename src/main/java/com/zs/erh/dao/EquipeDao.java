@@ -15,6 +15,8 @@ public interface EquipeDao extends JpaRepository<Equipe,Long> {
     @Query(value = "SELECT e FROM Equipe e where e.etatEquipe.id = 401 AND e.responsable.id = :id")
     List<Equipe> findByResponsable(@Param("id") Long id);
 
+    @Query(value = "select distinct e.equipe from MembreEquipe e where e.collaborateur.code = :code")
+   List<Equipe> findByCollab(@Param("code") String code);
 
     List<Equipe> findByResponsableCode(String code);
 

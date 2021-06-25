@@ -71,11 +71,11 @@ public class Budget implements Serializable {
     }
 
     public Agence getAgence() {
-        return agence;
+        return this.agence;
     }
 
     public void setAgence(Agence agence) {
-        agence = agence;
+        this.agence = agence;
     }
 
     public Date getDateDemmande() {
@@ -115,20 +115,9 @@ public class Budget implements Serializable {
         }
         return true;
     }
-
-
     @Override
     public String toString() {
-        return "Budget{" +
-                "libelle='" + libelle + '\'' +
-                ", code='" + code + '\'' +
-                ", montant=" + montant +
-                ", messageDemmande='" + messageDemmande + '\'' +
-                ", messageReponse='" + messageReponse + '\'' +
-                ", dateDemmande=" + dateDemmande +
-                ", dateReponse=" + dateReponse +
-                ", etatBudget=" + etatBudget +
-                ", Agence=" + agence +
-                '}';
+        return "com.telcom.rh.bean.Budget[ id=" + id + " ]";
     }
+
 }

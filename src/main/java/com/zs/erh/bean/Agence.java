@@ -1,5 +1,7 @@
 package com.zs.erh.bean;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -88,5 +90,11 @@ public class Agence implements Serializable {
             return false;
         }
         return true;
+    }
+
+
+    @Override
+    public String toString() {
+        return "com.telcom.rh.bean.Agence[ id=" + id + " ]";
     }
 }
