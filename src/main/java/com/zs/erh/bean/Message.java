@@ -1,6 +1,7 @@
 package com.zs.erh.bean;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.zs.erh.bean.EtatMessage;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,7 +15,7 @@ public class Message implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private  String objet;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
     private Date dateEnvoi;
     @ManyToOne
     private  User source;

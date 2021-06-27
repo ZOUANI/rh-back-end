@@ -13,6 +13,9 @@ import java.util.Optional;
 public class UserServiceImple  implements UserService {
     @Autowired
     private UserDao userDao;
+    @Autowired
+    PasswordEncoder encoder;
+
 
     public Optional<User> findByLogin(String login) {
         return userDao.findByLogin(login);
@@ -37,5 +40,25 @@ public class UserServiceImple  implements UserService {
             return userFounded.get();
         }else
             return null;
+    }
+    public int block(Long id){
+        User user = userDao.findById(id).get();
+        user.setBlocked(true);
+        userDao.save(user);
+        return 1;
+    }
+
+    public int reset(Long id){
+        User user = userDao.findById(id).get();
+        user.setPassword(encoder.encode(user.getLogin()));
+        userDao.save(user);
+        return 2;
+    }
+
+    public int deblock(Long id){
+        User user = userDao.findById(id).get();
+        user.setBlocked(false);
+        userDao.save(user);
+        return 0;
     }
 }

@@ -24,7 +24,7 @@ public class CollaborateurRest {
 		return collaborateurService.findByCode(code);
 	}
 
-    @GetMapping("/codec/codec")
+    @GetMapping("/codec/{codec}")
 	public List<Collaborateur> findByAgenceChefAgenceCode(String codec) {
 		return collaborateurService.findByAgenceChefAgenceCode(codec);
 	}

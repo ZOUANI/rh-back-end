@@ -34,4 +34,9 @@ public class CollaborateurCARest {
 
 	@Autowired
 	 private CollaborateurService collaborateurService;
+
+	@GetMapping("/codec/{codec}")
+	public List<Collaborateur> findByAgenceChefAgenceCode(@PathVariable String codec) {
+		return collaborateurService.findByAgenceChefAgenceCode(codec);
+	}
 }

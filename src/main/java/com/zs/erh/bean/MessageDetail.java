@@ -1,11 +1,10 @@
 package com.zs.erh.bean;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
+import com.zs.erh.bean.EtatMessage;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+
 @Entity
 public class MessageDetail implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -14,13 +13,15 @@ public class MessageDetail implements Serializable {
     private Long id;
     @ManyToOne
     private User destinataire;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
     private Date dateLecture;
     @ManyToOne
     private Message message;
     @ManyToOne
     private EtatMessage etatMessage;
 
+    @Transient
+    private String loginDestinataire;
 
     public User getDistinataire() {
         return destinataire;
@@ -30,7 +31,16 @@ public class MessageDetail implements Serializable {
         this.destinataire = distinataire;
     }
 
-    public Long getId() {
+
+    public String getLoginDestinataire() {
+		return loginDestinataire;
+	}
+
+	public void setLoginDestinataire(String loginDestinataire) {
+		this.loginDestinataire = loginDestinataire;
+	}
+
+	public Long getId() {
         return id;
     }
 
