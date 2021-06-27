@@ -12,7 +12,7 @@ public interface BudgetService {
     List<Budget> findByEtatBudgetLibelle(String libelle);
     int deleteByCode(String code);
     int deleteMultiple(List<Tache> taches);
-    Budget save (Budget budget);
+    Budget save (BudgetVO budgetVO);
     BudgetVO calcStatistiqueBudget(BudgetVO budgetVO);
     List<Budget> search(BudgetVO budgetVO);
     Budget update (Budget budget);

@@ -38,13 +38,15 @@ public class BudgetAdminRest {
 
     // Create Services
     @PostMapping("/")
-    public Budget save(@RequestBody Budget budget){
+    public Budget save(@RequestBody BudgetVO budget){
         return budgetService.save(budget);
     }
 
     // Update Service
-    @PutMapping("/")
-    public Budget update(Budget budget) {
+    @PostMapping("/edit/")
+    public Budget update(@RequestBody Budget budget) {
+        System.out.println("aymane malih");
+        System.out.println(budget);
         return budgetService.update(budget);
     }
 

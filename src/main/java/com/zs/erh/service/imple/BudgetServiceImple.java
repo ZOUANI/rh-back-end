@@ -2,10 +2,12 @@ package com.zs.erh.service.imple;
 
 import com.zs.erh.bean.Agence;
 import com.zs.erh.bean.Budget;
+import com.zs.erh.bean.EtatBudget;
 import com.zs.erh.bean.Tache;
 import com.zs.erh.dao.BudgetDao;
 import com.zs.erh.service.facade.AgenceService;
 import com.zs.erh.service.facade.BudgetService;
+import com.zs.erh.service.facade.EtatBudgetService;
 import com.zs.erh.service.util.StringUtil;
 import com.zs.erh.service.vo.BudgetVO;
 import com.zs.erh.service.vo.StatisticVO;
@@ -15,11 +17,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.swing.text.html.Option;
 import javax.xml.crypto.Data;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class BudgetServiceImple extends AbstractFacade<Budget> implements BudgetService {
@@ -31,6 +32,9 @@ public class BudgetServiceImple extends AbstractFacade<Budget> implements Budget
 
     @Autowired
     private AgenceService agenceService;
+
+    @Autowired
+    private EtatBudgetService etatBudgetService;
 
     public List<Budget> findAll() {
         return budgetDao.findAll();
@@ -44,16 +48,20 @@ public class BudgetServiceImple extends AbstractFacade<Budget> implements Budget
         return budgetDao.findByEtatBudgetLibelle(libelle);
     }
 
-    public Budget save(Budget budget) {
-        Agence agence = this.agenceService.findByCode(budget.getAgence().getCode());
-        if (agence != null) {
-            if (budget.getMontant().compareTo(BigDecimal.ZERO) <= 0) {
+    public Budget save(BudgetVO budgetVo) {
+        Budget budget = new Budget();
+        Agence agence = this.agenceService.findById(budgetVo.getAgenceId()).get();
+        EtatBudget etatBudget = etatBudgetService.findById(budgetVo.getEtatBudgetId()).get();
+        if (agence != null && etatBudget != null) {
+            if (budgetVo.getMontant().compareTo(BigDecimal.ZERO) <= 0) {
                 return null;
             } else {
                 Date now = new Date();
                 String code = agence.getLibelle() + now.getHours() + now.getMinutes();
                 budget.setCode(code);
+                budget.setEtatBudget(etatBudget);
                 budget.setAgence(agence);
+                budget.setMontant(budgetVo.getMontant());
                 budgetDao.save(budget);
                 return budget;
             }
@@ -108,14 +116,22 @@ public class BudgetServiceImple extends AbstractFacade<Budget> implements Budget
 
 
     public Budget update(Budget budget) {
-        Agence agence = this.agenceService.findByCode(budget.getAgence().getCode());
-        if (agence != null) {
-            if (budget.getMontant().compareTo(BigDecimal.ZERO) <= 0) {
+        System.out.println(budget);
+        Optional<Budget> budgetFounded = budgetDao.findById(budget.getId());
+        if(budgetFounded.isPresent()){
+            Agence agence = this.agenceService.findByCode(budget.getAgence().getCode());
+            if(agence == null){
+                System.out.println("agence null");
                 return null;
+            }else{
+                if (budget.getMontant().compareTo(BigDecimal.ZERO) <= 0) {
+                    return null;
             } else {
-                budget.setAgence(agence);
-                budgetDao.save(budget);
-                return budget;
+                    budgetFounded.get().setAgence(agence);
+                    budgetDao.save(budgetFounded.get());
+                    return budgetFounded.get();
+                }
+
             }
         } else {
             return null;
