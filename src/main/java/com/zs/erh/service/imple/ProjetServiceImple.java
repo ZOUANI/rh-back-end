@@ -107,6 +107,7 @@ public class ProjetServiceImple implements ProjetService {
         projet1.setNombreJoureHommePrevu(projet.getNombreJoureHommePrevu());
         projet1.setNombreJoureHommeRetard(projet.getNombreJoureHommeRetard());
         projet1.setResponsable(projet.getResponsable());
+        projet1.setEtatProjet(projet.getEtatProjet());
         projetDao.save(projet1);
     }
 
