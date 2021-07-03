@@ -44,6 +44,7 @@ public class TacheVo {
     private String code;
     private String libelle;
 
+
     public TacheVo(Date dateDemarrageEffectiveMin, Date dateDemarrageEffectiveMax, Long equipeId, Long membreEquipeId, Long lotId, Long clientId, Long projetId, Integer semaine, Integer mois, Integer annee) {
         this.dateDemarrageEffectiveMin = dateDemarrageEffectiveMin;
         this.dateDemarrageEffectiveMax = dateDemarrageEffectiveMax;
@@ -251,6 +252,12 @@ public class TacheVo {
     @Override
     public String toString() {
         return "TacheVo{" + "responsableId=" + responsableId + ", lotId=" + lotId + ", equipeId=" + equipeId + ", clientId=" + clientId + ", groupeTacheId=" + groupeTacheId + ", projetId=" + projetId + ", periodeId=" + periodeId + ", dateDemarrageEffective=" + dateDemarrageEffective + ", dateFinEffective=" + dateFinEffective + '}';
+    }
+
+
+    public TacheVo(Date dateMin, Date dateMax) {
+        this.dateDemarrageEffectiveMin = dateMin;
+        this.dateDemarrageEffectiveMax = dateMax;
     }
 
 }

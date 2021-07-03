@@ -1,14 +1,8 @@
 package com.zs.erh.service.imple;
 
-import com.zs.erh.service.facade.FactureService;
-import com.zs.erh.service.facade.PaiementService;
-import com.zs.erh.service.vo.FactureVO;
-import com.zs.erh.service.vo.PaiementVO;
-import com.zs.erh.service.vo.StatisticVO;
-import com.zs.erh.service.vo.BudgetVO;
+import com.zs.erh.service.facade.*;
+import com.zs.erh.service.vo.*;
 
-import com.zs.erh.service.facade.BudgetService;
-import com.zs.erh.service.facade.DashboardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +17,8 @@ public class DashboardServiceImple implements DashboardService {
     private FactureService factureService;
     @Autowired
     private PaiementService paiementService;
+    @Autowired
+    private TacheService tacheService;
 
 
     public StatisticVO calcStatistiques(StatisticVO statisticVO) {
@@ -41,14 +37,16 @@ public class DashboardServiceImple implements DashboardService {
             budgetVO = new BudgetVO(result.getTimes().get(i),
                                     result.getTimes().get(i+1));
 
+
             factureVO = new FactureVO(result.getTimes().get(i),
-                    result.getTimes().get(i+1),statisticVO.getChefAgenceLogin());
+                    result.getTimes().get(i+1),statisticVO.getChefAgencecId());
 
              paiementVO = new PaiementVO(result.getTimes().get(i),
-                     result.getTimes().get(i+1),statisticVO.getChefAgenceLogin());
+                     result.getTimes().get(i+1),statisticVO.getChefAgencecId());
 
             budgetVO = budgetService.calcStatistiqueBudget(budgetVO);
             result.getBudgetsTotal().add(budgetVO.getTotalMontantBudget());
+
 
             factureVO = factureService.calcStatistiqueFacture(factureVO);
             result.getFacturesTotal().add(factureVO.getTotalMontantFacture());
@@ -58,6 +56,22 @@ public class DashboardServiceImple implements DashboardService {
         }
 
 
+        return result;
+    }
+
+    public StatisticVO calculStatisticTache( StatisticVO statisticVO){
+        StatisticVO result = new StatisticVO();
+        statisticVO.Times();
+        result.setTimes(statisticVO.getTimes());
+        TacheVo tacheVo;
+        BigDecimal minresult;
+        for (int i=0;i<statisticVO.getShowNumber();i++){
+            tacheVo = new TacheVo();
+            tacheVo.setDateDemarrageEffectiveMax(result.getTimes().get(i));
+            tacheVo.setDateDemarrageEffectiveMin(result.getTimes().get(i));
+            tacheVo.setChefAgenceId(result.getChefAgencecId());
+            result.getNbrTache().add(tacheService.calculNbrTache(tacheVo));
+        }
         return result;
     }
 }

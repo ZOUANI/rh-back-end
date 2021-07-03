@@ -2,20 +2,28 @@ package com.zs.erh.ws.provided.collaborateur;
 
 import com.zs.erh.bean.Message;
 import com.zs.erh.service.facade.MessageService;
+import com.zs.erh.service.vo.MessageVO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("maneo-rh/collaborateur/message")
 public class MessageCollabRest {
     @Autowired
     private MessageService messageService;
+    
+    
     @GetMapping("/login/{login}")
     public List<Message> findBySourceLogin(@PathVariable String login) {
         return messageService.findBySourceLogin(login);
+    }
+    
+    @GetMapping("/etatMessageCode/{code}")
+    public List<Message> findByEtatMessageCode(@PathVariable String code) {
+        return this.messageService.findByEtatMessageCode(code);
     }
 
     @GetMapping("/")
@@ -24,6 +32,11 @@ public class MessageCollabRest {
     }
     @PostMapping("/")
     public Message save(@RequestBody Message message) {
-        return messageService.save(message);
+        return messageService.saveMD(message, message.getMessageDetails());
+
+    }
+    @PostMapping("/search")
+    public List<Message> searchMessage(@RequestBody MessageVO messageVO) {
+        return messageService.searchMessage(messageVO);
     }
 }

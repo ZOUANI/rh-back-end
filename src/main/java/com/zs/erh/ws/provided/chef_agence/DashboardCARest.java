@@ -18,4 +18,8 @@ public class DashboardCARest {
     public StatisticVO calcStatistiques(@RequestBody StatisticVO statisticVO) {
         return dashboardService.calcStatistiques(statisticVO);
     }
+    @PostMapping("/taches")
+    public StatisticVO calculStatisticTache(@RequestBody StatisticVO statisticVO) {
+        return dashboardService.calculStatisticTache(statisticVO);
+    }
 }

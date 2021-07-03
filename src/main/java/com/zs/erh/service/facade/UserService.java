@@ -10,4 +10,7 @@ public interface UserService {
      Optional<User> findById(Long id);
      public User save(User user);
      public User editePersonnel(User user);
+     int block(Long id);
+     int reset(Long id);
+     int deblock(Long id);
      }

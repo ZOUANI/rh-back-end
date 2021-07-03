@@ -6,19 +6,19 @@ import java.util.Date;
 public class FactureVO {
 
     private Long clientId;
-    private String chefAgenceLogin;
+    private Long chefAgenceId;
     private Long etatFactureId;
     private Date dateMin;
     private Date dateMax;
     private  Long nbrFacture;
     private BigDecimal totalMontantFacture;
 
-    public String getChefAgenceLogin() {
-        return chefAgenceLogin;
+    public Long getChefAgenceId() {
+        return chefAgenceId;
     }
 
-    public void setChefAgenceLogin(String chefAgenceLogin) {
-        this.chefAgenceLogin = chefAgenceLogin;
+    public void setChefAgenceId(Long chefAgenceId) {
+        this.chefAgenceId = chefAgenceId;
     }
 
     public Long getClientId() {
@@ -74,10 +74,10 @@ public class FactureVO {
         this.nbrFacture = nbrFacture;
     }
 
-    public FactureVO(Date dateMin, Date dateMax,String chefAgenceLogin) {
+    public FactureVO(Date dateMin, Date dateMax,Long chefAgenceId) {
         this.dateMin = dateMin;
         this.dateMax = dateMax;
-        this.chefAgenceLogin = chefAgenceLogin;
+        this.chefAgenceId = chefAgenceId;
     }
 
     public FactureVO() {

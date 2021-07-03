@@ -10,7 +10,9 @@ import com.zs.erh.bean.Tache;
 import com.zs.erh.dao.TacheDao;
 import com.zs.erh.service.facade.*;
 import com.zs.erh.service.util.DateUtil;
+import com.zs.erh.service.vo.BudgetVO;
 import com.zs.erh.service.vo.CollaborateurVo;
+import com.zs.erh.service.vo.StatisticVO;
 import com.zs.erh.service.vo.TacheVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -209,8 +211,19 @@ public class TacheServiceImple extends AbstractFacade<Tache> implements TacheSer
     }
 
 
+
     public List<CollaborateurVo> suivreCollaborateurs(CollaborateurVo collaborateurVo) {
         return calcStatistiqueSuiviCollaborateur(collaborateurVo);
+    }
+    public Long calculNbrTache(TacheVo tacheVo){
+        String query = "select count(t) from Tache t where 1=1";
+        query += addConstraintMinMaxDate("t", "dateDemarrageEffective", tacheVo.getDateDemarrageEffectiveMin(), tacheVo.getDateDemarrageEffectiveMax());
+        query += addConstraint("t.groupeTache.lot.projet.agence.chefAgence.id", tacheVo.getChefAgenceId());
+        Long result = (Long) entityManager.createQuery(query).getSingleResult();
+        if(result == null){
+            return new Long(0);
+        }
+        else return result;
     }
 
     public List<CollaborateurVo> calcStatistiqueSuiviCollaborateur(CollaborateurVo collabVo) {

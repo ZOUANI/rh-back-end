@@ -8,19 +8,19 @@ import java.util.Date;
 public class PaiementVO {
 
     private Long factureId;
-    private String chefAgenceLogin;
+    private Long chefAgenceId;
 
     private Date dateMin;
     private Date dateMax;
     private Long nbrPaiement;
     private BigDecimal totalMontantPaiement;
 
-    public String getChefAgenceLogin() {
-        return chefAgenceLogin;
+    public Long getChefAgenceId() {
+        return chefAgenceId;
     }
 
-    public void setChefAgenceLogin(String chefAgenceLogin) {
-        this.chefAgenceLogin = chefAgenceLogin;
+    public void setChefAgenceId(Long chefAgenceId) {
+        this.chefAgenceId = chefAgenceId;
     }
 
     public Long getFactureId() {
@@ -67,10 +67,10 @@ public class PaiementVO {
         this.totalMontantPaiement = totalMontantPaiement;
         this.nbrPaiement = nbrPaiement;
     }
-    public PaiementVO(Date dateMin, Date dateMax, String chefAgenceLogin) {
+    public PaiementVO(Date dateMin, Date dateMax, Long chefAgenceId) {
         this.dateMin = dateMin;
         this.dateMax = dateMax;
-        this.chefAgenceLogin = chefAgenceLogin;
+        this.chefAgenceId = chefAgenceId;
     }
 
 }

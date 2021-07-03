@@ -132,6 +132,11 @@ public class EquipeServiceImple implements EquipeService {
         return  entityManager.createQuery(query).getResultList();
     }
 
+    public List<Equipe> findByCollab(String code){
+        return equipeDao.findByCollab(code);
+    }
+
+
     public  List<Equipe> findByAgenceChefAgenceCode(String code){
         return equipeDao.findByAgenceChefAgenceCode(code);
     }
